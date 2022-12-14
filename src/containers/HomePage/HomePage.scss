@@ -1,0 +1,431 @@
+@import "../../scss/mixins";
+@import "../../scss/variables";
+.home-img-1 {
+  width: 20%;
+  height: 15%;
+}
+.home-img-2 {
+  width: 20%;
+  height: 30%;
+}
+.home-mob-img-1 {
+  width: 33%;
+  height: 15%;
+}
+.home-mob-img-2 {
+  width: 33%;
+  height: 7.5%;
+}
+.home-img-3 {
+  width: 60%;
+  height: 30%;
+}
+.home-bg-img-1 {
+  @include homeBgImg("../../assets/imgs/1.png");
+}
+.home-bg-img-2 {
+  @include homeBgImg("../../assets/imgs/2.png");
+}
+.home-bg-img-3 {
+  @include homeBgImg("../../assets/imgs/3.png");
+}
+.home-bg-img-4 {
+  @include homeBgImg("../../assets/imgs/4.png");
+}
+.home-bg-img-5 {
+  @include homeBgImg("../../assets/imgs/5.png");
+}
+.home-bg-img-6 {
+  @include homeBgImg("../../assets/imgs/6.png");
+}
+.home-bg-img-7 {
+  @include homeBgImg("../../assets/imgs/7.png");
+}
+.home-bg-img-8 {
+  @include homeBgImg("../../assets/imgs/8.png");
+}
+.home-bg-img-9 {
+  @include homeBgImg("../../assets/imgs/9.png");
+}
+.home-bg-img-10 {
+  @include homeBgImg("../../assets/imgs/10.png");
+}
+.home-bg-img-11 {
+  @include homeBgImg("../../assets/imgs/11.png");
+}
+.home-bg-img-12 {
+  @include homeBgImg("../../assets/imgs/12.png");
+}
+.home-bg-img-13 {
+  @include homeBgImg("../../assets/imgs/13.png");
+}
+.home-bg-img-14 {
+  @include homeBgImg("../../assets/imgs/14.png");
+}
+.main-section {
+  background-color: $btnColor;
+  color: $whiteText;
+  font-size: 3vw;
+  text-align: center;
+  padding: 20px;
+  max-height: 260px;
+  height: 260px;
+}
+.home-main-title {
+  line-height: 3vw;
+  font-size: 3vw;
+}
+.home-secondary-title {
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+.check-courses-btn {
+  box-shadow: 0px 2px 4px rgba(11, 11, 14, 0.2);
+  border-radius: 12px;
+  padding: 0.7vw 2vw;
+  color: #02428d;
+  border: none;
+  margin-bottom: 4px;
+}
+.desktop-view {
+  display: block !important;
+}
+.mobile-view {
+  display: none !important;
+}
+.about-us-section {
+  background-color: $btnColor;
+  color: $whiteText;
+  padding: 1.3vw 3vw;
+}
+.partners-section {
+  background-color: #F6F6F7;
+  padding: 1.3vw 3vw;
+}
+.about-us-secondary-section {
+  padding: 3vw;
+}
+.about-us-title {
+  color: #c3defe;
+  letter-spacing: 0.8em;
+}
+.about-us-text {
+  color: #c3defe;
+  line-height: 1.8vw;
+}
+.lecturers-text {
+  color: #c3defe;
+  line-height: 1.8vw;
+}
+.about-us-img {
+  background-color: #ffffff;
+  border-radius: 16px;
+  width: 64% !important;
+  margin-left: 25%;
+  margin-top: 1.5vw;
+}
+.about-us-img-2 {
+  background-color: $whiteText;
+  border-radius: 16px;
+  width: 64% !important;
+  margin-left: 12%;
+  margin-top: 1.5vw;
+}
+img[alt="aboutUs2"] {
+  width: 29vw;
+  height: 24vw;
+  position: relative;
+  right: 7%;
+  top: 24px;
+}
+img[alt="aboutUs"] {
+  width: 29vw;
+  height: 24vw;
+  position: relative;
+  right: 7%;
+  top: 24px;
+}
+img[alt="top-courses-img"] {
+  width: 100%;
+}
+.categories-carousel-card {
+  width: 195px;
+  height: 172px;
+  text-align: left;
+}
+.categories-carousel-card-container {
+  height: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+}
+.category-carousel-text {
+  padding: 12px;
+}
+img[alt="category-carousel-img"] {
+  height: 100%;
+  border-top-left-radius: 184px 342px;
+  width: 100%;
+}
+.categories-section {
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5faff;
+}
+
+.certificate-section {
+  text-align: center;
+  padding-bottom: 20px;
+  background-color: #f5faff;
+}
+.categories-text {
+  color: #000e1f;
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+.top-courses-card {
+  background: $whiteText;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: left;
+}
+.our-lecturer-card {
+  background: $whiteText;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: left;
+  width: 23%;
+}
+.our-students-card {
+  background: $whiteText;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: left;
+  width: 31%;
+}
+.students-text {
+  color: #0B0B0E;
+}
+.student-name {
+  color: #000E1F;
+}
+.student-school {
+  color: #535364;
+}
+.student-info {
+  align-items: center;
+  gap: 20px;
+}
+img[alt="student-img"]{
+  border-radius: 50%;
+  width: 100%;
+}
+.top-courses .react-multi-carousel-item {
+  width: 300px !important;
+  margin-right: 20px;
+}
+.top-courses-title {
+  font-size: 1.33vw;
+}
+.top-courses-rating {
+  color: #babac5;
+}
+.top-courses-card .m-e-1 {
+  margin-right: 2px;
+}
+.top-courses-card .m-x-1 {
+  margin-right: 2px;
+  margin-left: 2px;
+}
+.top-courses-card .old-price {
+  font-size: 15px;
+}
+.top-courses-card .new-price {
+  font-size: 13px;
+  text-decoration-line: line-through;
+  color: #a1a1b0;
+}
+.top-courses-card .best-sellter-btn {
+  background: #dcf0cf;
+  border-radius: 8px;
+  border: none;
+  padding: 4px 11px;
+  font-size: 12px;
+}
+.certificate-titles {
+  width: 62%;
+  margin: 0 auto;
+}
+.certificate-section-title {
+  letter-spacing: 0.8em;
+  color: $btnColor;
+}
+.lecturer-name {
+  font-size: 1.33vw;
+  color: #000e1f;
+}
+.lecturer-list {
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 480px) {
+  .partners-container {
+    overflow-x: scroll;
+  }
+  .partner-img-container {
+    margin-right: 20px;
+  }
+  .mobile-view {
+    display: block !important;
+  }
+  .desktop-view {
+    display: none !important;
+  }
+  .main-section {
+    background-color: transparent;
+    position: absolute;
+    top: 126px;
+    color: $whiteText;
+    font-size: 3vw;
+    text-align: center;
+    padding: 20px;
+    max-height: 260px;
+  }
+  .home-main-title {
+    font-size: 6vw;
+    line-height: 7vw;
+  }
+  .home-secondary-title {
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+  }
+  .check-courses-btn {
+    box-shadow: 0px 2px 4px rgba(11, 11, 14, 0.2);
+    border-radius: 12px;
+    padding: 0.7vw 2vw;
+    color: #02428d;
+    border: none;
+    margin-bottom: 4px;
+  }
+  .mobile-view .body-1,
+  .categories-section .body-1 {
+    font-size: 2.6vw !important;
+  }
+  .categories-text {
+    width: 90% !important;
+  }
+
+  .home-secondary-title {
+    width: 100% !important;
+  }
+  div[class*="home-bg-img"] {
+    height: 85px !important;
+  }
+  .col-xs-12 {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+  }
+  .about-us-secondary-section {
+    text-align: center;
+  }
+  .about-us-title {
+    letter-spacing: 0.5em;
+  }
+  .certificate-section-title {
+    letter-spacing: 0.5em;
+  }
+  .certificate-section-title .heading-5 {
+    font-size: 4vw;
+  }
+  img[alt="certificate-icon"] {
+    width: 250px;
+    height: 200px;
+  }
+  .certificate-titles .body-1 {
+    font-size: 3.5vw !important;
+  }
+  .certificate-titles {
+    width: 90%;
+  }
+  .about-us-secondary-section .heading-5 {
+    font-size: 6vw;
+  }
+  .about-us-secondary-section .about-us-text {
+    line-height: 4.8vw;
+  }
+  .about-us-secondary-section .body-1 {
+    font-size: 3vw !important;
+  }
+  .about-us-secondary-section img[alt="arrow"] {
+    width: 16px;
+  }
+  .about-us-img,
+  .about-us-img-2 {
+    width: 90% !important;
+    margin-left: 6%;
+    margin-top: 1.5vw;
+  }
+  .about-us-container {
+    flex-direction: column-reverse;
+  }
+  img[alt="aboutUs"],
+  img[alt="aboutUs2"] {
+    width: 84vw;
+    height: 72vw;
+    right: 6%;
+    top: 19px;
+  }
+  .categories-carousel-card {
+    width: 150px;
+    height: 133px;
+  }
+  .lecturers-text {
+    line-height: 3.2vw;
+  }
+  .lecturers-section .heading-5 {
+    font-size: 5vw;
+  }
+  .our-lecturer-card {
+    padding: 6px;
+  }
+  .lecturer-name {
+    font-size: 3.33vw;
+  }
+  .lecturer-list {
+    width: 1000px;
+  }
+  .lecturer-list  .body-1 {
+    font-size: 2.6px;
+  }
+  .lectures-scroll-container {
+    overflow-x: scroll;
+  }
+ .our-students-card{
+  width: 23%;
+ }
+  .col-sm-2 {
+    flex: 0 0 auto;
+    width: 16.66666667%;
+}
+.col-sm-10 {
+    flex: 0 0 auto;
+    width: 83.33333333%;
+}
+.lecturer-list {
+  gap: 40px;
+  justify-content: unset !important;
+}
+}
+
+@media only screen and (max-width: 1075px) and (min-width: 480px) {
+  img[alt="certificate-icon"] {
+    width: 430px;
+    height: 270px;
+  }
+  .partner-img-container {
+    margin-right: 20px;
+  }
+}

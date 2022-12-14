@@ -1,0 +1,86 @@
+@import "./variables";
+@import "./fonts";
+@import "./mixins";
+
+html,
+body {
+  outline: 0 !important;
+  height:100%;
+}
+//font sizes
+
+.heading-2 {
+  font-size: 3.753vw;
+}
+.heading {
+  font-size: 2.8vw;
+}
+.heading-4 {
+  font-size: 2.111vw;
+}
+.heading-3 {
+  font-size: 1.8vw;
+}
+.heading-1 {
+  font-size: 1.5vw;
+}
+.heading-5 {
+  font-size: 3vw;
+}
+.body-1 {
+  font-size: 1.173vw;
+}
+.label-1 {
+  font-size: 1.016vw;
+}
+
+
+//font families 
+
+.glory-regular {
+  font-family: 'Gilory';
+}
+.glory-bold {
+  font-family: 'Gilory-Bold';
+}
+.glory-semi-bold {
+  font-family: 'Gilory-Semi-Bold';
+}
+.inter-regular {
+  font-family: 'Inter';
+}
+.inter-semi-bold {
+  font-family: 'Inter-SemiBold';
+}
+
+//colors
+
+.text-white {
+  color: $whiteText;
+}
+.text-grey-sub-heading {
+  color: $subHeading;
+}
+
+//general style
+
+
+.low-line-height{
+  line-height: 2.346vw;
+}
+
+.medium-line-height {
+  line-height: 4vw;
+}
+
+input {
+  @include inputStyle;
+}
+
+.btnColor {
+  color: $btnColor;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

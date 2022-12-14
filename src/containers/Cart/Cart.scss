@@ -1,0 +1,159 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+.cart-container {
+  padding: 1.3vw 3vw;
+  background-color: #f6f6f7;
+  .search-result-cat-title {
+    color: #000e1f;
+  }
+  .cart-header {
+    color: #002147;
+  }
+  input[type="checkbox"] {
+    appearance: none;
+    margin: 0;
+    background: #ffffff;
+    border-radius: 6px;
+    border: 1px solid #d3d3d6;
+    width: 25px;
+    height: 25px;
+  }
+
+  .sort-btn {
+    background: #f5faff;
+    border-radius: 12px;
+    padding: 11px;
+    border: none;
+    color: $btnColor;
+  }
+  .search-results-section {
+    background-color: $whiteText;
+    color: #000e1f;
+    padding: 32px 20px;
+    border-radius: 24px;
+  }
+  .search-results-section p {
+    margin-bottom: unset;
+  }
+  .search-results-courses-data span {
+    color: #707089;
+  }
+
+  .search-result-date::before,
+  .search-result-students-number::before {
+    display: inline-block;
+    content: "";
+    border-radius: 0.375rem;
+    height: 8px;
+    width: 8px;
+    background-color: #d8d8de;
+    margin-right: 3.5px;
+    margin-left: 3.5px;
+  }
+  .sort-btn-mobile,
+  .filter-btn-mobile {
+    display: none;
+  }
+  .sort-btn {
+    display: inline-block;
+  }
+  .cart-subheader {
+    color: #535364;
+  }
+  .total-cart {
+    height: fit-content;
+  }
+  .total-price {
+    color: #002147;
+  }
+  .regular-btn {
+    @include btnStyle(
+      $btnColor,
+      12px,
+      $whiteText,
+      0.782vw 2.346vw,
+      "Inter-SemiBold",
+      1.173vw,
+      0vw 0.156vw 0.313vw rgba(11, 11, 14, 0.2)
+    );
+  }
+  .total-cart-mobile {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cart-container {
+    background-color: $whiteText;
+    .filters-container {
+      display: none;
+    }
+    img[alt="course-img"] {
+      width: 100%;
+      height: 100%;
+    }
+    .course-results-wrapper {
+      flex-direction: row;
+      margin-bottom: 15px !important;
+      align-items: center;
+    }
+    .search-results-courses-data {
+        display: none;
+    }
+    .course-results-wrapper > div:first-child {
+        margin-bottom: 0px;
+      }
+    .ratings-container-cart {
+        display: none;
+    }
+    .cart-subheader {
+        display: none;
+    }
+    .col-sm-4 {
+        flex: 0 0 auto;
+        width: 40%;
+    }
+    .col-sm-8 {
+        flex: 0 0 auto;
+        width: 60%;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+    .col-sm-6 {
+      flex: 0 0 auto;
+      width: 50%;
+    }
+    .search-results-section {
+      padding: 0px 20px 20px 20px;
+    }
+    .results-row {
+      margin-top: 15px;
+    }
+    .sort-btn {
+      display: none;
+    }
+    .sort-btn-mobile,
+    .filter-btn-mobile {
+      display: inline-block;
+      background: #f5faff;
+      border-radius: 12px;
+      padding: 11px;
+      border: none;
+      color: $btnColor;
+    }
+    .results-row-wrapper {
+        width: 100%;
+      }
+      .cart-results-wrapper {
+        width:100%;
+      }
+      .total-cart {
+        display: none;
+      }
+      .total-cart-mobile {
+        display: block;
+        width: 100%;
+      }
+  }
+}

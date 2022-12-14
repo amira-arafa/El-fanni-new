@@ -1,0 +1,195 @@
+.register-layout {
+  .p-t-5 {
+    padding-top: 6.255vw !important;
+  }
+  .p-a-5 {
+    padding: 5vw !important;
+  }
+  .main-bg-img {
+    height: 100%;
+    background-color: rgba(0, 33, 71, 0.75);
+    background-image: url("../../assets/imgs/signUp2.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+    background-blend-mode: multiply;
+    padding-left: 6.255vw;
+    padding-right: 6.255vw;
+    align-self: stretch;
+    height: auto;
+    display: block;
+  }
+  .main-bg-img-v2 {
+    height: 100%;
+    background-color: rgba(0, 33, 71, 0.75);
+    background-image: url("../../assets/imgs/laptop.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: multiply;
+    padding-left: 6.255vw;
+    padding-right: 6.255vw;
+    align-self: stretch;
+    height: auto;
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .main-bg-img {
+    display: none !important;
+  }
+  .main-bg-img-v2 {
+    display: none !important;
+  }
+  .form-register-container {
+    width: 100% !important;
+  }
+  .heading-4 {
+    font-size: 5vw;
+  }
+  .heading-2 {
+    font-size: 5.753vw;
+  }
+  .body-1 {
+    font-size: 3.5vw;
+  }
+  .mobile-logo {
+    display: flex !important;
+    align-items: center;
+  }
+  .low-line-height {
+    line-height: 5vw;
+  }
+  .label-1 {
+    font-size: 3.016vw;
+  }
+  .intl-tel-input,
+  input {
+    height: 7.5vw !important;
+    &::placeholder {
+      font-size: 2.5vw;
+      padding: 0vw 1.5vw !important;
+    }
+  }
+  .intl-tel-input {
+    padding: 0vw 12.5vw !important;
+    font-size: 2.5vw !important;
+  }
+  .regular-btn,
+  .social-media-btn {
+    font-size: 3.173vw !important;
+    padding: 1.782vw 3.346vw !important;
+    border-radius: 8px !important;
+  }
+  .sign-up-form img[alt="password-repeat-icon"],
+  .sign-up-form img[alt="password-icon"] {
+    float: right !important;
+    position: relative !important;
+    bottom: 22px !important;
+    margin-right: 11px !important;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media only screen and (max-width: 600px) and (min-width: 480px) {
+  .col-sm-6 {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+  .heading-4 {
+    font-size: 3.8vw;
+  }
+  .heading-2 {
+    font-size: 4vw;
+  }
+  .body-1 {
+    font-size: 2vw;
+  }
+  .mobile-logo {
+    display: flex !important;
+    align-items: center;
+  }
+  .low-line-height {
+    line-height: 4vw;
+  }
+  .label-1 {
+    font-size: 2.016vw;
+  }
+  .intl-tel-input,
+  input {
+    height: 6.5vw !important;
+    &::placeholder {
+      font-size: 2vw;
+      padding: 0vw 1.2vw !important;
+    }
+  }
+  .intl-tel-input {
+    padding: 0vw 8.5vw !important;
+    font-size: 2vw !important;
+  }
+  .regular-btn,
+  .social-media-btn {
+    font-size: 2.173vw !important;
+    padding: 0.782vw 2vw !important;
+    border-radius: 8px !important;
+  }
+  .sign-up-form img[alt="password-repeat-icon"],
+  .sign-up-form img[alt="password-icon"] {
+    float: right !important;
+    position: relative !important;
+    bottom: 22px !important;
+    margin-right: 11px !important;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media only screen and (max-width: 1000px) and (min-width: 600px) {
+  .heading-4 {
+    font-size: 3vw;
+  }
+  .heading-2 {
+    font-size: 3.2vw;
+  }
+  .body-1 {
+    font-size: 1.2vw;
+  }
+  .mobile-logo {
+    display: flex !important;
+    align-items: center;
+  }
+  .low-line-height {
+    line-height: 3.2vw;
+  }
+  .label-1 {
+    font-size: 1.6vw;
+  }
+  .intl-tel-input,
+  input {
+    height: 4vw !important;
+    &::placeholder {
+      font-size: 1.5vw;
+      padding: 0vw 1.2vw !important;
+    }
+  }
+  .intl-tel-input {
+    padding: 0vw 7vw !important;
+    font-size: 2vw !important;
+  }
+  .regular-btn,
+  .social-media-btn {
+    font-size: 1.5vw !important;
+    padding: 0.782vw 2vw !important;
+    border-radius: 8px !important;
+  }
+  .sign-up-form img[alt="password-repeat-icon"],
+  .sign-up-form img[alt="password-icon"] {
+    float: right !important;
+    position: relative !important;
+    bottom: 23px !important;
+    margin-right: 11px !important;
+    width: 16px;
+    height: 16px;
+  }
+}

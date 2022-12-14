@@ -1,0 +1,11 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+.intl-tel-input {
+  border: 0.117vw solid $borderColor !important;
+  border-radius: 0.625 !important;
+  height: 3.049vw !important;
+  width: 100% !important;
+  font-size: 1.251vw !important;
+  padding: 0vw 4vw !important
+}

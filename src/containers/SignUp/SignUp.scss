@@ -1,0 +1,53 @@
+@import "../../scss/mixins";
+@import "../../scss/variables";
+
+.sign-up-form {
+  img[alt="password-icon"] {
+    @include inputIcon(28px, 11px);
+  }
+  img[alt="password-repeat-icon"] {
+    @include inputIcon(28px, 11px);
+  }
+  .regular-btn {
+    @include btnStyle(
+      $btnColor,
+      12px,
+      $whiteText,
+      0.782vw 2.346vw,
+      "Inter-SemiBold",
+      1.173vw,
+      0vw 0.156vw 0.313vw rgba(11, 11, 14, 0.2)
+    );
+  }
+  .social-media-btn {
+    @include btnStyle(
+        $socialMediaBtnsBackground,
+        12px,
+        $btnColor,
+        1.095vw 1.72vw,
+        "Inter-SemiBold",
+        1.173vw,
+        none
+      );
+      align-items: center;
+      cursor: pointer;
+  }
+  .sign-up-options-or {
+    color: $greyColor;
+  }
+  .sign-up-btn{
+    color: $btnColor;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+ 
+}
+
+@media only screen and (min-width: 480px) {
+  .mobile-logo {
+    display: none !important;
+  }
+  
+}

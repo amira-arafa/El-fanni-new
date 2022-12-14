@@ -1,0 +1,45 @@
+@import "../../scss/mixins";
+@import "../../scss/variables";
+
+.edit-profile-wrapper {
+  padding: 1.3vw 3vw;
+  background: #f6f6f7;
+  height: 100vh;
+  .edit-profile-fields-wrapper {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+  }
+  img[alt="password-icon"] {
+    @include inputIcon(28px, 11px);
+  }
+  img[alt="password-repeat-icon"] {
+    @include inputIcon(28px, 11px);
+  }
+  .check-courses-btn {
+    @include btnStyle(
+        #EFEFEF,
+        12px,
+        #02428d,
+        0.782vw 2.346vw,
+        "Inter-SemiBold",
+        1.173vw,
+        0vw 0.156vw 0.313vw rgba(11, 11, 14, 0.2)
+      );
+  }
+  .buy-courses-btn {
+    border: none;
+    @include btnStyle(
+      $btnColor,
+      12px,
+      $whiteText,
+      0.782vw 2.346vw,
+      "Inter-SemiBold",
+      1.173vw,
+      0vw 0.156vw 0.313vw rgba(11, 11, 14, 0.2)
+    );
+  }
+  .edit-profile-btns {
+    width: 11.2%;
+  }
+}

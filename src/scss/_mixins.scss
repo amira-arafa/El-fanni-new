@@ -1,0 +1,59 @@
+@import "./variables";
+
+@mixin inputStyle {
+  border: 0.117vw solid $borderColor;
+  border-radius: 5px;
+  height: 3.049vw;
+  font-size: 1.016vw;
+  padding: 0vw 0.9vw !important;
+  &::placeholder {
+    color: $placeholderColor !important;
+    font-size: 1.016vw;
+  }
+  &:focus-visible{
+    outline: none !important;
+  }
+}
+
+@mixin inputIcon($bottom, $rigth) {
+    float: right;
+    position: relative;
+    bottom: $bottom;
+    margin-right: $rigth;
+}
+
+@mixin btnStyle(
+  $backGroundColor,
+  $borderRaduis,
+  $color,
+  $padding,
+  $fontFamily,
+  $fontSize,
+  $boxShadow
+) {
+  background: $backGroundColor;
+  box-shadow: $boxShadow;
+  border-radius: $borderRaduis;
+  color: $color;
+  padding: $padding;
+  font-family: $fontFamily;
+  font-size: $fontSize;
+}
+
+@mixin homeBgImg(
+  $url
+) {
+  height: 130px;
+  width: 100%;
+  background-color: rgba(11, 84, 170, 0.6);
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+  padding-left: 6.255vw;
+  padding-right: 6.255vw;
+  align-self: stretch;
+  display: block;
+}
+
