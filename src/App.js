@@ -22,6 +22,7 @@ import "react-toastify/dist/ReactToastify.css";
 import history from "./routes/History";
 import { useEffect, useState } from "react";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { requestFirebaseNotificationPermission } from "./firebaseInit";
 import "./App.css";
 import "./scss/_general.scss";
 
@@ -37,6 +38,13 @@ function App() {
       setLoader(false);
     }
   }, [auth.loading]);
+
+  requestFirebaseNotificationPermission().then((firebaseToken) => {
+    localStorage.setItem("firebaseToken",firebaseToken)
+  })
+  .catch((err) => {
+    return err;
+  });
 
   return (
     <div className={loader ? 'app-opacity' : ''}>
