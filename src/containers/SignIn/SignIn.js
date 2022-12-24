@@ -57,7 +57,6 @@ const SignIn = () => {
     },
   });
 
-
   const renderForm = () => {
     const onEmailChange = ({ target }) => {
       setEmail(target.value);

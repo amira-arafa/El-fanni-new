@@ -89,23 +89,15 @@ export const ResetPassword = (data, token) => async (dispatch) => {
   }
 };
 
-// export const loginWithFacebook = (body) => async (dispatch) => {
-//   try {
-//     const res = await axiosInstance.post("/auth/facebook/token",body);
-//     redirectUser(res, dispatch);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-export const loginWithFacebook = (params) => async (dispatch) => {
+export const loginWithFacebook = (body) => async (dispatch) => {
   try {
-    const res = await axiosInstance.get("/auth/facebook/token",{params});
-    console.log("REsponseeee",res)
+    const res = await axiosInstance.post("/auth/facebook/token",body);
     redirectUser(res, dispatch);
   } catch (err) {
     console.log(err);
   }
 };
+
 
 export const loginWithGoogle = (body) => async (dispatch) => {
   try {
