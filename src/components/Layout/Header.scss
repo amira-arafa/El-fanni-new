@@ -1,9 +1,36 @@
-@import "../../scss//variables";
+@import "../../scss/variables";
+@import "../../scss/mixins";
 
 .header-container {
   background: $btnColor;
   color: $whiteText;
   padding: 1.3vw 3vw;
+  .dropdown-toggle::after {
+    display: none;
+  }
+  .logout-user {
+      border-radius: 50%;
+  }
+  .header-modal {
+    .modal-header {
+      border-bottom: none;
+      padding-top: 4px;
+      padding-bottom: 0px;
+    }
+  }
+  .modal-content {
+    max-width: 75vw;
+    width: 75vw;
+    margin: 0 auto;
+    transform: translateX(-50%);
+    left: 50%;
+  }
+  img[alt="password-icon"] {
+    @include inputIcon(28px, 11px);
+  }
+  .search-input{
+    background-color: #002147;
+  }
 }
 .browse-btn {
   background: #ffffff;

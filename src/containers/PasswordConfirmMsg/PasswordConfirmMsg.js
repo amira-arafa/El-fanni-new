@@ -5,9 +5,11 @@ import logoMobile from "../../assets/imgs/logoMobile.png";
 import RegisterLayout from "../RegisterLayout/RegisterLayout";
 import Button from "../../components/Button/Button";
 import "./PasswordConfirmMsg.scss";
+import { useNavigate } from "react-router-dom";
 
 const PasswordConfirmMsg = () => {
   const intl = useIntl();
+  const navigate = useNavigate();
   const renderForm = () => {
     return (
       <div className="sign-up-form">
@@ -28,6 +30,7 @@ const PasswordConfirmMsg = () => {
           <Button
             text={intl.formatMessage({ id: "signIn" })}
             className="w-100 regular-btn"
+            onClick={()=> navigate("/sign-in")}
           />
         </div>
       </div>

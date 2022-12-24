@@ -19,7 +19,7 @@
       0vw 0.156vw 0.313vw rgba(11, 11, 14, 0.2)
     );
   }
-  .social-media-btn {
+  .kep-login-facebook.metro , .social-media-btn {
     @include btnStyle(
         $socialMediaBtnsBackground,
         12px,
@@ -31,6 +31,13 @@
       );
       align-items: center;
       cursor: pointer;
+  }
+  .kep-login-facebook.metro {
+    text-transform: capitalize;
+    border: none;
+    display: flex;
+    width: 100%;
+    justify-content: center;
   }
   .sign-up-options-or {
     color: $greyColor;

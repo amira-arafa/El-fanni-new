@@ -12,10 +12,14 @@ import gmailIcon from "../../assets/imgs/icons/google.png";
 import RegisterLayout from "../RegisterLayout/RegisterLayout";
 import Button from "../../components/Button/Button";
 import SocialMediaLogin from "../../components/Button/SocialMediaLogin";
-import { signUp } from "../../store/actions/auth";
+import { signUp, loginWithFacebook, loginWithGoogle } from "../../store/actions/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { SUCESS_SIGN_IN } from "../../store/types/auth";
+import { useGoogleLogin } from '@react-oauth/google';
+import FacebookLogin from "react-facebook-login";
 import "./SignUp.scss";
-import { useDispatch } from "react-redux";
-import history from "../../routes/History";
 
 const SignUp = () => {
   const intl = useIntl();
@@ -33,7 +37,21 @@ const SignUp = () => {
   const [passwordErr, setPasswordErr] = useState(false);
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [passwordConfirmErr, setPasswordConfirmErr] = useState(false);
+  const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (auth.sucess_sign_in) {
+      navigate("/");
+    }
+    return () => {
+      dispatch({
+        type: SUCESS_SIGN_IN,
+        payload: false,
+      });
+    };
+  }, [auth.sucess_sign_in]);
 
   const onEmailChange = ({ target }) => {
     setEmail(target.value);
@@ -78,7 +96,12 @@ const SignUp = () => {
   };
 
   const onSubmit = () => {
-    history.push("/")
+    !email && setEmailErr(true);
+    !phone && setPhoneErr(true);
+    !firstName && setFirstNameErr(true);
+    !lastName && setLastNameErr(true);
+    !password && setPasswordErr(true);
+    !passwordConfirm && setPasswordConfirmErr(true);
     if (
       email &&
       phone &&
@@ -104,6 +127,17 @@ const SignUp = () => {
       dispatch(signUp(data));
     }
   };
+
+  const responseFacebook = (response) => {
+    console.log("reso",response)
+    dispatch(loginWithFacebook({ access_token : response.accessToken }));
+  };
+
+  const loginWithGmail = useGoogleLogin({
+    onSuccess: tokenResponse => {
+      dispatch(loginWithGoogle({ access_token : tokenResponse.access_token }));
+    },
+  });
 
   const renderForm = () => {
     return (
@@ -168,7 +202,7 @@ const SignUp = () => {
           />
           {firstNameErr && !firstName && (
             <small className="text-danger label-1">
-              <FormattedMessage id="emailFieldValidation" />
+              <FormattedMessage id="requiredField" />
             </small>
           )}
         </div>
@@ -182,7 +216,7 @@ const SignUp = () => {
           />
           {lastNameErr && !lastName && (
             <small className="text-danger label-1">
-              <FormattedMessage id="emailFieldValidation" />
+              <FormattedMessage id="requiredField" />
             </small>
           )}
         </div>
@@ -206,7 +240,7 @@ const SignUp = () => {
           />
           {passwordErr && !password && (
             <small className="text-danger label-1">
-              <FormattedMessage id="emailFieldValidation" />
+              <FormattedMessage id="requiredField" />
             </small>
           )}
         </div>
@@ -230,7 +264,7 @@ const SignUp = () => {
           />
           {passwordConfirmErr && !passwordConfirm && (
             <small className="text-danger label-1">
-              <FormattedMessage id="emailFieldValidation" />
+              <FormattedMessage id="requiredField" />
             </small>
           )}
           {passwordConfirmErr && passwordConfirm && (
@@ -253,24 +287,37 @@ const SignUp = () => {
           </p>
         </div>
         <div className="mb-2">
-          <SocialMediaLogin
-            icon={facebookIcon}
-            text={intl.formatMessage({ id: "continueWithFacebook" })}
+          <FacebookLogin
+            textButton={intl.formatMessage({ id: "continueWithFacebook" })}
+            icon={
+              <img src={facebookIcon} width="22" height="22" className="mx-2" />
+            }
+            appId="5925074920847495"
             className="w-100 social-media-btn"
+            fields="first_name,last_name,email,picture"
+            redirectUri="http://localhost:3000/sign-up"
+            callback={responseFacebook}
           />
         </div>
         <div className="mb-3">
+        <div onClick={() => loginWithGmail()}>
           <SocialMediaLogin
             icon={gmailIcon}
             text={intl.formatMessage({ id: "continueWithGmail" })}
             className="w-100 social-media-btn"
           />
         </div>
+        </div>
+
+      
         <div className="d-flex justify-content-center align-items-baseline">
           <p className="text-grey-sub-heading body-1 inter-regular low-line-height mb-0">
             <FormattedMessage id="haveAcc" />
           </p>
-          <p className="mx-1 sign-up-btn inter-semi-bold body-1">
+          <p
+            className="mx-1 sign-up-btn inter-semi-bold body-1"
+            onClick={() => navigate("/sign-in")}
+          >
             <FormattedMessage id="signInNow" />
           </p>
         </div>

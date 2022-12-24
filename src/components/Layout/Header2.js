@@ -17,7 +17,7 @@ const Header2 = () => {
               <FormattedMessage id="ElFanni" />
             </div>
           </div>
-          <div class="vl mx-2"></div>
+          <div className="vl mx-2"></div>
           <div className="mx-2 glory-bold heading-1">Introduction to 3D drawing and piping using 3D Max </div>
           <div className="mx-2"> kora</div>
         

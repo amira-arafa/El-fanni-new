@@ -20,7 +20,7 @@ const RegisterLayout = ({ logo, logoTitle, mainTitle, form , className, imageCla
         </div> 
 
         <div className="col-sm-6 p-0 form-register-container">
-          <div className="d-flex align-items-center p-a-5 ">
+          <div className="d-flex align-items-center p-a-5 register-mobile">
             <div className="col-sm-12">{form}</div>
           </div>
         </div>

@@ -1,1 +1,13 @@
 /* @import './scss/_general.scss' */
+.overlay-loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    top: 40%;
+    left: 0px;
+    filter: alpha(opacity=50);
+}
+.app-opacity {
+    opacity: 0.5;
+}

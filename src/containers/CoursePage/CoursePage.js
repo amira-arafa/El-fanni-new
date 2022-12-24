@@ -346,9 +346,9 @@ const CoursePage = () => {
                      </div>
                  
 
-                  <div class="row gx-2">
-                    <div class="col-sm-6">
-                      <div class="p-3 border mb-3 goals-container  ">
+                  <div className="row gx-2">
+                    <div className="col-sm-6">
+                      <div className="p-3 border mb-3 goals-container  ">
                         <div className="d-flex student-info mb-2">
                           <div>
                             <img src={teacher4} alt="lecturer-img" />
@@ -408,8 +408,8 @@ const CoursePage = () => {
                         in et lorem lacus
                       </div>
                     </div>
-                    <div class="col-sm-6">
-                      <div class="p-3 border mb-3 goals-container ">
+                    <div className="col-sm-6">
+                      <div className="p-3 border mb-3 goals-container ">
                         <div className="d-flex student-info mb-2">
                           <div>
                             <img src={teacher4} alt="lecturer-img" />
@@ -469,8 +469,8 @@ const CoursePage = () => {
                         in et lorem lacus
                       </div>
                     </div>
-                    <div class="col-sm-6">
-                      <div class="p-3 border mb-3 goals-container  ">
+                    <div className="col-sm-6">
+                      <div className="p-3 border mb-3 goals-container  ">
                         <div className="d-flex student-info mb-2">
                           <div>
                             <img src={teacher4} alt="lecturer-img" />
@@ -530,8 +530,8 @@ const CoursePage = () => {
                         in et lorem lacus
                       </div>
                     </div>
-                    <div class="col-sm-6">
-                      <div class="p-3 border mb-3 goals-container  ">
+                    <div className="col-sm-6">
+                      <div className="p-3 border mb-3 goals-container  ">
                         <div className="d-flex student-info mb-2">
                           <div>
                             <img src={teacher4} alt="lecturer-img" />

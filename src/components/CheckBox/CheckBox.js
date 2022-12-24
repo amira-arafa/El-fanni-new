@@ -4,7 +4,7 @@ import "./CheckBox.scss"
 const CheckBox = ({ label }) => {
   return (
     <>
-      <div class="form-check">
+      <div className="form-check">
         <input
           className="form-check-input"
           type="checkbox"

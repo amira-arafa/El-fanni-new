@@ -35,60 +35,65 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .main-bg-img {
-    display: none !important;
-  }
-  .main-bg-img-v2 {
-    display: none !important;
-  }
-  .form-register-container {
-    width: 100% !important;
-  }
-  .heading-4 {
-    font-size: 5vw;
-  }
-  .heading-2 {
-    font-size: 5.753vw;
-  }
-  .body-1 {
-    font-size: 3.5vw;
-  }
-  .mobile-logo {
-    display: flex !important;
-    align-items: center;
-  }
-  .low-line-height {
-    line-height: 5vw;
-  }
-  .label-1 {
-    font-size: 3.016vw;
-  }
-  .intl-tel-input,
-  input {
-    height: 7.5vw !important;
-    &::placeholder {
-      font-size: 2.5vw;
-      padding: 0vw 1.5vw !important;
+  .register-layout {
+    .main-bg-img {
+      display: none !important;
     }
-  }
-  .intl-tel-input {
-    padding: 0vw 12.5vw !important;
-    font-size: 2.5vw !important;
-  }
-  .regular-btn,
-  .social-media-btn {
-    font-size: 3.173vw !important;
-    padding: 1.782vw 3.346vw !important;
-    border-radius: 8px !important;
-  }
-  .sign-up-form img[alt="password-repeat-icon"],
-  .sign-up-form img[alt="password-icon"] {
-    float: right !important;
-    position: relative !important;
-    bottom: 22px !important;
-    margin-right: 11px !important;
-    width: 16px;
-    height: 16px;
+    .main-bg-img-v2 {
+      display: none !important;
+    }
+    .form-register-container {
+      width: 100% !important;
+    }
+    .heading-4 {
+      font-size: 5vw;
+    }
+    .heading-2 {
+      font-size: 5.753vw;
+    }
+    .body-1 {
+      font-size: 3.5vw !important;
+    }
+    .mobile-logo {
+      display: flex !important;
+      align-items: center;
+    }
+    .low-line-height {
+      line-height: 5vw;
+    }
+    .label-1 {
+      font-size: 3.016vw;
+    }
+    .intl-tel-input,
+    input {
+      height: 7.5vw !important;
+      &::placeholder {
+        font-size: 2.5vw;
+        padding: 0vw 1.5vw !important;
+      }
+    }
+    .intl-tel-input {
+      padding: 0vw 12.5vw !important;
+      font-size: 2.5vw !important;
+    }
+    .regular-btn,
+    .social-media-btn {
+      font-size: 3.173vw !important;
+      padding: 1.782vw 3.346vw !important;
+      border-radius: 8px !important;
+    }
+    .sign-up-form img[alt="password-repeat-icon"],
+    .sign-up-form img[alt="password-icon"] {
+      float: right !important;
+      position: relative !important;
+      bottom: 22px !important;
+      margin-right: 11px !important;
+      width: 16px;
+      height: 16px;
+    }
+    .register-mobile {
+      display: block !important;
+    }
   }
 }
 

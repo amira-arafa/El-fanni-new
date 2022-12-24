@@ -10,6 +10,7 @@ export default {
     Email : 'Email',
     EmailPlaceHolder : 'Ex: John.Doe32@example.com',
     newPassword : 'New Password',
+    Password : 'Password',
     repeatNewPass : 'Repeat new password',
     createAnAcoount : 'Create an account',
     continueWithFacebook : 'Continue using Facebook',
@@ -22,6 +23,7 @@ export default {
     signIn: 'Sign In',
     signInSubtitle: 'Welcome back our friend, fill the data and continue your journey',
     useEmail: 'Use E-mail instead',
+    usePhone: 'Use Phone instead',
     forgetPass: 'Forget the password',
     dontHaveAcc: 'You don’t have account yet,',
     forgetPassword: 'Forget password',
@@ -93,6 +95,7 @@ export default {
     MissionAndVission : 'Mission & Visson',
     OurBoard: 'Our Board',
     editYourProfile: 'Edit your profile',
+    Profile : 'Profile',
     courseInProgress: 'Course in progress',
     Coursecompleted : 'Course completed',
     myCourses: 'My Courses',
@@ -107,6 +110,8 @@ export default {
     cancel: 'Cancel',
     requiredField : 'This Field is Required',
     emailFieldValidation : 'Please enter valid email format',
-    passwordValidation: 'password doesn`t match'
+    passwordValidation: 'password doesn`t match',
+    Logout: 'Logout',
+    searchHere: 'Search here'
   }
 }

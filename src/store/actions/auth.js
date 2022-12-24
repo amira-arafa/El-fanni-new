@@ -1,23 +1,123 @@
 import { axiosInstance } from "../../network/apis";
 // import { deviceDetect } from "react-device-detect";
 // import toasters from "../../utils/toasters";
-import history from "../../routes/History";
-import { STORE_SIGN_UP_DATA } from "../types/auth";
+// import history from "../../routes/History";
+import { STORE_SIGN_UP_DATA,SUCESS_SIGN_IN,LOADER_ON, SUCESS_FORGET_PASS, SUCESS_RESET_PASS, SUCESS_LOG_OUT } from "../types/auth";
+
+export const addLoader = () => (
+  {
+    type: LOADER_ON,
+    payload : true
+  }
+)
+
+export const removeLoader = () => (
+  {
+    type: LOADER_ON,
+    payload: false
+  }
+)
+
+const redirectUser = (res, dispatch) => {
+  localStorage.setItem("token",res.data.token);
+  localStorage.setItem("user-data",JSON.stringify(res.data.data.user));
+  dispatch({
+    type : STORE_SIGN_UP_DATA,
+    payload : res?.data
+  })
+  dispatch({
+    type : SUCESS_SIGN_IN,
+    payload : true
+  })
+}
 
 export const signUp = (data) => async (dispatch) => {
   try {
     const res = await axiosInstance.post("/signup",data);
-    localStorage.setItem("token",res.data.token);
-    localStorage.setItem("user-data",JSON.stringify(res.data.data.user));
-    dispatch({
-      type : STORE_SIGN_UP_DATA,
-      payload : res?.data
-    })
-    res && history.push("/");
+    redirectUser(res, dispatch);
   } catch (err) {
     console.log(err);
   }
 };
+
+export const signIn = (data, params) => async (dispatch) => {
+  try {
+    const res = await axiosInstance.post("/login",data,{params});
+    redirectUser(res, dispatch);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const Logout = () => async (dispatch) => {
+  try {
+    const res = await axiosInstance.get("/logout");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user-data");
+    dispatch({
+      type : SUCESS_LOG_OUT,
+      payload : true
+    })
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+
+export const ForgetPassword = (data) => async (dispatch) => {
+  try {
+    const res = await axiosInstance.post("/forgotPassword",data);
+    res && dispatch({
+      type : SUCESS_FORGET_PASS,
+      payload : true
+    })
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const ResetPassword = (data, token) => async (dispatch) => {
+  try {
+    const res = await axiosInstance.patch(`/resetPassword/${token}`,data);
+    res && dispatch({
+      type : SUCESS_RESET_PASS,
+      payload : true
+    })
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// export const loginWithFacebook = (body) => async (dispatch) => {
+//   try {
+//     const res = await axiosInstance.post("/auth/facebook/token",body);
+//     redirectUser(res, dispatch);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+export const loginWithFacebook = (params) => async (dispatch) => {
+  try {
+    const res = await axiosInstance.get("/auth/facebook/token",{params});
+    console.log("REsponseeee",res)
+    redirectUser(res, dispatch);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const loginWithGoogle = (body) => async (dispatch) => {
+  try {
+    const res = await axiosInstance.post("/auth/google/token",body);
+    redirectUser(res, dispatch);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+
 
 
 // export const getNotificationList = (params) => async (dispatch) => {

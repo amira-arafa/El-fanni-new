@@ -300,9 +300,9 @@ const CourseDetails = () => {
                     </div>
                   </div>
 
-                  <div class="row gx-2">
-                    <div class="col-sm-12">
-                      <div class="p-3 mb-3 ">
+                  <div className="row gx-2">
+                    <div className="col-sm-12">
+                      <div className="p-3 mb-3 ">
                         <div className="d-flex student-info mb-2">
                           <div>
                             <img src={teacher4} alt="lecturer-img" />
@@ -366,8 +366,8 @@ const CourseDetails = () => {
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-12">
-                      <div class="p-3 mb-3">
+                    <div className="col-sm-12">
+                      <div className="p-3 mb-3">
                         <div className="d-flex student-info mb-2">
                           <div>
                             <img src={teacher4} alt="lecturer-img" />
@@ -431,8 +431,8 @@ const CourseDetails = () => {
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-12">
-                      <div class="p-3 mb-3">
+                    <div className="col-sm-12">
+                      <div className="p-3 mb-3">
                         <div className="d-flex student-info mb-2">
                           <div>
                             <img src={teacher4} alt="lecturer-img" />
@@ -496,8 +496,8 @@ const CourseDetails = () => {
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-12">
-                      <div class="p-3 mb-3">
+                    <div className="col-sm-12">
+                      <div className="p-3 mb-3">
                         <div className="d-flex student-info mb-2">
                           <div>
                             <img src={teacher4} alt="lecturer-img" />
