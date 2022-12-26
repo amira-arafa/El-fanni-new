@@ -19,7 +19,10 @@ const AboutUs = () => {
         <div className="about-us-second-section">
           <div className="row">
             <div className="col-sm-8">
-              <div className="about-us-titles glory-semi-bold">
+              <div
+                className="about-us-titles glory-semi-bold"
+                id="who-we-are-section"
+              >
                 <FormattedMessage id="WhoWeAre" />
               </div>
               <div className="inter-normal body-1 mb-4">
@@ -41,7 +44,7 @@ const AboutUs = () => {
                 <img src={aboutUsImg} alt="about-us" width="100%"></img>
               </div>
 
-              <div className="about-us-titles glory-semi-bold">
+              <div className="about-us-titles glory-semi-bold" id="mission-and-vision-section">
                 <FormattedMessage id="Mission" />
               </div>
               <div className="inter-normal body-1 mb-4">
@@ -79,7 +82,7 @@ const AboutUs = () => {
                 molestie purus sagittis urna cras egestas.
               </div>
 
-              <div className="about-us-titles glory-semi-bold">
+              <div className="about-us-titles glory-semi-bold" id="our-board-section">
                 <FormattedMessage id="OurBoard" />
               </div>
               <div className="inter-normal body-1 mb-4">
@@ -148,13 +151,26 @@ const AboutUs = () => {
             </div>
             <div className="col-sm-4">
               <div className="about-us-navigation  glory-semi-bold">
-                <p className="about-us-board-title mb-0"><FormattedMessage id="AboutUs"/></p>
+                <p className="about-us-board-title mb-0">
+                  <FormattedMessage id="AboutUs" />
+                </p>
                 <ul>
-                  <li className="inter-regular"><FormattedMessage id="WhoWeAre"/></li>
-                  <li className="inter-regular"><FormattedMessage id="MissionAndVission"/></li>
-                  <li className="inter-regular"><FormattedMessage id="OurBoard"/></li>
+                  <li className="inter-regular">
+                    <a href="#who-we-are-section">
+                      <FormattedMessage id="WhoWeAre" />
+                    </a>
+                  </li>
+                  <li className="inter-regular">
+                  <a href="#mission-and-vision-section">
+                    <FormattedMessage id="MissionAndVission" />
+                    </a>
+                  </li>
+                  <li className="inter-regular">
+                     <a href="#our-board-section">
+                    <FormattedMessage id="OurBoard" />
+                    </a>
+                  </li>
                 </ul>
-
               </div>
             </div>
           </div>

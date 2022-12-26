@@ -10,6 +10,7 @@ import menu from "../../assets/imgs/icons/menu.png";
 import cart from "../../assets/imgs/icons/shopping-cart.png";
 import { useDispatch, useSelector } from "react-redux";
 import { Logout } from "../../store/actions/auth";
+import { getCartList } from "../../store/actions/home";
 import { SUCESS_LOG_OUT } from "../../store/types/auth";
 import { STORE_SEARCH_QUERY } from "../../store/types/home";
 import Input from "../../components/Input/Input";
@@ -24,7 +25,8 @@ const Header = () => {
 
   const navigate = useNavigate();
   const intl = useIntl();
-  const { auth } = useSelector((state) => state);
+  const { auth, home } = useSelector((state) => state);
+  const { cart_list } = home;
   const dispatch = useDispatch();
   const { token, user_data } = auth;
   const [searchValue , setSearchValue] = useState("");
@@ -40,6 +42,10 @@ const Header = () => {
       });
     };
   }, [auth.sucess_logout]);
+
+  useEffect(() => {
+    dispatch(getCartList());
+  }, [cart_list]);
 
   const handleLogout = () => {
     dispatch(Logout());
@@ -81,11 +87,12 @@ const Header = () => {
             src={cart}
             width="22px"
             height="22px"
-            className="m-x-4"
+            onClick={()=> navigate("/cart")}
+            className="m-x-4 cursor-pointer"
           ></img>
         </div>
         <div className="col-sm-3">
-          <span className="inter-semi-bold body-1">
+          <span className="inter-semi-bold body-1 cursor-pointer" onClick={()=> navigate("/about-us")}>
             <FormattedMessage id="aboutUs" />
           </span>
         </div>

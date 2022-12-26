@@ -13,22 +13,22 @@ import filterIcon from "../../assets/imgs/icons/filter.png";
 import cutMetalImg from "../../assets/imgs/cutting_metals.png";
 import Button from "../../components/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { searchResult, getCategories } from "../../store/actions/home";
-import "./SearchResults.scss";
+import { searchResult, getCategories, addToCart, addToFav } from "../../store/actions/home";
 import { useParams } from "react-router-dom";
+import "./SearchResults.scss";
 
 const SearchResults = () => {
   const { home } = useSelector((state) => state);
+  const { q } = useParams();
   const dispatch = useDispatch();
-  const { search_query, search_results, categories_list } = home;
+  const { search_query, search_results, categories_list, cart_list } = home;
   const [searchResultsSliced, setSearchResultsSliced] = useState([]);
   const [categoriesListSliced, setCategoriesListSliced] = useState([]);
   const [showMoreNumber, setShowMoreNumber] = useState(5);
   const [showMoreCategoriesNumber, setShowMoreCategoriesNumber] = useState(3);
 
-  const { q }  = useParams();
   useEffect(() => {
-    (search_query || q) && dispatch(searchResult({ q: (search_query || q) }));
+    (search_query || q) && dispatch(searchResult({ q: search_query || q }));
   }, [search_query, q]);
 
   useEffect(() => {
@@ -47,6 +47,15 @@ const SearchResults = () => {
   }, [categories_list]);
 
   const intl = useIntl();
+
+  const handleAddToCart = (result) => {
+    dispatch(addToCart(result.id));
+  };
+
+  const handleAddToFav = (result) => {
+    dispatch(addToFav(result.id));
+  }
+
   return (
     <>
       <Header></Header>
@@ -58,28 +67,29 @@ const SearchResults = () => {
                 <FormattedMessage id="categorySearch" />
               </p>
               {categoriesListSliced
-                  .slice(0, showMoreCategoriesNumber)
-                  .map((category)=> {
-                return(
-                  <p className="mb-2">
-                  <CheckBox label={category.en.name}></CheckBox>
-                </p>
-                  
-                )
-              })}
+                .slice(0, showMoreCategoriesNumber)
+                .map((category) => {
+                  return (
+                    <p className="mb-2">
+                      <CheckBox label={category.en.name}></CheckBox>
+                    </p>
+                  );
+                })}
             </div>
             {categoriesListSliced.slice(0, showMoreCategoriesNumber).length <
-                  search_results.length && (
-                  <div
-                    className="cursor-pointer d-flex"
-                    onClick={() => setShowMoreCategoriesNumber(showMoreCategoriesNumber + 3)}
-                  >
-                    <button className="show-more-btn-category inter-semi-bold">
-                      <FormattedMessage id="showMore" />
-                    </button>
-                  </div>
-                )}
-              <div className="hr mt-0"></div>
+              search_results.length && (
+              <div
+                className="cursor-pointer d-flex"
+                onClick={() =>
+                  setShowMoreCategoriesNumber(showMoreCategoriesNumber + 3)
+                }
+              >
+                <button className="show-more-btn-category inter-semi-bold">
+                  <FormattedMessage id="showMore" />
+                </button>
+              </div>
+            )}
+            <div className="hr mt-0"></div>
 
             <div>
               <p className="glory-semi-bold search-result-cat-title mb-2">
@@ -214,7 +224,8 @@ const SearchResults = () => {
             <div className="d-flex align-items-end mb-3 results-row">
               <div className="col-sm-8 col-md-6">
                 <p className="glory-semi-bold heading-4 mb-0">
-                  {search_results?.length || 0} results for “{search_query || q}”
+                  {search_results?.length || 0} results for “{search_query || q}
+                  ”
                 </p>
               </div>
               <div className="col-sm-4 col-md-6 justify-content-end d-flex">
@@ -237,83 +248,90 @@ const SearchResults = () => {
             </div>
             {search_results.length > 0 && (
               <div className="search-results-section">
-                {searchResultsSliced
-                  .slice(0, showMoreNumber)
-                  .map(result => {
-                    return (
-                      <div className="d-flex course-results-wrapper mb-5">
-                        <div className="col-sm-4">
-                          <img src={cutMetalImg} alt="course-img"></img>
+                {searchResultsSliced.slice(0, showMoreNumber).map((result) => {
+                  return (
+                    <div className="d-flex course-results-wrapper mb-5">
+                      <div className="col-sm-4">
+                        <img src={cutMetalImg} alt="course-img"></img>
+                      </div>
+                      <div className="col-sm-6">
+                        <p className="inter-semi-bold heading-3">
+                          {result.title}
+                        </p>
+                        <div className="search-results-courses-data">
+                          <span className="inter-regular label-1">
+                            Mohammed Karim
+                          </span>
+                          <span className="inter-regular label-1 search-result-date">
+                            {moment(result.release_date).format("LL")}
+                          </span>
+                          <span className="inter-regular label-1 search-result-students-number">
+                            400,150 student
+                          </span>
                         </div>
-                        <div className="col-sm-6">
-                          <p className="inter-semi-bold heading-3">
-                            {result.title}
-                          </p>
-                          <div className="search-results-courses-data">
-                            <span className="inter-regular label-1">
-                              Mohammed Karim
-                            </span>
-                            <span className="inter-regular label-1 search-result-date">
-                              {moment(result.release_date).format("LL")}
-                            </span>
-                            <span className="inter-regular label-1 search-result-students-number">
-                              400,150 student
+                        <div className="d-flex">
+                          <div>
+                            <Rating
+                              readonly={true}
+                              initialValue={result.avgRate}
+                              allowFraction={true}
+                            />
+                            <span className="top-courses-rating inter-regular label-1 m-x-1">
+                              (24)
                             </span>
                           </div>
-                          <div className="d-flex">
-                            <div>
-                              <Rating
-                                readonly={true}
-                                initialValue={result.avgRate}
-                                allowFraction={true}
-                              />
-                              <span className="top-courses-rating inter-regular label-1 m-x-1">
-                                (24)
-                              </span>
-                            </div>
-                            <div>
-                              {" "}
-                              <span className="inter-regular label-1 search-result-students-number levels-color">
-                                {result.level}
-                              </span>
-                            </div>
+                          <div>
+                            {" "}
+                            <span className="inter-regular label-1 search-result-students-number levels-color">
+                              {result.level}
+                            </span>
                           </div>
-                        </div>
-
-                        <div className="col-sm-2 text-end">
-                  
-
-                        <div className="dropdown ddp-btn ">
-                <div
-                  className="dropdown-toggle w-100 course-content-btn"
-                  type="button"
-                  id="dropdownMenuButton1"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                       <img className="cursor-pointer" alt="more-icon" src={moreIcon} width="40px" height="40px"></img>
-                </div>
-                <ul
-                  className="dropdown-menu"
-                  aria-labelledby="dropdownMenuButton1"
-                >
-                  <li onClick={() => console.log()}>
-                    <a className="dropdown-item">
-                      <FormattedMessage id="addtoCart" />
-                    </a>
-                  </li>
-                  <li onClick={() =>console.log() }>
-                    <a className="dropdown-item">
-                      <FormattedMessage id="addToLearningCourse" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
                         </div>
                       </div>
-                    );
-                  })}
+
+                      <div className="col-sm-2 text-end">
+                        <div className="dropdown ddp-btn ">
+                          <div
+                            className="dropdown-toggle w-100 course-content-btn"
+                            type="button"
+                            id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          >
+                            <img
+                              className="cursor-pointer"
+                              alt="more-icon"
+                              src={moreIcon}
+                              width="40px"
+                              height="40px"
+                            ></img>
+                          </div>
+                          <ul
+                            className="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton1"
+                          >
+                            <li
+                              onClick={() => handleAddToCart(result)}
+                              className="cursor-pointer"
+                            >
+                              <a className="dropdown-item">
+                                <FormattedMessage id="addtoCart" />
+                              </a>
+                            </li>
+                            <li
+                            onClick={() => handleAddToFav(result)}
+                              className="cursor-pointer"
+                            >
+                              <a className="dropdown-item">
+                                <FormattedMessage id="addToLearningCourse" />
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
                 {searchResultsSliced.slice(0, showMoreNumber).length <
                   search_results.length && (
                   <div
