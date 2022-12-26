@@ -2,13 +2,29 @@
 
 .search-results-container {
   padding: 1.3vw 3vw;
-  background-color: #F6F6F7;
+  background-color: #f6f6f7;
   .star-svg {
     width: 23px;
     height: 23px;
   }
   .levels-color {
     color: #707089;
+  }
+  .dropdown-toggle::after {
+    border-top: none !important;
+  }
+  .categories-wrapper {
+    max-height: 145px;
+    overflow-y: auto;
+  }
+  .show-more-btn-category {
+    padding: 16px 24px;
+    width: 100%;
+    top: 454px;
+    border: none;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 0px;
+    color: $btnColor;
   }
 }
 .search-result-cat-title {
@@ -37,31 +53,40 @@ input[type="checkbox"] {
   padding: 32px 20px;
   border-radius: 24px;
 }
-.search-results-section p{
+.search-results-section p {
   margin-bottom: unset;
 }
 .search-results-courses-data span {
   color: #707089;
 }
 
-
-.search-result-date::before , .search-result-students-number::before{ 
+.search-result-date::before,
+.search-result-students-number::before {
   display: inline-block;
   content: "";
   border-radius: 0.375rem;
   height: 8px;
   width: 8px;
-  background-color: #D8D8DE;
+  background-color: #d8d8de;
   margin-right: 3.5px;
   margin-left: 3.5px;
 }
-.sort-btn-mobile , .filter-btn-mobile{
+.sort-btn-mobile,
+.filter-btn-mobile {
   display: none;
 }
 .sort-btn {
   display: inline-block;
 }
-
+.show-more-btn {
+  padding: 13px 60px;
+  background: #f5faff;
+  border-radius: 12px;
+  color: $btnColor;
+  border: none;
+  outline: none;
+  margin: 0 auto;
+}
 @media only screen and (max-width: 768px) {
   .filters-container {
     display: none;
@@ -80,30 +105,30 @@ input[type="checkbox"] {
   }
   .search-results-container {
     background-color: $whiteText;
+  }
+  .col-sm-6 {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+  .search-results-section {
+    padding: 0px 20px 20px 20px;
+  }
+  .results-row {
+    margin-top: 15px;
+  }
+  .sort-btn {
+    display: none;
+  }
+  .sort-btn-mobile,
+  .filter-btn-mobile {
+    display: inline-block;
+    background: #f5faff;
+    border-radius: 12px;
+    padding: 11px;
+    border: none;
+    color: $btnColor;
+  }
+  .results-row-wrapper {
+    width: 100%;
+  }
 }
-.col-sm-6 {
-  flex: 0 0 auto;
-  width: 50%;
-}
-.search-results-section { 
-  padding: 0px 20px 20px 20px;
-}
-.results-row {
-  margin-top: 15px;
-}
-.sort-btn {
-  display: none;
-}
-.sort-btn-mobile , .filter-btn-mobile{
-  display: inline-block;
-  background: #f5faff;
-  border-radius: 12px;
-  padding: 11px;
-  border: none;
-  color: $btnColor;
-}
-.results-row-wrapper {
-  width: 100%;
-}
-}
-

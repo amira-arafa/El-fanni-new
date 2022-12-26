@@ -69,6 +69,7 @@ export default {
     CheckoutAll : 'Checkout all',
     buyNow : 'Buy now',
     addtoCart: 'Add to cart',
+    addToLearningCourse: 'Add to saved courses',
     course : 'Course',
     Overview : 'Overview',
     Content: 'Content',
@@ -111,6 +112,7 @@ export default {
     emailFieldValidation : 'Please enter valid email format',
     passwordValidation: 'password doesn`t match',
     Logout: 'Logout',
-    searchHere: 'Search here'
+    searchHere: 'Search here',
+    showMore : 'Show more'
   }
 }

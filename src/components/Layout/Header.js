@@ -46,7 +46,7 @@ const Header = () => {
   };
 
   const redirectTosearchPage = () => {
-    navigate("/search-results");
+    navigate(`/search-results/${searchValue}`);
     onCloseModal();
     dispatch({
       type: STORE_SEARCH_QUERY,

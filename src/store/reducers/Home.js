@@ -1,7 +1,8 @@
 import * as types from "../types/home";
 const INITIAL_STATE = {
     search_query : null,
-    search_results: []
+    search_results: [],
+    categories_list: []
 };
 
 export default function home(state = INITIAL_STATE, action) {
@@ -15,6 +16,11 @@ export default function home(state = INITIAL_STATE, action) {
       return {
         ...state,
         search_results: action.payload,
+      };
+    case types.STORE_CATEGORIES_LIST: 
+      return {
+        ...state,
+        categories_list: action.payload,
       };
     default:
       return state;

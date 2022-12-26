@@ -71,7 +71,6 @@ function App() {
                 path="/confirm-password"
                 element={<PasswordConfirmMsg />}
               />
-              <Route exact path="/search-results" element={<SearchResults />} />
               <Route exact path="/course" element={<CoursePage />} />
               <Route exact path="/course-details" element={<CourseDetails />} />
               <Route exact path="/about-us" element={<AboutUs />} />
@@ -79,6 +78,8 @@ function App() {
               <Route exact path="/profile-edit" element={<EditProfile />} />
               <Route exact path="/collection" element={<Collection />} />
               <Route exact path="/cart" element={<Cart />} />
+              <Route  path="/search-results" element={<SearchResults />} />
+              <Route  path="/search-results/:q" element={<SearchResults />} />
             </Routes>
           </Router>
         </IntlProvider>
