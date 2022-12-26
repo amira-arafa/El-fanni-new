@@ -1,13 +1,13 @@
 import React from "react";
 import Label from "../Label/Label";
 
-const Input = ({ label, type, placeholder, icon, value, onChange }) => {
+const Input = ({ label, type, placeholder, icon, value, onChange, className }) => {
   return (
     <>
-      <Label title={label} />
+      {Label && <Label title={label} />}
       <input 
         type={type} 
-        className="w-100"
+        className={`${className} w-100`}
         placeholder={placeholder}
         value={value}
         onChange={onChange}

@@ -22,7 +22,6 @@ if (firebase.messaging.isSupported()) {
 
 export const requestFirebaseNotificationPermission = () =>
   new Promise((resolve, reject) => {
-    console.log("ama nshof",messaging)
     messaging
       .requestPermission()
       .then(() => messaging.getToken())

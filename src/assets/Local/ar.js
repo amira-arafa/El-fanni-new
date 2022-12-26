@@ -69,7 +69,6 @@ export default {
     CheckoutAll : 'Checkout all',
     addtoCart: 'Add to cart',
     buyNow : 'Buy now',
-    addtoCart: 'Add to cart',
     course : 'Course',
     Overview : 'Overview',
     Content: 'Content',

@@ -3,6 +3,13 @@
 .search-results-container {
   padding: 1.3vw 3vw;
   background-color: #F6F6F7;
+  .star-svg {
+    width: 23px;
+    height: 23px;
+  }
+  .levels-color {
+    color: #707089;
+  }
 }
 .search-result-cat-title {
   color: #000e1f;

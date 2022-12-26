@@ -18,9 +18,20 @@ export const removeLoader = () => (
   }
 )
 
+export const storeFCMtocken = (body) => async (dispatch) => {
+  try {
+    await axiosInstance.post("/fcm-token", body , {
+      handlerEnabled: true,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 const redirectUser = (res, dispatch) => {
   localStorage.setItem("token",res.data.token);
   localStorage.setItem("user-data",JSON.stringify(res.data.data.user));
+
   dispatch({
     type : STORE_SIGN_UP_DATA,
     payload : res?.data
@@ -29,6 +40,7 @@ const redirectUser = (res, dispatch) => {
     type : SUCESS_SIGN_IN,
     payload : true
   })
+  localStorage.getItem("firebaseToken") && dispatch(storeFCMtocken({fcmToken : localStorage.getItem("firebaseToken")}));
 }
 
 export const signUp = (data) => async (dispatch) => {

@@ -9,7 +9,7 @@ export const requestHandler = request => {
   store.dispatch(addLoader())
   if (isHandlerEnabled(request)) {
     if(localStorage.getItem('token')) {
-      // request.headers["Authorization"] = `Bearer ${localStorage.getItem('token')}`;
+      request.headers["Authorization"] = `Bearer ${localStorage.getItem('token')}`;
     }
     request.headers["Accept-Language"] = localStorage.getItem('lang');
   }

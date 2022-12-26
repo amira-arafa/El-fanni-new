@@ -129,7 +129,6 @@ const SignUp = () => {
   };
 
   const responseFacebook = (response) => {
-    console.log("reso",response)
     dispatch(loginWithFacebook({ access_token : response.accessToken }));
   };
 
