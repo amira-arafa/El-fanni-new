@@ -26,6 +26,9 @@
     border-radius: 0px;
     color: $btnColor;
   }
+  .desktop-padding {
+    padding-right: 3rem !important;
+  }
 }
 .search-result-cat-title {
   color: #000e1f;
@@ -88,10 +91,35 @@ input[type="checkbox"] {
   margin: 0 auto;
 }
 @media only screen and (max-width: 768px) {
+  .search-results-container {
+    .label-1 {
+      font-size: 3.7vw !important;
+  }
+  .heading-4 {
+    font-size: 6.111vw;
+  }
+  img[alt="more-icon"]{
+    background: #FFFFFF;
+    border-radius: 4px;
+
+  }
+  .ddp-more-icon {
+    position: relative;
+    bottom: 310px;
+  }
+  .dropdown-menu {
+    left: 50% !important;
+  }
+}
+.star-svg {
+  width: 23px;
+  height: 23px;
+}
   .filters-container {
     display: none;
   }
   img[alt="course-img"] {
+    height: 220px;
     width: 100%;
   }
   .course-results-wrapper {
@@ -131,4 +159,10 @@ input[type="checkbox"] {
   .results-row-wrapper {
     width: 100%;
   }
+  .react-responsive-modal-root .label-1 {
+    font-size: 3.7vw !important;
+}
+.desktop-padding {
+  padding-right: 0px !important;
+}
 }

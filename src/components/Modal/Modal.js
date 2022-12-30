@@ -3,16 +3,16 @@ import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import "./Modal.scss"
 
-const ModalComponent = ({ children , modalBody, open, onOpenModal, onCloseModal  }) => {
+const ModalComponent = ({ wrapperClass, children , modalBody, open, onOpenModal, onCloseModal, className  }) => {
  
   return (
-    <div>
-   <div>
+    <div className={wrapperClass}>
       <div onClick={onOpenModal}>{children}</div>
-      <Modal open={open} onClose={onCloseModal} center>
+      <Modal open={open} onClose={onCloseModal} center classNames={{
+        modal:className
+      }}>
        {modalBody}
       </Modal>
-    </div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import "./CheckBox.scss"
 
-const CheckBox = ({ label }) => {
+const CheckBox = ({ label, onClick }) => {
   return (
     <>
       <div className="form-check">
@@ -10,6 +10,7 @@ const CheckBox = ({ label }) => {
           type="checkbox"
           value=""
           id="flexCheckDefault"
+          onClick={onClick}
         />
         <label className="form-check-label mx-2 checkbox-title" for="flexCheckDefault">
           {label}

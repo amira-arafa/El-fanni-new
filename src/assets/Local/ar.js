@@ -113,6 +113,14 @@ export default {
     passwordValidation: 'password doesn`t match',
     Logout: 'Logout',
     searchHere: 'Search here',
-    showMore : 'Show more'
+    showMore : 'Show more',
+    removeFromCart : 'Remove from cart',
+    deleteMsg : 'Are you sure you want to delete this item ?',
+    deleteMsgCourse : 'Are you sure you want to remove this course from your cart',
+    deleteCourseTitle: 'Removing course from your cart !!',
+    NoKeep : "No, keep",
+    yesRemove : "Yes, Remove",
+    asc: "Ascending",
+    dsc: "descending"
   }
 }

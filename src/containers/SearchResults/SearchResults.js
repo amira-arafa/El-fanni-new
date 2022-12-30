@@ -5,31 +5,68 @@ import CheckBox from "../../components/CheckBox/CheckBox";
 import { Rating } from "react-simple-star-rating";
 import Footer from "../../components/Layout/Footer";
 import Header from "../../components/Layout/Header";
-import star from "../../assets/imgs/icons/star.png";
-import star2 from "../../assets/imgs/icons/vector.png";
 import moreIcon from "../../assets/imgs/icons/moregrey.png";
 import sortIcon from "../../assets/imgs/icons/sort.png";
 import filterIcon from "../../assets/imgs/icons/filter.png";
 import cutMetalImg from "../../assets/imgs/cutting_metals.png";
 import Button from "../../components/Button/Button";
+import ModalComponent from "../../components/Modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { searchResult, getCategories, addToCart, addToFav } from "../../store/actions/home";
+import {
+  searchResult,
+  getCategories,
+  addToCart,
+  addToFav,
+} from "../../store/actions/home";
 import { useParams } from "react-router-dom";
 import "./SearchResults.scss";
 
 const SearchResults = () => {
+  const [open, setOpen] = useState(false);
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
   const { home } = useSelector((state) => state);
   const { q } = useParams();
   const dispatch = useDispatch();
   const { search_query, search_results, categories_list, cart_list } = home;
   const [searchResultsSliced, setSearchResultsSliced] = useState([]);
+  const [filters, setFilters] = useState({
+    categories: [],
+    levels: [],
+    languages: [],
+    ratings: [],
+  });
+  const [filtersResults, setFiltersObj] = useState({});
+  const [sort, setSort] = useState(1);
   const [categoriesListSliced, setCategoriesListSliced] = useState([]);
   const [showMoreNumber, setShowMoreNumber] = useState(5);
   const [showMoreCategoriesNumber, setShowMoreCategoriesNumber] = useState(3);
 
   useEffect(() => {
-    (search_query || q) && dispatch(searchResult({ q: search_query || q }));
+    (search_query || q) &&
+      dispatch(
+        searchResult({
+          q: search_query || q,
+          ...filtersResults,
+          sortByTitle: sort,
+        })
+      );
   }, [search_query, q]);
+
+  useEffect(() => {
+    const filtersObj = {};
+    for (let filterCategory in filters) {
+      if (filters[filterCategory].length > 0) {
+        filters[filterCategory].map((filterValue, i) => {
+          filtersObj[`${filterCategory}[${i}]`] = filterValue;
+        });
+      }
+    }
+    setFiltersObj(filtersObj);
+    dispatch(
+      searchResult({ q: search_query || q, sortByTitle: sort, ...filtersObj })
+    );
+  }, [filters]);
 
   useEffect(() => {
     dispatch(getCategories());
@@ -49,12 +86,36 @@ const SearchResults = () => {
   const intl = useIntl();
 
   const handleAddToCart = (result) => {
-    dispatch(addToCart(result.id));
+    dispatch(addToCart(result._id));
   };
 
   const handleAddToFav = (result) => {
-    dispatch(addToFav(result.id));
-  }
+    dispatch(addToFav(result._id));
+  };
+
+  const handleSortBy = (sortByTitle) => {
+    setSort(sortByTitle);
+    dispatch(
+      searchResult({ q: search_query || q, sortByTitle, ...filtersResults })
+    );
+  };
+
+  const handleSetFilters = (filterName, filterValue) => {
+    const found = filters[filterName].some((el) => el === filterValue);
+    if (!found) {
+      setFilters({
+        ...filters,
+        [filterName]: [...filters[filterName], filterValue],
+      });
+    } else {
+      const filtered = filters[filterName].filter((el) => el !== filterValue);
+      console.log("nooo", filtered);
+      setFilters({
+        ...filters,
+        [filterName]: filtered,
+      });
+    }
+  };
 
   return (
     <>
@@ -71,13 +132,18 @@ const SearchResults = () => {
                 .map((category) => {
                   return (
                     <p className="mb-2">
-                      <CheckBox label={category.en.name}></CheckBox>
+                      <CheckBox
+                        onClick={() => {
+                          handleSetFilters("categories", category._id);
+                        }}
+                        label={category.en.name}
+                      ></CheckBox>
                     </p>
                   );
                 })}
             </div>
             {categoriesListSliced.slice(0, showMoreCategoriesNumber).length <
-              search_results.length && (
+              categories_list.length && (
               <div
                 className="cursor-pointer d-flex"
                 onClick={() =>
@@ -89,20 +155,40 @@ const SearchResults = () => {
                 </button>
               </div>
             )}
-            <div className="hr mt-0"></div>
+            <div
+              className={`${
+                categoriesListSliced.slice(0, showMoreCategoriesNumber).length <
+                  categories_list.length && "mt-0"
+              } hr`}
+            ></div>
 
             <div>
               <p className="glory-semi-bold search-result-cat-title mb-2">
                 <FormattedMessage id="Level" />
               </p>
               <p className="mb-2">
-                <CheckBox label="Begineer"></CheckBox>
+                <CheckBox
+                  onClick={() => {
+                    handleSetFilters("levels", "Beginner");
+                  }}
+                  label="Begineer"
+                ></CheckBox>
               </p>
               <p className="mb-2">
-                <CheckBox label="Intermediate"></CheckBox>
+                <CheckBox
+                  onClick={() => {
+                    handleSetFilters("levels", "Intermediate");
+                  }}
+                  label="Intermediate"
+                ></CheckBox>
               </p>
               <p className="mb-2">
-                <CheckBox label="Advanced"></CheckBox>
+                <CheckBox
+                  onClick={() => {
+                    handleSetFilters("levels", "Advanced");
+                  }}
+                  label="Advanced"
+                ></CheckBox>
               </p>
               <div className="hr"></div>
             </div>
@@ -112,10 +198,20 @@ const SearchResults = () => {
                 <FormattedMessage id="Language" />
               </p>
               <p className="mb-2">
-                <CheckBox label="English"></CheckBox>
+                <CheckBox
+                  onClick={() => {
+                    handleSetFilters("languages", "English");
+                  }}
+                  label="English"
+                ></CheckBox>
               </p>
               <p className="mb-2">
-                <CheckBox label="Arabic"></CheckBox>
+                <CheckBox
+                  onClick={() => {
+                    handleSetFilters("languages", "Arabic");
+                  }}
+                  label="Arabic"
+                ></CheckBox>
               </p>
               <div className="hr"></div>
             </div>
@@ -128,93 +224,76 @@ const SearchResults = () => {
                 <CheckBox
                   label={
                     <div>
-                      <span className="mx-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="mx-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="mx-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="mx-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="mx-1 align-text-bottom">
-                        <img
-                          src={star2}
-                          alt="star"
-                          width="13px"
-                          heigth="13px"
-                        />
-                      </span>
+                      <Rating
+                        readonly={true}
+                        initialValue={4.5}
+                        allowFraction={true}
+                      />
                       <span className="top-courses-rating inter-regular label-1 m-x-1">
-                        (24)
+                        4.5 & up
                       </span>
                     </div>
                   }
+                  onClick={() => {
+                    handleSetFilters("ratings", 4.5);
+                  }}
                 ></CheckBox>
               </p>
               <p className="mb-2">
                 <CheckBox
                   label={
                     <div>
-                      <span className="mx-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="mx-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="mx-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="mx-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="mx-1 align-text-bottom">
-                        <img
-                          src={star2}
-                          alt="star"
-                          width="13px"
-                          heigth="13px"
-                        />
-                      </span>
+                      <Rating
+                        readonly={true}
+                        initialValue={4}
+                        allowFraction={true}
+                      />
                       <span className="top-courses-rating inter-regular label-1 m-x-1">
-                        (24)
+                        4 & up
                       </span>
                     </div>
                   }
+                  onClick={() => {
+                    handleSetFilters("ratings", 4);
+                  }}
                 ></CheckBox>
               </p>
               <p className="mb-2">
                 <CheckBox
                   label={
                     <div>
-                      <span className="mx-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="mx-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="mx-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="mx-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="mx-1 align-text-bottom">
-                        <img
-                          src={star2}
-                          alt="star"
-                          width="13px"
-                          heigth="13px"
-                        />
-                      </span>
+                      <Rating
+                        readonly={true}
+                        initialValue={3.5}
+                        allowFraction={true}
+                      />
                       <span className="top-courses-rating inter-regular label-1 m-x-1">
-                        (24)
+                        3.5 & up
                       </span>
                     </div>
                   }
+                  onClick={() => {
+                    handleSetFilters("ratings", 3.5);
+                  }}
+                ></CheckBox>
+              </p>
+              <p className="mb-2">
+                <CheckBox
+                  label={
+                    <div>
+                      <Rating
+                        readonly={true}
+                        initialValue={3}
+                        allowFraction={true}
+                      />
+                      <span className="top-courses-rating inter-regular label-1 m-x-1">
+                        3 & up
+                      </span>
+                    </div>
+                  }
+                  onClick={() => {
+                    handleSetFilters("ratings", 3);
+                  }}
                 ></CheckBox>
               </p>
             </div>
@@ -230,19 +309,295 @@ const SearchResults = () => {
               </div>
               <div className="col-sm-4 col-md-6 justify-content-end d-flex">
                 <div>
-                  <Button
-                    className="sort-btn inter-semi-bold label-1"
-                    text={intl.formatMessage({ id: "sortBy" })}
-                    icon={sortIcon}
-                  ></Button>
-                  <Button
-                    className="sort-btn-mobile inter-semi-bold label-1 me-2"
-                    icon={sortIcon}
-                  ></Button>
-                  <Button
-                    className="filter-btn-mobile inter-semi-bold label-1"
-                    icon={filterIcon}
-                  ></Button>
+                  <div className="dropdown ddp-btn ">
+                    <div
+                      className="dropdown-toggle w-100 course-content-btn"
+                      type="button"
+                      id="dropdownMenuButton1"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <Button
+                        className="sort-btn inter-semi-bold label-1"
+                        text={intl.formatMessage({ id: "sortBy" })}
+                        icon={sortIcon}
+                      ></Button>
+                    </div>
+                    <ul
+                      className="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton1"
+                    >
+                      <li
+                        onClick={() => handleSortBy(1)}
+                        className="cursor-pointer"
+                      >
+                        <a className="dropdown-item">
+                          <FormattedMessage id="asc" />
+                        </a>
+                      </li>
+                      <li
+                        onClick={() => handleSortBy(-1)}
+                        className="cursor-pointer"
+                      >
+                        <a className="dropdown-item">
+                          <FormattedMessage id="dsc" />
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="dropdown ddp-btn d-inline-block">
+                    <div
+                      className="dropdown-toggle w-100 course-content-btn"
+                      type="button"
+                      id="dropdownMenuButton1"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <Button
+                        className="sort-btn-mobile inter-semi-bold label-1"
+                        icon={sortIcon}
+                      ></Button>
+                    </div>
+                    <ul
+                      className="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton1"
+                    >
+                      <li
+                        onClick={() => handleSortBy(1)}
+                        className="cursor-pointer"
+                      >
+                        <a className="dropdown-item">
+                          <FormattedMessage id="asc" />
+                        </a>
+                      </li>
+                      <li
+                        onClick={() => handleSortBy(-1)}
+                        className="cursor-pointer"
+                      >
+                        <a className="dropdown-item">
+                          <FormattedMessage id="dsc" />
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {
+                    <ModalComponent
+                      open={open}
+                      onOpenModal={onOpenModal}
+                      onCloseModal={onCloseModal}
+                      className="header-modal"
+                      wrapperClass="d-inline-block"
+                      children={
+                        <Button
+                          className="filter-btn-mobile inter-semi-bold label-1"
+                          icon={filterIcon}
+                          onClick={() => {
+                            setFilters({
+                              categories: [],
+                              levels: [],
+                              languages: [],
+                              ratings: [],
+                            });
+                            dispatch(
+                              searchResult({
+                                q: search_query || q,
+                                sortByTitle: sort,
+                              })
+                            );
+                          }}
+                        ></Button>
+                      }
+                      modalBody={
+                        <div className="desktop-padding">
+                          <div className="categories-wrapper">
+                            <p className="glory-semi-bold search-result-cat-title mb-2">
+                              <FormattedMessage id="categorySearch" />
+                            </p>
+                            {categoriesListSliced
+                              .slice(0, showMoreCategoriesNumber)
+                              .map((category) => {
+                                return (
+                                  <p className="mb-2">
+                                    <CheckBox
+                                      onClick={() => {
+                                        handleSetFilters(
+                                          "categories",
+                                          category._id
+                                        );
+                                      }}
+                                      label={category.en.name}
+                                    ></CheckBox>
+                                  </p>
+                                );
+                              })}
+                          </div>
+                          {categoriesListSliced.slice(
+                            0,
+                            showMoreCategoriesNumber
+                          ).length < categories_list.length && (
+                            <div
+                              className="cursor-pointer d-flex"
+                              onClick={() =>
+                                setShowMoreCategoriesNumber(
+                                  showMoreCategoriesNumber + 3
+                                )
+                              }
+                            >
+                              <button className="show-more-btn-category inter-semi-bold">
+                                <FormattedMessage id="showMore" />
+                              </button>
+                            </div>
+                          )}
+                          <div
+                            className={`${
+                              categoriesListSliced.slice(
+                                0,
+                                showMoreCategoriesNumber
+                              ).length < categories_list.length && "mt-0"
+                            } hr`}
+                          ></div>
+
+                          <div>
+                            <p className="glory-semi-bold search-result-cat-title mb-2">
+                              <FormattedMessage id="Level" />
+                            </p>
+                            <p className="mb-2">
+                              <CheckBox
+                                onClick={() => {
+                                  handleSetFilters("levels", "Beginner");
+                                }}
+                                label="Begineer"
+                              ></CheckBox>
+                            </p>
+                            <p className="mb-2">
+                              <CheckBox
+                                onClick={() => {
+                                  handleSetFilters("levels", "Intermediate");
+                                }}
+                                label="Intermediate"
+                              ></CheckBox>
+                            </p>
+                            <p className="mb-2">
+                              <CheckBox
+                                onClick={() => {
+                                  handleSetFilters("levels", "Advanced");
+                                }}
+                                label="Advanced"
+                              ></CheckBox>
+                            </p>
+                            <div className="hr"></div>
+                          </div>
+
+                          <div>
+                            <p className="glory-semi-bold search-result-cat-title mb-2">
+                              <FormattedMessage id="Language" />
+                            </p>
+                            <p className="mb-2">
+                              <CheckBox
+                                onClick={() => {
+                                  handleSetFilters("languages", "English");
+                                }}
+                                label="English"
+                              ></CheckBox>
+                            </p>
+                            <p className="mb-2">
+                              <CheckBox
+                                onClick={() => {
+                                  handleSetFilters("languages", "Arabic");
+                                }}
+                                label="Arabic"
+                              ></CheckBox>
+                            </p>
+                            <div className="hr"></div>
+                          </div>
+
+                          <div>
+                            <p className="glory-semi-bold search-result-cat-title mb-2">
+                              <FormattedMessage id="Rating" />
+                            </p>
+                            <p className="mb-2">
+                              <CheckBox
+                                label={
+                                  <div>
+                                    <Rating
+                                      readonly={true}
+                                      initialValue={4.5}
+                                      allowFraction={true}
+                                    />
+                                    <span className="top-courses-rating inter-regular label-1 m-x-1">
+                                      4.5 & up
+                                    </span>
+                                  </div>
+                                }
+                                onClick={() => {
+                                  handleSetFilters("ratings", 4.5);
+                                }}
+                              ></CheckBox>
+                            </p>
+                            <p className="mb-2">
+                              <CheckBox
+                                label={
+                                  <div>
+                                    <Rating
+                                      readonly={true}
+                                      initialValue={4}
+                                      allowFraction={true}
+                                    />
+                                    <span className="top-courses-rating inter-regular label-1 m-x-1">
+                                      4 & up
+                                    </span>
+                                  </div>
+                                }
+                                onClick={() => {
+                                  handleSetFilters("ratings", 4);
+                                }}
+                              ></CheckBox>
+                            </p>
+                            <p className="mb-2">
+                              <CheckBox
+                                label={
+                                  <div>
+                                    <Rating
+                                      readonly={true}
+                                      initialValue={3.5}
+                                      allowFraction={true}
+                                    />
+                                    <span className="top-courses-rating inter-regular label-1 m-x-1">
+                                      3.5 & up
+                                    </span>
+                                  </div>
+                                }
+                                onClick={() => {
+                                  handleSetFilters("ratings", 3.5);
+                                }}
+                              ></CheckBox>
+                            </p>
+                            <p className="mb-2">
+                              <CheckBox
+                                label={
+                                  <div>
+                                    <Rating
+                                      readonly={true}
+                                      initialValue={3}
+                                      allowFraction={true}
+                                    />
+                                    <span className="top-courses-rating inter-regular label-1 m-x-1">
+                                      3 & up
+                                    </span>
+                                  </div>
+                                }
+                                onClick={() => {
+                                  handleSetFilters("ratings", 3);
+                                }}
+                              ></CheckBox>
+                            </p>
+                          </div>
+                        </div>
+                      }
+                    />
+                  }
                 </div>
               </div>
             </div>
@@ -260,24 +615,26 @@ const SearchResults = () => {
                         </p>
                         <div className="search-results-courses-data">
                           <span className="inter-regular label-1">
-                            Mohammed Karim
+                            {result.instructors.map(
+                              (instructor) => instructor.fullName
+                            )}
                           </span>
                           <span className="inter-regular label-1 search-result-date">
                             {moment(result.release_date).format("LL")}
                           </span>
                           <span className="inter-regular label-1 search-result-students-number">
-                            400,150 student
+                            {result.studentsNo}
                           </span>
                         </div>
                         <div className="d-flex">
                           <div>
                             <Rating
                               readonly={true}
-                              initialValue={result.avgRate}
+                              initialValue={result.avgRating}
                               allowFraction={true}
                             />
                             <span className="top-courses-rating inter-regular label-1 m-x-1">
-                              (24)
+                              ({result.reviewsNo})
                             </span>
                           </div>
                           <div>
@@ -290,7 +647,7 @@ const SearchResults = () => {
                       </div>
 
                       <div className="col-sm-2 text-end">
-                        <div className="dropdown ddp-btn ">
+                        <div className="dropdown ddp-btn ddp-more-icon">
                           <div
                             className="dropdown-toggle w-100 course-content-btn"
                             type="button"
@@ -319,7 +676,7 @@ const SearchResults = () => {
                               </a>
                             </li>
                             <li
-                            onClick={() => handleAddToFav(result)}
+                              onClick={() => handleAddToFav(result)}
                               className="cursor-pointer"
                             >
                               <a className="dropdown-item">
@@ -348,6 +705,7 @@ const SearchResults = () => {
           </div>
         </div>
       </div>
+
       <Footer></Footer>
     </>
   );

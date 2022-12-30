@@ -44,8 +44,8 @@ const Header = () => {
   }, [auth.sucess_logout]);
 
   useEffect(() => {
-    dispatch(getCartList());
-  }, [cart_list]);
+    localStorage.getItem("token") && dispatch(getCartList());
+  }, []);
 
   const handleLogout = () => {
     dispatch(Logout());
@@ -80,16 +80,18 @@ const Header = () => {
         </div>
       </div>
       <div className="col-sm-4 is-mobile">
-        <div className="col-sm-3">
-          <img alt="language" src={language} width="22px" height="22px"></img>
-          <img
+        <div className="col-sm-3 d-flex ">
+          <div><img alt="language" src={language} width="22px" height="22px"></img></div>
+         <div className="d-flex align-items-center"><img
             alt="cart"
             src={cart}
             width="22px"
             height="22px"
             onClick={()=> navigate("/cart")}
-            className="m-x-4 cursor-pointer"
+            className="ms-4 cursor-pointer"
           ></img>
+          <span className="cart-number">{cart_list.length}</span>
+          </div> 
         </div>
         <div className="col-sm-3">
           <span className="inter-semi-bold body-1 cursor-pointer" onClick={()=> navigate("/about-us")}>
