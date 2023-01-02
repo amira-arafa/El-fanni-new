@@ -121,6 +121,9 @@ export default {
     NoKeep : "No, keep",
     yesRemove : "Yes, Remove",
     asc: "Ascending",
-    dsc: "descending"
+    dsc: "descending",
+    clearResults: "Clear results",
+    showall: "Show all",
+    close: "Close",
   }
 }

@@ -37,6 +37,40 @@
     padding: 0px 5px;
     font-size: 12px;
   }
+
+}
+.close-btn-browse {
+    border: none;
+    background: transparent;
+    color: #A1A1B0;
+}
+.show-all-btn-browse {
+  background: #F5FAFF;
+  border-radius: 12px;
+  color: #002147;
+  padding: 7px 32px;
+  border: none;
+}
+.categories-container {
+  border-right: 2px solid #F5FAFF;
+}
+.browse-modal {
+  width: 50vw;
+  padding: 30px !important;
+  .react-responsive-modal-closeButton {
+    display: none;
+  }
+}
+.categories-ul {
+  list-style-type:none;
+  padding: 0px;
+  li {
+    background: url(../../../src/assets/imgs/icons/category2.png) no-repeat;
+    margin: 0;
+    padding: 0px 30px;
+    margin-bottom: 20px !important;
+    cursor: pointer;
+  }
 }
 img[alt="search-icon-overlay"] {
   @include inputIcon(35px, 11px);

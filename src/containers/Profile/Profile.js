@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Layout/Header";
 import Footer from "../../components/Layout/Footer";
 import teacher4 from "../../assets/imgs/teacher4.png";
@@ -14,12 +14,48 @@ import collection1 from "../../assets/imgs/collection1.png";
 import collection2 from "../../assets/imgs/collection2.png";
 import collection3 from "../../assets/imgs/collection3.png";
 import collection4 from "../../assets/imgs/collection4.png";
+import { getProfile, getFavourites, getCollections } from "../../store/actions/home";
 import { FormattedMessage, useIntl } from "react-intl";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import "./Profile.scss";
 
 const Profile = () => {
   const intl = useIntl();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [activeTab, setActiveTab] = useState(0);
+  const { home } = useSelector((state) => state);
+  const { profile_info } = home;
+
+  useEffect(() => {
+    dispatch(getProfile());
+  }, []);
+
+  useEffect(() => {
+    if(activeTab === 1){
+     dispatch(getFavourites());
+    }else if( activeTab === 2){
+     dispatch(getCollections());
+    }
+  }, [activeTab]);
+
+  useEffect(() => {
+    if (profile_info) {
+      setFirstName(profile_info.firstName);
+      setLastName(profile_info.lastName);
+      setEmail(profile_info.email);
+      setPhoto(profile_info.photo);
+      profile_info.phone && setPhone(profile_info.phone);
+    }
+  }, [profile_info]);
+
+
   return (
     <div className="profile-page-wrapper">
       <Header></Header>
@@ -28,16 +64,17 @@ const Profile = () => {
           <div className="col-sm-6">
             <div className="row align-items-center">
               <div className="col-sm-3">
-                <img src={teacher4} alt="profile-img" />
+                <img src={photo} alt="profile-img" />
               </div>
               <div className="col-sm-9">
                 <p className="mb-1 heading-3 glory-semi-bold profile-name">
-                  Mohammed Karim
+                  {firstName + " " + lastName}
                 </p>
                 <Button
                   icon={editUser}
                   text={intl.formatMessage({ id: "editYourProfile" })}
                   className="check-courses-btn inter-semi-bold label-1"
+                  onClick={()=> {navigate("/profile-edit")}}
                 ></Button>
               </div>
             </div>
@@ -46,7 +83,7 @@ const Profile = () => {
             <p className="label-1 inter-semi-bold mb-0">
               <FormattedMessage id="Email" />
             </p>
-            <p className="label-1 inter-regular">mohammed.karim888@gmail.com</p>
+            <p className="label-1 inter-regular">{email}</p>
             <p className="label-1 inter-semi-bold mb-0">
               <FormattedMessage id="courseInProgress" />
             </p>
@@ -56,7 +93,7 @@ const Profile = () => {
             <p className="label-1 inter-semi-bold mb-0">
               <FormattedMessage id="Phone" />
             </p>
-            <p className="label-1 inter-regular">(+20) 1234567890</p>
+            <p className="label-1 inter-regular">{phone}</p>
             <p className="label-1 inter-semi-bold mb-0">
               <FormattedMessage id="Coursecompleted" />
             </p>

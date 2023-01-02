@@ -71,7 +71,7 @@ function App() {
                 path="/confirm-password"
                 element={<PasswordConfirmMsg />}
               />
-              <Route exact path="/course" element={<CoursePage />} />
+              <Route exact path="/course/:id" element={<CoursePage />} />
               <Route exact path="/course-details" element={<CourseDetails />} />
               <Route exact path="/about-us" element={<AboutUs />} />
               <Route exact path="/profile" element={<Profile />} />

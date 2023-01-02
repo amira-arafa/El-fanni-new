@@ -19,7 +19,7 @@ const Cart = () => {
   const intl = useIntl();
   const dispatch = useDispatch();
   const { home } = useSelector((state)=>state);
-  const { cart_list } = home;
+  const { cart_list, total_payment } = home;
   const [open, setOpen] = useState(false);
   const [currentCourse, setCurrentCourse] = useState({});
   const onOpenModal = () => setOpen(true);
@@ -68,13 +68,15 @@ const Cart = () => {
                         </p>
                         <div className="search-results-courses-data">
                           <span className="inter-regular label-1">
-                            Mohammed Karim
+                          {result.instructors.map(
+                              (instructor) => instructor.fullName
+                            )}
                           </span>
                           <span className="inter-regular label-1 search-result-date">
                             {moment(result.release_date).format("LL")}
                           </span>
                           <span className="inter-regular label-1 search-result-students-number">
-                            400,150 student
+                          {result.studentsNo}
                           </span>
                         </div>
                         <div className="d-flex desktop-rating">
@@ -85,7 +87,7 @@ const Cart = () => {
                               allowFraction={true}
                             />
                             <span className="top-courses-rating inter-regular label-1 m-x-1">
-                              (24)
+                            ({result.reviewsNo})
                             </span>
                           </div>
                           <div>
@@ -138,7 +140,7 @@ const Cart = () => {
           <div className="col-sm-4 search-results-section total-cart ">
             <div className="d-flex align-items-center justify-content-between">
                 <div className="inter-semi-bold body-1"><FormattedMessage id="total"/></div>
-                <div className="glory-bold heading-3 total-price"> 1024 EGP</div>
+                <div className="glory-bold heading-3 total-price"> {total_payment} EGP</div>
             </div>
             <div className="hr"></div>
             <Button

@@ -1,18 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../../components/Layout/Footer";
 import Header from "../../components/Layout/Header";
 import Button from "../../components/Button/Button";
 import star from "../../assets/imgs/icons/star.png";
 import teacher4 from "../../assets/imgs/teacher4.png";
+import { Rating } from "react-simple-star-rating";
 import star2 from "../../assets/imgs/icons/vector.png";
 import certificate2 from "../../assets/imgs/certificate2.png";
 import playIcon from "../../assets/imgs/icons/play-circle.png";
 import cutMetalImg from "../../assets/imgs/cutting_metals.png";
 import { FormattedMessage, useIntl } from "react-intl";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import {
+  getCourseDetails
+} from "../../store/actions/home";
 import "./CoursePage.scss";
 
 const CoursePage = () => {
   const intl = useIntl();
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { home } = useSelector((state)=> state);
+  const { course_info } = home;
+
+  useEffect(() => {
+    id && dispatch(getCourseDetails(id));
+  }, [id]);
+
+
   return (
     <>
       <Header></Header>
@@ -32,36 +48,20 @@ const CoursePage = () => {
               </div>
             </div>
             <p className="heading-4  glory-semi-bold w-75">
-              Learning semi conductors for electrical education cation cation
-              caion
+               {course_info.title}
             </p>
             <p className="course-subheader inter-regular w-75 mb-1">
-              {" "}
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Augue et
-              faucibus nulla vulputate blandit consequat. Nulla at orci diam
-              malesuada et volutpat vitae.
+              {course_info.description}
             </p>
             <div className="course-rating-instructor  mb-1">
-              <span className="inter-regular label-1">
-                <span className="align-text-bottom">
-                  <img src={star} alt="star" width="15px" heigth="15px" />
-                </span>
-                <span className="align-text-bottom">
-                  <img src={star} alt="star" width="15px" heigth="15px" />
-                </span>
-                <span className="align-text-bottom">
-                  <img src={star} alt="star" width="15px" heigth="15px" />
-                </span>
-                <span className="align-text-bottom">
-                  <img src={star} alt="star" width="15px" heigth="15px" />
-                </span>
-                <span className="align-text-bottom">
-                  <img src={star2} alt="star" width="13px" heigth="13px" />
-                </span>
+                <Rating
+                  readonly={true}
+                  initialValue={course_info.avgRating}
+                  allowFraction={true}
+                />
                 <span className="top-courses-rating inter-regular label-1 m-x-1">
-                  (24)
+                  ({course_info.reviewsNo})
                 </span>
-              </span>
               <span className="inter-regular label-1 search-result-date">
                 Jan 2020
               </span>

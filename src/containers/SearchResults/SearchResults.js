@@ -7,10 +7,12 @@ import Footer from "../../components/Layout/Footer";
 import Header from "../../components/Layout/Header";
 import moreIcon from "../../assets/imgs/icons/moregrey.png";
 import sortIcon from "../../assets/imgs/icons/sort.png";
+import closeIcon from "../../assets/imgs/icons/close-circle.png";
 import filterIcon from "../../assets/imgs/icons/filter.png";
 import cutMetalImg from "../../assets/imgs/cutting_metals.png";
 import Button from "../../components/Button/Button";
 import ModalComponent from "../../components/Modal/Modal";
+import { STORE_SEARCH_QUERY } from "../../store/types/home";
 import { useDispatch, useSelector } from "react-redux";
 import {
   searchResult,
@@ -18,13 +20,14 @@ import {
   addToCart,
   addToFav,
 } from "../../store/actions/home";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./SearchResults.scss";
 
 const SearchResults = () => {
   const [open, setOpen] = useState(false);
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
+  const navigate = useNavigate();
   const { home } = useSelector((state) => state);
   const { q } = useParams();
   const dispatch = useDispatch();
@@ -109,7 +112,6 @@ const SearchResults = () => {
       });
     } else {
       const filtered = filters[filterName].filter((el) => el !== filterValue);
-      console.log("nooo", filtered);
       setFilters({
         ...filters,
         [filterName]: filtered,
@@ -300,15 +302,35 @@ const SearchResults = () => {
           </div>
 
           <div className="col-sm-8 pe-3 results-row-wrapper">
-            <div className="d-flex align-items-end mb-3 results-row">
-              <div className="col-sm-8 col-md-6">
-                <p className="glory-semi-bold heading-4 mb-0">
-                  {search_results?.length || 0} results for “{search_query || q}
-                  ”
-                </p>
+            <div className="d-flex mb-3 results-row">
+              <div className="col-sm-6 col-md-6">
+                {search_query ?<p className="glory-semi-bold heading-4 mb-0">
+                  {search_results?.length || 0} results for “{search_query || q}”
+                </p> : ""}
               </div>
-              <div className="col-sm-4 col-md-6 justify-content-end d-flex">
-                <div>
+              <div className="col-sm-6 col-md-6 justify-content-end d-flex">
+                <div className="d-flex">
+                {search_query && <Button
+                        className="sort-btn inter-semi-bold label-1 mx-2"
+                        text={intl.formatMessage({ id: "clearResults" })}
+                        icon={closeIcon}
+                        onClick={()=> 
+                          {
+                            navigate("/search-results");
+                            dispatch({
+                              type: STORE_SEARCH_QUERY,
+                              payload: "",
+                            });
+                            dispatch(
+                              searchResult({
+                                ...filtersResults,
+                                sortByTitle: sort,
+                              })
+                            );
+                          }
+                        }
+                      ></Button>}
+                
                   <div className="dropdown ddp-btn ">
                     <div
                       className="dropdown-toggle w-100 course-content-btn"
@@ -345,6 +367,26 @@ const SearchResults = () => {
                       </li>
                     </ul>
                   </div>
+
+                  {search_query && <Button
+                        className="sort-btn-mobile inter-semi-bold label-1 mx-2 align-self-baseline"
+                        icon={closeIcon}
+                        onClick={()=> 
+                          {
+                            navigate("/search-results");
+                            dispatch({
+                              type: STORE_SEARCH_QUERY,
+                              payload: "",
+                            });
+                            dispatch(
+                              searchResult({
+                                ...filtersResults,
+                                sortByTitle: sort,
+                              })
+                            );
+                          }
+                        }
+                      ></Button>}
 
                   <div className="dropdown ddp-btn d-inline-block">
                     <div
@@ -602,10 +644,10 @@ const SearchResults = () => {
               </div>
             </div>
             {search_results.length > 0 && (
-              <div className="search-results-section">
+              <div className="search-results-section cursor-pointer">
                 {searchResultsSliced.slice(0, showMoreNumber).map((result) => {
                   return (
-                    <div className="d-flex course-results-wrapper mb-5">
+                    <div className="d-flex course-results-wrapper mb-5" onClick={()=>{navigate(`/course/${result._id}`)}}>
                       <div className="col-sm-4">
                         <img src={cutMetalImg} alt="course-img"></img>
                       </div>

@@ -30,10 +30,12 @@ import Button from "../../components/Button/Button";
 import Footer from "../../components/Layout/Footer";
 import Header from "../../components/Layout/Header";
 import CarouselComponent from "../../components/Carousel/Carousel";
+import { useNavigate } from "react-router-dom";
 import "./HomePage.scss";
 
 const HomePage = () => {
   const intl = useIntl();
+  const navigate = useNavigate();
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 1250 },
@@ -89,6 +91,7 @@ const HomePage = () => {
                 </p>
                 <Button
                   afterIcon={arrowRight}
+                  onClick={()=> navigate("/search-results")}
                   text={intl.formatMessage({ id: "checkCourses" })}
                   className="check-courses-btn inter-semi-bold body-1"
                 ></Button>
@@ -173,6 +176,7 @@ const HomePage = () => {
             </p>
             <Button
               afterIcon={arrowRight}
+              onClick={()=> navigate("/search-results")}
               text={intl.formatMessage({ id: "checkCourses" })}
               className="check-courses-btn inter-semi-bold body-1"
             ></Button>

@@ -10,7 +10,7 @@ import menu from "../../assets/imgs/icons/menu.png";
 import cart from "../../assets/imgs/icons/shopping-cart.png";
 import { useDispatch, useSelector } from "react-redux";
 import { Logout } from "../../store/actions/auth";
-import { getCartList } from "../../store/actions/home";
+import { getCartList, getCategories } from "../../store/actions/home";
 import { SUCESS_LOG_OUT } from "../../store/types/auth";
 import { STORE_SEARCH_QUERY } from "../../store/types/home";
 import Input from "../../components/Input/Input";
@@ -23,13 +23,18 @@ const Header = () => {
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
 
+  const [openBrowseModal, setOpenBrowseModal] = useState(false);
+  const onOpenModalBrowseModal = () => setOpenBrowseModal(true);
+  const onCloseModalBrowseModal = () => setOpenBrowseModal(false);
+
   const navigate = useNavigate();
   const intl = useIntl();
   const { auth, home } = useSelector((state) => state);
-  const { cart_list } = home;
+  const { cart_list, categories_list } = home;
   const dispatch = useDispatch();
   const { token, user_data } = auth;
-  const [searchValue , setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState("");
+  const [currentCategory, setCurrentCategory] = useState(0);
 
   useEffect(() => {
     if (auth.sucess_logout) {
@@ -42,6 +47,10 @@ const Header = () => {
       });
     };
   }, [auth.sucess_logout]);
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, []);
 
   useEffect(() => {
     localStorage.getItem("token") && dispatch(getCartList());
@@ -65,7 +74,7 @@ const Header = () => {
       <div className="col-sm-8">
         <div className="d-flex align-items-center">
           <div className=" col-sm-5 col-md-3 d-flex align-items-center">
-            <div onClick={()=> navigate("/")} className="cursor-pointer">
+            <div onClick={() => navigate("/")} className="cursor-pointer">
               <img alt="logo" src={logo} width="60px" height="60px"></img>
             </div>
             <div className="text-white glory-bold heading-3 mx-2">
@@ -73,28 +82,94 @@ const Header = () => {
             </div>
           </div>
           <div className="col-sm-7 col-md-9 browse-btn-container">
-            <button className="browse-btn body-1">
-              <FormattedMessage id="browse" />
-            </button>
+            <ModalComponent
+              open={openBrowseModal}
+              onOpenModal={onOpenModalBrowseModal}
+              onCloseModal={onCloseModalBrowseModal}
+              className="browse-modal"
+              children={
+                <button className="browse-btn body-1">
+                  <FormattedMessage id="browse" />
+                </button>
+              }
+              modalBody={
+                <div className="d-flex">
+                  <div className="col-sm-4 categories-container">
+                    <h3 className="gilory-bold heading-3 mb-5">
+                      <FormattedMessage id="browse" />
+                    </h3>
+                    <ul className="categories-ul">
+                      {categories_list.map((category) => {
+                        return (
+                          <li className="inter-regular body-1 mb-2" onClick={()=>{setCurrentCategory(category)}}>
+                            {category?.en.name}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                  {categories_list && (
+                    <div className="col-sm-8 px-3">
+                      <div className="d-flex justify-content-between align-items-baseline">
+                        <div>
+                          <p className="mb-5 glory-semi-bold btnColor heading-3">
+                            {currentCategory ? currentCategory.en.name : categories_list[0]?.en.name}
+                          </p>
+                        </div>
+                        <div>
+                          <Button
+                            className="mx-2 close-btn-browse inter-semi-bold body-1"
+                            text={<FormattedMessage id="close" />}
+                            onClick={()=> {onCloseModalBrowseModal()}}
+                          ></Button>
+                          <Button
+                            className="show-all-btn-browse inter-semi-bold body-1"
+                            text={<FormattedMessage id="showall" />}
+                            onClick={()=> {navigate(`/search-results`)}}
+                          ></Button>
+                        </div>
+                      </div>
+                      {currentCategory
+                        ? currentCategory?.subcategories.map((subCat) => {
+                          return (
+                            <p className="inter-regular body-1">{subCat}</p>
+                          );
+                        })
+                        : categories_list[0]?.subcategories.map((subCat) => {
+                            return (
+                              <p className="inter-regular body-1">{subCat}</p>
+                            );
+                          })}
+                    </div>
+                  )}
+                </div>
+              }
+            />
           </div>
         </div>
       </div>
       <div className="col-sm-4 is-mobile">
         <div className="col-sm-3 d-flex ">
-          <div><img alt="language" src={language} width="22px" height="22px"></img></div>
-         <div className="d-flex align-items-center"><img
-            alt="cart"
-            src={cart}
-            width="22px"
-            height="22px"
-            onClick={()=> navigate("/cart")}
-            className="ms-4 cursor-pointer"
-          ></img>
-          <span className="cart-number">{cart_list.length}</span>
-          </div> 
+          <div>
+            <img alt="language" src={language} width="22px" height="22px"></img>
+          </div>
+          <div className="d-flex align-items-center">
+            <img
+              alt="cart"
+              src={cart}
+              width="22px"
+              height="22px"
+              onClick={() => navigate("/cart")}
+              className="ms-4 cursor-pointer"
+            ></img>
+            <span className="cart-number">{cart_list.length}</span>
+          </div>
         </div>
         <div className="col-sm-3">
-          <span className="inter-semi-bold body-1 cursor-pointer" onClick={()=> navigate("/about-us")}>
+          <span
+            className="inter-semi-bold body-1 cursor-pointer"
+            onClick={() => navigate("/about-us")}
+          >
             <FormattedMessage id="aboutUs" />
           </span>
         </div>
@@ -111,7 +186,7 @@ const Header = () => {
                     <FormattedMessage id="search" />
                   </span>
                 </div>
-                <div >
+                <div>
                   <img
                     alt="search"
                     src={search}
@@ -130,7 +205,7 @@ const Header = () => {
                   type="text"
                   className="search-input-overlay"
                   value={searchValue}
-                  onChange={(e)=> setSearchValue(e.target.value)}
+                  onChange={(e) => setSearchValue(e.target.value)}
                   placeholder={intl.formatMessage({ id: "searchHere" })}
                   icon={
                     <img
@@ -139,7 +214,7 @@ const Header = () => {
                       width="20"
                       height="20"
                       className="cursor-pointer"
-                      onClick={()=> redirectTosearchPage()}
+                      onClick={() => redirectTosearchPage()}
                     />
                   }
                 />
@@ -148,13 +223,12 @@ const Header = () => {
                 <Button
                   text={intl.formatMessage({ id: "search" })}
                   className="check-courses-btn inter-semi-bold label-1 mx-3"
-                  onClick={()=> redirectTosearchPage()}
+                  onClick={() => redirectTosearchPage()}
                 ></Button>
               </div>
             </div>
           }
         />
-
         <div className="col-sm-3 cursor-pointer">
           {localStorage.getItem("user-data") ? (
             <div className="d-flex justify-content-center">
