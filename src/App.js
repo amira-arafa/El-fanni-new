@@ -72,11 +72,11 @@ function App() {
                 element={<PasswordConfirmMsg />}
               />
               <Route exact path="/course/:id" element={<CoursePage />} />
-              <Route exact path="/course-details" element={<CourseDetails />} />
+              <Route exact path="/course-details/:id" element={<CourseDetails />} />
               <Route exact path="/about-us" element={<AboutUs />} />
               <Route exact path="/profile" element={<Profile />} />
               <Route exact path="/profile-edit" element={<EditProfile />} />
-              <Route exact path="/collection" element={<Collection />} />
+              <Route exact path="/collection/:id" element={<Collection />} />
               <Route exact path="/cart" element={<Cart />} />
               <Route  path="/search-results" element={<SearchResults />} />
               <Route  path="/search-results/:q" element={<SearchResults />} />

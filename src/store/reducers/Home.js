@@ -1,4 +1,4 @@
-import { type } from "@testing-library/user-event/dist/type";
+
 import * as types from "../types/home";
 const INITIAL_STATE = {
   search_query: null,
@@ -7,7 +7,10 @@ const INITIAL_STATE = {
   cart_list: [],
   total_payment : 0,
   profile_info: {},
-  course_info: {}
+  course_info: {},
+  collections_list: [],
+  single_collection : null,
+  favourites_list: []
 };
 
 export default function home(state = INITIAL_STATE, action) {
@@ -42,6 +45,21 @@ export default function home(state = INITIAL_STATE, action) {
       return {
         ...state,
         course_info: action.payload,
+      };
+    case types.STORE_COLLECTIONS_LIST:
+      return {
+        ...state,
+        collections_list: action.payload,
+      };
+    case types.STORE_SINGLE_COLLECTION:
+      return {
+        ...state,
+        single_collection: action.payload,
+      };
+    case types.STORE_FAVOURITES_LIST:
+      return {
+        ...state,
+        favourites_list: action.payload,
       };
     default:
       return state;

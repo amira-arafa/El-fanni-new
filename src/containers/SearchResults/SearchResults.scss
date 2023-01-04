@@ -3,6 +3,7 @@
 .search-results-container {
   padding: 1.3vw 3vw;
   background-color: #f6f6f7;
+
   .star-svg {
     width: 23px;
     height: 23px;
@@ -89,6 +90,36 @@ input[type="checkbox"] {
   border: none;
   outline: none;
   margin: 0 auto;
+}
+.collection-modal{
+    width: 40vw !important;
+    border-radius: 13px;
+    padding: 1.4rem !important;
+    .react-responsive-modal-closeButton {
+      display: none;
+    }
+    .add-collection-btn {
+      background: #002147;
+      box-shadow: 0px 2px 4px rgba(11, 11, 14, 0.2);
+      border-radius: 12px;
+      padding: 9px 48px;
+      color: #fff;
+      outline: unset;
+      border: unset;
+      margin: 0 auto;
+    }
+    .regular-btn {
+      background: #002147;
+      box-shadow: 0px 2px 4px rgb(11 11 14 / 20%);
+      border-radius: 12px;
+      color: #fff;
+      padding: 6px 20px;
+      border: 0px;
+    }
+    .collection-bg-img img {
+      width: 50%;
+      height: 50%;
+    }
 }
 @media only screen and (max-width: 768px) {
   .search-results-container {

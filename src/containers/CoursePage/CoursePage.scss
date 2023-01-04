@@ -2,6 +2,10 @@
 @import "../../scss/mixins";
 
 .course-section-wrapper {
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
   .course-first-section {
     padding: 3.3vw 6vw;
   }
@@ -102,6 +106,9 @@
       display: flex;
       justify-content: space-between;
       padding: 1.7vw 1.2vw;
+      li {
+      cursor: pointer;
+      }
     }
     .course-info-section {
       padding: 1vw;

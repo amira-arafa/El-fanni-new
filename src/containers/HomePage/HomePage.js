@@ -32,10 +32,14 @@ import Header from "../../components/Layout/Header";
 import CarouselComponent from "../../components/Carousel/Carousel";
 import { useNavigate } from "react-router-dom";
 import "./HomePage.scss";
+import { useEffect } from "react";
 
 const HomePage = () => {
   const intl = useIntl();
   const navigate = useNavigate();
+  useEffect(()=>{
+    localStorage.setItem("lang","en")
+  },[])
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 1250 },

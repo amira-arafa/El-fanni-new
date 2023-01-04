@@ -102,7 +102,7 @@ const Header = () => {
                       {categories_list.map((category) => {
                         return (
                           <li className="inter-regular body-1 mb-2" onClick={()=>{setCurrentCategory(category)}}>
-                            {category?.en.name}
+                            {category?.name}
                           </li>
                         );
                       })}
@@ -111,12 +111,12 @@ const Header = () => {
                   {categories_list && (
                     <div className="col-sm-8 px-3">
                       <div className="d-flex justify-content-between align-items-baseline">
-                        <div>
+                        <div className="col-sm-5">
                           <p className="mb-5 glory-semi-bold btnColor heading-3">
-                            {currentCategory ? currentCategory.en.name : categories_list[0]?.en.name}
+                            {currentCategory ? currentCategory.name : categories_list[0]?.name}
                           </p>
                         </div>
-                        <div>
+                        <div className="col-sm-7">
                           <Button
                             className="mx-2 close-btn-browse inter-semi-bold body-1"
                             text={<FormattedMessage id="close" />}
@@ -130,14 +130,14 @@ const Header = () => {
                         </div>
                       </div>
                       {currentCategory
-                        ? currentCategory?.subcategories.map((subCat) => {
+                        ? currentCategory.subcategories?.map((subCat) => {
                           return (
-                            <p className="inter-regular body-1">{subCat}</p>
+                            <p className="inter-regular body-1">{subCat.name}</p>
                           );
                         })
                         : categories_list[0]?.subcategories.map((subCat) => {
                             return (
-                              <p className="inter-regular body-1">{subCat}</p>
+                              <p className="inter-regular body-1">{subCat.name}</p>
                             );
                           })}
                     </div>

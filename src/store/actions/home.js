@@ -1,5 +1,5 @@
 import { axiosInstance } from "../../network/apis";
-import { STORE_SEARCH_RESULT,STORE_CATEGORIES_LIST, STORE_CART_LIST, STORE_PROFILE_INFO, STORE_COURSE_DETAILS } from "../types/home";
+import { STORE_SEARCH_RESULT,STORE_CATEGORIES_LIST, STORE_CART_LIST, STORE_PROFILE_INFO, STORE_COURSE_DETAILS, STORE_COLLECTIONS_LIST, STORE_SINGLE_COLLECTION, STORE_FAVOURITES_LIST } from "../types/home";
 
 export const searchResult = ( params) => async (dispatch) => {
     try {
@@ -16,7 +16,6 @@ export const searchResult = ( params) => async (dispatch) => {
 export const getCourseDetails = (id) => async (dispatch) => {
   try {
     const res = await axiosInstance.get(`/courses/${id}`);
-    console.log("ssss",res.data.data[0])
     dispatch({
       type: STORE_COURSE_DETAILS ,
       payload : res.data.data[0]
@@ -25,6 +24,72 @@ export const getCourseDetails = (id) => async (dispatch) => {
     console.log(err);
   }
 };
+
+export const addNewCollection = (name) => async (dispatch) => {
+  try {
+    const res = await axiosInstance.post(`/collections`,{
+      name
+  });
+    dispatch(getCollectionsList())
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const addToCollection = (collectionId , courseId) => async (dispatch) => {
+  try {
+    const res = await axiosInstance.post(`/collections/add/${collectionId}`,{
+      courseId
+  });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+export const getCollectionsList = () => async (dispatch) => {
+  try {
+    const res = await axiosInstance.get(`/collections`);
+    dispatch({
+      type: STORE_COLLECTIONS_LIST,
+      payload : res.data.data
+    })
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getCollection = (id) => async (dispatch) => {
+  try {
+    const res = await axiosInstance.get(`/collections/${id}`);
+    dispatch({
+      type: STORE_SINGLE_COLLECTION,
+      payload : res.data.data
+    })
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const deleteCollection = (id) => async (dispatch) => {
+  try {
+    const res = await axiosInstance.delete(`/collections/${id}`);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const removeFromCollection = (collectionId , courseId) => async (dispatch) => {
+  try {
+    const res = await axiosInstance.delete(`/collections/remove/${collectionId}`, 
+    {data:{ courseId }});
+    dispatch(getCollection(collectionId));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
 
   export const submitEditProfile  = ( data) => async (dispatch) => {
     try {
@@ -60,21 +125,26 @@ export const getCourseDetails = (id) => async (dispatch) => {
   export const getFavourites  = ( ) => async (dispatch) => {
     try {
       const res = await axiosInstance.get("/favorites");
+      dispatch({
+        type:STORE_FAVOURITES_LIST,
+        payload: res.data.data
+      })
     } catch (err) {
       console.log(err);
     }
   };
 
-  export const getCollections  = ( ) => async (dispatch) => {
+  export const removeFromFaviorites  = (courseId) => async (dispatch) => {
     try {
-      const res = await axiosInstance.get("/collections");
-     console.log("heheehe,",res)
+      const res = await axiosInstance.delete(`/favorites/${courseId}`);
+      res && dispatch(getFavourites());
     } catch (err) {
       console.log(err);
     }
   };
 
   
+
 
   export const getCartList = () => async (dispatch) => {
     try {
@@ -122,7 +192,7 @@ export const getCourseDetails = (id) => async (dispatch) => {
 
 export const getCategories = () => async (dispatch) => {
   try {
-    const res = await axiosInstance.get("/courses/categories");
+    const res = await axiosInstance.get("/categories");
     dispatch({
       type: STORE_CATEGORIES_LIST ,
       payload: res.data.data

@@ -35,7 +35,6 @@ const Cart = () => {
     onOpenModal();
   }
   const handleDeleteCourse = () => {
-    console.log("RE",currentCourse._id);
     dispatch(deleteCourse(currentCourse._id, {title:currentCourse.title , lectureId:currentCourse._id}))
     onCloseModal();
     
@@ -73,7 +72,7 @@ const Cart = () => {
                             )}
                           </span>
                           <span className="inter-regular label-1 search-result-date">
-                            {moment(result.release_date).format("LL")}
+                            {moment(result.releaseDate).format("LL")}
                           </span>
                           <span className="inter-regular label-1 search-result-students-number">
                           {result.studentsNo}

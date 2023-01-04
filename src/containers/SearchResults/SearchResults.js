@@ -3,8 +3,10 @@ import { FormattedMessage, useIntl } from "react-intl";
 import moment from "moment";
 import CheckBox from "../../components/CheckBox/CheckBox";
 import { Rating } from "react-simple-star-rating";
+import addIcon from "../../assets/imgs/icons/add.png";
 import Footer from "../../components/Layout/Footer";
 import Header from "../../components/Layout/Header";
+import Input from "../../components/Input/Input";
 import moreIcon from "../../assets/imgs/icons/moregrey.png";
 import sortIcon from "../../assets/imgs/icons/sort.png";
 import closeIcon from "../../assets/imgs/icons/close-circle.png";
@@ -14,11 +16,18 @@ import Button from "../../components/Button/Button";
 import ModalComponent from "../../components/Modal/Modal";
 import { STORE_SEARCH_QUERY } from "../../store/types/home";
 import { useDispatch, useSelector } from "react-redux";
+import collection1 from "../../assets/imgs/collection1.png";
+import collection2 from "../../assets/imgs/collection2.png";
+import collection3 from "../../assets/imgs/collection3.png";
+import collection4 from "../../assets/imgs/collection4.png";
 import {
   searchResult,
   getCategories,
   addToCart,
   addToFav,
+  getCollectionsList,
+  addNewCollection,
+  addToCollection
 } from "../../store/actions/home";
 import { useNavigate, useParams } from "react-router-dom";
 import "./SearchResults.scss";
@@ -27,11 +36,22 @@ const SearchResults = () => {
   const [open, setOpen] = useState(false);
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
+
+  const [openCollection, setOpenCollection] = useState(false);
+  const onOpenModalCollection = () => setOpenCollection(true);
+  const onCloseModalCollection = () => setOpenCollection(false);
+
+  const [openCollectionAdd, setOpenCollectionAdd] = useState(false);
+  const onOpenModalCollectionAdd = () => setOpenCollectionAdd(true);
+  const onCloseModalCollectionAdd = () => setOpenCollectionAdd(false);
+
   const navigate = useNavigate();
+  const [collectionName, setCollectionName] = useState("");
   const { home } = useSelector((state) => state);
   const { q } = useParams();
   const dispatch = useDispatch();
-  const { search_query, search_results, categories_list, cart_list } = home;
+  const { search_query, search_results, categories_list, collections_list } =
+    home;
   const [searchResultsSliced, setSearchResultsSliced] = useState([]);
   const [filters, setFilters] = useState({
     categories: [],
@@ -41,6 +61,7 @@ const SearchResults = () => {
   });
   const [filtersResults, setFiltersObj] = useState({});
   const [sort, setSort] = useState(1);
+  const [currentCourse, setCurrentCourse] = useState(1);
   const [categoriesListSliced, setCategoriesListSliced] = useState([]);
   const [showMoreNumber, setShowMoreNumber] = useState(5);
   const [showMoreCategoriesNumber, setShowMoreCategoriesNumber] = useState(3);
@@ -73,6 +94,7 @@ const SearchResults = () => {
 
   useEffect(() => {
     dispatch(getCategories());
+    dispatch(getCollectionsList());
   }, []);
 
   useEffect(() => {
@@ -94,6 +116,11 @@ const SearchResults = () => {
 
   const handleAddToFav = (result) => {
     dispatch(addToFav(result._id));
+  };
+
+  const handleAddToCollection = (result) => {
+    setCurrentCourse(result._id);
+    onOpenModalCollection();
   };
 
   const handleSortBy = (sortByTitle) => {
@@ -138,7 +165,7 @@ const SearchResults = () => {
                         onClick={() => {
                           handleSetFilters("categories", category._id);
                         }}
-                        label={category.en.name}
+                        label={category.name}
                       ></CheckBox>
                     </p>
                   );
@@ -304,33 +331,38 @@ const SearchResults = () => {
           <div className="col-sm-8 pe-3 results-row-wrapper">
             <div className="d-flex mb-3 results-row">
               <div className="col-sm-6 col-md-6">
-                {search_query ?<p className="glory-semi-bold heading-4 mb-0">
-                  {search_results?.length || 0} results for “{search_query || q}”
-                </p> : ""}
+                {search_query ? (
+                  <p className="glory-semi-bold heading-4 mb-0">
+                    {search_results?.length || 0} results for “
+                    {search_query || q}”
+                  </p>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="col-sm-6 col-md-6 justify-content-end d-flex">
                 <div className="d-flex">
-                {search_query && <Button
-                        className="sort-btn inter-semi-bold label-1 mx-2"
-                        text={intl.formatMessage({ id: "clearResults" })}
-                        icon={closeIcon}
-                        onClick={()=> 
-                          {
-                            navigate("/search-results");
-                            dispatch({
-                              type: STORE_SEARCH_QUERY,
-                              payload: "",
-                            });
-                            dispatch(
-                              searchResult({
-                                ...filtersResults,
-                                sortByTitle: sort,
-                              })
-                            );
-                          }
-                        }
-                      ></Button>}
-                
+                  {search_query && (
+                    <Button
+                      className="sort-btn inter-semi-bold label-1 mx-2"
+                      text={intl.formatMessage({ id: "clearResults" })}
+                      icon={closeIcon}
+                      onClick={() => {
+                        navigate("/search-results");
+                        dispatch({
+                          type: STORE_SEARCH_QUERY,
+                          payload: "",
+                        });
+                        dispatch(
+                          searchResult({
+                            ...filtersResults,
+                            sortByTitle: sort,
+                          })
+                        );
+                      }}
+                    ></Button>
+                  )}
+
                   <div className="dropdown ddp-btn ">
                     <div
                       className="dropdown-toggle w-100 course-content-btn"
@@ -368,25 +400,25 @@ const SearchResults = () => {
                     </ul>
                   </div>
 
-                  {search_query && <Button
-                        className="sort-btn-mobile inter-semi-bold label-1 mx-2 align-self-baseline"
-                        icon={closeIcon}
-                        onClick={()=> 
-                          {
-                            navigate("/search-results");
-                            dispatch({
-                              type: STORE_SEARCH_QUERY,
-                              payload: "",
-                            });
-                            dispatch(
-                              searchResult({
-                                ...filtersResults,
-                                sortByTitle: sort,
-                              })
-                            );
-                          }
-                        }
-                      ></Button>}
+                  {search_query && (
+                    <Button
+                      className="sort-btn-mobile inter-semi-bold label-1 mx-2 align-self-baseline"
+                      icon={closeIcon}
+                      onClick={() => {
+                        navigate("/search-results");
+                        dispatch({
+                          type: STORE_SEARCH_QUERY,
+                          payload: "",
+                        });
+                        dispatch(
+                          searchResult({
+                            ...filtersResults,
+                            sortByTitle: sort,
+                          })
+                        );
+                      }}
+                    ></Button>
+                  )}
 
                   <div className="dropdown ddp-btn d-inline-block">
                     <div
@@ -469,7 +501,7 @@ const SearchResults = () => {
                                           category._id
                                         );
                                       }}
-                                      label={category.en.name}
+                                      label={category.name}
                                     ></CheckBox>
                                   </p>
                                 );
@@ -644,14 +676,24 @@ const SearchResults = () => {
               </div>
             </div>
             {search_results.length > 0 && (
-              <div className="search-results-section cursor-pointer">
+              <div className="search-results-section">
                 {searchResultsSliced.slice(0, showMoreNumber).map((result) => {
                   return (
-                    <div className="d-flex course-results-wrapper mb-5" onClick={()=>{navigate(`/course/${result._id}`)}}>
-                      <div className="col-sm-4">
+                    <div className="d-flex course-results-wrapper mb-5">
+                      <div
+                        className="col-sm-4 cursor-pointer"
+                        onClick={() => {
+                          navigate(`/course/${result._id}`);
+                        }}
+                      >
                         <img src={cutMetalImg} alt="course-img"></img>
                       </div>
-                      <div className="col-sm-6">
+                      <div
+                        className="col-sm-6 cursor-pointer"
+                        onClick={() => {
+                          navigate(`/course/${result._id}`);
+                        }}
+                      >
                         <p className="inter-semi-bold heading-3">
                           {result.title}
                         </p>
@@ -662,7 +704,7 @@ const SearchResults = () => {
                             )}
                           </span>
                           <span className="inter-regular label-1 search-result-date">
-                            {moment(result.release_date).format("LL")}
+                            {moment(result.releaseDate).format("LL")}
                           </span>
                           <span className="inter-regular label-1 search-result-students-number">
                             {result.studentsNo}
@@ -725,6 +767,141 @@ const SearchResults = () => {
                                 <FormattedMessage id="addToLearningCourse" />
                               </a>
                             </li>
+                            <ModalComponent
+                              open={openCollection}
+                              onOpenModal={onOpenModalCollection}
+                              onCloseModal={onCloseModalCollection}
+                              className="collection-modal"
+                              wrapperClass="d-inline-block"
+                              children={
+                                <li
+                                  onClick={() => handleAddToCollection(result)}
+                                  className="cursor-pointer"
+                                >
+                                  <a className="dropdown-item">
+                                    <FormattedMessage id="addToCollection" />
+                                  </a>
+                                </li>
+                              }
+                              modalBody={
+                                <div>
+                                  <div className="d-flex align-items-baseline">
+                                    <div className="col-sm-4">
+                                      <p className="heading-1 glory-semi-bold btnColor m-auto mb-3">
+                                        {" "}
+                                        <FormattedMessage id="addToCollection" />
+                                      </p>
+                                    </div>
+                                    <div className="col-sm-8 d-flex justify-content-end">
+                                      <Button
+                                        className="mx-2 close-btn-browse inter-semi-bold body-1"
+                                        text={<FormattedMessage id="close" />}
+                                        onClick={() => {
+                                          onCloseModalCollection();
+                                        }}
+                                      ></Button>
+
+                                      <ModalComponent
+                                        open={openCollectionAdd}
+                                        onOpenModal={onOpenModalCollectionAdd}
+                                        onCloseModal={onCloseModalCollectionAdd}
+                                        className="collection-add-modal"
+                                        children={
+                                          <Button
+                                            icon={addIcon}
+                                            text={intl.formatMessage({
+                                              id: "addNewCollection",
+                                            })}
+                                            className="regular-btn inter-semi-bold body-1"
+                                          />
+                                        }
+                                        modalBody={
+                                          <div>
+                                            <div>
+                                              <p className="heading-3  glory-semi-bold btnColor w-50 m-auto mb-3">
+                                                {" "}
+                                                <FormattedMessage id="addNewCollection" />
+                                              </p>
+
+                                              <div className="mb-5">
+                                                <Input
+                                                  label={
+                                                    <FormattedMessage id="collectionName" />
+                                                  }
+                                                  type="text"
+                                                  value={collectionName}
+                                                  onChange={(e) =>
+                                                    setCollectionName(
+                                                      e.target.value
+                                                    )
+                                                  }
+                                                  placeholder={
+                                                    "Ex: my collection"
+                                                  }
+                                                />
+                                              </div>
+                                              <div>
+                                                {" "}
+                                                <Button
+                                                  className="add-collection-btn inter-semi-bold label-1 d-flex"
+                                                  text={intl.formatMessage({
+                                                    id: "Add",
+                                                  })}
+                                                  onClick={() => {
+                                                    collectionName &&
+                                                      dispatch(
+                                                        addNewCollection(
+                                                          collectionName
+                                                        )
+                                                      );
+                                                    onCloseModalCollectionAdd();
+                                                  }}
+                                                ></Button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        }
+                                      />
+                                    </div>
+                                  </div>
+                                  {collections_list?.map((collection) => (
+                                    <div
+                                      className="row course-results-wrapper mb-3 mx-0 align-items-center cursor-pointer"
+                                      onClick={() => {
+                                        onCloseModalCollection();
+                                        dispatch(addToCollection(collection._id,currentCourse));
+                                      }}
+                                    >
+                                      <div className="col-sm-3">
+                                        <div className="collection-bg-img">
+                                          <img
+                                            src={collection1}
+                                            alt="course-img"
+                                          ></img>
+                                          <img
+                                            src={collection2}
+                                            alt="course-img"
+                                          ></img>
+                                          <img
+                                            src={collection3}
+                                            alt="course-img"
+                                          ></img>
+                                          <img
+                                            src={collection4}
+                                            alt="course-img"
+                                          ></img>
+                                        </div>
+                                      </div>
+                                      <div className="col-sm-9">
+                                        <p className="inter-semi-bold heading-3">
+                                          {collection.name}
+                                        </p>
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              }
+                            />
                           </ul>
                         </div>
                       </div>

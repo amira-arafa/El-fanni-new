@@ -11,22 +11,29 @@ import playIcon from "../../assets/imgs/icons/play-circle.png";
 import cutMetalImg from "../../assets/imgs/cutting_metals.png";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
-  getCourseDetails
+  getCourseDetails,
+  addToCart
 } from "../../store/actions/home";
+import moment from "moment";
 import "./CoursePage.scss";
 
 const CoursePage = () => {
   const intl = useIntl();
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { home } = useSelector((state)=> state);
   const { course_info } = home;
 
   useEffect(() => {
     id && dispatch(getCourseDetails(id));
   }, [id]);
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(id));
+  };
 
 
   return (
@@ -63,28 +70,30 @@ const CoursePage = () => {
                   ({course_info.reviewsNo})
                 </span>
               <span className="inter-regular label-1 search-result-date">
-                Jan 2020
+              {course_info.instructors?.map(
+                 (instructor, i) => instructor.fullName  + `${i< course_info.instructors.length-1 ? ', ' : ' '}`
+                )}
               </span>
               <span className="inter-regular label-1 search-result-students-number">
-                400,150 student
+                 {course_info.studentsNo}
               </span>
             </div>
             <div className="course-rating-instructor languages-difficulty-wrapper  mb-1">
               <span className="inter-regular label-1">
-                Mohammed Karim w kda
+                {moment(course_info.releaseDate).format("LL")}
               </span>
               <span className="inter-regular label-1 search-result-date">
-                Jan 2020
+                {course_info.language}
               </span>
               <span className="inter-regular label-1 search-result-students-number">
-                400,150 student
+                {course_info.level}
               </span>
             </div>
             <div className="mb-4">
-              <span className="inter-semi-bold new-price body-1">200 EGP</span>
-              <span className="inter-regular old-price mx-3 body-1">
+              <span className="inter-semi-bold new-price body-1">{course_info.price} EGP</span>
+              {/* <span className="inter-regular old-price mx-3 body-1">
                 550 EGP
-              </span>
+              </span> */}
             </div>
             <div className="courses-btns-wrapper">
               <Button
@@ -94,11 +103,12 @@ const CoursePage = () => {
               <Button
                 text={intl.formatMessage({ id: "addtoCart" })}
                 className="check-courses-btn inter-semi-bold label-1 mx-3"
+                onClick={() => handleAddToCart()}
               ></Button>
             </div>
           </div>
           <div className="col-sm-5">
-            <div className="course-img">
+            <div className="course-img cursor-pointer" onClick={()=> navigate(`/course-details/${id}`)}>
               <img src={playIcon} alt="play-icon"></img>
             </div>
           </div>
@@ -108,51 +118,59 @@ const CoursePage = () => {
           <div className="course-data-wrapper my-2">
             <ul className="content-data-ul">
               <li className="inter-regular body-1 ">
+              <a href="#overview_section">
                 <FormattedMessage id="Overview" />
+                </a>
               </li>
               <li className="inter-regular body-1 ">
+              <a href="#content_section">
                 <FormattedMessage id="Content" />
+                </a>
               </li>
               <li className="inter-regular body-1 ">
+              <a href="#lecturers_section">
                 <FormattedMessage id="Lecturers" />
+                </a>
               </li>
               <li className="inter-regular body-1 ">
+              <a href="#requirments_section">
                 <FormattedMessage id="Requirments" />
+                </a>
               </li>
               <li className="inter-regular body-1 ">
+              <a href="#goals_section">
                 <FormattedMessage id="Goals" />
+                </a>
               </li>
               <li className="inter-regular body-1 ">
+              <a href="#certificate_section">
                 <FormattedMessage id="Certificate" />
+                </a>
               </li>
               <li className="inter-regular body-1 ">
+              <a href="#reviews_section">
                 <FormattedMessage id="Reviews" />
+                </a>
               </li>
               <li className="inter-regular body-1 ">
+              <a href="#recommended_courses_section">
                 <FormattedMessage id="RecommendedCourses" />
+                </a>
               </li>
             </ul>
           </div>
           <div className="course-third-section row">
             <div className="col-sm-8">
               <div className="course-info-section">
-                <div className="overview-section mb-4">
+                <div className="overview-section mb-4" id="overview_section">
                   <p className="glory-bold heading-3">
                     <FormattedMessage id="Overview" />
                   </p>
                   <p className="inter-normal body-1 inner-sections-color ">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Augue mattis velit at libero nulla eu id volutpat. At
-                    tincidunt nibh cras gravida pellentesque. Id sit aliquet
-                    tortor sit amet, integer nec, nec viverra. Amet, mi
-                    imperdiet pellentesque sed aliquam integer purus. Lacinia
-                    quam volutpat ultrices cursus feugiat felis. Tempus, sed
-                    cursus sed sed vitae pulvinar est morbi. Habitasse nec netus
-                    faucibus sociis neque pellentesque faucibus id. Nisl vitae
-                    egestas faucibus in velit quis aenean sed egestas.
+                    {course_info.description}
                   </p>
                 </div>
-                <div className="content-section mb-4">
+                <div className="content-section mb-4" id="content_section">
                   <p className="glory-bold heading-3">
                     <FormattedMessage id="Content" />
                   </p>
@@ -215,91 +233,73 @@ const CoursePage = () => {
                     </div>
                   </div>
                 </div>
-                <div className="about-lecturer-section mb-4">
+                <div className="about-lecturer-section mb-4" id="lecturers_section">
                   <p className="glory-bold heading-3">
                     <FormattedMessage id="AboutLecturers" />
                   </p>
 
-                  <div className="d-flex student-info mb-2">
-                    <div>
-                      <img src={teacher4} alt="lecturer-img" />
-                    </div>
-                    <div>
-                      <div className="student-name inter-semi-bold body-1">
-                        John Doe
-                      </div>
-                      <div className="student-school label-1 inter-regular">
-                        Student at Alexandria Technical School{" "}
-                      </div>
-                    </div>
-                  </div>
+                  {course_info.instructors?.map(
+                              (instructor) =><div>
 
-                  <p className="inter-normal body-1 inner-sections-color ">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Augue mattis velit at libero nulla eu id volutpat. At
-                    tincidunt nibh cras gravida pellentesque. Id sit aliquet
-                    tortor sit amet, integer nec, nec viverra. Amet, mi
-                    imperdiet pellentesque sed aliquam integer purus. Lacinia
-                    quam volutpat ultrices cursus feugiat felis. Tempus, sed
-                    cursus sed sed vitae pulvinar est morbi. Habitasse nec netus
-                    faucibus sociis neque pellentesque faucibus id. Nisl vitae
-                    egestas faucibus in velit quis aenean sed egestas.
-                  </p>
+
+                              <div className="d-flex student-info mb-2">
+                                <div>
+                                  <img src={instructor.photo} alt="lecturer-img" />
+                                </div>
+                                <div>
+                                  <div className="student-name inter-semi-bold body-1">
+                                    {instructor.fullName}
+                                  </div>
+                                  <div className="student-school label-1 inter-regular">
+                                    Student at Alexandria Technical School{" "}
+                                  </div>
+                                </div>
+                              </div>
+            
+                              <p className="inter-normal body-1 inner-sections-color ">
+                                {instructor.bio}
+                              </p>
+            </div>
+                            )}
+
                 </div>
 
-                <div className="requirements-section mb-4">
+                <div className="requirements-section mb-4" id="requirments_section">
                   <p className="glory-bold heading-3">
                     <FormattedMessage id="Requirments" />
                   </p>
                   <ul>
-                    <li className="inter-regular body-1 mb-2">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Lacus eu nisl in eget.
-                    </li>
-                    <li className="inter-regular body-1 mb-2">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Lacus eu nisl in eget.
-                    </li>
-                    <li className="inter-regular body-1 mb-2">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Lacus eu nisl in eget.
-                    </li>
-                    <li className="inter-regular body-1 mb-2">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Lacus eu nisl in eget.
-                    </li>
+                    {course_info.requirements?.map((requirement)=>(
+                            <li className="inter-regular body-1 mb-2">
+                            {requirement}
+                          </li>
+
+                    ))}
+                  
                   </ul>
                 </div>
 
-                <div className="goals-section mb-4">
+                <div className="goals-section mb-4" id="goals_section">
                   <p className="glory-bold heading-3">
                     <FormattedMessage id="Goalsfromthiscourse" />
                   </p>
+              
                   <div className="d-flex gap-2 flex-wrap">
-                    <div className="goals-container col-sm-5">
-                      <p className="p-2">
-                        Learn how to weld a semi conductor board to make
-                        different devices
-                      </p>
-                    </div>
+                  {course_info.goals?.map((goal)=>(
+                     <div className="goals-container col-sm-5">
+                     <p className="p-2">
+                       {goal}
+                     </p>
+                   </div>
 
-                    <div className="goals-container col-sm-6">
-                      <p className="p-2">
-                        Learn how to weld a semi conductor board to make
-                        different devices
-                      </p>
-                    </div>
+                    ))}
+                   
 
-                    <div className="goals-container col-sm-4">
-                      <p className="p-2">
-                        Learn how to weld a semi conductor board to make
-                        different devices
-                      </p>
-                    </div>
+                    
                   </div>
                 </div>
 
-                <div className="course-certificate-section mb-4">
+                <div className="course-certificate-section mb-4" id="certificate_section">
                   <p className="glory-bold heading-3">
                     <FormattedMessage id="Certificate" />
                   </p>
@@ -329,7 +329,7 @@ const CoursePage = () => {
                   </div>
                 </div>
 
-                <div className="reviews-section mb-4">
+                <div className="reviews-section mb-4" id="reviews_section">
                 <p className="glory-bold heading-3">
                     <FormattedMessage id="Reviews" />
                   </p>
@@ -347,253 +347,32 @@ const CoursePage = () => {
                  
 
                   <div className="row gx-2">
-                    <div className="col-sm-6">
+                    {course_info.reviews?.map((review)=>(<div className="col-sm-6">
                       <div className="p-3 border mb-3 goals-container  ">
                         <div className="d-flex student-info mb-2">
                           <div>
-                            <img src={teacher4} alt="lecturer-img" />
+                            <img src={review.users[0]?.photo} alt="lecturer-img" />
                           </div>
                           <div>
                             <div className="student-name inter-semi-bold body-1">
-                              John Doe
+                              {review.users[0]?.fullName}
                             </div>
                             <div className="student-school label-1 inter-regular">
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star2}
-                                  alt="star"
-                                  width="13px"
-                                  heigth="13px"
-                                />
-                              </span>
+                            <Rating
+                                readonly={true}
+                                initialValue={review.rate}
+                                allowFraction={true}
+                              />
                             </div>
                           </div>
                         </div>
-                        Lorem ipsum dolor sit amet, ctetur adipiscing elit. Dis
-                        dolor sit ultricies enim pellentesque hac id. Vitae
-                        commodo at pulvinar viverra moltie purus. Neque ut a
-                        dictum egestas vestibulum lacus, nisl mauris. Dui tortor
-                        in et lorem lacus
+                        {review.comment}
                       </div>
-                    </div>
-                    <div className="col-sm-6">
-                      <div className="p-3 border mb-3 goals-container ">
-                        <div className="d-flex student-info mb-2">
-                          <div>
-                            <img src={teacher4} alt="lecturer-img" />
-                          </div>
-                          <div>
-                            <div className="student-name inter-semi-bold body-1">
-                              John Doe
-                            </div>
-                            <div className="student-school label-1 inter-regular">
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star2}
-                                  alt="star"
-                                  width="13px"
-                                  heigth="13px"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        Lorem ipsum dolor sit amet, ctetur adipiscing elit. Dis
-                        dolor sit ultricies enim pellentesque hac id. Vitae
-                        commodo at pulvinar viverra moltie purus. Neque ut a
-                        dictum egestas vestibulum lacus, nisl mauris. Dui tortor
-                        in et lorem lacus
-                      </div>
-                    </div>
-                    <div className="col-sm-6">
-                      <div className="p-3 border mb-3 goals-container  ">
-                        <div className="d-flex student-info mb-2">
-                          <div>
-                            <img src={teacher4} alt="lecturer-img" />
-                          </div>
-                          <div>
-                            <div className="student-name inter-semi-bold body-1">
-                              John Doe
-                            </div>
-                            <div className="student-school label-1 inter-regular">
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star2}
-                                  alt="star"
-                                  width="13px"
-                                  heigth="13px"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        Lorem ipsum dolor sit amet, ctetur adipiscing elit. Dis
-                        dolor sit ultricies enim pellentesque hac id. Vitae
-                        commodo at pulvinar viverra moltie purus. Neque ut a
-                        dictum egestas vestibulum lacus, nisl mauris. Dui tortor
-                        in et lorem lacus
-                      </div>
-                    </div>
-                    <div className="col-sm-6">
-                      <div className="p-3 border mb-3 goals-container  ">
-                        <div className="d-flex student-info mb-2">
-                          <div>
-                            <img src={teacher4} alt="lecturer-img" />
-                          </div>
-                          <div>
-                            <div className="student-name inter-semi-bold body-1">
-                              John Doe
-                            </div>
-                            <div className="student-school label-1 inter-regular">
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star2}
-                                  alt="star"
-                                  width="13px"
-                                  heigth="13px"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        Lorem ipsum dolor sit amet, ctetur adipiscing elit. Dis
-                        dolor sit ultricies enim pellentesque hac id. Vitae
-                        commodo at pulvinar viverra moltie purus. Neque ut a
-                        dictum egestas vestibulum lacus, nisl mauris. Dui tortor
-                        in et lorem lacus
-                      </div>
-                    </div>
+                    </div>))}
+                 
                   </div>
                 </div>
-                <div className="other-courses-section mb-4">
+                <div className="other-courses-section mb-4" id="recommended_courses_section">
                   <p className="glory-bold heading-3">
                     <FormattedMessage id="studentsAttendedCourses" />
                   </p>
@@ -633,9 +412,9 @@ const CoursePage = () => {
                
                     <div>
                       <span className="inter-semi-bold new-price">200 EGP</span>
-                      <span className="inter-regular old-price mx-1">
+                      {/* <span className="inter-regular old-price mx-1">
                         550 EGP
-                      </span>
+                      </span> */}
                     </div>
                 </div>
               </div>
@@ -645,56 +424,47 @@ const CoursePage = () => {
             </div>
             <div className="col-sm-4 secondary-course-section">
               <div className="secondary-course-section-wrapper course-info-section">
-              <div className="course-img-2 mb-2">
+              <div className="course-img-2 mb-2 cursor-pointer" onClick={()=> navigate(`/course-details/${id}`)}>
               <img src={playIcon} alt="play-icon"></img>
             </div>
             <p className="heading-1 mb-1  glory-semi-bold">
-              Learning semi conductors for electrical
+            {course_info.title}
             </p>
             <p className="course-subheader inter-regular  mb-1">
-            By: Eng/ Mohammed Yehia
+            {course_info.instructors?.map(
+                 (instructor, i) => instructor.fullName  + `${i< course_info.instructors.length-1 ? ', ' : ' '}`
+                )}
             </p>
             <div className="course-rating-instructor  mb-1">
-              <span className="inter-regular label-1">
-                <span className="align-text-bottom">
-                  <img src={star} alt="star" width="15px" heigth="15px" />
-                </span>
-                <span className="align-text-bottom">
-                  <img src={star} alt="star" width="15px" heigth="15px" />
-                </span>
-                <span className="align-text-bottom">
-                  <img src={star} alt="star" width="15px" heigth="15px" />
-                </span>
-                <span className="align-text-bottom">
-                  <img src={star} alt="star" width="15px" heigth="15px" />
-                </span>
-                <span className="align-text-bottom">
-                  <img src={star2} alt="star" width="13px" heigth="13px" />
-                </span>
+              
+            <Rating
+                  readonly={true}
+                  initialValue={course_info.avgRating}
+                  allowFraction={true}
+                />
                 <span className="top-courses-rating inter-regular label-1 m-x-1">
-                  (24)
+                  ({course_info.reviewsNo})
                 </span>
-              </span>
               <span className="inter-regular label-1 search-result-date">
-              400,150 student
+                {course_info.studentsNo}
               </span>
             </div>
             <div className="course-rating-instructor languages-difficulty-wrapper  mb-1">
               <span className="inter-regular label-1">
-                Mohammed Ka
+              {moment(course_info.releaseDate).format("LL")}
               </span>
               <span className="inter-regular label-1 search-result-date">
-                Jan 2020
+                {course_info.language}
               </span>
               <span className="inter-regular label-1 search-result-students-number">
-                400,150 student
+              {course_info.level}
               </span>
             </div>
             <div className="mb-4">
               <span className="inter-semi-bold new-price body-1">200 EGP</span>
-              <span className="inter-regular old-price mx-3 body-1">
+              {/*<span className="inter-regular old-price mx-3 body-1">
                 550 EGP
-              </span>
+              </span>*/}
             </div>
             <div className="w-100">
             <div className="w-100">
@@ -707,6 +477,7 @@ const CoursePage = () => {
             <Button
                 text={intl.formatMessage({ id: "addtoCart" })}
                 className="check-courses-btn inter-semi-bold label-1 my-2 w-100"
+                onClick={() => handleAddToCart()}
               ></Button>
             </div>
             </div>

@@ -125,5 +125,15 @@ export default {
     clearResults: "Clear results",
     showall: "Show all",
     close: "Close",
+    addNewCollection : 'Add new collection',
+    collectionName : 'Collection name',
+    Add: 'Add',
+    addToCollection: 'Add to Collection',
+    removeCollection : 'Remove Collection',
+    deleteCollectionTitle : 'Are you sure you want to delete this item ?',
+    deleteCollectionMsg :'you will lose all the information and the data that the item has',
+    removeFromCollection : 'Remove From Collection',
+    removeFromSavedCourses : 'Remove From saved courses'
+
   }
 }

@@ -84,3 +84,7 @@ input {
 .cursor-pointer {
   cursor: pointer;
 }
+
+button  , button:focus , button:hover{
+  outline: none !important;
+}
