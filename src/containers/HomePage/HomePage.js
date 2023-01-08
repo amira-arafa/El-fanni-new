@@ -4,6 +4,7 @@ import arrowRight from "../../assets/imgs/icons/arrow-right.png";
 import arrowLogo from "../../assets/imgs/icons/arrow-right-white.png";
 import aboutUsIcon1 from "../../assets/imgs/aboutUsIcon1.png";
 import aboutUsIcon2 from "../../assets/imgs/aboutUsImg2.png";
+import { Rating } from "react-simple-star-rating";
 import painting from "../../assets/imgs/painting.jpeg";
 import painting2 from "../../assets/imgs/painting2.jpeg";
 import table from "../../assets/imgs/table.jpeg";
@@ -16,13 +17,10 @@ import teacher1 from "../../assets/imgs/teacher1.png";
 import teacher2 from "../../assets/imgs/teacher2.png";
 import teacher3 from "../../assets/imgs/teacher3.png";
 import teacher4 from "../../assets/imgs/teacher4.png";
-import star from "../../assets/imgs/icons/star.png";
-import star2 from "../../assets/imgs/icons/vector.png";
 import partner1 from "../../assets/imgs/icons/partner1.png";
 import partner2 from "../../assets/imgs/icons/partner2.png";
 import partner3 from "../../assets/imgs/icons/partner3.png";
 import partner4 from "../../assets/imgs/icons/partner4.png";
-import partner5 from "../../assets/imgs/icons/partner5.png";
 import quoteUpIcon from "../../assets/imgs/icons/quote-down.png";
 import quoteDownIcon from "../../assets/imgs/icons/quote-up.png";
 import cafe from "../../assets/imgs/cafe.jpeg";
@@ -172,18 +170,24 @@ const HomePage = () => {
         </div>
         <div className="home-over-lay">
           <div className="main-section">
-            <p className="glory-semi-bold heading-2 home-main-title">
+           <div>
+           <p className="glory-semi-bold heading-2 home-main-title">
               <FormattedMessage id="homeMainTitle" />
             </p>
-            <p className="body-1 inter-regular home-secondary-title">
+           </div>
+           <div>
+           <p className="body-1 inter-regular home-secondary-title">
               <FormattedMessage id="homeSecondTitle" />
             </p>
-            <Button
+           </div>
+          <div>
+          <Button
               afterIcon={arrowRight}
               onClick={()=> navigate("/search-results")}
               text={intl.formatMessage({ id: "checkCourses" })}
               className="check-courses-btn inter-semi-bold body-1"
             ></Button>
+          </div>
           </div>
         </div>
       </div>
@@ -381,10 +385,10 @@ const HomePage = () => {
           <CarouselComponent
             responsive={responsive}
             autoPlay={true}
-            interval={2600}
+            interval={6000}
             infiniteLoop={true}
             infinite={true}
-            slidesToSlide={2}
+            slidesToSlide={1}
           >
             <div className="categories-carousel-card">
               <div className="d-flex categories-carousel-card-container ">
@@ -528,33 +532,18 @@ const HomePage = () => {
                   Learning semi conductors for electrical education
                 </p>
                 <div className="d-flex align-items-end">
-                  <div className="col-sm-6">
+                  <div className="col-sm-7">
                     <div className="text-grey-sub-heading inter-regular label-1">
                       Mohammed Ayman
                     </div>
-                    <div>
-                      <span className="m-e-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img
-                          src={star2}
-                          alt="star"
-                          width="13px"
-                          heigth="13px"
-                        />
-                      </span>
+                      <div>
+                      <Rating
+                        readonly={true}
+                        initialValue={4.5}
+                        allowFraction={true}
+                      />
                       <span className="top-courses-rating inter-regular label-1 m-x-1">
-                        (24)
+                        (40)
                       </span>
                     </div>
                     <div>
@@ -564,7 +553,7 @@ const HomePage = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="col-sm-6 d-flex justify-content-end">
+                  <div className="col-sm-5 d-flex justify-content-end">
                     <Button
                       className="best-sellter-btn inter-regular"
                       text={intl.formatMessage({ id: "BestSeller" })}
@@ -579,33 +568,18 @@ const HomePage = () => {
                   Learning semi conductors for electrical education
                 </p>
                 <div className="d-flex align-items-end">
-                  <div className="col-sm-6">
+                  <div className="col-sm-7">
                     <div className="text-grey-sub-heading inter-regular label-1">
                       Mohammed Ayman
                     </div>
-                    <div>
-                      <span className="m-e-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img
-                          src={star2}
-                          alt="star"
-                          width="13px"
-                          heigth="13px"
-                        />
-                      </span>
+                      <div>
+                      <Rating
+                        readonly={true}
+                        initialValue={4.5}
+                        allowFraction={true}
+                      />
                       <span className="top-courses-rating inter-regular label-1 m-x-1">
-                        (24)
+                        (60)
                       </span>
                     </div>
                     <div>
@@ -615,7 +589,7 @@ const HomePage = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="col-sm-6 d-flex justify-content-end">
+                  <div className="col-sm-5 d-flex justify-content-end">
                     <Button
                       className="best-sellter-btn inter-regular"
                       text={intl.formatMessage({ id: "BestSeller" })}
@@ -630,33 +604,18 @@ const HomePage = () => {
                   Learning semi conductors for electrical education
                 </p>
                 <div className="d-flex align-items-end">
-                  <div className="col-sm-6">
+                  <div className="col-sm-7">
                     <div className="text-grey-sub-heading inter-regular label-1">
                       Mohammed Ayman
                     </div>
-                    <div>
-                      <span className="m-e-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img
-                          src={star2}
-                          alt="star"
-                          width="13px"
-                          heigth="13px"
-                        />
-                      </span>
+                      <div>
+                      <Rating
+                        readonly={true}
+                        initialValue={4.5}
+                        allowFraction={true}
+                      />
                       <span className="top-courses-rating inter-regular label-1 m-x-1">
-                        (24)
+                        4.5 & up
                       </span>
                     </div>
                     <div>
@@ -666,7 +625,7 @@ const HomePage = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="col-sm-6 d-flex justify-content-end">
+                  <div className="col-sm-7 d-flex justify-content-end">
                     <Button
                       className="best-sellter-btn inter-regular"
                       text={intl.formatMessage({ id: "BestSeller" })}
@@ -680,33 +639,18 @@ const HomePage = () => {
                   Learning semi conductors for electrical education
                 </p>
                 <div className="d-flex align-items-end">
-                  <div className="col-sm-6">
+                  <div className="col-sm-7">
                     <div className="text-grey-sub-heading inter-regular label-1">
                       Mohammed Ayman
                     </div>
-                    <div>
-                      <span className="m-e-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img
-                          src={star2}
-                          alt="star"
-                          width="13px"
-                          heigth="13px"
-                        />
-                      </span>
+                      <div>
+                      <Rating
+                        readonly={true}
+                        initialValue={4.5}
+                        allowFraction={true}
+                      />
                       <span className="top-courses-rating inter-regular label-1 m-x-1">
-                        (24)
+                        (9)
                       </span>
                     </div>
                     <div>
@@ -716,7 +660,7 @@ const HomePage = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="col-sm-6 d-flex justify-content-end">
+                  <div className="col-sm-5 d-flex justify-content-end">
                     <Button
                       className="best-sellter-btn inter-regular"
                       text={intl.formatMessage({ id: "BestSeller" })}
@@ -731,33 +675,18 @@ const HomePage = () => {
                   Learning semi conductors for electrical education
                 </p>
                 <div className="d-flex align-items-end">
-                  <div className="col-sm-6">
+                  <div className="col-sm-5">
                     <div className="text-grey-sub-heading inter-regular label-1">
                       Mohammed Ayman
                     </div>
-                    <div>
-                      <span className="m-e-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img
-                          src={star2}
-                          alt="star"
-                          width="13px"
-                          heigth="13px"
-                        />
-                      </span>
+                      <div>
+                      <Rating
+                        readonly={true}
+                        initialValue={4.5}
+                        allowFraction={true}
+                      />
                       <span className="top-courses-rating inter-regular label-1 m-x-1">
-                        (24)
+                        4.5 & up
                       </span>
                     </div>
                     <div>
@@ -767,7 +696,7 @@ const HomePage = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="col-sm-6 d-flex justify-content-end">
+                  <div className="col-sm-5 d-flex justify-content-end">
                     <Button
                       className="best-sellter-btn inter-regular"
                       text={intl.formatMessage({ id: "BestSeller" })}
@@ -782,33 +711,18 @@ const HomePage = () => {
                   Learning semi conductors for electrical education
                 </p>
                 <div className="d-flex align-items-end">
-                  <div className="col-sm-6">
+                  <div className="col-sm-5">
                     <div className="text-grey-sub-heading inter-regular label-1">
                       Mohammed Ayman
                     </div>
-                    <div>
-                      <span className="m-e-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img
-                          src={star2}
-                          alt="star"
-                          width="13px"
-                          heigth="13px"
-                        />
-                      </span>
+                      <div>
+                      <Rating
+                        readonly={true}
+                        initialValue={4.5}
+                        allowFraction={true}
+                      />
                       <span className="top-courses-rating inter-regular label-1 m-x-1">
-                        (24)
+                        4.5 & up
                       </span>
                     </div>
                     <div>
@@ -818,7 +732,7 @@ const HomePage = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="col-sm-6 d-flex justify-content-end">
+                  <div className="col-sm-5 d-flex justify-content-end">
                     <Button
                       className="best-sellter-btn inter-regular"
                       text={intl.formatMessage({ id: "BestSeller" })}
@@ -848,7 +762,7 @@ const HomePage = () => {
         <p className="gilory-semi-bold heading-5">
           <FormattedMessage id="OurLecturers" />
         </p>
-        <p className=" inter-regular label-1 lecturers-text w-75 m-auto">
+        <p className=" inter-regular label-1 lecturers-text m-auto">
           <FormattedMessage id="lecturesFirstTitle" />
         </p>
         <div className="lectures-scroll-container">
@@ -910,7 +824,7 @@ const HomePage = () => {
         <p className="gilory-semi-bold heading-5 mt-5">
           <FormattedMessage id="OurStudents" />
         </p>
-        <p className=" inter-regular label-1 lecturers-text w-75 m-auto">
+        <p className=" inter-regular label-1 lecturers-text m-auto">
           <FormattedMessage id="lecturesSecondTitle" />
         </p>
         <div className="lectures-scroll-container">
@@ -1000,7 +914,7 @@ const HomePage = () => {
         </div>
       </div>
       <div className="partners-section glory-semi-bold heading-4">
-        <p className="mb-1"><FormattedMessage id="trustedPartners"/></p>
+        <p className="mb-1 btnColor heading-5"><FormattedMessage id="trustedPartners"/></p>
         <div className="partners-container">
         <div className="d-flex justify-content-between align-items-center">
           <div className="partner-img-container"><img src={partner1}></img></div>
@@ -1014,7 +928,6 @@ const HomePage = () => {
         </div>
 
       </div>
-
       <Footer />
     </>
   );

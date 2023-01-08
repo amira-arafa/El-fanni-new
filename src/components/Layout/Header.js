@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
+import logoMobile from "../../assets/imgs/logoMobile.png";
 import logo from "../../assets/imgs/logo.png";
 import language from "../../assets/imgs/icons/language.png";
 import loginIcon from "../../assets/imgs/icons/loginIcon.png";
 import search from "../../assets/imgs/icons/search-normal.png";
 import category from "../../assets/imgs/icons/category.png";
+import SideNav from "react-simple-sidenav";
 import menu from "../../assets/imgs/icons/menu.png";
+import closeIcon from "../../assets/imgs/icons/close-circle-grey.png";
 import cart from "../../assets/imgs/icons/shopping-cart.png";
 import { useDispatch, useSelector } from "react-redux";
 import { Logout } from "../../store/actions/auth";
@@ -22,6 +25,8 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
+
+  const [showNav, setShowNav] = useState(false);
 
   const [openBrowseModal, setOpenBrowseModal] = useState(false);
   const onOpenModalBrowseModal = () => setOpenBrowseModal(true);
@@ -93,62 +98,79 @@ const Header = () => {
                 </button>
               }
               modalBody={
-                <div className="d-flex">
-                  <div className="col-sm-4 categories-container">
-                    <h3 className="gilory-bold heading-3 mb-5">
-                      <FormattedMessage id="browse" />
-                    </h3>
-                    <ul className="categories-ul">
-                      {categories_list.map((category) => {
-                        return (
-                          <li className="inter-regular body-1 mb-2" onClick={()=>{setCurrentCategory(category)}}>
-                            {category?.name}
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                  {categories_list && (
-                    <div className="col-sm-8 px-3">
-                      <div className="d-flex justify-content-between align-items-baseline">
-                        <div className="col-sm-5">
-                          <p className="mb-5 glory-semi-bold btnColor heading-3">
-                            {currentCategory ? currentCategory.name : categories_list[0]?.name}
-                          </p>
-                        </div>
-                        <div className="col-sm-7">
-                          <Button
-                            className="mx-2 close-btn-browse inter-semi-bold body-1"
-                            text={<FormattedMessage id="close" />}
-                            onClick={()=> {onCloseModalBrowseModal()}}
-                          ></Button>
-                          <Button
-                            className="show-all-btn-browse inter-semi-bold body-1"
-                            text={<FormattedMessage id="showall" />}
-                            onClick={()=> {navigate(`/search-results`)}}
-                          ></Button>
-                        </div>
-                      </div>
-                      {currentCategory
-                        ? currentCategory.subcategories?.map((subCat) => {
+                <div className="browse-modal-container">
+                  <div className="d-flex">
+                    <div className="col-sm-4 categories-container">
+                      <h3 className="gilory-bold heading-3 mb-3">
+                        <FormattedMessage id="browse" />
+                      </h3>
+                      <ul className="categories-ul">
+                        {categories_list.map((category) => {
                           return (
-                            <p className="inter-regular body-1">{subCat.name}</p>
+                            <li
+                              className="inter-regular body-1 mb-2"
+                              onClick={() => {
+                                setCurrentCategory(category);
+                              }}
+                            >
+                              {category?.name}
+                            </li>
                           );
-                        })
-                        : categories_list[0]?.subcategories.map((subCat) => {
-                            return (
-                              <p className="inter-regular body-1">{subCat.name}</p>
-                            );
-                          })}
+                        })}
+                      </ul>
                     </div>
-                  )}
+                    {categories_list && (
+                      <div className="col-sm-8 px-3">
+                        <div className="d-flex justify-content-between align-items-baseline">
+                          <div className="col-sm-5">
+                            <p className="mb-3 glory-semi-bold btnColor heading-1">
+                              {currentCategory
+                                ? currentCategory.name
+                                : categories_list[0]?.name}
+                            </p>
+                          </div>
+                          <div className="col-sm-7">
+                            <Button
+                              className="mx-2 close-btn-browse inter-semi-bold body-1"
+                              text={<FormattedMessage id="close" />}
+                              onClick={() => {
+                                onCloseModalBrowseModal();
+                              }}
+                            ></Button>
+                            <Button
+                              className="show-all-btn-browse inter-semi-bold body-1"
+                              text={<FormattedMessage id="showall" />}
+                              onClick={() => {
+                                navigate(`/search-results`);
+                              }}
+                            ></Button>
+                          </div>
+                        </div>
+                        {currentCategory
+                          ? currentCategory.subcategories?.map((subCat) => {
+                              return (
+                                <p className="inter-regular label-1 mb-1">
+                                  {subCat.name}
+                                </p>
+                              );
+                            })
+                          : categories_list[0]?.subcategories.map((subCat) => {
+                              return (
+                                <p className="inter-regular label-1 mb-1">
+                                  {subCat.name}
+                                </p>
+                              );
+                            })}
+                      </div>
+                    )}
+                  </div>
                 </div>
               }
             />
           </div>
         </div>
       </div>
-      <div className="col-sm-4 is-mobile">
+      <div className="col-sm-4 is-mobile justify-content-end">
         <div className="col-sm-3 d-flex ">
           <div>
             <img alt="language" src={language} width="22px" height="22px"></img>
@@ -166,21 +188,23 @@ const Header = () => {
           </div>
         </div>
         <div className="col-sm-3">
-          <span
-            className="inter-semi-bold body-1 cursor-pointer"
-            onClick={() => navigate("/about-us")}
-          >
-            <FormattedMessage id="aboutUs" />
-          </span>
+          <div className=" d-flex" onClick={() => navigate("/about-us")}>
+            <div>
+              <span className="inter-semi-bold body-1">
+                <FormattedMessage id="aboutUs" />
+              </span>
+            </div>
+          </div>
         </div>
         <ModalComponent
           open={open}
           onOpenModal={onOpenModal}
           onCloseModal={onCloseModal}
           className="header-modal"
+          wrapperClass="col-sm-3"
           children={
-            <div className="col-sm-3">
-              <div className="d-flex align-items-baseline cursor-pointer">
+            <div>
+              <div className="d-flex cursor-pointer">
                 <div>
                   <span className="inter-semi-bold body-1">
                     <FormattedMessage id="search" />
@@ -222,7 +246,7 @@ const Header = () => {
               <div className="col-sm-2">
                 <Button
                   text={intl.formatMessage({ id: "search" })}
-                  className="check-courses-btn inter-semi-bold label-1 mx-3"
+                  className="search-modal-btn inter-semi-bold label-1 mx-3"
                   onClick={() => redirectTosearchPage()}
                 ></Button>
               </div>
@@ -266,10 +290,7 @@ const Header = () => {
               </div>
             </div>
           ) : (
-            <div
-              className=" d-flex align-items-center"
-              onClick={() => navigate("/sign-in")}
-            >
+            <div className=" d-flex" onClick={() => navigate("/sign-in")}>
               <div>
                 <span className="inter-semi-bold body-1">
                   <FormattedMessage id="signIn" />
@@ -315,10 +336,85 @@ const Header = () => {
               width="20px"
               height="20px"
               className="m-x-1"
+              onClick={() => {
+                setShowNav(!showNav);
+              }}
             ></img>
           </div>
         </div>
       </div>
+
+      <SideNav
+        openFromLeft={true}
+        showNav={showNav}
+        onHideNav={() => setShowNav(false)}
+        titleStyle={{ backgroundColor: "#FF5722" }}
+        items={[
+          <div className="d-flex align-items-center justify-content-between">
+            <div className="mobile-logo d-flex align-items-center">
+              <div>
+                <img alt="logo" src={logoMobile} width="50" height="50"></img>
+              </div>
+              <div className="glory-bold heading-4 mx-2">
+                {<FormattedMessage id="ElFanni" />}
+              </div>
+            </div>
+            <div>
+              <img
+                src={closeIcon}
+                alt="closeIcon"
+                onClick={() => {
+                  setShowNav(false);
+                }}
+              />
+            </div>
+          </div>,
+          <div onClick={() => navigate("/about-us")}>
+            <span className="inter-regular body-1">
+              <FormattedMessage id="aboutUs" />
+            </span>
+          </div>,
+          <div  onClick={() => navigate("/cart")}>
+            <span className="inter-regular body-1">
+              <FormattedMessage id="Cart" />
+            </span>
+          </div>,
+          <div>
+            <span className="inter-regular body-1">
+              <FormattedMessage id="Language" />
+            </span>
+          </div>,
+          !localStorage.getItem("user-data") ? (
+            <div  onClick={() => navigate("/sign-in")}>
+              <span className="inter-regular body-1">
+                <FormattedMessage id="signIn" />
+              </span>
+            </div>
+          ) : (
+              <div>
+                <span
+                  className="inter-regular body-1"
+                  onClick={() => navigate("/profile")}
+                >
+                  <FormattedMessage id="Profile" />
+                </span>
+              </div>
+          ),
+          !localStorage.getItem("user-data") ? (
+            <div>
+            </div>
+          ) : (
+            <div>
+            <span
+              className="inter-regular body-1"
+              onClick={() => handleLogout()}
+            >
+              <FormattedMessage id="Logout" />
+            </span>
+          </div>
+          )
+        ]}
+      />
     </div>
   );
 };

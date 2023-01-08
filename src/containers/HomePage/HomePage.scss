@@ -4,12 +4,15 @@
   width: 20%;
   height: 15%;
 }
+.lecturers-section {
+  padding: 3vw 6vw !important;
+}
 .home-img-2 {
   width: 20%;
   height: 30%;
 }
 .home-mob-img-1 {
-  width: 33%;
+  width: 33.3333333%;
   height: 15%;
 }
 .home-mob-img-2 {
@@ -62,6 +65,9 @@
 .home-bg-img-14 {
   @include homeBgImg("../../assets/imgs/14.png");
 }
+.partners-container {
+  overflow-x: scroll;
+}
 .main-section {
   background-color: $btnColor;
   color: $whiteText;
@@ -70,10 +76,13 @@
   padding: 20px;
   max-height: 260px;
   height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .home-main-title {
-  line-height: 3vw;
-  font-size: 3vw;
+  line-height: 2.5vw;
+  font-size: 2vw;
 }
 .home-secondary-title {
   width: 70%;
@@ -87,7 +96,10 @@
   color: #02428d;
   border: none;
   margin-bottom: 4px;
+  width: 35%;
+  margin: 0 auto;
 }
+
 .desktop-view {
   display: block !important;
 }
@@ -97,11 +109,11 @@
 .about-us-section {
   background-color: $btnColor;
   color: $whiteText;
-  padding: 1.3vw 3vw;
+  padding: 1.3vw 1.5vw;
 }
 .partners-section {
   background-color: #F6F6F7;
-  padding: 1.3vw 3vw;
+  padding: 1.3vw 4.5vw;
 }
 .about-us-secondary-section {
   padding: 3vw;
@@ -117,6 +129,7 @@
 .lecturers-text {
   color: #c3defe;
   line-height: 1.8vw;
+  width: 75%;
 }
 .about-us-img {
   background-color: #ffffff;
@@ -271,9 +284,27 @@ img[alt="student-img"]{
 }
 
 @media only screen and (max-width: 480px) {
+  .about-us-section, .certificate-titles, .top-courses-card {
+    .label-1 {
+      font-size: 2.8vw;
+    }
+  }
+  .certificate-titles , .partners-section{
+    .heading-5 {
+      font-size: 5vw;
+    }
+  }
+  .top-courses-title {
+    font-size: 4.33vw;
+  }
   .partners-container {
     overflow-x: scroll;
+    width: 90vw;
   }
+  .header-container img {
+    width: 25px;
+    height: 25px;
+}
   .partner-img-container {
     margin-right: 20px;
   }
@@ -294,7 +325,7 @@ img[alt="student-img"]{
     max-height: 260px;
   }
   .home-main-title {
-    font-size: 6vw;
+    font-size: 6vw !important;
     line-height: 7vw;
   }
   .home-secondary-title {
@@ -309,10 +340,17 @@ img[alt="student-img"]{
     color: #02428d;
     border: none;
     margin-bottom: 4px;
+    width: 35%;
+    margin: 0 auto;
   }
   .mobile-view .body-1,
   .categories-section .body-1 {
-    font-size: 2.6vw !important;
+    font-size: 2.8vw !important;
+  }
+  .categories-section {
+    .heading-4 {
+      font-size: 4.111vw;
+  }
   }
   .categories-text {
     width: 90% !important;
@@ -330,9 +368,6 @@ img[alt="student-img"]{
   }
   .about-us-secondary-section {
     text-align: center;
-  }
-  .about-us-title {
-    letter-spacing: 0.5em;
   }
   .certificate-section-title {
     letter-spacing: 0.5em;
@@ -365,7 +400,7 @@ img[alt="student-img"]{
   .about-us-img,
   .about-us-img-2 {
     width: 90% !important;
-    margin-left: 6%;
+    margin-left: 7%;
     margin-top: 1.5vw;
   }
   .about-us-container {
@@ -375,7 +410,7 @@ img[alt="student-img"]{
   img[alt="aboutUs2"] {
     width: 84vw;
     height: 72vw;
-    right: 6%;
+    right: 4%;
     top: 19px;
   }
   .categories-carousel-card {
@@ -384,7 +419,9 @@ img[alt="student-img"]{
   }
   .lecturers-text {
     line-height: 3.2vw;
+    width: 100%;
   }
+
   .lecturers-section .heading-5 {
     font-size: 5vw;
   }
@@ -398,7 +435,7 @@ img[alt="student-img"]{
     width: 1000px;
   }
   .lecturer-list  .body-1 {
-    font-size: 2.6px;
+    font-size: 2.6vw !important;
   }
   .lectures-scroll-container {
     overflow-x: scroll;
