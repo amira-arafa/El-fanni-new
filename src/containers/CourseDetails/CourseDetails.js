@@ -582,26 +582,26 @@ const CourseDetails = () => {
           </p>
 
           {course_info.instructors?.map((instructor) => (
-                    <div>
-                      <div className="d-flex student-info mb-2">
-                        <div>
-                          <img src={instructor.photo} alt="lecturer-img" />
-                        </div>
-                        <div>
-                          <div className="student-name inter-semi-bold body-1">
-                            {instructor.fullName}
-                          </div>
-                          <div className="student-school label-1 inter-regular">
-                            Student at Alexandria Technical School{" "}
-                          </div>
-                        </div>
-                      </div>
+            <div>
+              <div className="d-flex student-info mb-2">
+                <div>
+                  <img src={instructor.photo} alt="lecturer-img" />
+                </div>
+                <div>
+                  <div className="student-name inter-semi-bold body-1">
+                    {instructor.fullName}
+                  </div>
+                  <div className="student-school label-1 inter-regular">
+                    Student at Alexandria Technical School{" "}
+                  </div>
+                </div>
+              </div>
 
-                      <p className="inter-normal body-1 inner-sections-color ">
-                        {instructor.bio}
-                      </p>
-                    </div>
-                  ))}
+              <p className="inter-normal body-1 inner-sections-color ">
+                {instructor.bio}
+              </p>
+            </div>
+          ))}
         </div>
 
         <div className="over-view-wrapper">

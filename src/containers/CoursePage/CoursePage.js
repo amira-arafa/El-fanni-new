@@ -5,6 +5,8 @@ import Button from "../../components/Button/Button";
 import { Rating } from "react-simple-star-rating";
 import certificate2 from "../../assets/imgs/certificate2.png";
 import playIcon from "../../assets/imgs/icons/play-circle.png";
+import clockIcon from "../../assets/imgs/icons/clock.png";
+import starIcon from "../../assets/imgs/icons/star.png";
 import cutMetalImg from "../../assets/imgs/cutting_metals.png";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useDispatch, useSelector } from "react-redux";
@@ -33,7 +35,6 @@ const CoursePage = () => {
     localStorage.getItem("user-data") && dispatch(addToCart(id));
   };
 
-
   return (
     <>
       <Header></Header>
@@ -42,8 +43,7 @@ const CoursePage = () => {
           <div className="col-sm-7">
             <div className="mb-2 best-seller-section">
               <div className="mobile-section-course">
-                {" "}
-                <FormattedMessage id="course" />{" "}
+                <FormattedMessage id="course" />
               </div>
               <div>
                 {/* <Button
@@ -55,40 +55,40 @@ const CoursePage = () => {
             <p className="heading-4  glory-semi-bold w-75">
                {course_info.title}
             </p>
-            <p className="course-subheader inter-regular w-75 mb-1">
+            <p className="course-subheader inter-regular w-75 mb-3">
               {course_info.description}
             </p>
-            <div className="course-rating-instructor  mb-1">
+            <div className="course-rating-instructor mb-3">
                 <Rating
                   readonly={true}
                   initialValue={course_info.avgRating}
                   allowFraction={true}
                 />
                 <span className="top-courses-rating inter-regular label-1 m-x-1">
-                  ({course_info.reviewsNo})
+                  <sub>({course_info.reviewsNo})</sub>
                 </span>
               <span className="inter-regular label-1 search-result-date">
-              {course_info.instructors?.map(
+                By: {course_info.instructors?.map(
                  (instructor, i) => instructor.fullName  + `${i< course_info.instructors.length-1 ? ', ' : ' '}`
                 )}
               </span>
               <span className="inter-regular label-1 search-result-students-number">
-                 {course_info.studentsNo}
+                 {course_info.studentsNo} Student
               </span>
             </div>
-            <div className="course-rating-instructor languages-difficulty-wrapper  mb-1">
+            <div className="course-rating-instructor languages-difficulty-wrapper mb-3">
               <span className="inter-regular label-1">
-                {moment(course_info.releaseDate).format("LL")}
+                Releasing Date: {moment(course_info.releaseDate).format("LL")}
               </span>
               <span className="inter-regular label-1 search-result-date">
-                {course_info.language}
+                Course language: {course_info.language}
               </span>
               <span className="inter-regular label-1 search-result-students-number">
                 {course_info.level}
               </span>
             </div>
             <div className="mb-4">
-              <span className="inter-semi-bold new-price body-1">{course_info.price} EGP</span>
+              <span className="inter-semi-bold new-price">{course_info.price} EGP</span>
               {/* <span className="inter-regular old-price mx-3 body-1">
                 550 EGP
               </span> */}
@@ -100,14 +100,18 @@ const CoursePage = () => {
               ></Button>
               <Button
                 text={intl.formatMessage({ id: "addtoCart" })}
-                className="check-courses-btn inter-semi-bold label-1 mx-3"
+                className="check-courses-btn inter-semi-bold label-1 mx-3 btnColor"
                 onClick={() => handleAddToCart()}
               ></Button>
             </div>
           </div>
           <div className="col-sm-5">
             <div className="course-img cursor-pointer" onClick={()=> navigate(`/course-details/${id}`)}>
-              <img src={playIcon} alt="play-icon"></img>
+              <img src={playIcon} alt="play-icon"/>
+              <div className="course-duration-badge">
+                <img src={clockIcon} alt="duration"/> 
+                <p className="m-0"> 3 hr 30 min</p>
+              </div>
             </div>
           </div>
         </div>
@@ -306,10 +310,10 @@ const CoursePage = () => {
                       <img src={certificate2} alt="certificate"></img>
                     </div>
                     <div className="col-sm-7">
-                      <p className="inter-semi-bold heading-1 mb-1 certificate-color">
+                      <p className="inter-semi-bold heading-1 mb-3 certificate-color">
                         <FormattedMessage id="CertificateofCompletion" />
                       </p>
-                      <ul className="certificate-ul">
+                      <ul className="certificate-ul p-0">
                         <li className="inter-regular body-1 mb-2">
                           Lorem ipsum dolor sit amet, consectetur adipiscing
                           elit. Lacus eu nisl in eget.
@@ -331,20 +335,21 @@ const CoursePage = () => {
                 <p className="glory-bold heading-3">
                     <FormattedMessage id="Reviews" />
                   </p>
-                  {/* <div className="d-flex justify-content-between my-4 align-items-baseline">
+                  <div className="d-flex justify-content-between my-4 align-items-baseline">
                     <div>
-                    
-                      <span><span className="star-item">5 </span> <sub className="inter-normal label-1">of 5</sub></span>
+                      {/* <div className="single-star"><img src={starIcon} width='30%'/></div> */}
+                      <span><span className="star-item">{course_info.avgRating} </span> 
+                      <span><img src={starIcon} style={{verticalAlign: 'top'}}/></span>
+                      <sub className="inter-normal label-1">of 5</sub></span>
                       <span className="glory-semi-bold heading-1 mx-3">23 review</span>
+                    </div>
+                      <div>   
+                        <Button
+                          text={intl.formatMessage({ id: "Showallreviews" })}
+                          className="check-courses-btn all-reviews-btn show-reviews-btn inter-semi-bold label-1 mx-3"
+                        ></Button>
                       </div>
-                    <div>   
-                       <Button
-                text={intl.formatMessage({ id: "Showallreviews" })}
-                className="check-courses-btn show-reviews-btn inter-semi-bold label-1 mx-3"
-              ></Button>
-              </div>
-                     </div> */}
-                 
+                    </div> 
 
                   {course_info?.reviews?.length>0 ? <div className="row gx-2">
                     {course_info.reviews?.map((review)=>(<div className="col-sm-6">
@@ -379,7 +384,7 @@ const CoursePage = () => {
                   <div className="row course-results-wrapper mb-5 align-items-center">
                 <div className="col-sm-4"><img src={cutMetalImg} alt="course-img"></img></div>
                 <div className="col-sm-8">
-                  <p className="inter-semi-bold heading-1 mb-0">Cutting metals and how we use the devices</p>
+                  <p className="inter-semi-bold heading-1 mb-2">Cutting metals and how we use the devices</p>
                   <div className="search-results-courses-data mb-1">
                     <span className="inter-regular label-1">Mohammed Karim</span>
                     <span className="inter-regular label-1 search-result-date"> 
@@ -389,60 +394,63 @@ const CoursePage = () => {
                         allowFraction={true}
                       />
                       <span className="top-courses-rating inter-regular label-1 m-x-1">
-                        (24)
+                        <sub>(24)</sub>
                       </span>
                     </span>
-                    <span className="inter-regular label-1 search-result-students-number">400,150 student</span>
+                    <span className="inter-regular label-1 search-result-students-number">400,150 Student</span>
                   </div>
-               
-                    <div>
-                      <span className="inter-semi-bold new-price">200 EGP</span>
-                      {/* <span className="inter-regular old-price mx-1">
-                        550 EGP
-                      </span> */}
-                    </div>
+                  <div>
+                    <span className="inter-semi-bold new-price">200 EGP</span>
+                    {/* <span className="inter-regular old-price mx-1">
+                      550 EGP
+                    </span> */}
+                  </div>
                 </div>
               </div>
                 </div>
 
               </div>
             </div>
+
             <div className="col-sm-4 secondary-course-section">
               <div className="secondary-course-section-wrapper course-info-section">
               <div className="course-img-2 mb-2 cursor-pointer" onClick={()=> navigate(`/course-details/${id}`)}>
-              <img src={playIcon} alt="play-icon"></img>
-            </div>
-            <p className="heading-1 mb-1  glory-semi-bold">
-            {course_info.title}
+                <img src={playIcon} alt="play-icon" width={'45%'}/>
+                <div className="course-duration-badge" style={{left: '61%'}}>
+                  <img src={clockIcon} alt="duration"/> 
+                  <p className="m-0"> 3 hr 30 min</p>
+                </div>
+              </div>
+            <p className="heading-1 mb-1 glory-semi-bold">
+              {course_info.title}
             </p>
-            <p className="course-subheader inter-regular  mb-1">
-            {course_info.instructors?.map(
-                 (instructor, i) => instructor.fullName  + `${i< course_info.instructors.length-1 ? ', ' : ' '}`
-                )}
+            <p className="course-subheader inter-regular mb-1">
+              By: {course_info.instructors?.map(
+                (instructor, i) => instructor.fullName  + `${i< course_info.instructors.length-1 ? ', ' : ' '}`
+              )}
             </p>
-            <div className="course-rating-instructor  mb-1">
-              
-            <Rating
-                  readonly={true}
-                  initialValue={course_info.avgRating}
-                  allowFraction={true}
-                />
-                <span className="top-courses-rating inter-regular label-1 m-x-1">
-                  ({course_info.reviewsNo})
-                </span>
+            <div className="course-rating-instructor mb-1">
+              <Rating
+                readonly={true}
+                initialValue={course_info.avgRating}
+                allowFraction={true}
+              />
+              <span className="top-courses-rating inter-regular label-1 m-x-1">
+                <sub>({course_info.reviewsNo})</sub>
+              </span>
               <span className="inter-regular label-1 search-result-date">
-                {course_info.studentsNo}
+                {course_info.studentsNo} Student
               </span>
             </div>
-            <div className="course-rating-instructor languages-difficulty-wrapper  mb-1">
+            <div className="course-rating-instructor languages-difficulty-wrapper mb-3">
               <span className="inter-regular label-1">
-              {moment(course_info.releaseDate).format("LL")}
+                Releasing Date: {moment(course_info.releaseDate).format("LL")}
               </span>
               <span className="inter-regular label-1 search-result-date">
                 {course_info.language}
               </span>
               <span className="inter-regular label-1 search-result-students-number">
-              {course_info.level}
+                {course_info.level}
               </span>
             </div>
             <div className="mb-4">
@@ -467,7 +475,6 @@ const CoursePage = () => {
             </div>
             </div>
             </div>
-
             </div>
           </div>
         </div>
