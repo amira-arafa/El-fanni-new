@@ -91,6 +91,7 @@ export default {
     AboutUs : 'About Us',
     WhoWeAre : 'Who we are',
     Mission: 'Mission',
+    MissionAndVision: 'Mission & Vision',
     Vision: 'Vision',
     MissionAndVission : 'Mission & Visson',
     OurBoard: 'Our Board',
