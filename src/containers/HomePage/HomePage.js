@@ -203,7 +203,7 @@ const HomePage = () => {
             <p className=" inter-regular label-1 about-us-text">
               <FormattedMessage id="aboutUsFirstSecText" />
             </p>
-            <span className="inter-semi-bold body-1">
+            <span className="inter-semi-bold body-1 cursor-pointer" onClick={() => navigate("/about-us")}>
               <FormattedMessage id="readMore" />
             </span>
             <span className="mx-1">
@@ -232,7 +232,7 @@ const HomePage = () => {
             <p className=" inter-regular label-1 about-us-text">
               <FormattedMessage id="aboutUsFirstSecText" />
             </p>
-            <span className="inter-semi-bold body-1">
+            <span className="inter-semi-bold body-1 cursor-pointer" onClick={() => navigate("/about-us")}>
               <FormattedMessage id="knowMoreAbout" />
             </span>
             <span className="mx-1">

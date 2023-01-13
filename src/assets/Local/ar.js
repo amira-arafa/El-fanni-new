@@ -133,7 +133,13 @@ export default {
     deleteCollectionTitle : 'Are you sure you want to delete this item ?',
     deleteCollectionMsg :'you will lose all the information and the data that the item has',
     removeFromCollection : 'Remove From Collection',
-    removeFromSavedCourses : 'Remove From saved courses'
+    removeFromSavedCourses : 'Remove From saved courses',
+    noSearchResults: 'There is no search results',
+    noFav: 'There is no saved courses',
+    cartEmpty: 'The cart is empty',
+    noCoursesCollection: 'There is no courses in this collection',
+    noCollection: 'There’s no collection, it’s empty!!',
+    emptyCollectionMsg :'you can know make your first collection and save your favourite courses in it',
 
   }
 }

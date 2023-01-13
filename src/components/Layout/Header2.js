@@ -2,9 +2,12 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import logo from "../../assets/imgs/logo.png";
 import more from "../../assets/imgs/icons/more.png";
+import { useSelector } from "react-redux";
 import "./Header.scss";
 
 const Header2 = () => {
+  const { home } = useSelector((state) => state);
+  const { course_info } = home;
   return (
     <div className="header-container d-flex">
       <div className="col-sm-10">
@@ -18,8 +21,8 @@ const Header2 = () => {
             </div>
           </div>
           <div className="vl mx-2"></div>
-          <div className="mx-2 glory-bold heading-1">Introduction to 3D drawing and piping using 3D Max </div>
-          <div className="mx-2"> kora</div>
+          <div className="mx-2 glory-bold heading-1">{course_info.title} </div>
+          {/* <div className="mx-2"> kora</div> */}
         
         </div>
       </div>

@@ -3,6 +3,10 @@
 
 .course-details-wrapper {
   background-color: #e0e0e0;
+  .star-svg {
+    width: 23px;
+    height: 23px;
+  }
   .course-criculum-title {
     color: $btnColor;
   }

@@ -28,6 +28,8 @@
   }
   .logout-user {
       border-radius: 50%;
+      width: 4vw;
+      height: 4vw;
   }
 
   .modal-content {
@@ -175,6 +177,12 @@ img[alt="search-icon-overlay"] {
 nav {
   width: 65% !important;
   color: $btnColor;
+  .categories-ul {
+    padding: 0px !important;
+    li {
+      padding-inline: 30px !important;
+    }
+  }
   h1 {
     display: none;
   }
@@ -270,5 +278,26 @@ nav {
   }
   .mobile-icons {
     display: block !important;
+  }
+  .search-mobile-dropdown{
+    transform: translate3d(-56vw, 28px, 0px) !important;
+    width: 80vw !important;
+  }
+  .search-mobile-field {
+    height: 50px;
+    border: none !important;
+    padding-inline: 20px !important;
+    &::placeholder {
+      font-size: 0.8rem;
+      color: $btnColor !important;
+    }
+  }
+  img[alt="search-icon-mobile"] {
+   background-color: $btnColor;
+   padding: 5px;
+   border-radius: 3px;
+   width: 30px !important;
+   height: 30px !important;
+   margin-inline: 5px;
   }
 }

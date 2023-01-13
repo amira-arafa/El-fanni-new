@@ -2,10 +2,7 @@ import React, { useEffect } from "react";
 import Footer from "../../components/Layout/Footer";
 import Header from "../../components/Layout/Header";
 import Button from "../../components/Button/Button";
-import star from "../../assets/imgs/icons/star.png";
-import teacher4 from "../../assets/imgs/teacher4.png";
 import { Rating } from "react-simple-star-rating";
-import star2 from "../../assets/imgs/icons/vector.png";
 import certificate2 from "../../assets/imgs/certificate2.png";
 import playIcon from "../../assets/imgs/icons/play-circle.png";
 import cutMetalImg from "../../assets/imgs/cutting_metals.png";
@@ -32,7 +29,7 @@ const CoursePage = () => {
   }, [id]);
 
   const handleAddToCart = () => {
-    dispatch(addToCart(id));
+    localStorage.getItem("user-data") && dispatch(addToCart(id));
   };
 
 
@@ -48,10 +45,10 @@ const CoursePage = () => {
                 <FormattedMessage id="course" />{" "}
               </div>
               <div>
-                <Button
+                {/* <Button
                   className="best-sellter-btn inter-regular"
                   text={intl.formatMessage({ id: "BestSeller" })}
-                ></Button>
+                ></Button> */}
               </div>
             </div>
             <p className="heading-4  glory-semi-bold w-75">
@@ -329,21 +326,23 @@ const CoursePage = () => {
                   </div>
                 </div>
 
-                <div className="reviews-section mb-4" id="reviews_section">
+                 <div className="reviews-section mb-4" id="reviews_section">
                 <p className="glory-bold heading-3">
                     <FormattedMessage id="Reviews" />
                   </p>
-                  <div className="d-flex justify-content-between my-4 align-items-baseline">
+                  {/* <div className="d-flex justify-content-between my-4 align-items-baseline">
                     <div>
                     
                       <span><span className="star-item">5 </span> <sub className="inter-normal label-1">of 5</sub></span>
                       <span className="glory-semi-bold heading-1 mx-3">23 review</span>
                       </div>
-                    <div>    <Button
+                    <div>   
+                       <Button
                 text={intl.formatMessage({ id: "Showallreviews" })}
                 className="check-courses-btn show-reviews-btn inter-semi-bold label-1 mx-3"
-              ></Button></div>
-                     </div>
+              ></Button>
+              </div>
+                     </div> */}
                  
 
                   <div className="row gx-2">
@@ -371,38 +370,23 @@ const CoursePage = () => {
                     </div>))}
                  
                   </div>
-                </div>
+                </div> 
                 <div className="other-courses-section mb-4" id="recommended_courses_section">
                   <p className="glory-bold heading-3">
                     <FormattedMessage id="studentsAttendedCourses" />
                   </p>
-                  <div className="d-flex course-results-wrapper mb-5 align-items-center">
+                  <div className="row course-results-wrapper mb-5 align-items-center">
                 <div className="col-sm-4"><img src={cutMetalImg} alt="course-img"></img></div>
                 <div className="col-sm-8">
                   <p className="inter-semi-bold heading-1 mb-0">Cutting metals and how we use the devices</p>
                   <div className="search-results-courses-data mb-1">
                     <span className="inter-regular label-1">Mohammed Karim</span>
                     <span className="inter-regular label-1 search-result-date"> 
-                      <span className="m-e-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img src={star} alt="star" width="15px" heigth="15px" />
-                      </span>
-                      <span className="m-x-1 align-text-bottom">
-                        <img
-                          src={star2}
-                          alt="star"
-                          width="13px"
-                          heigth="13px"
-                        />
-                      </span>
+                    <Rating
+                        readonly={true}
+                        initialValue={4.5}
+                        allowFraction={true}
+                      />
                       <span className="top-courses-rating inter-regular label-1 m-x-1">
                         (24)
                       </span>

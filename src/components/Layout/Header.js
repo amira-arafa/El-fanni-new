@@ -27,6 +27,7 @@ const Header = () => {
   const onCloseModal = () => setOpen(false);
 
   const [showNav, setShowNav] = useState(false);
+  const [showNavBrowse, setShowNavBrowse] = useState(false);
 
   const [openBrowseModal, setOpenBrowseModal] = useState(false);
   const onOpenModalBrowseModal = () => setOpenBrowseModal(true);
@@ -175,14 +176,14 @@ const Header = () => {
           <div>
             <img alt="language" src={language} width="22px" height="22px"></img>
           </div>
-          <div className="d-flex align-items-center">
+          <div className="d-flex align-items-center cursor-pointer">
             <img
               alt="cart"
               src={cart}
               width="22px"
               height="22px"
               onClick={() => navigate("/cart")}
-              className="ms-4 cursor-pointer"
+              className="ms-4"
             ></img>
             <span className="cart-number">{cart_list.length}</span>
           </div>
@@ -190,7 +191,7 @@ const Header = () => {
         <div className="col-sm-3">
           <div className=" d-flex" onClick={() => navigate("/about-us")}>
             <div>
-              <span className="inter-semi-bold body-1">
+              <span className="inter-semi-bold body-1 cursor-pointer">
                 <FormattedMessage id="aboutUs" />
               </span>
             </div>
@@ -312,13 +313,54 @@ const Header = () => {
       <div className="col-sm-4 mobile-icons">
         <div className="d-flex">
           <div className="col-sm-4">
-            <img
+          <div className="dropdown ddp-btn ">
+                <div
+                  className="dropdown-toggle w-100 "
+                  type="button"
+                  id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                      <img
               alt="search"
               src={search}
               width="20px"
               height="20px"
               className="m-x-1"
+              
             ></img>
+                </div>
+                <ul
+                  className="dropdown-menu search-mobile-dropdown p-0"
+                  aria-labelledby="dropdownMenuButton1"
+                >
+               <div className="d-flex align-items-center">
+               <div>
+                 <Input
+                  type="text"
+                  className="search-mobile-field"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  placeholder={intl.formatMessage({ id: "search" })}
+                  
+                />
+                 </div>
+                 <div>
+                 <div className="search-icon-mobile-wrapper">
+                 <img
+                      alt="search-icon-mobile"
+                      src={search}
+                      width="20"
+                      height="20"
+                      className="cursor-pointer"
+                      onClick={() => redirectTosearchPage()}
+                    />
+                 </div>
+                 </div>
+               </div>
+                </ul>
+              </div>
+        
           </div>
           <div className="col-sm-4">
             <img
@@ -327,6 +369,10 @@ const Header = () => {
               width="20px"
               height="20px"
               className="m-x-1"
+              onClick={() => {
+                setShowNavBrowse(!showNavBrowse);
+              }}
+              
             ></img>
           </div>
           <div className="col-sm-4">
@@ -414,6 +460,60 @@ const Header = () => {
           </div>
           )
         ]}
+      />
+
+<SideNav
+        openFromLeft={true}
+        showNav={showNavBrowse}
+        onHideNav={() => setShowNavBrowse(false)}
+        titleStyle={{ backgroundColor: "#FF5722" }}
+        items={[
+          <div className="d-flex align-items-center justify-content-between">
+            <div className="mobile-logo d-flex align-items-center">
+              <div className="glory-bold heading-4">
+                {<FormattedMessage id="browse" />}
+              </div>
+            </div>
+            <div>
+              <img
+                src={closeIcon}
+                alt="closeIcon"
+                onClick={() => {
+                  setShowNavBrowse(false);
+                }}
+              />
+            </div>
+          </div>,
+             <ul className="categories-ul">
+             {categories_list.map((category , i) => {
+               return (<div>
+
+                <li
+                   className="inter-regular body-1 mb-2"
+                   onClick={() => {
+                     setCurrentCategory(category);
+                   }}
+                   data-bs-toggle="collapse"
+                   data-bs-target={`#collapseExample-${i}`}
+                   aria-expanded="false"
+                   aria-controls="collapseExample"
+                 >
+                   {category?.name}
+                 </li>
+                  {category.subcategories.length>0 && <div className="collapse mb-2"  id={`collapseExample-${i}`}>
+                  {category.subcategories?.map((subCat) => {
+                              return (
+                                <p className="inter-regular body-1 mb-1 mx-4" onClick={()=>{navigate("/search-results")}}>
+                                  {subCat.name}
+                                </p>
+                              );
+                            })}
+                  </div>}
+               </div>
+               );
+             })}
+           </ul>
+    ]}
       />
     </div>
   );

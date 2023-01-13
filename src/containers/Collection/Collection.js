@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams} from "react-router-dom"
 import { FormattedMessage, useIntl } from "react-intl";
 import "./Collection.scss";
+import EmptyState from "../../components/EmptyStateComponent/EmptyState";
 
 const Collection = () => {
   const intl = useIntl();
@@ -60,11 +61,12 @@ const Collection = () => {
   }
 
   return (
-    <div className="profile-page-wrapper">
+    <>
       <Header></Header>
+    <div className="profile-page-wrapper">
       <div className="profile-page">
         <div className="profile-info row">
-          <div className="col-sm-6">
+          <div className="col-sm-6 text-center-mobile">
             <div className="row align-items-center">
               <div className="col-sm-3">
               <img src={photo} alt="profile-img" />
@@ -82,7 +84,7 @@ const Collection = () => {
 
             </div>
           </div>
-          <div className="col-sm-3">
+          <div className="col-sm-3 mobile-email-wrapper">
             <p className="label-1 inter-semi-bold mb-0">
               <FormattedMessage id="Email" />
             </p>
@@ -92,7 +94,7 @@ const Collection = () => {
             </p>
             <p className="profile-courses-number glory-semi-bold heading">4</p>
           </div>
-          <div className="col-sm-3">
+          <div className="col-sm-3 mobile-email-wrapper">
             <p className="label-1 inter-semi-bold mb-0">
               <FormattedMessage id="Phone" />
             </p>
@@ -115,11 +117,17 @@ const Collection = () => {
           onCloseModal={onCloseModal}
           className="remove-collection-modal"
           children={
+            <>
             <Button
             icon={trashIcon}
             text={intl.formatMessage({ id: "removeCollection" })}
             className="w-100 delete-collection-btn inter-semi-bold body-1"
           />
+            <Button
+            icon={trashIcon}
+            className="w-100 delete-collection-btn-mobile inter-semi-bold body-1"
+          />
+            </>
           }
           modalBody={
             <div className="row align-items-center">
@@ -127,7 +135,7 @@ const Collection = () => {
                 <img src={deleteIcon} alt="delete-icon" />
               </div>
               <div className="col-sm-10">
-                <p className="px-2 mb-1 elete-collection-warning">
+                <p className="px-2 mb-1 delete-collection-warning">
                   <FormattedMessage id="deleteCollectionTitle"/>
                 </p>
                 <p className="px-2 mb-1 delete-course-text">
@@ -159,13 +167,13 @@ const Collection = () => {
     
       </div>
 
-        <>
+        {single_collection?.courses?.length >0 ?<>
         {single_collection && single_collection.courses?.map((course)=><div className="row course-results-wrapper mb-3 mx-0">
           <div className="col-sm-4">
             <img src={course.cover} alt="course-img" width="100%"></img>
           </div>
           <div className="col-sm-6">
-            <p className="inter-semi-bold heading-3">
+            <p className="inter-semi-bold heading-3 course-title-mobile">
               {course.title}
             </p>
             <div className="search-results-courses-data">
@@ -197,7 +205,7 @@ const Collection = () => {
             </div>
             <Button
               text={intl.formatMessage({ id: "InProgress" }) + " (50%)"}
-              className="check-courses-btn inter-semi-bold label-1"
+              className="check-courses-btn-progress inter-semi-bold label-1"
             ></Button>
           </div>
           <div className="col-sm-2 text-end cart-desktop-more">
@@ -235,11 +243,12 @@ const Collection = () => {
         </div>)}
         
    
-        </>
+        </> : <EmptyState text={<FormattedMessage id="noCoursesCollection"/>}/>}
      
 
-      <Footer></Footer>
     </div>
+      <Footer></Footer>
+    </>
   );
 };
 

@@ -47,9 +47,9 @@ export const addToCollection = (collectionId , courseId) => async (dispatch) => 
 };
 
 
-export const getCollectionsList = () => async (dispatch) => {
+export const getCollectionsList = (params) => async (dispatch) => {
   try {
-    const res = await axiosInstance.get(`/collections`);
+    const res = await axiosInstance.get(`/collections`,{params});
     dispatch({
       type: STORE_COLLECTIONS_LIST,
       payload : res.data.data
@@ -122,9 +122,9 @@ export const removeFromCollection = (collectionId , courseId) => async (dispatch
     }
   };
 
-  export const getFavourites  = ( ) => async (dispatch) => {
+  export const getFavourites  = (params ) => async (dispatch) => {
     try {
-      const res = await axiosInstance.get("/favorites");
+      const res = await axiosInstance.get("/favorites", {params});
       dispatch({
         type:STORE_FAVOURITES_LIST,
         payload: res.data.data
@@ -195,7 +195,8 @@ export const getCategories = () => async (dispatch) => {
     const res = await axiosInstance.get("/categories");
     dispatch({
       type: STORE_CATEGORIES_LIST ,
-      payload: res.data.data
+      // payload: res.data.data
+      payload: res.data.data.filter(cat => !cat.name.includes('Sub'))
     });
   }
   catch (err) {

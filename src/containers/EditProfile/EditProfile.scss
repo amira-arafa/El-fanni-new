@@ -40,6 +40,45 @@
     );
   }
   .edit-profile-btns {
-    width: 11.2%;
+    width: unset;
   }
+}
+
+@media screen and (max-width:786px) {
+  .edit-profile-wrapper {
+    .label-1 {
+      font-size: 3.016vw;
+      margin-bottom: 8px !important;
+    }
+
+    .intl-tel-input,
+    input {
+      height: 7.5vw !important;
+      font-size: 3vw;
+      &::placeholder {
+        font-size: 2.5vw;
+        padding: 0vw 1.5vw !important;
+      }
+    }
+    .intl-tel-input {
+      padding: 0vw 12.5vw !important;
+      font-size: 2.5vw !important;
+    }
+    .heading {
+      font-size: 4vw;
+      margin-top: 10px;
+    }
+    img[alt=password-icon] ,  img[alt=password-repeat-icon] {
+      bottom: 24px !important;
+    }
+    .buy-courses-btn , .check-courses-btn {
+      padding: 2.782vw 4.346vw !important;
+    }
+    .check-courses-btn {
+      width: unset;
+      margin-inline: 0px !important;
+    }
+    
+  }
+  
 }
