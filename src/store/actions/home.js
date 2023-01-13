@@ -1,4 +1,5 @@
 import { axiosInstance } from "../../network/apis";
+import toasters from "../../utils/toasters";
 import { STORE_SEARCH_RESULT,STORE_CATEGORIES_LIST, STORE_CART_LIST, STORE_PROFILE_INFO, STORE_COURSE_DETAILS, STORE_COLLECTIONS_LIST, STORE_SINGLE_COLLECTION, STORE_FAVOURITES_LIST } from "../types/home";
 
 export const searchResult = ( params) => async (dispatch) => {
@@ -41,6 +42,7 @@ export const addToCollection = (collectionId , courseId) => async (dispatch) => 
     const res = await axiosInstance.post(`/collections/add/${collectionId}`,{
       courseId
   });
+  res && toasters.Success("Added Succefully")
   } catch (err) {
     console.log(err);
   }
@@ -173,6 +175,7 @@ export const removeFromCollection = (collectionId , courseId) => async (dispatch
     try {
       const res = await axiosInstance.post(`/cart/add/${params}`);
       res && dispatch(getCartList());
+      toasters.Success("Added Succesfully");
     } catch (err) {
       console.log(err);
     }
@@ -181,6 +184,7 @@ export const removeFromCollection = (collectionId , courseId) => async (dispatch
   export const addToFav = ( params) => async (dispatch) => {
     try {
       const res = await axiosInstance.post(`/favorites/${params}`);
+      toasters.Success("Added Succesfully");
     } catch (err) {
       console.log(err);
     }

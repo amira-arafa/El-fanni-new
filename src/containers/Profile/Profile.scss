@@ -81,6 +81,9 @@
     margin: 0 auto;
   }
 }
+.check-courses-btn-progress {
+  display: none;
+}
 
 @media screen and (max-width:786px) {
   .profile-page-wrapper {
@@ -131,9 +134,7 @@
 .search-result-date {
     display: none;
 }
-.check-courses-btn-progress {
-  display: none;
-}
+
 .course-title-mobile {
   margin-bottom: 0px;
 }

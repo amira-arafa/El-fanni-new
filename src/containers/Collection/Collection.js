@@ -65,7 +65,7 @@ const Collection = () => {
       <Header></Header>
     <div className="profile-page-wrapper">
       <div className="profile-page">
-        <div className="profile-info row">
+        {Object.keys(profile_info).length>0 && <div className="profile-info row">
           <div className="col-sm-6 text-center-mobile">
             <div className="row align-items-center">
               <div className="col-sm-3">
@@ -79,6 +79,9 @@ const Collection = () => {
                   icon={editUser}
                   text={intl.formatMessage({ id: "editYourProfile" })}
                   className="check-courses-btn inter-semi-bold label-1"
+                  onClick={() => {
+                    navigate("/profile-edit");
+                  }}
                 ></Button>
               </div>
 
@@ -104,7 +107,7 @@ const Collection = () => {
             </p>
             <p className="profile-courses-number glory-semi-bold heading">15</p>
           </div>
-        </div>
+        </div>}
       </div>
       <div className="d-flex justify-content-end sort-icon-wrapper align-items-baseline">
         <div className="col-sm-6">

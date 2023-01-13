@@ -150,14 +150,14 @@ const Header = () => {
                         {currentCategory
                           ? currentCategory.subcategories?.map((subCat) => {
                               return (
-                                <p className="inter-regular label-1 mb-1">
+                                <p className="inter-regular label-1 mb-1 cursor-pointer" onClick={()=>{navigate("/search-results")}}>
                                   {subCat.name}
                                 </p>
                               );
                             })
                           : categories_list[0]?.subcategories.map((subCat) => {
                               return (
-                                <p className="inter-regular label-1 mb-1">
+                                <p className="inter-regular label-1 mb-1 cursor-pointer" onClick={()=>{navigate("/search-results")}}>
                                   {subCat.name}
                                 </p>
                               );

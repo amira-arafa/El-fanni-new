@@ -5,6 +5,10 @@
   padding: 1.3vw 4.5vw;
   background: #f6f6f7;
   height: 100vh;
+  .check-courses-btn {
+    width: unset;
+    margin-inline: 0px !important;
+  }
   .edit-profile-fields-wrapper {
     background: #ffffff;
     border-radius: 16px;
@@ -74,10 +78,7 @@
     .buy-courses-btn , .check-courses-btn {
       padding: 2.782vw 4.346vw !important;
     }
-    .check-courses-btn {
-      width: unset;
-      margin-inline: 0px !important;
-    }
+ 
     
   }
   

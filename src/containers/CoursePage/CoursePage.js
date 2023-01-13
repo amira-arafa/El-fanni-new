@@ -15,6 +15,7 @@ import {
 } from "../../store/actions/home";
 import moment from "moment";
 import "./CoursePage.scss";
+import EmptyState from "../../components/EmptyStateComponent/EmptyState";
 
 const CoursePage = () => {
   const intl = useIntl();
@@ -345,7 +346,7 @@ const CoursePage = () => {
                      </div> */}
                  
 
-                  <div className="row gx-2">
+                  {course_info?.reviews?.length>0 ? <div className="row gx-2">
                     {course_info.reviews?.map((review)=>(<div className="col-sm-6">
                       <div className="p-3 border mb-3 goals-container  ">
                         <div className="d-flex student-info mb-2">
@@ -369,7 +370,7 @@ const CoursePage = () => {
                       </div>
                     </div>))}
                  
-                  </div>
+                  </div> : <div><EmptyState text={<FormattedMessage id="noReviews" />}/></div>}
                 </div> 
                 <div className="other-courses-section mb-4" id="recommended_courses_section">
                   <p className="glory-bold heading-3">

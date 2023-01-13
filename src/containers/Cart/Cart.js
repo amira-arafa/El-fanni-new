@@ -64,7 +64,7 @@ const Cart = () => {
               {cart_list.length > 0 ?
                 cart_list.map((result) => (
                   <div className="d-flex course-results-wrapper mb-5">
-                    <div className="col-sm-4 me-2">
+                    <div className="col-sm-4 me-3">
                       <img src={cutMetalImg} alt="course-img"></img>
                     </div>
                     <div className="col-sm-6">
@@ -88,7 +88,7 @@ const Cart = () => {
                         <div>
                           <Rating
                             readonly={true}
-                            initialValue={result.avgRate}
+                            initialValue={result.avgRating}
                             allowFraction={true}
                           />
                           <span className="top-courses-rating inter-regular label-1 m-x-1">
