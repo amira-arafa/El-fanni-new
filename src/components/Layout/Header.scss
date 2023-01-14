@@ -51,7 +51,19 @@
     padding: 0px 5px;
     font-size: 12px;
   }
-
+  .course-progress{
+    width: 80px;
+    border: solid white 2px;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 10px;
+    height: 80px;
+    font-size: 10px;
+  }
+  .course-progress img{
+    width: 1.3vw;
+    height: 1.3vw;
+  }
 }
 .close-btn-browse {
     border: none;

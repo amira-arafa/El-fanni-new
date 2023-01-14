@@ -6,6 +6,12 @@ import Header2 from "../../components/Layout/Header2";
 import Header from "../../components/Layout/Header";
 import Footer from "../../components/Layout/Footer";
 import star from "../../assets/imgs/icons/star.png";
+import arrowdownIcon from "../../assets/imgs/icons/arrow-down.png";
+import closeCircleIcon from "../../assets/imgs/icons/close-circle.png";
+import moreIconVertical from "../../assets/imgs/icons/more.png";
+// import taskSquareIcon from "../../assets/imgs/icons/task-square.png";
+import docIcon from "../../assets/imgs/icons/document-text.png";
+import videoIcon from "../../assets/imgs/icons/video-circle.png";
 import star2 from "../../assets/imgs/icons/vector.png";
 import certificate2 from "../../assets/imgs/certificate2.png";
 import { Rating } from "react-simple-star-rating";
@@ -23,14 +29,14 @@ const CourseDetails = () => {
   const [activeTab, setActiveTab] = useState(0);
   const { home } = useSelector((state) => state);
   const { course_info } = home;
-  const [ courseUrl , setCourseUrl] = useState(null);
+  const [courseUrl, setCourseUrl] = useState(null);
 
   useEffect(() => {
     id && dispatch(getCourseDetails(id));
   }, [id]);
 
   useEffect(() => {
-    if(!courseUrl && Object.keys(course_info).length>0) {
+    if (!courseUrl && Object.keys(course_info).length > 0) {
       // setCourseUrl(course_info.sections[0]?.lectures[0].path)
       setCourseUrl("https://alfanni-staging.s3.eu-central-1.amazonaws.com/demo/lecture-demo.mp4")
     }
@@ -42,49 +48,51 @@ const CourseDetails = () => {
         <Header2></Header2>
         <div className="d-flex">
           <div className="col-sm-4">
-            <div className="course-ciriculum p-3">
+            <div className="course-ciriculum p-4">
               <div className="collapse-container">
                 <p className="glory-bold heading-3">
                   <FormattedMessage id="Content" />
+                  <span><img src={closeCircleIcon} alt="close"/></span>
                 </p>
+
                 <hr />
 
-                {course_info?.sections?.map((course,i)=>(
-  <div>
-  <p>
-     <p
-       className="glory-semi-bold heading-1 course-criculum-title cursor-pointer"
-       data-bs-toggle="collapse"
-       data-bs-target={`#collapseExample-${i}`}
-       aria-expanded="false"
-       aria-controls="collapseExample"
-     >
-       {course.title}
-     </p>
-   </p>
-   <div className="collapse" id={`collapseExample-${i}`}>
-     <div>
-      {course?.lectures.map((lecture)=>(
-       <div className="d-flex justify-content-between mb-2 cursor-pointer" onClick={()=>{
-        setCourseUrl("https://alfanni-staging.s3.eu-central-1.amazonaws.com/demo/lecture-demo.mp4")
-       }}>
-         <div className="body-1 inter-regular lesson-color">
-           {lecture.title}
-         </div>
-         {/* <div className="body-1 inter-regular inter-semi-bold time-color">
-           12:45
-         </div> */}
-       </div>
-      ))}
-
-     </div>
-   </div>
-  </div>
+                {course_info?.sections?.map((course, i) => (
+                  <div>
+                    <p>
+                      <p
+                        className="glory-semi-bold heading-1 course-criculum-title cursor-pointer"
+                        data-bs-toggle="collapse"
+                        data-bs-target={`#collapseExample-${i}`}
+                        aria-expanded="false"
+                        aria-controls="collapseExample"
+                      >
+                        <div>
+                          <span className="title-text">{course.title}</span>
+                          <p className="title-info"><span>0 of 5 completed</span><span>1 hr, 30 min</span></p>
+                        </div>
+                        <span style={{alignSelf: 'center'}}><img src={arrowdownIcon} alt="arrow-down"/></span>
+                      </p>
+                    </p>
+                    <div className="collapse" id={`collapseExample-${i}`}>
+                      <div>
+                        {course?.lectures.map((lecture, index) => (
+                          <div className="d-flex justify-content-between mb-4 cursor-pointer" onClick={() => {
+                            setCourseUrl("https://alfanni-staging.s3.eu-central-1.amazonaws.com/demo/lecture-demo.mp4")
+                          }}>
+                            <div className="body-1 inter-regular lesson-color single-lecture">
+                              <span><img src={index % 2 == 0 ? docIcon : videoIcon}/></span>
+                              <span>{lecture.title}</span>
+                            </div>
+                            <div className="body-1 inter-regular inter-semi-bold time-color">
+                            <b>{Math.floor((Math.random() * 10) + 1) + ':' + Math.floor((Math.random() * 60) + 1)}</b>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 ))}
-
-             
-
-
               </div>
             </div>
           </div>
@@ -96,19 +104,18 @@ const CourseDetails = () => {
               preload
               width="100%"
             >
-              {console.log("courseUrlcourseUrlcourseUrl",courseUrl)}
+              {console.log("courseUrlcourseUrlcourseUrl", courseUrl)}
               <source
                 src={courseUrl}
-                // type="video/mp4"
+              // type="video/mp4"
               />
             </video>}
 
             <div className="course-data-wrapper my-2">
               <ul className="content-data-ul">
                 <li
-                  className={`"inter-regular body-1" ${
-                    activeTab === 0 && "li-active"
-                  }`}
+                  className={`"inter-regular body-1" ${activeTab === 0 && "li-active"
+                    }`}
                   onClick={() => {
                     setActiveTab(0);
                   }}
@@ -116,9 +123,8 @@ const CourseDetails = () => {
                   <FormattedMessage id="Overview" />
                 </li>
                 <li
-                  className={`"inter-regular body-1" ${
-                    activeTab === 1 && "li-active"
-                  }`}
+                  className={`"inter-regular body-1" ${activeTab === 1 && "li-active"
+                    }`}
                   onClick={() => {
                     setActiveTab(1);
                   }}
@@ -126,9 +132,8 @@ const CourseDetails = () => {
                   <FormattedMessage id="Rating" />
                 </li>
                 <li
-                  className={`"inter-regular body-1" ${
-                    activeTab === 2 && "li-active"
-                  }`}
+                  className={`"inter-regular body-1" ${activeTab === 2 && "li-active"
+                    }`}
                   onClick={() => {
                     setActiveTab(2);
                   }}
@@ -136,9 +141,7 @@ const CourseDetails = () => {
                   <FormattedMessage id="Certification" />
                 </li>
                 <li
-                  className={`"inter-regular body-1" ${
-                    activeTab === 3 && "li-active"
-                  }`}
+                  className={`"inter-regular body-1" ${activeTab === 3 && "li-active"}`}
                   onClick={() => {
                     setActiveTab(3);
                   }}
@@ -273,7 +276,7 @@ const CourseDetails = () => {
                   </div>
 
                   <div className="row gx-2">
-                  {course_info.reviews?.map((review)=>(<div className="col-sm-12">
+                    {course_info.reviews?.map((review) => (<div className="col-sm-12">
                       <div className="p-3 mb-3 ">
                         <div className="d-flex student-info mb-2">
                           <div>
@@ -281,10 +284,10 @@ const CourseDetails = () => {
                           </div>
                           <div>
                             <div className="student-name inter-semi-bold body-1">
-                            {review.users[0]?.fullName}
+                              {review.users[0]?.fullName}
                             </div>
                             <div className="student-school label-1 inter-regular">
-                            <Rating
+                              <Rating
                                 readonly={true}
                                 initialValue={review.rate}
                                 allowFraction={true}
@@ -294,12 +297,12 @@ const CourseDetails = () => {
                         </div>
                         <div className="row">
                           <div className="offset-sm-1 col-sm-11">
-                          {review.comment}
+                            {review.comment}
                           </div>
                         </div>
                       </div>
                     </div>))}
-                 
+
                     <div className="col-sm-12">
                       <div className="p-3 mb-3">
                         <div className="d-flex student-info mb-2">
@@ -507,9 +510,9 @@ const CourseDetails = () => {
                 </p>
 
                 <ul className="attachment-ul">
-                { course_info?.attachments?.length>0 && course_info.attachments.map((attach, i)=> (
-              <li className="inter-regular body-1 mb-2">Attachment {i+1}</li>
-            ))}
+                  {course_info?.attachments?.length > 0 && course_info.attachments.map((attach, i) => (
+                    <li className="inter-regular body-1 mb-2">Attachment {i + 1}</li>
+                  ))}
                 </ul>
               </div>
             )}
@@ -528,7 +531,7 @@ const CourseDetails = () => {
             </p>
           </div>
           <div className="col-sm-2">
-            <img src={moreIcon} alt="more" width="40px" heigth="40px"></img>
+            <img src={moreIconVertical} alt="more" width="40px" heigth="40px"></img>
           </div>
         </div>
 
@@ -610,14 +613,14 @@ const CourseDetails = () => {
           </p>
 
           <ul className="attachment-ul">
-            {course_info?.attachments?.length>0 && course_info.attachments.map((attach, i)=> (
-              <li className="inter-regular body-1 mb-2">Attachment {i+1}</li>
+            {course_info?.attachments?.length > 0 && course_info.attachments.map((attach, i) => (
+              <li className="inter-regular body-1 mb-2">Attachment {i + 1}</li>
             ))}
           </ul>
         </div>
         <Footer></Footer>
       </div>
-    </div> 
+    </div>
   );
 };
 
