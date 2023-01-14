@@ -36,6 +36,7 @@ const Cart = () => {
     setCurrentCourse(result);
     onOpenModal();
   };
+  
   const handleDeleteCourse = () => {
     dispatch(
       deleteCourse(currentCourse._id, {

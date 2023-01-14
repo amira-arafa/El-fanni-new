@@ -164,12 +164,11 @@ export const removeFromCollection = (collectionId , courseId) => async (dispatch
     try {
       const res = await axiosInstance.post(`/cart/remove/${id}`,body);
       res && dispatch(getCartList());
+      toasters.Info("Removed successfully!")
     } catch (err) {
       console.log(err);
     }
   };
-
-  
 
   export const addToCart = ( params) => async (dispatch) => {
     try {

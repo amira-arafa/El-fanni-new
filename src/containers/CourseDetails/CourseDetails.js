@@ -115,9 +115,7 @@ const CourseDetails = () => {
 
             <div className="course-data-wrapper my-2">
               <ul className="content-data-ul">
-                <li
-                  className={`"inter-regular body-1" ${activeTab === 0 && "li-active"
-                    }`}
+                <li className={`"inter-regular body-1" ${activeTab === 0 && "li-active"}`}
                   onClick={() => {
                     setActiveTab(0);
                   }}
@@ -125,8 +123,7 @@ const CourseDetails = () => {
                   <FormattedMessage id="Overview" />
                 </li>
                 <li
-                  className={`"inter-regular body-1" ${activeTab === 1 && "li-active"
-                    }`}
+                  className={`"inter-regular body-1" ${activeTab === 1 && "li-active"}`}
                   onClick={() => {
                     setActiveTab(1);
                   }}
@@ -134,8 +131,7 @@ const CourseDetails = () => {
                   <FormattedMessage id="Rating" />
                 </li>
                 <li
-                  className={`"inter-regular body-1" ${activeTab === 2 && "li-active"
-                    }`}
+                  className={`"inter-regular body-1" ${activeTab === 2 && "li-active"}`}
                   onClick={() => {
                     setActiveTab(2);
                   }}

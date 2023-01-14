@@ -102,14 +102,14 @@ const Header = () => {
                 <div className="browse-modal-container">
                   <div className="d-flex">
                     <div className="col-sm-4 categories-container">
-                      <h3 className="gilory-bold heading-3 mb-3">
+                      <h3 className="gilory-bold heading-3 mb-4">
                         <FormattedMessage id="browse" />
                       </h3>
                       <ul className="categories-ul">
                         {categories_list.map((category) => {
                           return (
                             <li
-                              className="inter-regular body-1 mb-2"
+                              className="inter-regular body-1 mb-4"
                               onClick={() => {
                                 setCurrentCategory(category);
                               }}
@@ -124,7 +124,7 @@ const Header = () => {
                       <div className="col-sm-8 px-3">
                         <div className="d-flex justify-content-between align-items-baseline">
                           <div className="col-sm-5">
-                            <p className="mb-3 glory-semi-bold btnColor heading-1">
+                            <p className="mb-4 glory-semi-bold btnColor heading-1">
                               {currentCategory
                                 ? currentCategory.name
                                 : categories_list[0]?.name}
@@ -147,21 +147,29 @@ const Header = () => {
                             ></Button>
                           </div>
                         </div>
-                        {currentCategory
-                          ? currentCategory.subcategories?.map((subCat) => {
-                              return (
-                                <p className="inter-regular label-1 mb-1 cursor-pointer" onClick={()=>{navigate("/search-results")}}>
-                                  {subCat.name}
-                                </p>
-                              );
-                            })
-                          : categories_list[0]?.subcategories.map((subCat) => {
-                              return (
-                                <p className="inter-regular label-1 mb-1 cursor-pointer" onClick={()=>{navigate("/search-results")}}>
-                                  {subCat.name}
-                                </p>
-                              );
+                        <div className="subcategories-wrapper">
+                          {currentCategory
+                            ? currentCategory.subcategories?.map((subCat) => {
+                                return (
+                                  <p className="inter-regular label-1 mb-3 cursor-pointer" onClick={()=>{
+                                    onCloseModalBrowseModal()
+                                    navigate("/search-results")
+                                    }}>
+                                    {subCat.name}
+                                  </p>
+                                );
+                              })
+                            : categories_list[0]?.subcategories.map((subCat) => {
+                                return (
+                                  <p className="inter-regular label-1 mb-3 cursor-pointer" onClick={()=>{
+                                    onCloseModalBrowseModal()
+                                    navigate("/search-results")
+                                    }}>
+                                    {subCat.name}
+                                  </p>
+                                );
                             })}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -232,6 +240,9 @@ const Header = () => {
                   value={searchValue}
                   onChange={(e) => setSearchValue(e.target.value)}
                   placeholder={intl.formatMessage({ id: "searchHere" })}
+                  onKeyPress={(event) => {
+                    if (event.key === "Enter") redirectTosearchPage()
+                  }}
                   icon={
                     <img
                       alt="search-icon-overlay"

@@ -5,15 +5,18 @@ import more from "../../assets/imgs/icons/more.png";
 import cupIcon from "../../assets/imgs/icons/cup.png";
 import { useSelector } from "react-redux";
 import "./Header.scss";
+import { useNavigate } from "react-router-dom";
 
 const Header2 = () => {
   const { home } = useSelector((state) => state);
   const { course_info } = home;
+  const navigate = useNavigate();
+
   return (
     <div className="header-container d-flex">
       <div className="col-sm-10">
         <div className="d-flex align-items-center ">
-          <div className="d-flex align-items-center">
+          <div onClick={() => navigate("/")} className="d-flex align-items-center cursor-pointer">
             <div>
               <img alt="logo" src={logo} width="60px" height="60px"></img>
             </div>
