@@ -35,9 +35,9 @@ import { useEffect } from "react";
 const HomePage = () => {
   const intl = useIntl();
   const navigate = useNavigate();
-  useEffect(()=>{
-    localStorage.setItem("lang","en")
-  },[])
+  useEffect(() => {
+    localStorage.setItem("lang", "en");
+  }, []);
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 1250 },
@@ -93,7 +93,7 @@ const HomePage = () => {
                 </p>
                 <Button
                   afterIcon={arrowRight}
-                  onClick={()=> navigate("/search-results")}
+                  onClick={() => navigate("/search-results")}
                   text={intl.formatMessage({ id: "checkCourses" })}
                   className="check-courses-btn inter-semi-bold body-1"
                 ></Button>
@@ -170,24 +170,24 @@ const HomePage = () => {
         </div>
         <div className="home-over-lay">
           <div className="main-section">
-           <div>
-           <p className="glory-semi-bold heading-2 home-main-title">
-              <FormattedMessage id="homeMainTitle" />
-            </p>
-           </div>
-           <div>
-           <p className="body-1 inter-regular home-secondary-title">
-              <FormattedMessage id="homeSecondTitle" />
-            </p>
-           </div>
-          <div>
-          <Button
-              afterIcon={arrowRight}
-              onClick={()=> navigate("/search-results")}
-              text={intl.formatMessage({ id: "checkCourses" })}
-              className="check-courses-btn inter-semi-bold body-1"
-            ></Button>
-          </div>
+            <div>
+              <p className="glory-semi-bold heading-2 home-main-title">
+                <FormattedMessage id="homeMainTitle" />
+              </p>
+            </div>
+            <div>
+              <p className="body-1 inter-regular home-secondary-title">
+                <FormattedMessage id="homeSecondTitle" />
+              </p>
+            </div>
+            <div>
+              <Button
+                afterIcon={arrowRight}
+                onClick={() => navigate("/search-results")}
+                text={intl.formatMessage({ id: "checkCourses" })}
+                className="check-courses-btn inter-semi-bold body-1"
+              ></Button>
+            </div>
           </div>
         </div>
       </div>
@@ -201,23 +201,47 @@ const HomePage = () => {
               <FormattedMessage id="whoWeAre" />
             </p>
             <p className=" inter-regular label-1 about-us-text">
-              <FormattedMessage id="aboutUsFirstSecText" />
+              We are a group of educators, former diplomats, academics and
+              investors who share the passion for providing world-class
+              technical education and training to people in the Middle East &
+              Africa. Our collective understanding of the value of TVET-based
+              skills and careers encouraged us to form a unified approach to
+              TVET that is broad, comprehensive, inclusive and practicable. Our
+              overarching goal is to build a bridge of skill- based training and
+              knowledge that begins in the Middle East & Africa till it reaches
+              into EU countries. We have become aware of the lack of qualified
+              professionals in technical and other relevant occupations in the
+              EU and the need thereof. However, we are also aware that the
+              current immigration situation is far from being optimal. But if we
+              can prepare those who are looking for better opportunities in the
+              EU with proper and relevant skill-based training and knowledge
+              here in their MEA countries, those who will take the decision of
+              moving to EU countries will be better off and will have higher
+              chances of landing decent jobs and careers as technicians and
+              technical professionals. That’s why we do not look at ELFANNI as
+              being yet another paid online learning platform, we see ELFANNI as
+              an opportunity platform that offers better future prospects for
+              its members and better qualified candidates for the EU and MEA
+              labor markets.
             </p>
-            <span className="inter-semi-bold body-1 cursor-pointer" onClick={() => navigate("/about-us")}>
+            <span
+              className="inter-semi-bold body-1 cursor-pointer"
+              onClick={() => navigate("/about-us")}
+            >
               <FormattedMessage id="readMore" />
             </span>
             <span className="mx-1">
               <img alt="arrow" src={arrowLogo} />{" "}
             </span>
           </div>
-          <div className="col-md-6 col-xs-12">
+          <div className="col-md-6 col-xs-12 d-flex align-items-center">
             <div className="about-us-img">
               <img alt="aboutUs" src={aboutUsIcon1}></img>
             </div>
           </div>
         </div>
         <div className="d-flex flex-wrap about-us-container">
-          <div className="col-md-6 col-xs-12">
+          <div className="col-md-6 col-xs-12 d-flex align-items-center">
             <div className="about-us-img-2">
               <img alt="aboutUs2" src={aboutUsIcon2}></img>
             </div>
@@ -230,9 +254,24 @@ const HomePage = () => {
               <FormattedMessage id="ourValue" />
             </p>
             <p className=" inter-regular label-1 about-us-text">
-              <FormattedMessage id="aboutUsFirstSecText" />
+              Too much focus has been laid upon so-called white-collar jobs such
+              as software development, business administration and other
+              clerical professions following numerous faddish trends. However,
+              very few initiatives have paid proper attention to what really
+              matters: those professions, occupations and skills that keep our
+              lives going smoothly and unimpeded. Those professionals and
+              technicians vouchsafe our welfare through their incredible
+              efforts, unfailing commitment and the real-life risks they take
+              day to day. ELFANNI was designed with this specific goal in mind,
+              a rebalancing act that aims to reinstitute technical training and
+              professions as excellent career alternatives in a world that is
+              manifestly lacking qualified technical professionals and highly
+              skilled technicians.
             </p>
-            <span className="inter-semi-bold body-1 cursor-pointer" onClick={() => navigate("/about-us")}>
+            <span
+              className="inter-semi-bold body-1 cursor-pointer"
+              onClick={() => navigate("/about-us")}
+            >
               <FormattedMessage id="knowMoreAbout" />
             </span>
             <span className="mx-1">
@@ -536,7 +575,7 @@ const HomePage = () => {
                     <div className="text-grey-sub-heading inter-regular label-1">
                       Mohammed Ayman
                     </div>
-                      <div>
+                    <div>
                       <Rating
                         readonly={true}
                         initialValue={4.5}
@@ -572,7 +611,7 @@ const HomePage = () => {
                     <div className="text-grey-sub-heading inter-regular label-1">
                       Mohammed Ayman
                     </div>
-                      <div>
+                    <div>
                       <Rating
                         readonly={true}
                         initialValue={4.5}
@@ -608,7 +647,7 @@ const HomePage = () => {
                     <div className="text-grey-sub-heading inter-regular label-1">
                       Mohammed Ayman
                     </div>
-                      <div>
+                    <div>
                       <Rating
                         readonly={true}
                         initialValue={4.5}
@@ -643,7 +682,7 @@ const HomePage = () => {
                     <div className="text-grey-sub-heading inter-regular label-1">
                       Mohammed Ayman
                     </div>
-                      <div>
+                    <div>
                       <Rating
                         readonly={true}
                         initialValue={4.5}
@@ -679,7 +718,7 @@ const HomePage = () => {
                     <div className="text-grey-sub-heading inter-regular label-1">
                       Mohammed Ayman
                     </div>
-                      <div>
+                    <div>
                       <Rating
                         readonly={true}
                         initialValue={4.5}
@@ -715,7 +754,7 @@ const HomePage = () => {
                     <div className="text-grey-sub-heading inter-regular label-1">
                       Mohammed Ayman
                     </div>
-                      <div>
+                    <div>
                       <Rating
                         readonly={true}
                         initialValue={4.5}
@@ -763,7 +802,11 @@ const HomePage = () => {
           <FormattedMessage id="OurLecturers" />
         </p>
         <p className=" inter-regular label-1 lecturers-text m-auto">
-          <FormattedMessage id="lecturesFirstTitle" />
+          We pride ourselves in having such a diverse pool of instructors,
+          mentors and professionals who share our passion for TVET careers and
+          our values of inclusiveness and accessibility. Our mentors and
+          instructors will teach in Arabic, English, French and Italian and they
+          come from all over the Middle East & Africa.
         </p>
         <div className="lectures-scroll-container">
           <div className="d-flex lecturer-list mt-3">
@@ -914,19 +957,31 @@ const HomePage = () => {
         </div>
       </div>
       <div className="partners-section glory-semi-bold heading-4">
-        <p className="mb-1 btnColor heading-5"><FormattedMessage id="trustedPartners"/></p>
+        <p className="mb-1 btnColor heading-5">
+          <FormattedMessage id="trustedPartners" />
+        </p>
         <div className="partners-container">
-        <div className="d-flex justify-content-between align-items-center">
-          <div className="partner-img-container"><img src={partner1}></img></div>
-          <div className="partner-img-container"><img src={partner2}></img></div>
-          <div className="partner-img-container"><img src={partner3}></img></div>
-          <div className="partner-img-container"><img src={partner4}></img></div>
-          <div className="partner-img-container"><img src={partner2}></img></div>
-          <div className="partner-img-container"><img src={partner1}></img></div>
-
+          <div className="d-flex justify-content-between align-items-center">
+            <div className="partner-img-container">
+              <img src={partner1}></img>
+            </div>
+            <div className="partner-img-container">
+              <img src={partner2}></img>
+            </div>
+            <div className="partner-img-container">
+              <img src={partner3}></img>
+            </div>
+            <div className="partner-img-container">
+              <img src={partner4}></img>
+            </div>
+            <div className="partner-img-container">
+              <img src={partner2}></img>
+            </div>
+            <div className="partner-img-container">
+              <img src={partner1}></img>
+            </div>
+          </div>
         </div>
-        </div>
-
       </div>
       <Footer />
     </>
