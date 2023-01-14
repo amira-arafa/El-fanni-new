@@ -11,7 +11,6 @@ import moreIcon from "../../assets/imgs/icons/moregrey.png";
 import sortIcon from "../../assets/imgs/icons/sort.png";
 import closeIcon from "../../assets/imgs/icons/close-circle.png";
 import filterIcon from "../../assets/imgs/icons/filter.png";
-import cutMetalImg from "../../assets/imgs/cutting_metals.png";
 import Button from "../../components/Button/Button";
 import ModalComponent from "../../components/Modal/Modal";
 import { STORE_SEARCH_QUERY } from "../../store/types/home";

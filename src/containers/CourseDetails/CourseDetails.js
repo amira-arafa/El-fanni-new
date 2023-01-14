@@ -11,9 +11,11 @@ import certificate2 from "../../assets/imgs/certificate2.png";
 import { Rating } from "react-simple-star-rating";
 import downloadIcon from "../../assets/imgs/icons/document-download.png";
 import moreIcon from "../../assets/imgs/icons/moregrey.png";
+import importIcon from "../../assets/imgs/icons/import.png";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCourseDetails } from "../../store/actions/home";
+import EmptyState from "../../components/EmptyStateComponent/EmptyState";
 import "./CourseDetails.scss";
 
 const CourseDetails = () => {
@@ -40,7 +42,7 @@ const CourseDetails = () => {
     <div className="course-details-wrapper">
       <div className="desktop-view">
         <Header2></Header2>
-        <div className="d-flex">
+        <div className="d-flex course-details-parent">
           <div className="col-sm-4">
             <div className="course-ciriculum p-3">
               <div className="collapse-container">
@@ -506,11 +508,11 @@ const CourseDetails = () => {
                   <FormattedMessage id="Attachments" />
                 </p>
 
-                <ul className="attachment-ul">
+               {  course_info?.attachments?.length>0 ?<ul className="attachment-ul">
                 { course_info?.attachments?.length>0 && course_info.attachments.map((attach, i)=> (
-              <li className="inter-regular body-1 mb-2">Attachment {i+1}</li>
+              <li className="inter-regular body-1 mb-2 cursor-pointer"><img src={importIcon} alt="download" className="me-2"/><a href={attach} >Attachment {i+1}</a></li>
             ))}
-                </ul>
+                </ul> : <EmptyState text={<FormattedMessage id="noAttachments"/>}/>}
               </div>
             )}
           </div>
