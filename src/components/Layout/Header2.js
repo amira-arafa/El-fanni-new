@@ -4,8 +4,8 @@ import logo from "../../assets/imgs/logo.png";
 import more from "../../assets/imgs/icons/more.png";
 import cupIcon from "../../assets/imgs/icons/cup.png";
 import { useSelector } from "react-redux";
-import "./Header.scss";
 import { useNavigate } from "react-router-dom";
+import "./Header.scss";
 
 const Header2 = () => {
   const { home } = useSelector((state) => state);
