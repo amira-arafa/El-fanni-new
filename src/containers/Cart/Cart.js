@@ -15,6 +15,7 @@ import ModalComponent from "../../components/Modal/Modal";
 import EmptyState from "../../components/EmptyStateComponent/EmptyState";
 import moment from "moment";
 import "./Cart.scss";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const intl = useIntl();
@@ -25,6 +26,7 @@ const Cart = () => {
   const [currentCourse, setCurrentCourse] = useState({});
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.getItem("token") && dispatch(getCartList());
@@ -59,29 +61,33 @@ const Cart = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-sm-8 pe-3 cart-results-wrapper">
+          <div className="col-sm-8 pe-5 cart-results-wrapper">
             <div className="search-results-section">
               {cart_list.length > 0 ?
                 cart_list.map((result) => (
-                  <div className="d-flex course-results-wrapper mb-5">
-                    <div className="col-sm-4 me-3">
+                  <div className="d-flex course-results-wrapper cursor-pointer mb-5">
+                    <div className="col-sm-4 me-3"  onClick={() => {
+                        navigate(`/course/${result._id}`);
+                      }}>
                       <img src={cutMetalImg} alt="course-img"></img>
                     </div>
-                    <div className="col-sm-6">
-                      <p className="inter-semi-bold heading-3">
+                    <div className="col-sm-6" onClick={() => {
+                      navigate(`/course/${result._id}`);
+                    }}>
+                      <p className="inter-semi-bold heading-3 mb-2">
                         {result.title}
                       </p>
-                      <div className="search-results-courses-data">
+                      <div className="search-results-courses-data mb-2">
                         <span className="inter-regular label-1">
                           {result.instructors.map(
                             (instructor) => instructor.fullName
-                          )}
+                          ).join(', ')}
                         </span>
                         <span className="inter-regular label-1 search-result-date">
                           {moment(result.releaseDate).format("LL")}
                         </span>
                         <span className="inter-regular label-1 search-result-students-number">
-                          {result.studentsNo}
+                          {result.studentsNo} Student
                         </span>
                       </div>
                       <div className="d-flex desktop-rating">
@@ -92,11 +98,10 @@ const Cart = () => {
                             allowFraction={true}
                           />
                           <span className="top-courses-rating inter-regular label-1 m-x-1">
-                            ({result.reviewsNo})
+                            <sub>({result.reviewsNo})</sub>
                           </span>
                         </div>
                         <div>
-                          {" "}
                           <span className="inter-regular label-1 search-result-students-number levels-color">
                             {result.level}
                           </span>
@@ -143,7 +148,8 @@ const Cart = () => {
                       <img src={trashIcon} alt="trash-icon" />
                     </div>
                   </div>
-                )):  <div><EmptyState text={<FormattedMessage id="cartEmpty"/>}/></div>}
+                )) : 
+                <div><EmptyState text={<FormattedMessage id="cartEmpty"/>}/></div>}
             </div>
           </div>
           <div className="col-sm-4 search-results-section total-cart ">
@@ -152,7 +158,6 @@ const Cart = () => {
                 <FormattedMessage id="total" />
               </div>
               <div className="glory-bold heading-3 total-price">
-                {" "}
                 {total_payment} EGP
               </div>
             </div>

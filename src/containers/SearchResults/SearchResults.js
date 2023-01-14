@@ -158,14 +158,13 @@ const SearchResults = () => {
               </p>
               {categoriesListSliced
                 .slice(0, showMoreCategoriesNumber)
-                .map((category, i) => {
+                .map((category) => {
                   return (
                     <p className="mb-2">
                       <CheckBox
                         onClick={() => {
                           handleSetFilters("categories", category._id);
                         }}
-                        index={i}
                         label={category.name}
                       ></CheckBox>
                     </p>
@@ -202,7 +201,6 @@ const SearchResults = () => {
                     handleSetFilters("levels", "Beginner");
                   }}
                   label="Begineer"
-                  index={"Begineer"}
                 ></CheckBox>
               </p>
               <p className="mb-2">
@@ -211,7 +209,6 @@ const SearchResults = () => {
                     handleSetFilters("levels", "Intermediate");
                   }}
                   label="Intermediate"
-                  index={"Intermediate"}
                 ></CheckBox>
               </p>
               <p className="mb-2">
@@ -220,7 +217,6 @@ const SearchResults = () => {
                     handleSetFilters("levels", "Advanced");
                   }}
                   label="Advanced"
-                  index={"Advanced"}
                 ></CheckBox>
               </p>
               <div className="hr"></div>
@@ -236,7 +232,6 @@ const SearchResults = () => {
                     handleSetFilters("languages", "English");
                   }}
                   label="English"
-                  index="English"
                 ></CheckBox>
               </p>
               <p className="mb-2">
@@ -245,7 +240,6 @@ const SearchResults = () => {
                     handleSetFilters("languages", "Arabic");
                   }}
                   label="Arabic"
-                  index="Arabic"
                 ></CheckBox>
               </p>
               <div className="hr"></div>
@@ -269,7 +263,6 @@ const SearchResults = () => {
                       </span>
                     </div>
                   }
-                  index="4.5&up"
                   onClick={() => {
                     handleSetFilters("ratings", 4.5);
                   }}
@@ -289,7 +282,6 @@ const SearchResults = () => {
                       </span>
                     </div>
                   }
-                  index="4&up"
                   onClick={() => {
                     handleSetFilters("ratings", 4);
                   }}
@@ -309,7 +301,6 @@ const SearchResults = () => {
                       </span>
                     </div>
                   }
-                  index="3.5&up"
                   onClick={() => {
                     handleSetFilters("ratings", 3.5);
                   }}
@@ -329,7 +320,6 @@ const SearchResults = () => {
                       </span>
                     </div>
                   }
-                  index="3&up"
                   onClick={() => {
                     handleSetFilters("ratings", 3);
                   }}
@@ -501,7 +491,7 @@ const SearchResults = () => {
                             </p>
                             {categoriesListSliced
                               .slice(0, showMoreCategoriesNumber)
-                              .map((category, i) => {
+                              .map((category) => {
                                 return (
                                   <p className="mb-2">
                                     <CheckBox
@@ -512,7 +502,6 @@ const SearchResults = () => {
                                         );
                                       }}
                                       label={category.name}
-                                      index={i}
                                     ></CheckBox>
                                   </p>
                                 );
@@ -554,7 +543,6 @@ const SearchResults = () => {
                                   handleSetFilters("levels", "Beginner");
                                 }}
                                 label="Begineer"
-                                index="Begineer"
                               ></CheckBox>
                             </p>
                             <p className="mb-2">
@@ -563,7 +551,6 @@ const SearchResults = () => {
                                   handleSetFilters("levels", "Intermediate");
                                 }}
                                 label="Intermediate"
-                                index="Intermediate"
                               ></CheckBox>
                             </p>
                             <p className="mb-2">
@@ -572,7 +559,6 @@ const SearchResults = () => {
                                   handleSetFilters("levels", "Advanced");
                                 }}
                                 label="Advanced"
-                                index="Advanced"
                               ></CheckBox>
                             </p>
                             <div className="hr"></div>
@@ -588,7 +574,6 @@ const SearchResults = () => {
                                   handleSetFilters("languages", "English");
                                 }}
                                 label="English"
-                                index="English"
                               ></CheckBox>
                             </p>
                             <p className="mb-2">
@@ -597,7 +582,6 @@ const SearchResults = () => {
                                   handleSetFilters("languages", "Arabic");
                                 }}
                                 label="Arabic"
-                                index="Arabic"
                               ></CheckBox>
                             </p>
                             <div className="hr"></div>
@@ -621,7 +605,6 @@ const SearchResults = () => {
                                     </span>
                                   </div>
                                 }
-                                index="4.5&up"
                                 onClick={() => {
                                   handleSetFilters("ratings", 4.5);
                                 }}
@@ -641,7 +624,6 @@ const SearchResults = () => {
                                     </span>
                                   </div>
                                 }
-                                index="4&up"
                                 onClick={() => {
                                   handleSetFilters("ratings", 4);
                                 }}
@@ -661,7 +643,6 @@ const SearchResults = () => {
                                     </span>
                                   </div>
                                 }
-                                index="3.5&up"
                                 onClick={() => {
                                   handleSetFilters("ratings", 3.5);
                                 }}
@@ -681,7 +662,6 @@ const SearchResults = () => {
                                     </span>
                                   </div>
                                 }
-                                index="3&up"
                                 onClick={() => {
                                   handleSetFilters("ratings", 3);
                                 }}
@@ -709,7 +689,7 @@ const SearchResults = () => {
                               navigate(`/course/${result._id}`);
                             }}
                           >
-                            <img src={result?.cover} alt="course-img"></img>
+                            <img src={result.cover} alt="course-img"></img>
                           </div>
                           <div
                             className="col-sm-6 cursor-pointer"
