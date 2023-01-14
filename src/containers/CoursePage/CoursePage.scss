@@ -2,6 +2,20 @@
 @import "../../scss/mixins";
 
 .course-section-wrapper {
+
+  .course-criculum-title {
+    color: $btnColor;
+    display: flex;
+  }
+  .title-info {
+    color: #535364;
+    margin: 0;
+    font-size: 12px;
+}
+.single-lecture {
+  display: flex;
+  gap: 20px;
+}
   a {
     color: inherit;
     text-decoration: inherit;
@@ -132,7 +146,7 @@
       list-style-type: none;
       display: flex;
       justify-content: space-between;
-      padding: 1.7vw 1.2vw;
+      padding: 1.7vw 1.2vw 1.6vw 1.2vw;
       li {
       cursor: pointer;
       }

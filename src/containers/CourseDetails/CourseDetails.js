@@ -106,7 +106,6 @@ const CourseDetails = () => {
               preload
               width="100%"
             >
-              {console.log("courseUrlcourseUrlcourseUrl", courseUrl)}
               <source
                 src={courseUrl}
               // type="video/mp4"
@@ -123,6 +122,7 @@ const CourseDetails = () => {
                   }}
                 >
                   <FormattedMessage id="Overview" />
+                  <div ></div>
                 </li>
                 <li
                   className={`"inter-regular body-1" ${activeTab === 1 && "li-active"
@@ -132,6 +132,7 @@ const CourseDetails = () => {
                   }}
                 >
                   <FormattedMessage id="Rating" />
+                <div ></div>
                 </li>
                 <li
                   className={`"inter-regular body-1" ${activeTab === 2 && "li-active"
@@ -141,6 +142,7 @@ const CourseDetails = () => {
                   }}
                 >
                   <FormattedMessage id="Certification" />
+                  <div ></div>
                 </li>
                 <li
                   className={`"inter-regular body-1" ${activeTab === 3 && "li-active"}`}
@@ -149,6 +151,7 @@ const CourseDetails = () => {
                   }}
                 >
                   <FormattedMessage id="Attachments" />
+                  <div ></div>
                 </li>
               </ul>
             </div>

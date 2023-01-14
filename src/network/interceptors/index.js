@@ -6,7 +6,9 @@ export const isHandlerEnabled = (config = {}) => {
 };
 
 export const requestHandler = request => {
-  store.dispatch(addLoader())
+  if(!(((request.url === "/categories" || request.url === "/cart") &&( window.location.pathname==="/" ||  window.location.pathname==="/about-us")))) {
+    store.dispatch(addLoader());
+  }
   if (isHandlerEnabled(request)) {
     if(localStorage.getItem('token')) {
       request.headers["Authorization"] = `Bearer ${localStorage.getItem('token')}`;

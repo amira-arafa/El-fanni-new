@@ -8,6 +8,9 @@ import playIcon from "../../assets/imgs/icons/play-circle.png";
 import clockIcon from "../../assets/imgs/icons/clock.png";
 import starIcon from "../../assets/imgs/icons/star.png";
 import cutMetalImg from "../../assets/imgs/cutting_metals.png";
+import arrowdownIcon from "../../assets/imgs/icons/Vector.png";
+import docIcon from "../../assets/imgs/icons/document-text.png";
+import videoIcon from "../../assets/imgs/icons/video-circle.png";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -178,7 +181,42 @@ const CoursePage = () => {
                   <p className="glory-bold heading-3">
                     <FormattedMessage id="Content" />
                   </p>
-                  <div className="collapse-container">
+                  <hr/>
+                  {course_info?.sections?.map((course, i) => (
+                  <div>
+                    <p>
+                      <p
+                        className="glory-semi-bold heading-1 course-criculum-title cursor-pointer"
+                        data-bs-toggle="collapse"
+                        data-bs-target={`#collapseExample-${i}`}
+                        aria-expanded="false"
+                        aria-controls="collapseExample"
+                      >
+                        <span style={{alignSelf: 'center'}}><img src={arrowdownIcon} alt="arrow-down" className="me-2"/></span>
+                        <div>
+                          <span className="title-text">{course.title}</span>
+                        </div>
+                      </p>
+                    </p>
+                    <div className="collapse" id={`collapseExample-${i}`}>
+                      <div>
+                        {course?.lectures.map((lecture, index) => (
+                          <div className="d-flex justify-content-between mb-4 cursor-pointer">
+                            <div className="body-1 inter-regular lesson-color single-lecture">
+                              <span><img src={index % 2 == 0 ? docIcon : videoIcon}/></span>
+                              <span>{lecture.title}</span>
+                            </div>
+                            <div className="body-1 inter-regular inter-semi-bold time-color">
+                            <b>{Math.floor((Math.random() * 10) + 1) + ':' + Math.floor((Math.random() * 60) + 1)}</b>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+                  {/* <div className="collapse-container">
                     <hr />
                     <p>
                       <p
@@ -235,7 +273,7 @@ const CoursePage = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="about-lecturer-section mb-4 align-items-start" id="lecturers_section">
                   <p className="glory-bold heading-3">
