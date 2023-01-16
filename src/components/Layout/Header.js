@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 import logoMobile from "../../assets/imgs/logoMobile.png";
 import logo from "../../assets/imgs/logo.png";
-import language from "../../assets/imgs/icons/language.png";
+import languageIcon from "../../assets/imgs/icons/language.png";
 import loginIcon from "../../assets/imgs/icons/loginIcon.png";
 import search from "../../assets/imgs/icons/search-normal.png";
 import category from "../../assets/imgs/icons/category.png";
@@ -19,6 +19,7 @@ import { STORE_SEARCH_QUERY } from "../../store/types/home";
 import Input from "../../components/Input/Input";
 import Button from "../Button/Button";
 import ModalComponent from "../Modal/Modal";
+import { setCurrentLang } from "../../store/actions/Lang";
 import "./Header.scss";
 
 const Header = () => {
@@ -41,6 +42,9 @@ const Header = () => {
   const { token, user_data } = auth;
   const [searchValue, setSearchValue] = useState("");
   const [currentCategory, setCurrentCategory] = useState(0);
+  const [language, setLanguage] = useState(
+    localStorage.getItem("lang") === "ar" ? "ar" : "en"
+  );
 
   useEffect(() => {
     if (auth.sucess_logout) {
@@ -53,6 +57,10 @@ const Header = () => {
       });
     };
   }, [auth.sucess_logout]);
+
+  useEffect(() => {
+    dispatch(setCurrentLang(language));
+  }, [language, dispatch]);
 
   useEffect(() => {
     dispatch(getCategories());
@@ -173,9 +181,33 @@ const Header = () => {
       </div>
       <div className="col-sm-4 is-mobile justify-content-end">
         <div className="col-sm-3 d-flex ">
-          <div>
-            <img alt="language" src={language} width="22px" height="22px"></img>
-          </div>
+        <div className="dropdown ddp-btn ">
+                <div
+                  className="dropdown-toggle w-100 course-content-btn"
+                  type="button"
+                  id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                <img alt="language" src={languageIcon} width="22px" height="22px"></img>
+                </div>
+                <ul
+                  className="dropdown-menu w-100"
+                  aria-labelledby="dropdownMenuButton1"
+                >
+                  <li onClick={() => setLanguage("en")}>
+                    <a className="dropdown-item">
+                      EN
+                    </a>
+                  </li>
+                  <li onClick={() => setLanguage("en")}>
+                    <a className="dropdown-item">
+                      AR
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            
           <div className="d-flex align-items-center cursor-pointer">
             <img
               alt="cart"

@@ -49,6 +49,10 @@ function App() {
   return (
     <div className={loader ? 'app-opacity' : ''}>
       <GoogleOAuthProvider clientId="661780234238-bmagndqkhr4jv0km57quejl8tt82u42s.apps.googleusercontent.com">
+      <div
+        className={lang === "ar" ? "rtl" : "ltr"}
+        dir={lang === "ar" ? "rtl" : "ltr"}
+      >
         <IntlProvider locale={lang} messages={messages[lang]}>
           <Router history={history}>
             <Routes>
@@ -83,6 +87,7 @@ function App() {
             </Routes>
           </Router>
         </IntlProvider>
+        </div>
       <ToastContainer />
       {loader && <div className="overlay-loader">
           <div className="d-flex justify-content-center">
