@@ -117,7 +117,7 @@ export default {
     showMore : 'Show more',
     removeFromCart : 'Remove from cart',
     deleteMsg : 'Are you sure you want to delete this item ?',
-    deleteMsgCourse : 'Are you sure you want to remove this course from your cart',
+    deleteMsgCourse : 'Are you sure you want to remove this course from your cart?',
     deleteCourseTitle: 'Removing course from your cart !!',
     NoKeep : "No, keep",
     yesRemove : "Yes, Remove",
@@ -143,7 +143,8 @@ export default {
     emptyCollectionMsg :'you can know make your first collection and save your favourite courses in it',
     cartEmpty: 'The cart is empty',
     noReviews : 'There is no reviews',
-    noAttachments: 'There is no Attachments'
+    noAttachments: 'There is no Attachments',
+    ratingAndreviews: 'Rating & Reviews'
 
   }
 }

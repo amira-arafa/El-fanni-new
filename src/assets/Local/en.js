@@ -117,7 +117,7 @@ export default {
     showMore : 'Show more',
     removeFromCart : 'Remove from cart',
     deleteCourseTitle: 'Removing course from your cart !!',
-    deleteMsgCourse : 'Are you sure you want to remove this course from your cart',
+    deleteMsgCourse : 'Are you sure you want to remove this course from your cart?',
     NoKeep : "No, keep",
     yesRemove : "Yes, Remove",
     asc: "Ascending",
@@ -130,7 +130,7 @@ export default {
     Add: 'Add',
     addToCollection: 'Add to Collection',
     removeCollection : 'Remove Collection',
-    deleteCollectionTitle : 'Are you sure you want to delete this item ?',
+    deleteCollectionTitle : 'Are you sure you want to delete this item?',
     deleteCollectionMsg :'you will lose all the information and the data that the item has',
     removeFromCollection : 'Remove From Collection',
     removeFromSavedCourses : 'Remove From saved courses',
@@ -141,7 +141,7 @@ export default {
     emptyCollectionMsg :'you can know make your first collection and save your favourite courses in it',
     cartEmpty: 'The cart is empty',
     noReviews : 'There is no reviews',
-    noAttachments: 'There is no Attachments'
-    
+    noAttachments: 'There is no Attachments',
+    ratingAndreviews: 'Rating & Reviews',
   }
 }

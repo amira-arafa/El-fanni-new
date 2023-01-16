@@ -11,12 +11,13 @@ const Header2 = () => {
   const { home } = useSelector((state) => state);
   const { course_info } = home;
   const navigate = useNavigate();
+
   return (
     <div className="header-container d-flex">
       <div className="col-sm-10">
         <div className="d-flex align-items-center ">
-          <div className="d-flex align-items-center">
-            <div className="cursor-pointer" onClick={()=> navigate("/")}>
+          <div onClick={() => navigate("/")} className="d-flex align-items-center cursor-pointer">
+            <div>
               <img alt="logo" src={logo} width="60px" height="60px"></img>
             </div>
             <div className="text-white glory-bold heading-3 mx-2">

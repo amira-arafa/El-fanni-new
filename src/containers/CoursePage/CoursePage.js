@@ -122,7 +122,7 @@ const CoursePage = () => {
         </div>
 
         <div className="course-second-section">
-          <div className="course-data-wrapper my-2">
+          <div className="course-data-wrapper my-3">
             <ul className="content-data-ul">
               <li className="inter-regular body-1 ">
                 <a href="#overview_section">
@@ -369,7 +369,7 @@ const CoursePage = () => {
                   <div className="d-flex justify-content-between my-4 align-items-baseline">
                     <div>
                       {/* <div className="single-star"><img src={starIcon} width='30%'/></div> */}
-                      <span><span className="star-item">{course_info.avgRating ?? 0} </span>
+                        <span><span className="star-item">{course_info.avgRating ?? 0} </span>
                         <span><img src={starIcon} style={{ verticalAlign: 'top' }} /></span>
                         <sub className="inter-normal label-1">of 5</sub></span>
                       <span className="glory-semi-bold heading-1 mx-3">{course_info.reviewsNo}</span>

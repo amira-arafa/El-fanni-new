@@ -111,10 +111,12 @@
     background: url(../../../src/assets/imgs/icons/category2.png) no-repeat;
     margin: 0;
     padding: 0px 30px;
-    margin-bottom: 10px !important;
     cursor: pointer;
     height: 25px
   }
+}
+.subcategories-wrapper .label-1{
+  font-size: .9vw;
 }
 img[alt="search-icon-overlay"] {
   @include inputIcon(35px, 11px);

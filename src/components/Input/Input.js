@@ -1,7 +1,7 @@
 import React from "react";
 import Label from "../Label/Label";
 
-const Input = ({ label, type, placeholder, icon, value, onChange, className }) => {
+const Input = ({ label, type, placeholder, icon, value, onChange, className, onKeyPress }) => {
   return (
     <>
       {Label && <Label title={label} />}
@@ -11,6 +11,7 @@ const Input = ({ label, type, placeholder, icon, value, onChange, className }) =
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        onKeyPress={onKeyPress}
       ></input>
       {icon}
     </>
