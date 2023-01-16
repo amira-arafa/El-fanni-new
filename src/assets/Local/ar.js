@@ -143,7 +143,8 @@ export default {
     emptyCollectionMsg :'you can know make your first collection and save your favourite courses in it',
     cartEmpty: 'The cart is empty',
     noReviews : 'There is no reviews',
-    noAttachments: 'There is no Attachments'
+    noAttachments: 'There is no Attachments',
+    ratingAndreviews: 'Rating & Reviews'
 
   }
 }

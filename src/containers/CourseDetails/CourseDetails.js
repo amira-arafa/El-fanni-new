@@ -17,12 +17,16 @@ import certificate2 from "../../assets/imgs/certificate2.png";
 import { Rating } from "react-simple-star-rating";
 import downloadIcon from "../../assets/imgs/icons/document-download.png";
 import moreIcon from "../../assets/imgs/icons/moregrey.png";
+import searchIcon from "../../assets/imgs/icons/search-normal.png";
 import importIcon from "../../assets/imgs/icons/import.png";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCourseDetails } from "../../store/actions/home";
 import EmptyState from "../../components/EmptyStateComponent/EmptyState";
 import "./CourseDetails.scss";
+import Input from "../../components/Input/Input";
+import search from "../../assets/imgs/icons/search-normal.png";
+import sortIcon from "../../assets/imgs/icons/sort.png";
 
 const CourseDetails = () => {
   const intl = useIntl();
@@ -32,6 +36,7 @@ const CourseDetails = () => {
   const { home } = useSelector((state) => state);
   const { course_info } = home;
   const [courseUrl, setCourseUrl] = useState(null);
+  const [reviewSearchValue, setReviewSearchValue] = useState("");
 
   useEffect(() => {
     id && dispatch(getCourseDetails(id));
@@ -112,7 +117,7 @@ const CourseDetails = () => {
               />
             </video>}
 
-            <div className="course-data-wrapper my-2">
+            <div className="course-data-wrapper my-3">
               <ul className="content-data-ul">
                 <li className={`"inter-regular body-1" ${activeTab === 0 && "li-active"}`}
                   onClick={() => {
@@ -262,18 +267,46 @@ const CourseDetails = () => {
               <div className="over-view-wrapper">
                 <div className="reviews-section mb-4">
                   <p className="glory-bold heading-3">
-                    <FormattedMessage id="Reviews" />
+                    <FormattedMessage id="ratingAndreviews" />
                   </p>
                   <div className="d-flex justify-content-between my-4 align-items-baseline">
-                    {/* <div>
+                    <div>
                       <span>
-                        <span className="star-item">5 </span>{" "}
+                        <span className="star-item">{course_info.avgRating ?? 0} </span>
                         <sub className="inter-normal label-1">of 5</sub>
                       </span>
                       <span className="glory-semi-bold heading-1 mx-3">
-                        23 review
+                      {course_info.reviewsNo} review
                       </span>
-                    </div> */}
+                    </div>
+                  </div>
+
+                  <div className="reviews-search-wrapper mb-5">
+                    <Input
+                    type="text"
+                    className="reviews-search-input"
+                    value={reviewSearchValue}
+                    onChange={(e) => setReviewSearchValue(e.target.value)}
+                    placeholder={intl.formatMessage({ id: "searchHere" })}
+                    onKeyPress={(event) => {
+                      // if (event.key === "Enter") redirectTosearchPage()
+                    }}
+                    icon={
+                      <img
+                        alt="search-icon"
+                        src={searchIcon}
+                        width="20"
+                        height="20"
+                        className="cursor-pointer"
+                        // onClick={() => redirectTosearchPage()}
+                      />
+                    }
+                  />
+                  <Button
+                    className="sort-btn inter-semi-bold label-1"
+                    text={intl.formatMessage({ id: "sortBy" })}
+                    icon={sortIcon}
+                  ></Button>
                   </div>
 
                   <div className="row gx-2">
@@ -303,202 +336,6 @@ const CourseDetails = () => {
                         </div>
                       </div>
                     </div>))}
-
-                    <div className="col-sm-12">
-                      <div className="p-3 mb-3">
-                        <div className="d-flex student-info mb-2">
-                          <div>
-                            <img src={teacher4} alt="lecturer-img" />
-                          </div>
-                          <div>
-                            <div className="student-name inter-semi-bold body-1">
-                              John Doe
-                            </div>
-                            <div className="student-school label-1 inter-regular">
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star2}
-                                  alt="star"
-                                  width="13px"
-                                  heigth="13px"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="row">
-                          <div className="offset-sm-1 col-sm-11">
-                            Lorem ipsum dolor sit amet, ctetur adipiscing elit.
-                            Dis dolor sit ultricies enim pellentesque hac id.
-                            Vitae commodo at pulvinar viverra moltie purus.
-                            Neque ut a dictum egestas vestibulum lacus, nisl
-                            mauris. Dui tortor in et lorem lacus
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-sm-12">
-                      <div className="p-3 mb-3">
-                        <div className="d-flex student-info mb-2">
-                          <div>
-                            <img src={teacher4} alt="lecturer-img" />
-                          </div>
-                          <div>
-                            <div className="student-name inter-semi-bold body-1">
-                              John Doe
-                            </div>
-                            <div className="student-school label-1 inter-regular">
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star2}
-                                  alt="star"
-                                  width="13px"
-                                  heigth="13px"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="row">
-                          <div className="offset-sm-1 col-sm-11">
-                            Lorem ipsum dolor sit amet, ctetur adipiscing elit.
-                            Dis dolor sit ultricies enim pellentesque hac id.
-                            Vitae commodo at pulvinar viverra moltie purus.
-                            Neque ut a dictum egestas vestibulum lacus, nisl
-                            mauris. Dui tortor in et lorem lacus
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-sm-12">
-                      <div className="p-3 mb-3">
-                        <div className="d-flex student-info mb-2">
-                          <div>
-                            <img src={teacher4} alt="lecturer-img" />
-                          </div>
-                          <div>
-                            <div className="student-name inter-semi-bold body-1">
-                              John Doe
-                            </div>
-                            <div className="student-school label-1 inter-regular">
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star}
-                                  alt="star"
-                                  width="15px"
-                                  heigth="15px"
-                                />
-                              </span>
-                              <span className="align-text-bottom">
-                                <img
-                                  src={star2}
-                                  alt="star"
-                                  width="13px"
-                                  heigth="13px"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="row">
-                          <div className="offset-sm-1 col-sm-11">
-                            Lorem ipsum dolor sit amet, ctetur adipiscing elit.
-                            Dis dolor sit ultricies enim pellentesque hac id.
-                            Vitae commodo at pulvinar viverra moltie purus.
-                            Neque ut a dictum egestas vestibulum lacus, nisl
-                            mauris. Dui tortor in et lorem lacus
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -510,10 +347,10 @@ const CourseDetails = () => {
                   <FormattedMessage id="Attachments" />
                 </p>
 
-               {  course_info?.attachments?.length>0 ?<ul className="attachment-ul">
-                { course_info?.attachments?.length>0 && course_info.attachments.map((attach, i)=> (
-              <li className="inter-regular body-1 mb-2 cursor-pointer"><img src={importIcon} alt="download" className="me-2"/><a href={attach} >Attachment {i+1}</a></li>
-            ))}
+                { course_info?.attachments?.length>0 ?<ul className="attachment-ul">
+                  { course_info?.attachments?.length>0 && course_info.attachments.map((attach, i)=> (
+                  <li className="inter-regular body-1 mb-2 cursor-pointer"><img src={importIcon} alt="download" className="me-2"/><a href={attach} >Attachment {i+1}</a></li>
+                ))}
                 </ul> : <EmptyState text={<FormattedMessage id="noAttachments"/>}/>}
               </div>
             )}
