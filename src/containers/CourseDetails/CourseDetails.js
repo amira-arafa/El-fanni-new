@@ -85,7 +85,8 @@ const CourseDetails = () => {
                       <div>
                         {course?.lectures.map((lecture, index) => (
                           <div className="d-flex justify-content-between mb-4 cursor-pointer" onClick={() => {
-                            setCourseUrl("https://alfanni-staging.s3.eu-central-1.amazonaws.com/demo/lecture-demo.mp4")
+                            document.querySelector('#mainVideo').src = "https://alfanni-staging.s3.eu-central-1.amazonaws.com/demo/lecture-demo.mp4";
+                            document.querySelector('#mobileVideo').src = "https://alfanni-staging.s3.eu-central-1.amazonaws.com/demo/lecture-demo.mp4"
                           }}>
                             <div className="body-1 inter-regular lesson-color single-lecture">
                               <span><img src={index % 2 == 0 ? docIcon : videoIcon}/></span>
@@ -281,8 +282,9 @@ const CourseDetails = () => {
                     </div>
                   </div>
 
-                  <div className="reviews-search-wrapper mb-5">
-                    <Input
+                  <div className="reviews-search-wrapper mb-4 row">
+                   <div className="col-sm-10">
+                   <Input
                     type="text"
                     className="reviews-search-input"
                     value={reviewSearchValue}
@@ -302,11 +304,14 @@ const CourseDetails = () => {
                       />
                     }
                   />
-                  <Button
+                    </div>
+                 <div className="col-sm-2">
+                 <Button
                     className="sort-btn inter-semi-bold label-1"
                     text={intl.formatMessage({ id: "sortBy" })}
                     icon={sortIcon}
                   ></Button>
+                  </div>
                   </div>
 
                   <div className="row gx-2">
@@ -405,15 +410,15 @@ const CourseDetails = () => {
           </ul>
         </div>
         <video
-          id="mainVideo"
+          id="mobileVideo"
           className="main mb-3"
           controls
           preload
           width="100%"
         >
           <source
-            src="https://raw.githubusercontent.com/rizz-wan/utils/main/ambience/6.mp4"
-            type="video/mp4"
+            src={courseUrl}
+            // type="video/mp4"
           />
         </video>
 

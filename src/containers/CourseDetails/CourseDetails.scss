@@ -36,12 +36,14 @@
     width: 85%;
   }
   .reviews-search-wrapper{
-    display: flex;
-
     img[alt="search-icon"] {
       position: relative;
-      right: 4%;
-      top: 20px;
+      right: 3%;
+      float: right;
+      bottom: 50%;
+    }
+    .sort-btn {
+      padding: 8px 11px;
     }
   }
   .title-info span:first-child:after {
