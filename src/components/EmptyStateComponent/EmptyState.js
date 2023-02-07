@@ -9,7 +9,13 @@ const EmptyState = ({ text, btnText, className, subText, btnIcon }) => {
       <div
         className={`${className} low-line-height d-flex align-items-center justify-content-center flex-column`}
       >
-        <img src={EmptyImg} width="200" height="200" className="mb-4" />
+        <img
+          src={EmptyImg}
+          width="200"
+          height="200"
+          className="mb-4"
+          alt="empty-state-btn"
+        />
         <div className="heading-4 btnColor glory-semi-bold mb-3">{text}</div>
         {subText && (
           <div className="inter-regular body-1 subText mb-3">{subText}</div>

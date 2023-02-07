@@ -9,27 +9,35 @@ import { ForgetPassword } from "../../store/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SUCESS_FORGET_PASS } from "../../store/types/auth";
+import { setCurrentLang } from "../../store/actions/Lang";
 import "./ForgetPasswordEmail.scss";
 
 const ForgetPasswordEmail = () => {
   const intl = useIntl();
   const [email, setEmail] = useState("");
   const [emailErr, setEmailErr] = useState(false);
-  const {auth} = useSelector((state)=> state);
+  const { auth } = useSelector((state) => state);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [language, setLanguage] = useState(
+    localStorage.getItem("lang") === "ar" ? "ar" : "en"
+  );
 
-  useEffect(()=> {
-    if(auth.success_forget_pass) {
+  useEffect(() => {
+    if (auth.success_forget_pass) {
       navigate("/check-email");
     }
-    return(()=> {
+    return () => {
       dispatch({
         type: SUCESS_FORGET_PASS,
-        payload: false
-      })
-    })
-  },[auth.success_forget_pass])
+        payload: false,
+      });
+    };
+  }, [auth.success_forget_pass, dispatch, navigate]);
+
+  useEffect(() => {
+    dispatch(setCurrentLang(language));
+  }, [language, dispatch]);
 
   const onEmailChange = ({ target }) => {
     setEmail(target.value);
@@ -43,9 +51,7 @@ const ForgetPasswordEmail = () => {
 
   const onSubmit = () => {
     !email && setEmailErr(true);
-    if (
-      email && !emailErr
-    ) {
+    if (email && !emailErr) {
       const data = {
         email,
       };
@@ -64,10 +70,20 @@ const ForgetPasswordEmail = () => {
             {<FormattedMessage id="ElFanni" />}
           </div>
         </div>
-        <div className="mb-5 pb-5">
+        <div className="mb-5 pb-5 d-flex align-items-center justify-content-between">
           <p className="glory-semi-bold heading-2 mb-0">
             <FormattedMessage id="forgetPassword" />
           </p>
+          <div>
+            <a
+              className="cursor-pointer"
+              onClick={() => {
+                language === "ar" ? setLanguage("en") : setLanguage("ar");
+              }}
+            >
+              {language === "ar" ? "AR" : "EN"}
+            </a>
+          </div>
         </div>
         <div className="mb-4">
           <Input
@@ -93,7 +109,7 @@ const ForgetPasswordEmail = () => {
           <Button
             text={intl.formatMessage({ id: "send" })}
             className="w-100 regular-btn"
-            onClick={()=> onSubmit()}
+            onClick={() => onSubmit()}
           />
         </div>
       </div>

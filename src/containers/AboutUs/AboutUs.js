@@ -1,7 +1,5 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import Header from "../../components/Layout/Header";
-import Footer from "../../components/Layout/Footer";
 import aboutUsImg from "../../assets/imgs/signUp2.jpeg";
 import board from "../../assets/imgs/board.png";
 import "./AboutUs.scss";
@@ -9,7 +7,6 @@ import "./AboutUs.scss";
 const AboutUs = () => {
   return (
     <>
-      <Header></Header>
       <div className="about-us-page">
         <div className="about-us-bg-img mb-3">
           <div className="glory-bold heading about-us-header">
@@ -174,17 +171,17 @@ const AboutUs = () => {
                 </p>
                 <ul>
                   <li className="inter-regular">
-                    <a href="#who-we-are-section">
+                    <a href="#who-we-are-section ">
                       <FormattedMessage id="WhoWeAre" />
                     </a>
                   </li>
                   <li className="inter-regular">
-                    <a href="#mission-and-vision-section">
+                    <a href="#mission-and-vision-section ">
                       <FormattedMessage id="MissionAndVission" />
                     </a>
                   </li>
                   <li className="inter-regular">
-                    <a href="#our-board-section">
+                    <a href="#our-board-section ">
                       <FormattedMessage id="OurBoard" />
                     </a>
                   </li>
@@ -194,7 +191,6 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-      <Footer></Footer>
     </>
   );
 };

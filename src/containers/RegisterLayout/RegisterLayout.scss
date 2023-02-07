@@ -78,7 +78,8 @@
       font-size: 2.5vw !important;
     }
     .regular-btn,
-    .social-media-btn ,.kep-login-facebook {
+    .social-media-btn,
+    .kep-login-facebook {
       font-size: 3.173vw !important;
       padding: 1.782vw 3.346vw !important;
       border-radius: 8px !important;
@@ -197,5 +198,13 @@
     margin-right: 11px !important;
     width: 16px;
     height: 16px;
+  }
+}
+
+div[dir="rtl"] {
+  .sign-up-form img[alt="password-repeat-icon"],
+  .sign-up-form img[alt="password-icon"] {
+    float: left !important;
+    left: 3%;
   }
 }

@@ -22,14 +22,14 @@
   }
   .check-courses-btn {
     @include btnStyle(
-        #EFEFEF,
-        12px,
-        #02428d,
-        0.782vw 2.346vw,
-        "Inter-SemiBold",
-        1.173vw,
-        0vw 0.156vw 0.313vw rgba(11, 11, 14, 0.2)
-      );
+      #efefef,
+      12px,
+      #02428d,
+      0.782vw 2.346vw,
+      "Inter-SemiBold",
+      1.173vw,
+      0vw 0.156vw 0.313vw rgba(11, 11, 14, 0.2)
+    );
   }
   .buy-courses-btn {
     border: none;
@@ -48,7 +48,7 @@
   }
 }
 
-@media screen and (max-width:786px) {
+@media screen and (max-width: 786px) {
   .edit-profile-wrapper {
     .label-1 {
       font-size: 3.016vw;
@@ -72,14 +72,13 @@
       font-size: 4vw;
       margin-top: 10px;
     }
-    img[alt=password-icon] ,  img[alt=password-repeat-icon] {
+    img[alt="password-icon"],
+    img[alt="password-repeat-icon"] {
       bottom: 24px !important;
     }
-    .buy-courses-btn , .check-courses-btn {
+    .buy-courses-btn,
+    .check-courses-btn {
       padding: 2.782vw 4.346vw !important;
     }
- 
-    
   }
-  
 }

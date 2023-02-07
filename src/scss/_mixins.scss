@@ -10,16 +10,16 @@
     color: $placeholderColor !important;
     font-size: 1.016vw;
   }
-  &:focus-visible{
+  &:focus-visible {
     outline: none !important;
   }
 }
 
 @mixin inputIcon($bottom, $rigth) {
-    float: right;
-    position: relative;
-    bottom: $bottom;
-    margin-right: $rigth;
+  float: right;
+  position: relative;
+  bottom: $bottom;
+  margin-right: $rigth;
 }
 
 @mixin btnStyle(
@@ -40,9 +40,7 @@
   font-size: $fontSize;
 }
 
-@mixin homeBgImg(
-  $url
-) {
+@mixin homeBgImg($url) {
   height: 130px;
   width: 100%;
   background-color: rgba(11, 84, 170, 0.6);
@@ -56,4 +54,3 @@
   align-self: stretch;
   display: block;
 }
-

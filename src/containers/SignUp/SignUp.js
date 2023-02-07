@@ -12,12 +12,17 @@ import gmailIcon from "../../assets/imgs/icons/google.png";
 import RegisterLayout from "../RegisterLayout/RegisterLayout";
 import Button from "../../components/Button/Button";
 import SocialMediaLogin from "../../components/Button/SocialMediaLogin";
-import { signUp, loginWithFacebook, loginWithGoogle } from "../../store/actions/auth";
+import {
+  signUp,
+  loginWithFacebook,
+  loginWithGoogle,
+} from "../../store/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { SUCESS_SIGN_IN } from "../../store/types/auth";
-import { useGoogleLogin } from '@react-oauth/google';
+import { setCurrentLang } from "../../store/actions/Lang";
+import { useGoogleLogin } from "@react-oauth/google";
 import FacebookLogin from "react-facebook-login";
 import "./SignUp.scss";
 
@@ -40,6 +45,9 @@ const SignUp = () => {
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [language, setLanguage] = useState(
+    localStorage.getItem("lang") === "ar" ? "ar" : "en"
+  );
 
   useEffect(() => {
     if (auth.sucess_sign_in) {
@@ -51,7 +59,17 @@ const SignUp = () => {
         payload: false,
       });
     };
-  }, [auth.sucess_sign_in]);
+  }, [auth.sucess_sign_in, navigate, dispatch]);
+
+  useEffect(() => {
+    dispatch(setCurrentLang(language));
+  }, [language, dispatch]);
+
+  useEffect(() => {
+    if (localStorage.getItem("user-data")) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   const onEmailChange = ({ target }) => {
     setEmail(target.value);
@@ -129,12 +147,12 @@ const SignUp = () => {
   };
 
   const responseFacebook = (response) => {
-    dispatch(loginWithFacebook({ access_token : response.accessToken }));
+    dispatch(loginWithFacebook({ access_token: response.accessToken }));
   };
 
   const loginWithGmail = useGoogleLogin({
-    onSuccess: tokenResponse => {
-      dispatch(loginWithGoogle({ access_token : tokenResponse.access_token }));
+    onSuccess: (tokenResponse) => {
+      dispatch(loginWithGoogle({ access_token: tokenResponse.access_token }));
     },
   });
 
@@ -143,16 +161,33 @@ const SignUp = () => {
       <div className="sign-up-form">
         <div className="pb-4 mobile-logo">
           <div>
-            <img alt="logo" src={logoMobile} width="50" height="50"></img>
+            <img
+              alt="logo"
+              src={logoMobile}
+              width="50"
+              height="50"
+              className="cursor-pointer"
+              onClick={() => navigate("/")}
+            ></img>
           </div>
           <div className="glory-bold heading-4 mx-2">
             {<FormattedMessage id="ElFanni" />}
           </div>
         </div>
-        <div className="mb-0">
+        <div className="mb-0 d-flex align-items-center justify-content-between">
           <p className="glory-semi-bold heading-2 mb-0">
             <FormattedMessage id="createAcc" />
           </p>
+          <div>
+            <a
+              className="cursor-pointer"
+              onClick={() => {
+                language === "ar" ? setLanguage("en") : setLanguage("ar");
+              }}
+            >
+              {language === "ar" ? "AR" : "EN"}{" "}
+            </a>
+          </div>
         </div>
         <div className="mb-3">
           <p className="text-grey-sub-heading body-1 inter-regular low-line-height mb-0">
@@ -289,7 +324,13 @@ const SignUp = () => {
           <FacebookLogin
             textButton={intl.formatMessage({ id: "continueWithFacebook" })}
             icon={
-              <img src={facebookIcon} width="22" height="22" className="mx-2" />
+              <img
+                alt="facebook-icon"
+                src={facebookIcon}
+                width="22"
+                height="22"
+                className="mx-2"
+              />
             }
             appId="5925074920847495"
             className="w-100 social-media-btn"
@@ -299,16 +340,15 @@ const SignUp = () => {
           />
         </div>
         <div className="mb-3">
-        <div onClick={() => loginWithGmail()}>
-          <SocialMediaLogin
-            icon={gmailIcon}
-            text={intl.formatMessage({ id: "continueWithGmail" })}
-            className="w-100 social-media-btn"
-          />
-        </div>
+          <div onClick={() => loginWithGmail()}>
+            <SocialMediaLogin
+              icon={gmailIcon}
+              text={intl.formatMessage({ id: "continueWithGmail" })}
+              className="w-100 social-media-btn"
+            />
+          </div>
         </div>
 
-      
         <div className="d-flex justify-content-center align-items-baseline">
           <p className="text-grey-sub-heading body-1 inter-regular low-line-height mb-0">
             <FormattedMessage id="haveAcc" />

@@ -3,19 +3,19 @@
 
 .course-details-wrapper {
   background-color: #e0e0e0;
-  .course-details-parent{
+  .course-details-parent {
     min-height: 100vh;
   }
   .star-svg {
     width: 23px;
     height: 23px;
   }
-  .glory-bold{
+  .glory-bold {
     display: flex;
     justify-content: space-between;
   }
   .course-criculum-title {
-    color: #02428D;
+    color: #02428d;
     display: flex;
     justify-content: space-between;
   }
@@ -26,16 +26,16 @@
     display: flex;
     gap: 20px;
   }
-  .single-lecture:hover{
-    opacity: .7;
+  .single-lecture:hover {
+    opacity: 0.7;
   }
-  .reviews-search-input{
+  .reviews-search-input {
     border-radius: 12px;
     color: #ffffff;
     padding: 1.8vw 0.9vw !important;
     width: 85%;
   }
-  .reviews-search-wrapper{
+  .reviews-search-wrapper {
     img[alt="search-icon"] {
       position: relative;
       right: 3%;
@@ -56,7 +56,7 @@
     margin-right: 10px;
     margin-left: 10px;
   }
-  .title-info{
+  .title-info {
     color: #535364;
     margin: 0;
     font-size: 12px;
@@ -150,7 +150,7 @@
       padding: 6px 12px 7px 0px;
       margin: 0;
       display: flex;
-      align-items: end;
+      align-items: flex-end;
       a {
         text-decoration: inherit;
         color: inherit;
@@ -165,40 +165,44 @@
   }
 }
 
-@media only screen and (min-width: 375px) and (max-width: 786px) {
+@media only screen and (max-width: 786px) {
   .course-details-wrapper {
-    background-color : $whiteText;
+    background-color: $whiteText;
     .mobile-view {
       display: block;
     }
     .heading-3 {
       font-size: 5vw !important;
-  }
-  .body-1 {
-    font-size: 3.8vw !important;
-}
-.label-1 {
-  font-size: 3.8vw;
-}
-.about-lecturer-section, .over-view-wrapper {
-  padding-left: 20px;
-  padding-right: 20px;
-}
-.attachment-ul {
-  padding-left: 0px;
-}
-  img[alt=lecturer-img] {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-}
+    }
+    .heading-1 {
+      font-size: 3.5vw !important;
+    }
+    .body-1 {
+      font-size: 3.8vw !important;
+    }
+    .label-1 {
+      font-size: 3.8vw;
+    }
+    .about-lecturer-section,
+    .over-view-wrapper {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .attachment-ul {
+      padding-inline: 0px;
+    }
+    img[alt="lecturer-img"] {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+    }
     .desktop-view {
       display: none;
     }
     .course-name-wrapper {
       color: $btnColor;
       background-color: #f6f6f7;
-      padding: 12px 0px;
+      padding: 12px;
     }
     .course-header-title {
       font-size: 18px;
@@ -212,17 +216,31 @@
       flex: 0 0 auto;
       width: 16.66666667%;
     }
-    .ddp-btn  {
-      background-color: #FFF;
+    .menu-content-mobile {
+      background-color: #fff;
     }
-    .course-content-btn, .course-content-btn:hover , .course-content-btn:active {
-      background-color: #FFFFFF !important;
+    .course-content-btn,
+    .course-content-btn:hover,
+    .course-content-btn:active {
+      background-color: #ffffff !important;
       color: #707089 !important;
-      border: 1px solid #707089  !important;
-      border: 2px solid #D8D8DE;
+      border: 1px solid #707089 !important;
+      border: 2px solid #d8d8de;
       border-radius: 8px;
       text-align: left;
       height: 50px;
+    }
+  }
+}
+
+div[dir="rtl"] {
+  .course-details-wrapper {
+    .before-icon {
+      transform: unset;
+    }
+    img[alt="search-icon"] {
+      float: left !important;
+      right: -2.5%;
     }
   }
 }

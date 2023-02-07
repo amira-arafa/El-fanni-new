@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import Header from "../../components/Layout/Header";
 import eyeIcon from "../../assets/imgs/icons/eyeIcon.png";
 import PhoneNumberInput from "../../components/PhoneNumberInput/PhoneNumberInput";
 import Button from "../../components/Button/Button";
@@ -8,7 +7,11 @@ import Input from "../../components/Input/Input";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import eyeSlash from "../../assets/imgs/icons/eye-slash.svg";
-import { getProfile, submitEditProfile, submitEditPassword } from "../../store/actions/home";
+import {
+  getProfile,
+  submitEditProfile,
+  submitEditPassword,
+} from "../../store/actions/home";
 import { useEffect } from "react";
 import "./EditProfile.scss";
 
@@ -17,6 +20,7 @@ const EditProfile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
+  const [emailErr, setEmailErr] = useState(false);
   const [phone, setPhone] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -31,6 +35,12 @@ const EditProfile = () => {
 
   const onEmailChange = ({ target }) => {
     setEmail(target.value);
+    !target.value ? setEmailErr(true) : setEmailErr(false);
+    if (/\S+@\S+\.\S+/.test(target.value) && target.value) {
+      setEmailErr(false);
+    } else {
+      setEmailErr(true);
+    }
   };
 
   const onFirstNameChange = ({ target }) => {
@@ -76,12 +86,12 @@ const EditProfile = () => {
       if (email) {
         data.email = email;
       }
-      dispatch(submitEditProfile(data));
+      !emailErr && dispatch(submitEditProfile(data));
     }
   };
 
   const HandleSubmitPass = () => {
-    if (password && passwordConfirm && passwordCurrent ) {
+    if (password && passwordConfirm && passwordCurrent) {
       const data = {};
       if (password) {
         data.password = password;
@@ -98,7 +108,7 @@ const EditProfile = () => {
 
   useEffect(() => {
     dispatch(getProfile());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (profile_info) {
@@ -111,7 +121,6 @@ const EditProfile = () => {
 
   return (
     <div>
-      <Header></Header>
       <div className="edit-profile-wrapper">
         <p className="btnColor glory-bold heading">
           <FormattedMessage id="editProfile" />
@@ -150,6 +159,11 @@ const EditProfile = () => {
                   placeholder={intl.formatMessage({ id: "EmailPlaceHolder" })}
                 />
               </div>
+              {emailErr && email && (
+                <small className="text-danger label-1">
+                  <FormattedMessage id="emailFieldValidation" />
+                </small>
+              )}
             </div>
             <div className="col-sm-6 mb-4">
               <div className="mb-2">
@@ -246,7 +260,7 @@ const EditProfile = () => {
               <Button
                 text={intl.formatMessage({ id: "save" })}
                 className="buy-courses-btn inter-semi-bold label-1"
-                onClick={()=> HandleSubmitPass()}
+                onClick={() => HandleSubmitPass()}
               ></Button>
             </div>
           </div>

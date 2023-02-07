@@ -8,7 +8,7 @@ const INITIAL_STATE = {
   loading: false,
   success_forget_pass: false,
   success_reset_pass: false,
-  sucess_logout: false
+  sucess_logout: false,
 };
 
 export default function auth(state = INITIAL_STATE, action) {

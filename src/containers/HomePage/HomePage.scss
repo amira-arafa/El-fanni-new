@@ -68,6 +68,10 @@
 .partners-container {
   overflow-x: scroll;
 }
+.star-svg {
+  width: 23px;
+  height: 23px;
+}
 .main-section {
   background-color: $btnColor;
   color: $whiteText;
@@ -112,7 +116,7 @@
   padding: 1.3vw 1.5vw;
 }
 .partners-section {
-  background-color: #F6F6F7;
+  background-color: #f6f6f7;
   padding: 1.3vw 4.5vw;
 }
 .about-us-secondary-section {
@@ -219,10 +223,10 @@ img[alt="category-carousel-img"] {
   width: 31%;
 }
 .students-text {
-  color: #0B0B0E;
+  color: #0b0b0e;
 }
 .student-name {
-  color: #000E1F;
+  color: #000e1f;
 }
 .student-school {
   color: #535364;
@@ -231,7 +235,7 @@ img[alt="category-carousel-img"] {
   align-items: center;
   gap: 20px;
 }
-img[alt="student-img"]{
+img[alt="student-img"] {
   border-radius: 50%;
   width: 100%;
 }
@@ -283,13 +287,16 @@ img[alt="student-img"]{
   justify-content: space-between;
 }
 
-@media only screen and (max-width: 480px) {
-  .about-us-section, .certificate-titles, .top-courses-card {
+@media only screen and (max-width: 786px) {
+  .about-us-section,
+  .certificate-titles,
+  .top-courses-card {
     .label-1 {
       font-size: 2.8vw;
     }
   }
-  .certificate-titles , .partners-section{
+  .certificate-titles,
+  .partners-section {
     .heading-5 {
       font-size: 5vw;
     }
@@ -302,9 +309,9 @@ img[alt="student-img"]{
     width: 90vw;
   }
   .header-container img {
-    width: 25px;
-    height: 25px;
-}
+    width: 25px !important;
+    height: 25px !important;
+  }
   .partner-img-container {
     margin-right: 20px;
   }
@@ -350,7 +357,7 @@ img[alt="student-img"]{
   .categories-section {
     .heading-4 {
       font-size: 4.111vw;
-  }
+    }
   }
   .categories-text {
     width: 90% !important;
@@ -434,27 +441,27 @@ img[alt="student-img"]{
   .lecturer-list {
     width: 1000px;
   }
-  .lecturer-list  .body-1 {
+  .lecturer-list .body-1 {
     font-size: 2.6vw !important;
   }
   .lectures-scroll-container {
     overflow-x: scroll;
   }
- .our-students-card{
-  width: 23%;
- }
+  .our-students-card {
+    width: 23%;
+  }
   .col-sm-2 {
     flex: 0 0 auto;
     width: 16.66666667%;
-}
-.col-sm-10 {
+  }
+  .col-sm-10 {
     flex: 0 0 auto;
     width: 83.33333333%;
-}
-.lecturer-list {
-  gap: 40px;
-  justify-content: unset !important;
-}
+  }
+  .lecturer-list {
+    gap: 40px;
+    justify-content: unset !important;
+  }
 }
 
 @media only screen and (max-width: 1075px) and (min-width: 480px) {
@@ -464,5 +471,38 @@ img[alt="student-img"]{
   }
   .partner-img-container {
     margin-right: 20px;
+  }
+}
+
+div[dir="rtl"] {
+  .home-page-wrapper {
+    .desktop-view,
+    .mobile-view {
+      direction: ltr;
+    }
+    .about-us-img {
+      margin-right: 25%;
+      margin-left: unset;
+    }
+    .about-us-img-2 {
+      margin-right: 10%;
+      margin-left: unset;
+    }
+    img[alt="arrow"] {
+      transform: rotate(180deg);
+    }
+    .student-info {
+      text-align: right;
+    }
+    .lecturer-name {
+      text-align: right;
+    }
+  }
+  @media only screen and (max-width: 786px) { 
+    .home-page-wrapper {
+      .about-us-img, .about-us-img-2 {
+        margin-right: 5%;
+      }
+    }
   }
 }

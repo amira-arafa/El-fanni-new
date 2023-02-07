@@ -4,8 +4,6 @@ import moment from "moment";
 import CheckBox from "../../components/CheckBox/CheckBox";
 import { Rating } from "react-simple-star-rating";
 import addIcon from "../../assets/imgs/icons/add.png";
-import Footer from "../../components/Layout/Footer";
-import Header from "../../components/Layout/Header";
 import Input from "../../components/Input/Input";
 import moreIcon from "../../assets/imgs/icons/moregrey.png";
 import sortIcon from "../../assets/imgs/icons/sort.png";
@@ -72,10 +70,10 @@ const SearchResults = () => {
         searchResult({
           q: search_query || q,
           ...filtersResults,
-          sort : {title: sort},
+          sort: { title: sort },
         })
       );
-  }, [search_query, q]);
+  }, [search_query, q, dispatch, filtersResults, sort]);
 
   useEffect(() => {
     const filtersObj = {};
@@ -83,19 +81,24 @@ const SearchResults = () => {
       if (filters[filterCategory].length > 0) {
         filters[filterCategory].map((filterValue, i) => {
           filtersObj[`${filterCategory}[${i}]`] = filterValue;
+          return null;
         });
       }
     }
     setFiltersObj(filtersObj);
     dispatch(
-      searchResult({ q: search_query || q, sort : {title: sort}, ...filtersObj })
+      searchResult({
+        q: search_query || q,
+        sort: { title: sort },
+        ...filtersObj,
+      })
     );
-  }, [filters]);
+  }, [filters, dispatch, q, sort, search_query]);
 
   useEffect(() => {
     dispatch(getCategories());
     localStorage.getItem("user-data") && dispatch(getCollectionsList());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (search_results.length > 0) {
@@ -126,7 +129,11 @@ const SearchResults = () => {
   const handleSortBy = (sortByTitle) => {
     setSort(sortByTitle);
     dispatch(
-      searchResult({ q: search_query || q, sort : {title: sortByTitle}, ...filtersResults })
+      searchResult({
+        q: search_query || q,
+        sort: { title: sortByTitle },
+        ...filtersResults,
+      })
     );
   };
 
@@ -148,7 +155,6 @@ const SearchResults = () => {
 
   return (
     <>
-      <Header></Header>
       <div className="search-results-container">
         <div className="row">
           <div className="col-sm-4 filters-container pe-5">
@@ -158,16 +164,17 @@ const SearchResults = () => {
               </p>
               {categoriesListSliced
                 .slice(0, showMoreCategoriesNumber)
-                .map((category) => {
+                .map((category, index) => {
                   return (
-                    <p className="mb-2">
+                    <div className="mb-2" key={index}>
                       <CheckBox
                         onClick={() => {
                           handleSetFilters("categories", category._id);
                         }}
                         label={category.name}
+                        index={index}
                       ></CheckBox>
-                    </p>
+                    </div>
                   );
                 })}
             </div>
@@ -195,30 +202,33 @@ const SearchResults = () => {
               <p className="glory-semi-bold search-result-cat-title mb-2">
                 <FormattedMessage id="Level" />
               </p>
-              <p className="mb-2">
+              <div className="mb-2">
                 <CheckBox
                   onClick={() => {
                     handleSetFilters("levels", "Beginner");
                   }}
                   label="Begineer"
+                  index={"Begineer"}
                 ></CheckBox>
-              </p>
-              <p className="mb-2">
+              </div>
+              <div className="mb-2">
                 <CheckBox
                   onClick={() => {
                     handleSetFilters("levels", "Intermediate");
                   }}
                   label="Intermediate"
+                  index={"Intermediate"}
                 ></CheckBox>
-              </p>
-              <p className="mb-2">
+              </div>
+              <div className="mb-2">
                 <CheckBox
                   onClick={() => {
                     handleSetFilters("levels", "Advanced");
                   }}
                   label="Advanced"
+                  index={"Advanced"}
                 ></CheckBox>
-              </p>
+              </div>
               <div className="hr"></div>
             </div>
 
@@ -226,22 +236,24 @@ const SearchResults = () => {
               <p className="glory-semi-bold search-result-cat-title mb-2">
                 <FormattedMessage id="Language" />
               </p>
-              <p className="mb-2">
+              <div className="mb-2">
                 <CheckBox
                   onClick={() => {
                     handleSetFilters("languages", "English");
                   }}
                   label="English"
+                  index="English"
                 ></CheckBox>
-              </p>
-              <p className="mb-2">
+              </div>
+              <div className="mb-2">
                 <CheckBox
                   onClick={() => {
                     handleSetFilters("languages", "Arabic");
                   }}
                   label="Arabic"
+                  index="Arabic"
                 ></CheckBox>
-              </p>
+              </div>
               <div className="hr"></div>
             </div>
 
@@ -249,7 +261,7 @@ const SearchResults = () => {
               <p className="glory-semi-bold search-result-cat-title mb-2">
                 <FormattedMessage id="Rating" />
               </p>
-              <p className="mb-2">
+              <div className="mb-2">
                 <CheckBox
                   label={
                     <div>
@@ -266,9 +278,10 @@ const SearchResults = () => {
                   onClick={() => {
                     handleSetFilters("ratings", 4.5);
                   }}
+                  index="4.5&up"
                 ></CheckBox>
-              </p>
-              <p className="mb-2">
+              </div>
+              <div className="mb-2">
                 <CheckBox
                   label={
                     <div>
@@ -285,9 +298,10 @@ const SearchResults = () => {
                   onClick={() => {
                     handleSetFilters("ratings", 4);
                   }}
+                  index="4&up"
                 ></CheckBox>
-              </p>
-              <p className="mb-2">
+              </div>
+              <div className="mb-2">
                 <CheckBox
                   label={
                     <div>
@@ -304,9 +318,10 @@ const SearchResults = () => {
                   onClick={() => {
                     handleSetFilters("ratings", 3.5);
                   }}
+                  index="3.5&up"
                 ></CheckBox>
-              </p>
-              <p className="mb-2">
+              </div>
+              <div className="mb-2">
                 <CheckBox
                   label={
                     <div>
@@ -323,8 +338,9 @@ const SearchResults = () => {
                   onClick={() => {
                     handleSetFilters("ratings", 3);
                   }}
+                  index="3&up"
                 ></CheckBox>
-              </p>
+              </div>
             </div>
           </div>
 
@@ -356,20 +372,20 @@ const SearchResults = () => {
                         dispatch(
                           searchResult({
                             ...filtersResults,
-                            sort : {title: sort},
+                            sort: { title: sort },
                           })
                         );
                       }}
                     ></Button>
                   )}
 
-                  <div className="dropdown ddp-btn ">
+                  <div className="dropdown ddp-btn d-inline-block">
                     <div
                       className="dropdown-toggle w-100 course-content-btn"
                       type="button"
                       id="dropdownMenuButton1"
                       data-bs-toggle="dropdown"
-                      aria-expanded="false"
+                      role="menuitem"
                     >
                       <Button
                         className="sort-btn inter-semi-bold label-1"
@@ -385,17 +401,17 @@ const SearchResults = () => {
                         onClick={() => handleSortBy(1)}
                         className="cursor-pointer"
                       >
-                        <a className="dropdown-item">
+                        <span className="dropdown-item">
                           <FormattedMessage id="asc" />
-                        </a>
+                        </span>
                       </li>
                       <li
                         onClick={() => handleSortBy(-1)}
                         className="cursor-pointer"
                       >
-                        <a className="dropdown-item">
+                        <span className="dropdown-item">
                           <FormattedMessage id="dsc" />
-                        </a>
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -426,7 +442,7 @@ const SearchResults = () => {
                       type="button"
                       id="dropdownMenuButton1"
                       data-bs-toggle="dropdown"
-                      aria-expanded="false"
+                      role="menuitem"
                     >
                       <Button
                         className="sort-btn-mobile inter-semi-bold label-1"
@@ -441,17 +457,17 @@ const SearchResults = () => {
                         onClick={() => handleSortBy(1)}
                         className="cursor-pointer"
                       >
-                        <a className="dropdown-item">
+                        <span className="dropdown-item">
                           <FormattedMessage id="asc" />
-                        </a>
+                        </span>
                       </li>
                       <li
                         onClick={() => handleSortBy(-1)}
                         className="cursor-pointer"
                       >
-                        <a className="dropdown-item">
+                        <span className="dropdown-item">
                           <FormattedMessage id="dsc" />
-                        </a>
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -484,16 +500,29 @@ const SearchResults = () => {
                         ></Button>
                       }
                       modalBody={
-                        <div className="desktop-padding">
+                        <div
+                          className="desktop-padding"
+                          dir={`${
+                            localStorage.getItem("lang") === "ar"
+                              ? "rtl"
+                              : "ltr"
+                          }`}
+                          style={{
+                            textAlign:
+                              localStorage.getItem("lang") === "ar"
+                                ? "right"
+                                : "left",
+                          }}
+                        >
                           <div className="categories-wrapper">
                             <p className="glory-semi-bold search-result-cat-title mb-2">
                               <FormattedMessage id="categorySearch" />
                             </p>
                             {categoriesListSliced
                               .slice(0, showMoreCategoriesNumber)
-                              .map((category) => {
+                              .map((category, i) => {
                                 return (
-                                  <p className="mb-2">
+                                  <div className="mb-2" key={i}>
                                     <CheckBox
                                       onClick={() => {
                                         handleSetFilters(
@@ -502,8 +531,9 @@ const SearchResults = () => {
                                         );
                                       }}
                                       label={category.name}
+                                      index={i}
                                     ></CheckBox>
-                                  </p>
+                                  </div>
                                 );
                               })}
                           </div>
@@ -537,30 +567,33 @@ const SearchResults = () => {
                             <p className="glory-semi-bold search-result-cat-title mb-2">
                               <FormattedMessage id="Level" />
                             </p>
-                            <p className="mb-2">
+                            <div className="mb-2">
                               <CheckBox
                                 onClick={() => {
                                   handleSetFilters("levels", "Beginner");
                                 }}
                                 label="Begineer"
+                                index="Begineer"
                               ></CheckBox>
-                            </p>
-                            <p className="mb-2">
+                            </div>
+                            <div className="mb-2">
                               <CheckBox
                                 onClick={() => {
                                   handleSetFilters("levels", "Intermediate");
                                 }}
                                 label="Intermediate"
+                                index="Intermediate"
                               ></CheckBox>
-                            </p>
-                            <p className="mb-2">
+                            </div>
+                            <div className="mb-2">
                               <CheckBox
                                 onClick={() => {
                                   handleSetFilters("levels", "Advanced");
                                 }}
                                 label="Advanced"
+                                index="Advanced"
                               ></CheckBox>
-                            </p>
+                            </div>
                             <div className="hr"></div>
                           </div>
 
@@ -568,22 +601,24 @@ const SearchResults = () => {
                             <p className="glory-semi-bold search-result-cat-title mb-2">
                               <FormattedMessage id="Language" />
                             </p>
-                            <p className="mb-2">
+                            <div className="mb-2">
                               <CheckBox
                                 onClick={() => {
                                   handleSetFilters("languages", "English");
                                 }}
                                 label="English"
+                                index="English"
                               ></CheckBox>
-                            </p>
-                            <p className="mb-2">
+                            </div>
+                            <div className="mb-2">
                               <CheckBox
                                 onClick={() => {
                                   handleSetFilters("languages", "Arabic");
                                 }}
                                 label="Arabic"
+                                index="Arabic"
                               ></CheckBox>
-                            </p>
+                            </div>
                             <div className="hr"></div>
                           </div>
 
@@ -591,7 +626,7 @@ const SearchResults = () => {
                             <p className="glory-semi-bold search-result-cat-title mb-2">
                               <FormattedMessage id="Rating" />
                             </p>
-                            <p className="mb-2">
+                            <div className="mb-2">
                               <CheckBox
                                 label={
                                   <div>
@@ -605,12 +640,13 @@ const SearchResults = () => {
                                     </span>
                                   </div>
                                 }
+                                index="4.5&up"
                                 onClick={() => {
                                   handleSetFilters("ratings", 4.5);
                                 }}
                               ></CheckBox>
-                            </p>
-                            <p className="mb-2">
+                            </div>
+                            <div className="mb-2">
                               <CheckBox
                                 label={
                                   <div>
@@ -624,12 +660,13 @@ const SearchResults = () => {
                                     </span>
                                   </div>
                                 }
+                                index="4&up"
                                 onClick={() => {
                                   handleSetFilters("ratings", 4);
                                 }}
                               ></CheckBox>
-                            </p>
-                            <p className="mb-2">
+                            </div>
+                            <div className="mb-2">
                               <CheckBox
                                 label={
                                   <div>
@@ -643,12 +680,13 @@ const SearchResults = () => {
                                     </span>
                                   </div>
                                 }
+                                index={"3.5&up"}
                                 onClick={() => {
                                   handleSetFilters("ratings", 3.5);
                                 }}
                               ></CheckBox>
-                            </p>
-                            <p className="mb-2">
+                            </div>
+                            <div className="mb-2">
                               <CheckBox
                                 label={
                                   <div>
@@ -665,8 +703,9 @@ const SearchResults = () => {
                                 onClick={() => {
                                   handleSetFilters("ratings", 3);
                                 }}
+                                index={"3&up"}
                               ></CheckBox>
-                            </p>
+                            </div>
                           </div>
                         </div>
                       }
@@ -680,9 +719,12 @@ const SearchResults = () => {
                 <div>
                   {searchResultsSliced
                     .slice(0, showMoreNumber)
-                    .map((result) => {
+                    .map((result, i) => {
                       return (
-                        <div className="row course-results-wrapper mb-3">
+                        <div
+                          key={i}
+                          className="row course-results-wrapper mb-3"
+                        >
                           <div
                             className="col-sm-4 cursor-pointer"
                             onClick={() => {
@@ -747,7 +789,7 @@ const SearchResults = () => {
                                   type="button"
                                   id="dropdownMenuButton1"
                                   data-bs-toggle="dropdown"
-                                  aria-expanded="false"
+                                  role="menuitem"
                                 >
                                   <img
                                     className="cursor-pointer"
@@ -765,17 +807,17 @@ const SearchResults = () => {
                                     onClick={() => handleAddToCart(result)}
                                     className="cursor-pointer"
                                   >
-                                    <a className="dropdown-item">
+                                    <span className="dropdown-item">
                                       <FormattedMessage id="addtoCart" />
-                                    </a>
+                                    </span>
                                   </li>
                                   <li
                                     onClick={() => handleAddToFav(result)}
                                     className="cursor-pointer"
                                   >
-                                    <a className="dropdown-item">
+                                    <span className="dropdown-item">
                                       <FormattedMessage id="addToLearningCourse" />
-                                    </a>
+                                    </span>
                                   </li>
                                   <ModalComponent
                                     open={openCollection}
@@ -790,9 +832,9 @@ const SearchResults = () => {
                                         }
                                         className="cursor-pointer"
                                       >
-                                        <a className="dropdown-item">
+                                        <span className="dropdown-item">
                                           <FormattedMessage id="addToCollection" />
-                                        </a>
+                                        </span>
                                       </li>
                                     }
                                     modalBody={
@@ -834,7 +876,7 @@ const SearchResults = () => {
                                                 />
                                               }
                                               modalBody={
-                                                <div >
+                                                <div>
                                                   <div>
                                                     <p className="heading-3  glory-semi-bold btnColor w-50 m-auto mb-3">
                                                       {" "}
@@ -885,46 +927,49 @@ const SearchResults = () => {
                                             />
                                           </div>
                                         </div>
-                                        {collections_list?.map((collection) => (
-                                          <div
-                                            className="row course-results-wrapper mb-3 mx-0 align-items-center cursor-pointer"
-                                            onClick={() => {
-                                              onCloseModalCollection();
-                                              dispatch(
-                                                addToCollection(
-                                                  collection._id,
-                                                  currentCourse
-                                                )
-                                              );
-                                            }}
-                                          >
-                                            <div className="col-sm-3">
-                                              <div className="collection-bg-img">
-                                                <img
-                                                  src={collection1}
-                                                  alt="course-img"
-                                                ></img>
-                                                <img
-                                                  src={collection2}
-                                                  alt="course-img"
-                                                ></img>
-                                                <img
-                                                  src={collection3}
-                                                  alt="course-img"
-                                                ></img>
-                                                <img
-                                                  src={collection4}
-                                                  alt="course-img"
-                                                ></img>
+                                        {collections_list?.map(
+                                          (collection, i) => (
+                                            <div
+                                              key={i}
+                                              className="row course-results-wrapper mb-3 mx-0 align-items-center cursor-pointer"
+                                              onClick={() => {
+                                                onCloseModalCollection();
+                                                dispatch(
+                                                  addToCollection(
+                                                    collection._id,
+                                                    currentCourse
+                                                  )
+                                                );
+                                              }}
+                                            >
+                                              <div className="col-sm-3">
+                                                <div className="collection-bg-img">
+                                                  <img
+                                                    src={collection1}
+                                                    alt="course-img"
+                                                  ></img>
+                                                  <img
+                                                    src={collection2}
+                                                    alt="course-img"
+                                                  ></img>
+                                                  <img
+                                                    src={collection3}
+                                                    alt="course-img"
+                                                  ></img>
+                                                  <img
+                                                    src={collection4}
+                                                    alt="course-img"
+                                                  ></img>
+                                                </div>
+                                              </div>
+                                              <div className="col-sm-9">
+                                                <p className="inter-semi-bold heading-3">
+                                                  {collection.name}
+                                                </p>
                                               </div>
                                             </div>
-                                            <div className="col-sm-9">
-                                              <p className="inter-semi-bold heading-3">
-                                                {collection.name}
-                                              </p>
-                                            </div>
-                                          </div>
-                                        ))}
+                                          )
+                                        )}
                                       </div>
                                     }
                                   />
@@ -948,14 +993,16 @@ const SearchResults = () => {
                   )}
                 </div>
               ) : (
-                <div><EmptyState text={<FormattedMessage id="noSearchResults"/>}/></div>
+                <div>
+                  <EmptyState
+                    text={<FormattedMessage id="noSearchResults" />}
+                  />
+                </div>
               )}
             </div>
           </div>
         </div>
       </div>
-
-      <Footer></Footer>
     </>
   );
 };

@@ -10,13 +10,14 @@ import { ResetPassword } from "../../store/actions/auth";
 import { SUCESS_RESET_PASS } from "../../store/types/auth";
 import Button from "../../components/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
+import { setCurrentLang } from "../../store/actions/Lang";
 import { useNavigate, useParams } from "react-router-dom";
 
 const ForgetPasswordPassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {token} = useParams();
-  const {auth} = useSelector((state)=> state);
+  const { token } = useParams();
+  const { auth } = useSelector((state) => state);
   const [showNewPass, setShowNewPass] = useState(false);
   const [showRepPass, setShowRepPass] = useState(false);
   const [password, setPassword] = useState("");
@@ -24,19 +25,26 @@ const ForgetPasswordPassword = () => {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [passwordConfirmErr, setPasswordConfirmErr] = useState(false);
   const intl = useIntl();
+  const [language, setLanguage] = useState(
+    localStorage.getItem("lang") === "ar" ? "ar" : "en"
+  );
 
-  useEffect(()=> {
-    if(auth.success_reset_pass) {
+  useEffect(() => {
+    if (auth.success_reset_pass) {
       navigate("/confirm-password");
     }
-    return(()=> {
+    return () => {
       dispatch({
         type: SUCESS_RESET_PASS,
-        payload: false
-      })
-    })
-  },[auth.success_reset_pass])
-  
+        payload: false,
+      });
+    };
+  }, [auth.success_reset_pass, navigate, dispatch]);
+
+  useEffect(() => {
+    dispatch(setCurrentLang(language));
+  }, [language, dispatch]);
+
   const renderForm = () => {
     const onPasswordChange = ({ target }) => {
       const { value } = target;
@@ -58,12 +66,7 @@ const ForgetPasswordPassword = () => {
     const onSubmit = () => {
       !password && setPasswordErr(true);
       !passwordConfirm && setPasswordConfirmErr(true);
-      if (
-        password &&
-        passwordConfirm &&
-        !passwordErr &&
-        !passwordConfirmErr
-      ) {
+      if (password && passwordConfirm && !passwordErr && !passwordConfirmErr) {
         const data = {
           password,
           passwordConfirm,
@@ -71,7 +74,6 @@ const ForgetPasswordPassword = () => {
         dispatch(ResetPassword(data, token));
       }
     };
-  
 
     return (
       <div className="sign-up-form">
@@ -83,10 +85,20 @@ const ForgetPasswordPassword = () => {
             {<FormattedMessage id="ElFanni" />}
           </div>
         </div>
-        <div className="mb-5 pb-2">
+        <div className="mb-5 pb-2 d-flex align-items-center justify-content-between">
           <p className="glory-semi-bold heading-2 mb-0">
             <FormattedMessage id="forgetPassword" />
           </p>
+          <div>
+            <a
+              className="cursor-pointer"
+              onClick={() => {
+                language === "ar" ? setLanguage("en") : setLanguage("ar");
+              }}
+            >
+              {language === "ar" ? "AR" : "EN"}{" "}
+            </a>
+          </div>
         </div>
         <div className="mb-2">
           <Input

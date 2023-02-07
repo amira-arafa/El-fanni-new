@@ -19,18 +19,19 @@
       0vw 0.156vw 0.313vw rgba(11, 11, 14, 0.2)
     );
   }
-  .kep-login-facebook.metro , .social-media-btn {
+  .kep-login-facebook.metro,
+  .social-media-btn {
     @include btnStyle(
-        $socialMediaBtnsBackground,
-        12px,
-        $btnColor,
-        1.095vw 1.72vw,
-        "Inter-SemiBold",
-        1.173vw,
-        none
-      );
-      align-items: center;
-      cursor: pointer;
+      $socialMediaBtnsBackground,
+      12px,
+      $btnColor,
+      1.095vw 1.72vw,
+      "Inter-SemiBold",
+      1.173vw,
+      none
+    );
+    align-items: center;
+    cursor: pointer;
   }
   .kep-login-facebook.metro {
     text-transform: capitalize;
@@ -42,19 +43,27 @@
   .sign-up-options-or {
     color: $greyColor;
   }
-  .sign-up-btn{
+  .sign-up-btn {
     color: $btnColor;
     cursor: pointer;
     &:hover {
       text-decoration: underline;
     }
   }
- 
 }
 
 @media only screen and (min-width: 480px) {
   .mobile-logo {
     display: none !important;
   }
-  
+}
+div[dir="rtl"] {
+  .sign-up-form {
+    .btn-component-wrapper {
+      flex-direction: row;
+    }
+    img[alt="btn-icon"] {
+      margin-bottom: 0px !important;
+    }
+  }
 }

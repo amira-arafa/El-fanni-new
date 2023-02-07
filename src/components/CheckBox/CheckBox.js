@@ -1,5 +1,5 @@
 import React from "react";
-import "./CheckBox.scss"
+import "./CheckBox.scss";
 
 const CheckBox = ({ label, onClick, checked, index }) => {
   return (
@@ -13,7 +13,7 @@ const CheckBox = ({ label, onClick, checked, index }) => {
           onClick={onClick}
           checked={checked}
         />
-        <label className="form-check-label mx-2 checkbox-title" for={index}>
+        <label className="form-check-label mx-2 checkbox-title" htmlFor={index}>
           {label}
         </label>
       </div>

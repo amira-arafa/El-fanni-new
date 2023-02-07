@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Header from "../../components/Layout/Header";
-import Footer from "../../components/Layout/Footer";
 import addIcon from "../../assets/imgs/icons/add.png";
 import editUser from "../../assets/imgs/icons/user-edit.png";
 import Button from "../../components/Button/Button";
@@ -11,7 +9,6 @@ import moreIcon from "../../assets/imgs/icons/moregrey.png";
 import sortUp from "../../assets/imgs/icons/direct-up.png";
 import sortDown from "../../assets/imgs/icons/direct-down.png";
 import sortIcon from "../../assets/imgs/icons/sort.png";
-import cutMetalImg from "../../assets/imgs/cutting_metals.png";
 import collection1 from "../../assets/imgs/collection1.png";
 import collection2 from "../../assets/imgs/collection2.png";
 import collection3 from "../../assets/imgs/collection3.png";
@@ -22,6 +19,7 @@ import {
   getCollectionsList,
   addNewCollection,
   removeFromFaviorites,
+  getMycoursesList
 } from "../../store/actions/home";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
@@ -46,11 +44,11 @@ const Profile = () => {
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
   const { home } = useSelector((state) => state);
-  const { profile_info, collections_list, favourites_list } = home;
+  const { profile_info, collections_list, favourites_list, my_courses_list } = home;
 
   useEffect(() => {
     dispatch(getProfile());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (activeTab === 1) {
@@ -58,7 +56,10 @@ const Profile = () => {
     } else if (activeTab === 2) {
       dispatch(getCollectionsList({ sort: sort === 1 ? "name" : "-name" }));
     }
-  }, [activeTab]);
+    else if (activeTab === 0) {
+      dispatch(getMycoursesList({ sort: { title: sort } }));
+    }
+  }, [activeTab, dispatch, sort]);
 
   useEffect(() => {
     if (profile_info) {
@@ -77,6 +78,9 @@ const Profile = () => {
     } else if (activeTab === 2) {
       dispatch(getCollectionsList({ sort: sort === 1 ? "name" : "-name" }));
     }
+    else if (activeTab === 0) {
+      dispatch(getMycoursesList({ sort: { title: sort } }));
+    }
   };
 
   const handleRemoveFromFavourites = (id) => {
@@ -85,56 +89,57 @@ const Profile = () => {
 
   return (
     <>
-      <Header></Header>
       <div className="profile-page-wrapper">
         <div className="profile-tabs-wrapper">
           <div className="profile-page">
-            {Object.keys(profile_info).length>0 && <div className="profile-info row">
-              <div className="col-sm-6 text-center-mobile">
-                <div className="row align-items-center">
-                  <div className="col-sm-3">
-                    <img src={photo} alt="profile-img" />
-                  </div>
-                  <div className="col-sm-9">
-                    <p className="mb-1 heading-3 glory-semi-bold profile-name">
-                      {firstName + " " + lastName}
-                    </p>
-                    <Button
-                      icon={editUser}
-                      text={intl.formatMessage({ id: "editYourProfile" })}
-                      className="check-courses-btn inter-semi-bold label-1"
-                      onClick={() => {
-                        navigate("/profile-edit");
-                      }}
-                    ></Button>
+            {Object.keys(profile_info).length > 0 && (
+              <div className="profile-info row">
+                <div className="col-sm-6 text-center-mobile">
+                  <div className="row align-items-center">
+                    <div className="col-sm-3">
+                      <img src={photo} alt="profile-img" />
+                    </div>
+                    <div className="col-sm-9">
+                      <p className="mb-1 heading-3 glory-semi-bold profile-name">
+                        {firstName + " " + lastName}
+                      </p>
+                      <Button
+                        icon={editUser}
+                        text={intl.formatMessage({ id: "editYourProfile" })}
+                        className="check-courses-btn inter-semi-bold label-1"
+                        onClick={() => {
+                          navigate("/profile-edit");
+                        }}
+                      ></Button>
+                    </div>
                   </div>
                 </div>
+                <div className="col-sm-3 mobile-email-wrapper">
+                  <p className="label-1 inter-semi-bold mb-0">
+                    <FormattedMessage id="Email" />
+                  </p>
+                  <p className="label-1 inter-regular">{email}</p>
+                  <p className="label-1 inter-semi-bold mb-0">
+                    <FormattedMessage id="courseInProgress" />
+                  </p>
+                  <p className="profile-courses-number glory-semi-bold heading">
+                    4
+                  </p>
+                </div>
+                <div className="col-sm-3 mobile-email-wrapper">
+                  <p className="label-1 inter-semi-bold mb-0">
+                    <FormattedMessage id="Phone" />
+                  </p>
+                  <p className="label-1 inter-regular">{phone}</p>
+                  <p className="label-1 inter-semi-bold mb-0">
+                    <FormattedMessage id="Coursecompleted" />
+                  </p>
+                  <p className="profile-courses-number glory-semi-bold heading">
+                    15
+                  </p>
+                </div>
               </div>
-              <div className="col-sm-3 mobile-email-wrapper">
-                <p className="label-1 inter-semi-bold mb-0">
-                  <FormattedMessage id="Email" />
-                </p>
-                <p className="label-1 inter-regular">{email}</p>
-                <p className="label-1 inter-semi-bold mb-0">
-                  <FormattedMessage id="courseInProgress" />
-                </p>
-                <p className="profile-courses-number glory-semi-bold heading">
-                  4
-                </p>
-              </div>
-              <div className="col-sm-3 mobile-email-wrapper">
-                <p className="label-1 inter-semi-bold mb-0">
-                  <FormattedMessage id="Phone" />
-                </p>
-                <p className="label-1 inter-regular">{phone}</p>
-                <p className="label-1 inter-semi-bold mb-0">
-                  <FormattedMessage id="Coursecompleted" />
-                </p>
-                <p className="profile-courses-number glory-semi-bold heading">
-                  15
-                </p>
-              </div>
-            </div>}
+            )}
           </div>
           <div className="d-flex tabs text-center mb-5">
             <div
@@ -246,7 +251,7 @@ const Profile = () => {
                 type="button"
                 id="dropdownMenuButton1"
                 data-bs-toggle="dropdown"
-                aria-expanded="false"
+                role="menuitem"
               >
                 <Button
                   className="sort-btn inter-semi-bold label-1"
@@ -259,14 +264,14 @@ const Profile = () => {
                 aria-labelledby="dropdownMenuButton1"
               >
                 <li onClick={() => handleSortBy(1)} className="cursor-pointer">
-                  <a className="dropdown-item">
+                  <span className="dropdown-item">
                     <FormattedMessage id="asc" />
-                  </a>
+                  </span>
                 </li>
                 <li onClick={() => handleSortBy(-1)} className="cursor-pointer">
-                  <a className="dropdown-item">
+                  <span className="dropdown-item">
                     <FormattedMessage id="dsc" />
-                  </a>
+                  </span>
                 </li>
               </ul>
             </div>
@@ -276,16 +281,19 @@ const Profile = () => {
             <div>
               {favourites_list.length > 0 ? (
                 <div>
-                  {favourites_list?.map((course) => (
-                    <div className="row course-results-wrapper mb-3 mx-0">
-                      <div className="col-sm-4">
+                  {favourites_list?.map((course, i) => (
+                    <div
+                      className="row course-results-wrapper mb-3 mx-0"
+                      key={i}
+                    >
+                      <div className="col-sm-4 cursor-pointer" onClick={() => navigate(`/course-details/${course._id}`)}>
                         <img
                           src={course.cover}
                           alt="course-img"
                           width="100%"
                         ></img>
                       </div>
-                      <div className="col-sm-6">
+                      <div className="col-sm-6 cursor-pointer" onClick={() => navigate(`/course-details/${course._id}`)}>
                         <p className="inter-semi-bold heading-3 course-title-mobile">
                           {course.title}
                         </p>
@@ -322,12 +330,12 @@ const Profile = () => {
                             {course.level}
                           </span>
                         </div>
-                        <Button
+                        {/* <Button
                           text={
-                            intl.formatMessage({ id: "InProgress" }) + " (50%)"
+                            intl.formatMessage({ id: "InProgress" }) + " " + `${course.progress}`
                           }
                           className="check-courses-btn-progress inter-semi-bold label-1"
-                        ></Button>
+                        ></Button> */}
                       </div>
                       <div className="col-sm-2 text-end cart-desktop-more">
                         <div className="dropdown ddp-btn ">
@@ -336,7 +344,7 @@ const Profile = () => {
                             type="button"
                             id="dropdownMenuButton1"
                             data-bs-toggle="dropdown"
-                            aria-expanded="false"
+                            role="menuitem"
                           >
                             <img
                               className="cursor-pointer"
@@ -356,9 +364,9 @@ const Profile = () => {
                               }
                               className="cursor-pointer"
                             >
-                              <a className="dropdown-item">
+                              <span className="dropdown-item">
                                 <FormattedMessage id="removeFromSavedCourses" />
-                              </a>
+                              </span>
                             </li>
                           </ul>
                         </div>
@@ -378,161 +386,267 @@ const Profile = () => {
           )}
 
           {activeTab === 0 && (
-            <>
-              <div className="row course-results-wrapper mb-3 mx-0">
-                <div className="col-sm-4">
-                  <img src={cutMetalImg} alt="course-img" width="100%"></img>
-                </div>
-                <div className="col-sm-8">
-                  <p className="inter-semi-bold heading-3 mobile-courses-heading">
-                    Cutting metals and how we use the devices
-                  </p>
-                  <div className="search-results-courses-data">
-                    <span className="inter-regular label-1">
-                      Mohammed Karim
-                    </span>
-                    <span className="inter-regular label-1 search-result-date">
-                      Jan 2020
-                    </span>
-                    <span className="inter-regular label-1 search-result-students-number">
-                      400,150 student
-                    </span>
-                  </div>
-                  <div className="mb-3">
-                    <Rating
-                      readonly={true}
-                      initialValue={4}
-                      allowFraction={true}
-                    />
-                    <span className="top-courses-rating inter-regular label-1 m-x-1">
-                      (24)
-                    </span>
-                  </div>
-                  <Button
-                    text={intl.formatMessage({ id: "InProgress" }) + " (50%)"}
-                    className="check-courses-btn-progress inter-semi-bold label-1"
-                  ></Button>
-                </div>
-              </div>
+             <div>
+             { my_courses_list.length > 0 ? (
+               <div>
+                 { my_courses_list?.map((course, i) => (
+                   <div
+                     className="row course-results-wrapper mb-3 mx-0"
+                     key={i}
+                   >
+                     <div className="col-sm-4 cursor-pointer" onClick={() => navigate(`/course-details/${course._id}`)}>
+                       <img
+                         src={course.cover}
+                         alt="course-img"
+                         width="100%"
+                       ></img>
+                     </div>
+                     <div className="col-sm-6 cursor-pointer" onClick={() => navigate(`/course-details/${course._id}`)}>
+                       <p className="inter-semi-bold heading-3 course-title-mobile">
+                         {course.title}
+                       </p>
+                       <div className="search-results-courses-data">
+                         <span className="inter-regular label-1">
+                           {course.instructors?.map(
+                             (instructor, i) =>
+                               instructor.fullName +
+                               `${
+                                 i < course.instructors.length - 1 ? ", " : " "
+                               }`
+                           )}
+                         </span>
+                         <span className="inter-regular label-1 search-result-date">
+                           {moment(course.releaseDate).format("LL")}
+                         </span>
+                         <span className="inter-regular label-1 search-result-students-number">
+                           {course.studentsNo}
+                         </span>
+                       </div>
+                       <div className="mb-3 search-results-courses-data">
+                         <Rating
+                           readonly={true}
+                           initialValue={course.avgRating}
+                           allowFraction={true}
+                         />
+                         <span className="top-courses-rating inter-regular label-1 m-x-1">
+                           ({course.reviewsNo})
+                         </span>
+                         <span className="inter-regular label-1 search-result-date">
+                           {course.language}
+                         </span>
+                         <span className="inter-regular label-1 search-result-students-number">
+                           {course.level}
+                         </span>
+                       </div>
+                       <Button
+                         text={
+                           intl.formatMessage({ id: "InProgress" }) + `  ${course.progress}%`
+                         }
+                         className="check-courses-btn-progress inter-semi-bold label-1"
+                       ></Button>
+                     </div>
+                     {/* <div className="col-sm-2 text-end cart-desktop-more">
+                       <div className="dropdown ddp-btn ">
+                         <div
+                           className="dropdown-toggle w-100 course-content-btn"
+                           type="button"
+                           id="dropdownMenuButton1"
+                           data-bs-toggle="dropdown"
+                           role="menuitem"
+                         >
+                           <img
+                             className="cursor-pointer"
+                             alt="more-icon"
+                             src={moreIcon}
+                             width="40px"
+                             height="40px"
+                           ></img>
+                         </div>
+                         <ul
+                           className="dropdown-menu"
+                           aria-labelledby="dropdownMenuButton1"
+                         >
+                           <li
+                             onClick={() =>
+                               handleRemoveFromFavourites(course._id)
+                             }
+                             className="cursor-pointer"
+                           >
+                             <span className="dropdown-item">
+                               <FormattedMessage id="removeFromSavedCourses" />
+                             </span>
+                           </li>
+                         </ul>
+                       </div>
+                     </div> */}
+                   </div>
+                 ))}
+               </div>
+             ) : (
+               <div>
+                 <EmptyState
+                   className="mb-5"
+                   text={<FormattedMessage id="noCourses" />}
+                 />
+               </div>
+             )}
+           </div>
+            // <>
+            //   <div className="row course-results-wrapper mb-3 mx-0">
+            //     <div className="col-sm-4">
+            //       <img src={cutMetalImg} alt="course-img" width="100%"></img>
+            //     </div>
+            //     <div className="col-sm-8">
+            //       <p className="inter-semi-bold heading-3 mobile-courses-heading">
+            //         Cutting metals and how we use the devices
+            //       </p>
+            //       <div className="search-results-courses-data">
+            //         <span className="inter-regular label-1">
+            //           Mohammed Karim
+            //         </span>
+            //         <span className="inter-regular label-1 search-result-date">
+            //           Jan 2020
+            //         </span>
+            //         <span className="inter-regular label-1 search-result-students-number">
+            //           400,150 student
+            //         </span>
+            //       </div>
+            //       <div className="mb-3">
+            //         <Rating
+            //           readonly={true}
+            //           initialValue={4}
+            //           allowFraction={true}
+            //         />
+            //         <span className="top-courses-rating inter-regular label-1 m-x-1">
+            //           (24)
+            //         </span>
+            //       </div>
+            //       <Button
+            //         text={intl.formatMessage({ id: "InProgress" }) + " (50%)"}
+            //         className="check-courses-btn-progress inter-semi-bold label-1"
+            //       ></Button>
+            //     </div>
+            //   </div>
 
-              <div className="row course-results-wrapper mb-3 mx-0">
-                <div className="col-sm-4">
-                  <img src={cutMetalImg} alt="course-img" width="100%"></img>
-                </div>
-                <div className="col-sm-8">
-                  <p className="inter-semi-bold heading-3">
-                    Cutting metals and how we use the devices
-                  </p>
-                  <div className="search-results-courses-data">
-                    <span className="inter-regular label-1">
-                      Mohammed Karim
-                    </span>
-                    <span className="inter-regular label-1 search-result-date">
-                      Jan 2020
-                    </span>
-                    <span className="inter-regular label-1 search-result-students-number">
-                      400,150 student
-                    </span>
-                  </div>
-                  <div className="mb-3">
-                    <Rating
-                      readonly={true}
-                      initialValue={4}
-                      allowFraction={true}
-                    />
-                    <span className="top-courses-rating inter-regular label-1 m-x-1">
-                      (24)
-                    </span>
-                  </div>
-                  <Button
-                    text={intl.formatMessage({ id: "InProgress" }) + " (50%)"}
-                    className="check-courses-btn-progress inter-semi-bold label-1"
-                  ></Button>
-                </div>
-              </div>
+            //   <div className="row course-results-wrapper mb-3 mx-0">
+            //     <div className="col-sm-4">
+            //       <img src={cutMetalImg} alt="course-img" width="100%"></img>
+            //     </div>
+            //     <div className="col-sm-8">
+            //       <p className="inter-semi-bold heading-3">
+            //         Cutting metals and how we use the devices
+            //       </p>
+            //       <div className="search-results-courses-data">
+            //         <span className="inter-regular label-1">
+            //           Mohammed Karim
+            //         </span>
+            //         <span className="inter-regular label-1 search-result-date">
+            //           Jan 2020
+            //         </span>
+            //         <span className="inter-regular label-1 search-result-students-number">
+            //           400,150 student
+            //         </span>
+            //       </div>
+            //       <div className="mb-3">
+            //         <Rating
+            //           readonly={true}
+            //           initialValue={4}
+            //           allowFraction={true}
+            //         />
+            //         <span className="top-courses-rating inter-regular label-1 m-x-1">
+            //           (24)
+            //         </span>
+            //       </div>
+            //       <Button
+            //         text={intl.formatMessage({ id: "InProgress" }) + " (50%)"}
+            //         className="check-courses-btn-progress inter-semi-bold label-1"
+            //       ></Button>
+            //     </div>
+            //   </div>
 
-              <div className="row course-results-wrapper mb-3 mx-0">
-                <div className="col-sm-4">
-                  <img src={cutMetalImg} alt="course-img" width="100%"></img>
-                </div>
-                <div className="col-sm-8">
-                  <p className="inter-semi-bold heading-3">
-                    Cutting metals and how we use the devices
-                  </p>
-                  <div className="search-results-courses-data">
-                    <span className="inter-regular label-1">
-                      Mohammed Karim
-                    </span>
-                    <span className="inter-regular label-1 search-result-date">
-                      Jan 2020
-                    </span>
-                    <span className="inter-regular label-1 search-result-students-number">
-                      400,150 student
-                    </span>
-                  </div>
-                  <div className="mb-3">
-                    <Rating
-                      readonly={true}
-                      initialValue={4}
-                      allowFraction={true}
-                    />
-                    <span className="top-courses-rating inter-regular label-1 m-x-1">
-                      (24)
-                    </span>
-                  </div>
-                  <Button
-                    text={intl.formatMessage({ id: "InProgress" }) + " (50%)"}
-                    className="check-courses-btn-progress inter-semi-bold label-1"
-                  ></Button>
-                </div>
-              </div>
+            //   <div className="row course-results-wrapper mb-3 mx-0">
+            //     <div className="col-sm-4">
+            //       <img src={cutMetalImg} alt="course-img" width="100%"></img>
+            //     </div>
+            //     <div className="col-sm-8">
+            //       <p className="inter-semi-bold heading-3">
+            //         Cutting metals and how we use the devices
+            //       </p>
+            //       <div className="search-results-courses-data">
+            //         <span className="inter-regular label-1">
+            //           Mohammed Karim
+            //         </span>
+            //         <span className="inter-regular label-1 search-result-date">
+            //           Jan 2020
+            //         </span>
+            //         <span className="inter-regular label-1 search-result-students-number">
+            //           400,150 student
+            //         </span>
+            //       </div>
+            //       <div className="mb-3">
+            //         <Rating
+            //           readonly={true}
+            //           initialValue={4}
+            //           allowFraction={true}
+            //         />
+            //         <span className="top-courses-rating inter-regular label-1 m-x-1">
+            //           (24)
+            //         </span>
+            //       </div>
+            //       <Button
+            //         text={intl.formatMessage({ id: "InProgress" }) + " (50%)"}
+            //         className="check-courses-btn-progress inter-semi-bold label-1"
+            //       ></Button>
+            //     </div>
+            //   </div>
 
-              <div className="row course-results-wrapper mb-3 mx-0">
-                <div className="col-sm-4">
-                  <img src={cutMetalImg} alt="course-img" width="100%"></img>
-                </div>
-                <div className="col-sm-8">
-                  <p className="inter-semi-bold heading-3">
-                    Cutting metals and how we use the devices
-                  </p>
-                  <div className="search-results-courses-data">
-                    <span className="inter-regular label-1">
-                      Mohammed Karim
-                    </span>
-                    <span className="inter-regular label-1 search-result-date">
-                      Jan 2020
-                    </span>
-                    <span className="inter-regular label-1 search-result-students-number">
-                      400,150 student
-                    </span>
-                  </div>
-                  <div className="mb-3">
-                    <Rating
-                      readonly={true}
-                      initialValue={4}
-                      allowFraction={true}
-                    />
-                    <span className="top-courses-rating inter-regular label-1 m-x-1">
-                      (24)
-                    </span>
-                  </div>
-                  <Button
-                    text={intl.formatMessage({ id: "InProgress" }) + " (50%)"}
-                    className="check-courses-btn-progress inter-semi-bold label-1"
-                  ></Button>
-                </div>
-              </div>
-            </>
+            //   <div className="row course-results-wrapper mb-3 mx-0">
+            //     <div className="col-sm-4">
+            //       <img src={cutMetalImg} alt="course-img" width="100%"></img>
+            //     </div>
+            //     <div className="col-sm-8">
+            //       <p className="inter-semi-bold heading-3">
+            //         Cutting metals and how we use the devices
+            //       </p>
+            //       <div className="search-results-courses-data">
+            //         <span className="inter-regular label-1">
+            //           Mohammed Karim
+            //         </span>
+            //         <span className="inter-regular label-1 search-result-date">
+            //           Jan 2020
+            //         </span>
+            //         <span className="inter-regular label-1 search-result-students-number">
+            //           400,150 student
+            //         </span>
+            //       </div>
+            //       <div className="mb-3">
+            //         <Rating
+            //           readonly={true}
+            //           initialValue={4}
+            //           allowFraction={true}
+            //         />
+            //         <span className="top-courses-rating inter-regular label-1 m-x-1">
+            //           (24)
+            //         </span>
+            //       </div>
+            //       <Button
+            //         text={intl.formatMessage({ id: "InProgress" }) + " (50%)"}
+            //         className="check-courses-btn-progress inter-semi-bold label-1"
+            //       ></Button>
+            //     </div>
+            //   </div>
+            // </>
           )}
 
           {activeTab === 2 && (
             <>
               {collections_list.length > 0 ? (
                 <div>
-                  {collections_list?.map((collection) => (
+                  {collections_list?.map((collection, i) => (
                     <div
                       className="row course-results-wrapper mb-3 mx-0 align-items-center cursor-pointer"
                       onClick={() => navigate(`/collection/${collection._id}`)}
+                      key={i}
                     >
                       <div className="col-sm-3">
                         <div className="collection-bg-img">
@@ -562,7 +676,6 @@ const Profile = () => {
           )}
         </div>
       </div>
-      <Footer></Footer>
     </>
   );
 };

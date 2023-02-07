@@ -7,5 +7,15 @@
   height: 3.049vw !important;
   width: 100% !important;
   font-size: 1.251vw !important;
-  padding: 0vw 4vw !important
+  padding: 0vw 4vw !important;
+}
+div[dir="rtl"] {
+  .react-tel-input {
+    .selected-flag {
+      padding: 0px 12px 0 0px;
+    }
+  }
+  .arrow {
+    left: 8.5px !important;
+  }
 }

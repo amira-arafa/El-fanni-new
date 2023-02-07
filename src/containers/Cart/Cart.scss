@@ -1,12 +1,12 @@
 @import "../../scss/variables";
 @import "../../scss/mixins";
 
-.keep-btn{
+.keep-btn {
   padding: 9px 24px;
   border-radius: 12px;
   border: none;
   background-color: transparent;
-  color: #000E1F;
+  color: #000e1f;
   outline: none !important;
 }
 .yes-remove-btn {
@@ -15,18 +15,19 @@
   border-radius: 12px;
   padding: 9px 24px;
   border: none;
-  color: #F5FAFF;
+  color: #f5faff;
 }
-.cart-modal{
-  background: #F5FAFF;
-  border: 1px solid #F6F6F7;
+.cart-modal {
+  background: #f5faff;
+  border: 1px solid #f6f6f7;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 16px;
-width: 50%;
-padding: 2rem 1.2rem;
-height: unset;
+  width: 50%;
+  padding: 2rem 1.2rem;
+  height: unset;
 }
-.cart-desktop-more, .desktop-rating {
+.cart-desktop-more,
+.desktop-rating {
   display: block;
 }
 .cart-modal {
@@ -35,21 +36,19 @@ height: unset;
   }
 }
 .delete-course-warning {
-font-family: 'Gilory';
-font-style: normal;
-font-weight: 600;
-font-size: 20px;
-line-height: 30px;
-color: #002147;
+  font-family: "Gilory";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  color: #002147;
 }
 .delete-course-text {
-  font-family: 'Inter';
+  font-family: "Inter";
   font-style: normal;
-font-size: 15px;
-line-height: 30px;
-color: #0B0B0E;
-
-
+  font-size: 15px;
+  line-height: 30px;
+  color: #0b0b0e;
 }
 img[alt="course-img"] {
   width: 100%;
@@ -150,16 +149,13 @@ img[alt="course-img"] {
   .total-cart-mobile {
     display: none;
   }
-
-
-
 }
 
 @media only screen and (max-width: 768px) {
   .cart-container {
     background-color: $whiteText;
     .heading-4 {
-    font-size: 6.111vw;
+      font-size: 6.111vw;
     }
     .cart-desktop-more {
       display: none;
@@ -172,7 +168,7 @@ img[alt="course-img"] {
     }
     .label-1 {
       font-size: 3.7vw !important;
-  }
+    }
     .filters-container {
       display: none;
     }
@@ -186,26 +182,26 @@ img[alt="course-img"] {
       align-items: center;
     }
     .search-results-courses-data {
-        display: none;
+      display: none;
     }
     .course-results-wrapper > div:first-child {
-        margin-bottom: 0px;
-      }
+      margin-bottom: 0px;
+    }
     .ratings-container-cart {
-        display: none;
+      display: none;
     }
     .cart-subheader {
-        display: none;
+      display: none;
     }
     .col-sm-4 {
-        flex: 0 0 auto;
-        width: 40%;
+      flex: 0 0 auto;
+      width: 40%;
     }
     .col-sm-8 {
-        flex: 0 0 auto;
-        width: 60%;
-        padding-right: 10px;
-        padding-left: 10px;
+      flex: 0 0 auto;
+      width: 60%;
+      padding-right: 10px;
+      padding-left: 10px;
     }
     .col-sm-6 {
       flex: 0 0 auto;
@@ -230,35 +226,36 @@ img[alt="course-img"] {
       color: $btnColor;
     }
     .results-row-wrapper {
-        width: 100%;
-      }
-      .cart-results-wrapper {
-        width:100%;
-      }
-      .total-cart, .desktop-rating {
-        display: none !important;
-      }
-      .total-cart-mobile {
-        display: block;
-        width: 100%;
-      }
-      .cart-mobile-delete {
-        display: block;
-      }
+      width: 100%;
+    }
+    .cart-results-wrapper {
+      width: 100%;
+    }
+    .total-cart,
+    .desktop-rating {
+      display: none !important;
+    }
+    .total-cart-mobile {
+      display: block;
+      width: 100%;
+    }
+    .cart-mobile-delete {
+      display: block;
+    }
   }
   .cart-container {
-
     .col-sm-2 {
       flex: 0 0 auto;
       width: 16.66666667% !important;
+    }
   }
+  .cart-modal {
+    width: 95%;
+    margin: 0 auto;
+    height: unset;
   }
-.cart-modal{
-  width: 95%;
-  margin: 0 auto;
-  height: unset;
-}
-.yes-remove-btn , .keep-btn {
-  padding: 19px 24px;
-}
+  .yes-remove-btn,
+  .keep-btn {
+    padding: 19px 24px;
+  }
 }

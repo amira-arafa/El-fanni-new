@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import arrowRight from "../../assets/imgs/icons/arrow-right-white.png";
 import Button from "../../components/Button/Button";
-import Footer from "../../components/Layout/Footer";
-import Header from "../../components/Layout/Header";
 import { Rating } from "react-simple-star-rating";
 import moreIcon from "../../assets/imgs/icons/moregrey.png";
 import deleteIcon from "../../assets/imgs/icons/DeleteCart.png";
@@ -30,13 +28,13 @@ const Cart = () => {
 
   useEffect(() => {
     localStorage.getItem("token") && dispatch(getCartList());
-  }, []);
+  }, [dispatch]);
 
   const handleRemoveFromCart = (result) => {
     setCurrentCourse(result);
     onOpenModal();
   };
-  
+
   const handleDeleteCourse = () => {
     dispatch(
       deleteCourse(currentCourse._id, {
@@ -49,7 +47,6 @@ const Cart = () => {
 
   return (
     <>
-      <Header></Header>
       <div className="cart-container">
         <div className="row">
           <div className="my-4">
@@ -64,25 +61,34 @@ const Cart = () => {
         <div className="row">
           <div className="col-sm-8 pe-5 cart-results-wrapper">
             <div className="search-results-section">
-              {cart_list.length > 0 ?
-                cart_list.map((result) => (
-                  <div className="d-flex course-results-wrapper cursor-pointer mb-5">
-                    <div className="col-sm-4 me-3"  onClick={() => {
+              {cart_list.length > 0 ? (
+                cart_list.map((result, i) => (
+                  <div
+                    key={i}
+                    className="d-flex course-results-wrapper cursor-pointer mb-5"
+                  >
+                    <div
+                      className="col-sm-4 me-3"
+                      onClick={() => {
                         navigate(`/course/${result._id}`);
-                      }}>
+                      }}
+                    >
                       <img src={cutMetalImg} alt="course-img"></img>
                     </div>
-                    <div className="col-sm-6" onClick={() => {
-                      navigate(`/course/${result._id}`);
-                    }}>
+                    <div
+                      className="col-sm-6"
+                      onClick={() => {
+                        navigate(`/course/${result._id}`);
+                      }}
+                    >
                       <p className="inter-semi-bold heading-3 mb-2">
                         {result.title}
                       </p>
                       <div className="search-results-courses-data mb-2">
                         <span className="inter-regular label-1">
-                          {result.instructors.map(
-                            (instructor) => instructor.fullName
-                          ).join(', ')}
+                          {result.instructors
+                            .map((instructor) => instructor.fullName)
+                            .join(", ")}
                         </span>
                         <span className="inter-regular label-1 search-result-date">
                           {moment(result.releaseDate).format("LL")}
@@ -117,7 +123,7 @@ const Cart = () => {
                           type="button"
                           id="dropdownMenuButton1"
                           data-bs-toggle="dropdown"
-                          aria-expanded="false"
+                          role="menuitem"
                         >
                           <img
                             className="cursor-pointer"
@@ -135,9 +141,9 @@ const Cart = () => {
                             onClick={() => handleRemoveFromCart(result)}
                             className="cursor-pointer"
                           >
-                            <a className="dropdown-item">
+                            <span className="dropdown-item">
                               <FormattedMessage id="removeFromCart" />
-                            </a>
+                            </span>
                           </li>
                         </ul>
                       </div>
@@ -149,8 +155,12 @@ const Cart = () => {
                       <img src={trashIcon} alt="trash-icon" />
                     </div>
                   </div>
-                )) : 
-                <div><EmptyState text={<FormattedMessage id="cartEmpty"/>}/></div>}
+                ))
+              ) : (
+                <div>
+                  <EmptyState text={<FormattedMessage id="cartEmpty" />} />
+                </div>
+              )}
             </div>
           </div>
           <div className="col-sm-4 search-results-section total-cart ">
@@ -228,7 +238,6 @@ const Cart = () => {
           </div>
         }
       />
-      <Footer></Footer>
     </>
   );
 };

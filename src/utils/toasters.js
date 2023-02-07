@@ -1,11 +1,14 @@
 import { toast } from "react-toastify";
 
 const setPosition = () => {
-  const position = localStorage.getItem("lang") === "ar" ? toast.POSITION.BOTTOM_RIGHT : toast.POSITION.BOTTOM_LEFT;
-  return    {
-    position
-  }
-}
+  const position =
+    localStorage.getItem("lang") === "ar"
+      ? toast.POSITION.BOTTOM_RIGHT
+      : toast.POSITION.BOTTOM_LEFT;
+  return {
+    position,
+  };
+};
 
 const Error = (msg, clear = false) => {
   toast.error(msg, setPosition());
@@ -25,9 +28,11 @@ const Warning = (msg, clear = false) => {
   if (clear) toast.clearWaitingQueue();
 };
 
-export default {
+const toastStatuses = {
   Error,
   Success,
   Warning,
   Info,
 };
+
+export default toastStatuses;

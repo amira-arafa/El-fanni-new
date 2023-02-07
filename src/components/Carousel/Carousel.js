@@ -1,7 +1,14 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-const CarouselComponent = ({ autoPlay, interval, children, responsive, infinite, slidesToSlide }) => {
+const CarouselComponent = ({
+  autoPlay,
+  interval,
+  children,
+  responsive,
+  infinite,
+  slidesToSlide,
+}) => {
   return (
     <Carousel
       infinite={infinite}

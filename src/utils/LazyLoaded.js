@@ -1,5 +1,3 @@
-import React from 'react';
+import React from "react";
 
-export const SignUp = React.lazy(() => import('../containers/SignUp/SignUp'));
-
-
+export const SignUp = React.lazy(() => import("../containers/SignUp/SignUp"));

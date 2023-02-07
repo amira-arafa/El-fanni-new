@@ -1,5 +1,19 @@
-@import '../../scss/variables';
+@import "../../scss/variables";
 
 .foretPassword {
-    color: $placeholderColor;
+  color: $placeholderColor;
+}
+
+div[dir="rtl"] {
+  .sign-up-form {
+    .btn-component-wrapper {
+      flex-direction: row;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    img[alt="btn-icon"] {
+      margin-bottom: 0px !important;
+    }
+  }
 }

@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import logo from "../../assets/imgs/logo.png";
 import logoMobile from "../../assets/imgs/logoMobile.png";
 import RegisterLayout from "../RegisterLayout/RegisterLayout";
 import Button from "../../components/Button/Button";
-import "./PasswordConfirmMsg.scss";
 import { useNavigate } from "react-router-dom";
+import { setCurrentLang } from "../../store/actions/Lang";
+import "./PasswordConfirmMsg.scss";
+import { useDispatch } from "react-redux";
 
 const PasswordConfirmMsg = () => {
   const intl = useIntl();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [language, setLanguage] = useState(
+    localStorage.getItem("lang") === "ar" ? "ar" : "en"
+  );
+  useEffect(() => {
+    dispatch(setCurrentLang(language));
+  }, [language, dispatch]);
+  
   const renderForm = () => {
     return (
       <div className="sign-up-form">
@@ -21,16 +31,26 @@ const PasswordConfirmMsg = () => {
             {<FormattedMessage id="ElFanni" />}
           </div>
         </div>
-        <div className="mb-4">
+        <div className="mb-4 d-flex align-items-center justify-content-between">
           <p className="glory-semi-bold heading-2 mb-0 check-pass-msg btnColor">
             <FormattedMessage id="passSuccess" />
           </p>
+          <div>
+            <a
+              className="cursor-pointer"
+              onClick={() => {
+                language === "ar" ? setLanguage("en") : setLanguage("ar");
+              }}
+            >
+              {language === "ar" ? "AR" : "EN"}
+            </a>
+          </div>
         </div>
         <div className="mb-2">
           <Button
             text={intl.formatMessage({ id: "signIn" })}
             className="w-100 regular-btn"
-            onClick={()=> navigate("/sign-in")}
+            onClick={() => navigate("/sign-in")}
           />
         </div>
       </div>

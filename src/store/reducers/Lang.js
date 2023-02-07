@@ -1,12 +1,10 @@
-
-import * as types from '../types';
+import * as types from "../types";
 
 const INITIAL_STATE = {
-  lang: localStorage.getItem('lang') || 'ar'
+  lang: localStorage.getItem("lang") || "ar",
 };
 
 export default function locale(state = INITIAL_STATE, action) {
-  
   switch (action.type) {
     case types.SET_CURRENT_LANG:
       return { ...state, lang: action.lang };
@@ -15,4 +13,4 @@ export default function locale(state = INITIAL_STATE, action) {
     default:
       return state;
   }
-};
+}

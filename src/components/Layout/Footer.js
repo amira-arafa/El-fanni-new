@@ -40,28 +40,19 @@ const Footer = () => {
           </div>
         </div>
         <div className="col-xs-12 col-md-3 footer-icons m-b-3">
-        <div className="d-flex align-items-center w-100 footer-icons-end">
+          <div className="d-flex align-items-center w-100 footer-icons-end">
             <div>
-            <img
-              alt="socialMediaIcon"
-              src={twitter}
-              className="m-x-1"
-            ></img>              
+              <img alt="socialMediaIcon" src={twitter} className="m-x-1"></img>
             </div>
             <div>
-            <img
-              alt="socialMediaIcon"
-              src={youtube}
-              className="m-x-1"
-            ></img>  
-              
+              <img alt="socialMediaIcon" src={youtube} className="m-x-1"></img>
             </div>
             <div>
-            <img
-              alt="socialMediaIcon"
-              src={facebookFooter}
-              className="m-x-1"
-            ></img>  
+              <img
+                alt="socialMediaIcon"
+                src={facebookFooter}
+                className="m-x-1"
+              ></img>
             </div>
           </div>
         </div>

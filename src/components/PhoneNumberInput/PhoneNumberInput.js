@@ -5,7 +5,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import "./PhoneNumberInput.scss";
 
-const PhoneNumberInput = ({value, onChange}) => {
+const PhoneNumberInput = ({ value, onChange }) => {
   return (
     <>
       <Label title={<FormattedMessage id="PhoneNumber" />} />

@@ -25,12 +25,9 @@ import quoteUpIcon from "../../assets/imgs/icons/quote-down.png";
 import quoteDownIcon from "../../assets/imgs/icons/quote-up.png";
 import cafe from "../../assets/imgs/cafe.jpeg";
 import Button from "../../components/Button/Button";
-import Footer from "../../components/Layout/Footer";
-import Header from "../../components/Layout/Header";
 import CarouselComponent from "../../components/Carousel/Carousel";
 import { useNavigate } from "react-router-dom";
 import "./HomePage.scss";
-import { useEffect } from "react";
 
 const HomePage = () => {
   const intl = useIntl();
@@ -55,8 +52,7 @@ const HomePage = () => {
     },
   };
   return (
-    <>
-      <Header />
+    <div className="home-page-wrapper">
       <div className="desktop-view">
         <main>
           <div className="d-flex">
@@ -652,7 +648,7 @@ const HomePage = () => {
                         allowFraction={true}
                       />
                       <span className="top-courses-rating inter-regular label-1 m-x-1">
-                        4.5 & up
+                        (4.5)
                       </span>
                     </div>
                     <div>
@@ -662,7 +658,7 @@ const HomePage = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="col-sm-7 d-flex justify-content-end">
+                  <div className="col-sm-5 d-flex justify-content-end">
                     <Button
                       className="best-sellter-btn inter-regular"
                       text={intl.formatMessage({ id: "BestSeller" })}
@@ -712,7 +708,7 @@ const HomePage = () => {
                   Learning semi conductors for electrical education
                 </p>
                 <div className="d-flex align-items-end">
-                  <div className="col-sm-5">
+                  <div className="col-sm-7">
                     <div className="text-grey-sub-heading inter-regular label-1">
                       Mohammed Ayman
                     </div>
@@ -723,7 +719,7 @@ const HomePage = () => {
                         allowFraction={true}
                       />
                       <span className="top-courses-rating inter-regular label-1 m-x-1">
-                        4.5 & up
+                        (4.5)
                       </span>
                     </div>
                     <div>
@@ -748,7 +744,7 @@ const HomePage = () => {
                   Learning semi conductors for electrical education
                 </p>
                 <div className="d-flex align-items-end">
-                  <div className="col-sm-5">
+                  <div className="col-sm-7">
                     <div className="text-grey-sub-heading inter-regular label-1">
                       Mohammed Ayman
                     </div>
@@ -759,7 +755,7 @@ const HomePage = () => {
                         allowFraction={true}
                       />
                       <span className="top-courses-rating inter-regular label-1 m-x-1">
-                        4.5 & up
+                        (4.5)
                       </span>
                     </div>
                     <div>
@@ -814,10 +810,8 @@ const HomePage = () => {
                 Eng. Mostafa Khalifa
               </p>
               <div className="d-flex align-items-end">
-                <div className="col-sm-6">
-                  <div className="text-grey-sub-heading inter-regular label-1">
-                    Mohammed Ayman
-                  </div>
+                <div className="text-grey-sub-heading inter-regular label-1">
+                  Mohammed Ayman
                 </div>
               </div>
             </div>
@@ -827,10 +821,8 @@ const HomePage = () => {
                 Eng. Mostafa Khalifa
               </p>
               <div className="d-flex align-items-end">
-                <div className="col-sm-6">
-                  <div className="text-grey-sub-heading inter-regular label-1">
-                    Mohammed Ayman
-                  </div>
+                <div className="text-grey-sub-heading inter-regular label-1">
+                  Mohammed Ayman
                 </div>
               </div>
             </div>
@@ -840,10 +832,8 @@ const HomePage = () => {
                 Eng. Mostafa Khalifa
               </p>
               <div className="d-flex align-items-end">
-                <div className="col-sm-6">
-                  <div className="text-grey-sub-heading inter-regular label-1">
-                    Mohammed Ayman
-                  </div>
+                <div className="text-grey-sub-heading inter-regular label-1">
+                  Mohammed Ayman
                 </div>
               </div>
             </div>
@@ -853,10 +843,8 @@ const HomePage = () => {
                 Eng. Mostafa Khalifa
               </p>
               <div className="d-flex align-items-end">
-                <div className="col-sm-6">
-                  <div className="text-grey-sub-heading inter-regular label-1">
-                    Mohammed Ayman
-                  </div>
+                <div className="text-grey-sub-heading inter-regular label-1">
+                  Mohammed Ayman
                 </div>
               </div>
             </div>
@@ -961,28 +949,27 @@ const HomePage = () => {
         <div className="partners-container">
           <div className="d-flex justify-content-between align-items-center">
             <div className="partner-img-container">
-              <img src={partner1}></img>
+              <img alt="partner" src={partner1}></img>
             </div>
             <div className="partner-img-container">
-              <img src={partner2}></img>
+              <img alt="partner" src={partner2}></img>
             </div>
             <div className="partner-img-container">
-              <img src={partner3}></img>
+              <img alt="partner" src={partner3}></img>
             </div>
             <div className="partner-img-container">
-              <img src={partner4}></img>
+              <img alt="partner" src={partner4}></img>
             </div>
             <div className="partner-img-container">
-              <img src={partner2}></img>
+              <img alt="partner" src={partner2}></img>
             </div>
             <div className="partner-img-container">
-              <img src={partner1}></img>
+              <img alt="partner" src={partner1}></img>
             </div>
           </div>
         </div>
       </div>
-      <Footer />
-    </>
+    </div>
   );
 };
 export default HomePage;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Router , BrowserRouter} from "react-router-dom";
+import { Router, BrowserRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
 import history from "../routes/History";
 import Routes from "../routes/Routes";
@@ -66,7 +66,6 @@ const App = () => {
 
         {/* <Router history={history}>{Routes}</Router> */}
         <BrowserRouter history={history}>{Routes}</BrowserRouter>
-
       </div>
     </IntlProvider>
   );
