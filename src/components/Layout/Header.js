@@ -253,7 +253,7 @@ const Header = () => {
         <div className="col-sm-3">
           <div className=" d-flex">
             <div>
-              <span className="inter-semi-bold body-1 cursor-pointer">
+              <span className="inter-semi-bold body-1 cursor-pointer" onClick={() => navigate("/about-us")}>
                 <FormattedMessage id="aboutUs" />
               </span>
             </div>

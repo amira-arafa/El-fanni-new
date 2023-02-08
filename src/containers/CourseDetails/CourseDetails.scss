@@ -6,6 +6,15 @@
   .course-details-parent {
     min-height: 100vh;
   }
+  img[alt="course-arrow"] {
+    position: absolute;
+    top: 170px;
+    background-color: #002147;
+    z-index: 500;
+    width: 35px;
+    height: 35px;
+    display: block !important;
+  }
   .star-svg {
     width: 23px;
     height: 23px;
@@ -167,6 +176,9 @@
 
 @media only screen and (max-width: 786px) {
   .course-details-wrapper {
+    img[alt="course-arrow"] {
+      display: none !important;
+    }
     background-color: $whiteText;
     .mobile-view {
       display: block;

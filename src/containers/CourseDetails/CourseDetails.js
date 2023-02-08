@@ -18,6 +18,7 @@ import { useSelector, useDispatch } from "react-redux";
 import ReactPlayer from "react-player";
 import { getCourseDetails } from "../../store/actions/home";
 import EmptyState from "../../components/EmptyStateComponent/EmptyState";
+import arrowLogo from "../../assets/imgs/icons/arrow-right-white.png";
 import "./CourseDetails.scss";
 import Input from "../../components/Input/Input";
 import sortIcon from "../../assets/imgs/icons/sort.png";
@@ -31,6 +32,7 @@ const CourseDetails = () => {
   const { course_info } = home;
   const [courseUrl, setCourseUrl] = useState(null);
   const [reviewSearchValue, setReviewSearchValue] = useState("");
+  const [isExpanded, setIsExpanded] = useState(true);
 
   useEffect(() => {
     id && dispatch(getCourseDetails(id));
@@ -45,19 +47,30 @@ const CourseDetails = () => {
     }
   }, [course_info, courseUrl]);
 
+  const handleExpandSection = () => {
+    setIsExpanded(false);
+  };
+
   return (
     <div className="course-details-wrapper">
       <div className="desktop-view">
         <Header2></Header2>
         <div className="d-flex course-details-parent">
-          <div className="col-sm-4">
+          <div className={isExpanded ? "col-sm-4" : "d-none"}>
             <div className="course-ciriculum p-4">
               <div className="collapse-container">
                 <p className="glory-bold heading-3">
                   <FormattedMessage id="Content" />
-                  <span>
-                    <img src={closeCircleIcon} alt="close" />
-                  </span>
+                  {isExpanded && (
+                    <span>
+                      <img
+                        src={closeCircleIcon}
+                        onClick={handleExpandSection}
+                        alt="close"
+                        className="cursor-pointer"
+                      />
+                    </span>
+                  )}
                 </p>
 
                 <hr />
@@ -110,9 +123,7 @@ const CourseDetails = () => {
                               <span>{lecture.title}</span>
                             </div>
                             <div className="body-1 inter-regular inter-semi-bold time-color">
-                              <b>
-                                 {lecture.duration}
-                              </b>
+                              <b>{lecture.duration}</b>
                             </div>
                           </div>
                         ))}
@@ -123,7 +134,7 @@ const CourseDetails = () => {
               </div>
             </div>
           </div>
-          <div className="col-sm-8">
+          <div className={isExpanded ? "col-sm-8" : "col-sm-12"}>
             {/* {courseUrl && (
               <video
                 id="mainVideo"
@@ -138,13 +149,25 @@ const CourseDetails = () => {
                 />
               </video>
             )} */}
+            {!isExpanded && (
+              <img
+                src={arrowLogo}
+                onClick={() => setIsExpanded(true)}
+                alt="course-arrow"
+                className="cursor-pointer"
+              ></img>
+            )}
             {courseUrl && (
               <ReactPlayer
                 id="mainVideo"
-                config={{ file: { attributes: {
-                  autoPlay: true,
-                  controlsList: 'nodownload' 
-                }}}}
+                config={{
+                  file: {
+                    attributes: {
+                      autoPlay: true,
+                      controlsList: "nodownload",
+                    },
+                  },
+                }}
                 url={courseUrl}
                 volume={1}
                 loop={false}
@@ -449,9 +472,9 @@ const CourseDetails = () => {
           <div className="collapse-container">
             <p className="glory-bold heading-3">
               <FormattedMessage id="Content" />
-              <span>
+              {/* <span>
                 <img src={closeCircleIcon} alt="close" />
-              </span>
+              </span> */}
             </p>
 
             <hr />
@@ -554,21 +577,25 @@ const CourseDetails = () => {
             />
           </video>
         )} */}
-            {courseUrl && (
-              <ReactPlayer
-                id="mobileVideo"
-                config={{ file: { attributes: {
+        {courseUrl && (
+          <ReactPlayer
+            id="mobileVideo"
+            config={{
+              file: {
+                attributes: {
                   autoPlay: false,
-                  controlsList: 'nodownload' 
-                }}}}
-                url={courseUrl}
-                volume={1}
-                loop={false}
-                width="100%"
-                onReady={() => console.log("ready now")}
-                controls={true}
-              />
-            )}
+                  controlsList: "nodownload",
+                },
+              },
+            }}
+            url={courseUrl}
+            volume={1}
+            loop={false}
+            width="100%"
+            onReady={() => console.log("ready now")}
+            controls={true}
+          />
+        )}
 
         <div className="about-lecturer-section mb-4">
           <p className="glory-bold heading-3">
