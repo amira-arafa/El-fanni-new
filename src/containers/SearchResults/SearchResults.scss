@@ -19,6 +19,15 @@
     margin: 0 auto;
   }
 }
+img[alt="search-cover-img"] {
+  width: 60px !important;
+  height: 50px !important;
+}
+img[alt="search-cover-img-blank"] {
+  width: 60px !important;
+  height: 50px !important;
+  border: 1px solid black;
+}
 
 .search-results-container {
   padding: 1.3vw 4.5vw;

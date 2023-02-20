@@ -9,17 +9,14 @@ import moreIcon from "../../assets/imgs/icons/moregrey.png";
 import sortUp from "../../assets/imgs/icons/direct-up.png";
 import sortDown from "../../assets/imgs/icons/direct-down.png";
 import sortIcon from "../../assets/imgs/icons/sort.png";
-import collection1 from "../../assets/imgs/collection1.png";
-import collection2 from "../../assets/imgs/collection2.png";
-import collection3 from "../../assets/imgs/collection3.png";
-import collection4 from "../../assets/imgs/collection4.png";
+import blankImg from "../../assets/imgs/blankImg.webp";
 import {
   getProfile,
   getFavourites,
   getCollectionsList,
   addNewCollection,
   removeFromFaviorites,
-  getMycoursesList
+  getMycoursesList,
 } from "../../store/actions/home";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
@@ -44,7 +41,8 @@ const Profile = () => {
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
   const { home } = useSelector((state) => state);
-  const { profile_info, collections_list, favourites_list, my_courses_list } = home;
+  const { profile_info, collections_list, favourites_list, my_courses_list } =
+    home;
 
   useEffect(() => {
     dispatch(getProfile());
@@ -55,8 +53,7 @@ const Profile = () => {
       dispatch(getFavourites({ sort: { title: sort } }));
     } else if (activeTab === 2) {
       dispatch(getCollectionsList({ sort: sort === 1 ? "name" : "-name" }));
-    }
-    else if (activeTab === 0) {
+    } else if (activeTab === 0) {
       dispatch(getMycoursesList({ sort: { title: sort } }));
     }
   }, [activeTab, dispatch, sort]);
@@ -77,8 +74,7 @@ const Profile = () => {
       dispatch(getFavourites({ sort: { title: sort } }));
     } else if (activeTab === 2) {
       dispatch(getCollectionsList({ sort: sort === 1 ? "name" : "-name" }));
-    }
-    else if (activeTab === 0) {
+    } else if (activeTab === 0) {
       dispatch(getMycoursesList({ sort: { title: sort } }));
     }
   };
@@ -286,14 +282,24 @@ const Profile = () => {
                       className="row course-results-wrapper mb-3 mx-0"
                       key={i}
                     >
-                      <div className="col-sm-4 cursor-pointer" onClick={() => navigate(`/course-details/${course._id}`)}>
+                      <div
+                        className="col-sm-4 cursor-pointer"
+                        onClick={() =>
+                          navigate(`/course-details/${course._id}`)
+                        }
+                      >
                         <img
                           src={course.cover}
                           alt="course-img"
                           width="100%"
                         ></img>
                       </div>
-                      <div className="col-sm-6 cursor-pointer" onClick={() => navigate(`/course-details/${course._id}`)}>
+                      <div
+                        className="col-sm-6 cursor-pointer"
+                        onClick={() =>
+                          navigate(`/course-details/${course._id}`)
+                        }
+                      >
                         <p className="inter-semi-bold heading-3 course-title-mobile">
                           {course.title}
                         </p>
@@ -386,66 +392,77 @@ const Profile = () => {
           )}
 
           {activeTab === 0 && (
-             <div>
-             { my_courses_list.length > 0 ? (
-               <div>
-                 { my_courses_list?.map((course, i) => (
-                   <div
-                     className="row course-results-wrapper mb-3 mx-0"
-                     key={i}
-                   >
-                     <div className="col-sm-4 cursor-pointer" onClick={() => navigate(`/course-details/${course._id}`)}>
-                       <img
-                         src={course.cover}
-                         alt="course-img"
-                         width="100%"
-                       ></img>
-                     </div>
-                     <div className="col-sm-6 cursor-pointer" onClick={() => navigate(`/course-details/${course._id}`)}>
-                       <p className="inter-semi-bold heading-3 course-title-mobile">
-                         {course.title}
-                       </p>
-                       <div className="search-results-courses-data">
-                         <span className="inter-regular label-1">
-                           {course.instructors?.map(
-                             (instructor, i) =>
-                               instructor.fullName +
-                               `${
-                                 i < course.instructors.length - 1 ? ", " : " "
-                               }`
-                           )}
-                         </span>
-                         <span className="inter-regular label-1 search-result-date">
-                           {moment(course.releaseDate).format("LL")}
-                         </span>
-                         <span className="inter-regular label-1 search-result-students-number">
-                           {course.studentsNo}
-                         </span>
-                       </div>
-                       <div className="mb-3 search-results-courses-data">
-                         <Rating
-                           readonly={true}
-                           initialValue={course.avgRating}
-                           allowFraction={true}
-                         />
-                         <span className="top-courses-rating inter-regular label-1 m-x-1">
-                           ({course.reviewsNo})
-                         </span>
-                         <span className="inter-regular label-1 search-result-date">
-                           {course.language}
-                         </span>
-                         <span className="inter-regular label-1 search-result-students-number">
-                           {course.level}
-                         </span>
-                       </div>
-                       <Button
-                         text={
-                           intl.formatMessage({ id: "InProgress" }) + `  ${course.progress}%`
-                         }
-                         className="check-courses-btn-progress inter-semi-bold label-1"
-                       ></Button>
-                     </div>
-                     {/* <div className="col-sm-2 text-end cart-desktop-more">
+            <div>
+              {my_courses_list.length > 0 ? (
+                <div>
+                  {my_courses_list?.map((course, i) => (
+                    <div
+                      className="row course-results-wrapper mb-3 mx-0"
+                      key={i}
+                    >
+                      <div
+                        className="col-sm-4 cursor-pointer"
+                        onClick={() =>
+                          navigate(`/course-details/${course._id}`)
+                        }
+                      >
+                        <img
+                          src={course.cover}
+                          alt="course-img"
+                          width="100%"
+                        ></img>
+                      </div>
+                      <div
+                        className="col-sm-6 cursor-pointer"
+                        onClick={() =>
+                          navigate(`/course-details/${course._id}`)
+                        }
+                      >
+                        <p className="inter-semi-bold heading-3 course-title-mobile">
+                          {course.title}
+                        </p>
+                        <div className="search-results-courses-data">
+                          <span className="inter-regular label-1">
+                            {course.instructors?.map(
+                              (instructor, i) =>
+                                instructor.fullName +
+                                `${
+                                  i < course.instructors.length - 1 ? ", " : " "
+                                }`
+                            )}
+                          </span>
+                          <span className="inter-regular label-1 search-result-date">
+                            {moment(course.releaseDate).format("LL")}
+                          </span>
+                          <span className="inter-regular label-1 search-result-students-number">
+                            {course.studentsNo}
+                          </span>
+                        </div>
+                        <div className="mb-3 search-results-courses-data">
+                          <Rating
+                            readonly={true}
+                            initialValue={course.avgRating}
+                            allowFraction={true}
+                          />
+                          <span className="top-courses-rating inter-regular label-1 m-x-1">
+                            ({course.reviewsNo})
+                          </span>
+                          <span className="inter-regular label-1 search-result-date">
+                            {course.language}
+                          </span>
+                          <span className="inter-regular label-1 search-result-students-number">
+                            {course.level}
+                          </span>
+                        </div>
+                        <Button
+                          text={
+                            intl.formatMessage({ id: "InProgress" }) +
+                            `  ${course.progress}%`
+                          }
+                          className="check-courses-btn-progress inter-semi-bold label-1"
+                        ></Button>
+                      </div>
+                      {/* <div className="col-sm-2 text-end cart-desktop-more">
                        <div className="dropdown ddp-btn ">
                          <div
                            className="dropdown-toggle w-100 course-content-btn"
@@ -479,18 +496,18 @@ const Profile = () => {
                          </ul>
                        </div>
                      </div> */}
-                   </div>
-                 ))}
-               </div>
-             ) : (
-               <div>
-                 <EmptyState
-                   className="mb-5"
-                   text={<FormattedMessage id="noCourses" />}
-                 />
-               </div>
-             )}
-           </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div>
+                  <EmptyState
+                    className="mb-5"
+                    text={<FormattedMessage id="noCourses" />}
+                  />
+                </div>
+              )}
+            </div>
             // <>
             //   <div className="row course-results-wrapper mb-3 mx-0">
             //     <div className="col-sm-4">
@@ -650,10 +667,54 @@ const Profile = () => {
                     >
                       <div className="col-sm-3">
                         <div className="collection-bg-img">
-                          <img src={collection1} alt="course-img"></img>
-                          <img src={collection2} alt="course-img"></img>
-                          <img src={collection3} alt="course-img"></img>
-                          <img src={collection4} alt="course-img"></img>
+                          <div>
+                            {collection?.courses[0] ? (
+                              <img
+                                src={collection?.courses[0]?.cover}
+                                alt="collection-cover-img"
+                              ></img>
+                            ) : (
+                              <img
+                                src={blankImg}
+                                alt="collection-cover-img-blank"
+                              />
+                            )}
+                            {collection?.courses[1] ? (
+                              <img
+                                src={collection?.courses[1]?.cover}
+                                alt="collection-cover-img"
+                              ></img>
+                            ) : (
+                              <img
+                                src={blankImg}
+                                alt="collection-cover-img-blank"
+                              />
+                            )}
+                          </div>
+                          <div>
+                            {collection?.courses[2] ? (
+                              <img
+                                src={collection?.courses[2]?.cover}
+                                alt="collection-cover-img"
+                              ></img>
+                            ) : (
+                              <img
+                                src={blankImg}
+                                alt="collection-cover-img-blank"
+                              />
+                            )}
+                            {collection?.courses[3] ? (
+                              <img
+                                src={collection?.courses[3]?.cover}
+                                alt="collection-cover-img"
+                              ></img>
+                            ) : (
+                              <img
+                                src={blankImg}
+                                alt="collection-cover-img-blank"
+                              />
+                            )}
+                          </div>
                         </div>
                       </div>
                       <div className="col-sm-9">

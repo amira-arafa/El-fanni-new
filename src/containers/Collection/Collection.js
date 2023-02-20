@@ -247,8 +247,9 @@ const Collection = () => {
                       </span>
                     </div>
                     <Button
-                       text={
-                        intl.formatMessage({ id: "InProgress" }) + `  ${course.progress}%`
+                      text={
+                        intl.formatMessage({ id: "InProgress" }) +
+                        `  ${course.progress}%`
                       }
                       className="check-courses-btn-progress inter-semi-bold label-1"
                     ></Button>
@@ -278,9 +279,9 @@ const Collection = () => {
                           onClick={() => handleRemoveFromCollection(course._id)}
                           className="cursor-pointer"
                         >
-                          <a className="dropdown-item" href>
+                          <span className="dropdown-item">
                             <FormattedMessage id="removeFromCollection" />
-                          </a>
+                          </span>
                         </li>
                       </ul>
                     </div>

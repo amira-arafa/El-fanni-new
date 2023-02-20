@@ -11,12 +11,9 @@ import closeIcon from "../../assets/imgs/icons/close-circle.png";
 import filterIcon from "../../assets/imgs/icons/filter.png";
 import Button from "../../components/Button/Button";
 import ModalComponent from "../../components/Modal/Modal";
+import blankImg from "../../assets/imgs/blankImg.webp";
 import { STORE_SEARCH_QUERY } from "../../store/types/home";
 import { useDispatch, useSelector } from "react-redux";
-import collection1 from "../../assets/imgs/collection1.png";
-import collection2 from "../../assets/imgs/collection2.png";
-import collection3 from "../../assets/imgs/collection3.png";
-import collection4 from "../../assets/imgs/collection4.png";
 import {
   searchResult,
   getCategories,
@@ -944,22 +941,66 @@ const SearchResults = () => {
                                             >
                                               <div className="col-sm-3">
                                                 <div className="collection-bg-img">
-                                                  <img
-                                                    src={collection1}
-                                                    alt="course-img"
-                                                  ></img>
-                                                  <img
-                                                    src={collection2}
-                                                    alt="course-img"
-                                                  ></img>
-                                                  <img
-                                                    src={collection3}
-                                                    alt="course-img"
-                                                  ></img>
-                                                  <img
-                                                    src={collection4}
-                                                    alt="course-img"
-                                                  ></img>
+                                                  <div>
+                                                    {collection?.courses[0] ? (
+                                                      <img
+                                                        src={
+                                                          collection?.courses[0]
+                                                            ?.cover
+                                                        }
+                                                        alt="search-cover-img"
+                                                      ></img>
+                                                    ) : (
+                                                      <img
+                                                        src={blankImg}
+                                                        alt="search-cover-img-blank"
+                                                      />
+                                                    )}
+                                                    {collection?.courses[1] ? (
+                                                      <img
+                                                        src={
+                                                          collection?.courses[1]
+                                                            ?.cover
+                                                        }
+                                                        alt="search-cover-img"
+                                                      ></img>
+                                                    ) : (
+                                                      <img
+                                                        src={blankImg}
+                                                        alt="search-cover-img-blank"
+                                                      />
+                                                    )}
+                                                  </div>
+                                                  <div>
+                                                    {collection?.courses[2] ? (
+                                                      <img
+                                                        src={
+                                                          collection?.courses[2]
+                                                            ?.cover
+                                                        }
+                                                        alt="search-cover-img"
+                                                      ></img>
+                                                    ) : (
+                                                      <img
+                                                        src={blankImg}
+                                                        alt="search-cover-img-blank"
+                                                      />
+                                                    )}
+                                                    {collection?.courses[3] ? (
+                                                      <img
+                                                        src={
+                                                          collection?.courses[3]
+                                                            ?.cover
+                                                        }
+                                                        alt="search-cover-img"
+                                                      ></img>
+                                                    ) : (
+                                                      <img
+                                                        src={blankImg}
+                                                        alt="search-cover-img-blank"
+                                                      />
+                                                    )}
+                                                  </div>
                                                 </div>
                                               </div>
                                               <div className="col-sm-9">

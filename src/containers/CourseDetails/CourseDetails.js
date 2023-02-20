@@ -77,8 +77,8 @@ const CourseDetails = () => {
 
                 {course_info?.sections?.map((course, i) => (
                   <div key={i}>
-                    <p>
-                      <p
+                    <div>
+                      <div
                         className="glory-semi-bold heading-1 course-criculum-title cursor-pointer"
                         data-bs-toggle="collapse"
                         data-bs-target={`#collapseExample-${i}`}
@@ -95,8 +95,8 @@ const CourseDetails = () => {
                         <span style={{ alignSelf: "center" }}>
                           <img src={arrowdownIcon} alt="arrow-down" />
                         </span>
-                      </p>
-                    </p>
+                      </div>
+                    </div>
                     <div className="collapse" id={`collapseExample-${i}`}>
                       <div>
                         {course?.lectures.map((lecture, index) => (
@@ -116,7 +116,7 @@ const CourseDetails = () => {
                             <div className="body-1 inter-regular lesson-color single-lecture">
                               <span>
                                 <img
-                                  src={index % 2 === 0 ? docIcon : videoIcon}
+                                  src={lecture.type==="exercise" ? docIcon : videoIcon}
                                   alt="video-icon"
                                 />
                               </span>
@@ -481,8 +481,8 @@ const CourseDetails = () => {
 
             {course_info?.sections?.map((course, i) => (
               <div key={i}>
-                <p>
-                  <p
+              <div>
+                  <div
                     className="glory-semi-bold heading-1 course-criculum-title cursor-pointer"
                     data-bs-toggle="collapse"
                     data-bs-target={`#collapseExample-${i}`}
@@ -499,8 +499,8 @@ const CourseDetails = () => {
                     <span style={{ alignSelf: "center" }}>
                       <img src={arrowdownIcon} alt="arrow-down" />
                     </span>
-                  </p>
-                </p>
+                  </div>
+                </div>
                 <div className="collapse" id={`collapseExample-${i}`}>
                   <div>
                     {course?.lectures.map((lecture, index) => (
@@ -516,7 +516,7 @@ const CourseDetails = () => {
                         <div className="body-1 inter-regular lesson-color single-lecture">
                           <span>
                             <img
-                              src={index % 2 === 0 ? docIcon : videoIcon}
+                              src={lecture.type==="exercise" ? docIcon : videoIcon}
                               alt="video-icon"
                             />
                           </span>
@@ -602,8 +602,8 @@ const CourseDetails = () => {
             <FormattedMessage id="AboutLecturers" />
           </p>
 
-          {course_info.instructors?.map((instructor) => (
-            <div>
+          {course_info.instructors?.map((instructor, i) => (
+            <div key={i}>
               <div className="d-flex student-info mb-2">
                 <div>
                   <img src={instructor.photo} alt="lecturer-img" />
@@ -634,7 +634,7 @@ const CourseDetails = () => {
             <ul className="attachment-ul">
               {course_info?.attachments?.length > 0 &&
                 course_info.attachments.map((attach, i) => (
-                  <li className="inter-regular body-1 mb-2 cursor-pointer">
+                  <li className="inter-regular body-1 mb-2 cursor-pointer" key={i}>
                     <img
                       src={importIcon}
                       key={i}
