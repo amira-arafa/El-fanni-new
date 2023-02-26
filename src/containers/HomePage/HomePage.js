@@ -30,6 +30,7 @@ import { useNavigate } from "react-router-dom";
 import HomeMainSection from "./HomeMainSection/HomeMainSection";
 import HomeAboutUsSection from "./HomeAboutUsSection/HomeAboutUsSection";
 import HomeStatisticsSection from "./HomeStatisticsSection/HomeStatisticsSection";
+import HomeOurCoursesSection from "./HomeOurCoursesSection/HomeOurCoursesSection";
 import "./HomePage.scss";
 const HomePage = () => {
   const intl = useIntl();
@@ -59,6 +60,7 @@ const HomePage = () => {
         <HomeMainSection />
         <HomeAboutUsSection />
         <HomeStatisticsSection />
+        <HomeOurCoursesSection />
       </div>
       <div className="mobile-view">
         <div className="d-flex">

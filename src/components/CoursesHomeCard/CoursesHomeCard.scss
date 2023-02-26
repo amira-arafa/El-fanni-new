@@ -1,0 +1,26 @@
+.home-page-courses-card {
+  width: 300px;
+  height: 232px;
+  margin-inline: 25px;
+  position: relative;
+  background-image: linear-gradient(
+    180deg,
+    rgba(0, 33, 71, 0) 0%,
+    #002147 108.79%
+  );
+  .course-title {
+    position: absolute;
+    bottom: 12px;
+    padding-inline: 16px;
+    font-family: "Gilory";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 36px;
+    color: #f5faff;
+  }
+  img[alt="course-img"] {
+    z-index: -5;
+    position: absolute;
+  }
+}

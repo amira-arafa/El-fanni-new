@@ -160,6 +160,7 @@ const ar = {
     noReviews: "There is no reviews",
     noAttachments: "There is no Attachments",
     ratingAndreviews: "Rating & Reviews",
+    Our_Courses: "Our Courses",
   },
 };
 
