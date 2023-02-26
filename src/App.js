@@ -63,7 +63,7 @@ function App() {
           <IntlProvider locale={lang} messages={messages[lang]}>
             <Router history={history}>
               {!(
-                includePath("/") ||
+                window.location.pathname === "/" ||
                 includePath("/course-details/") ||
                 includePath("/sign-up") ||
                 includePath("/sign-in") ||

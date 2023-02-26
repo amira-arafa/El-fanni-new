@@ -101,6 +101,8 @@ const en = {
     AboutUs: "About Us",
     WhoWeAre: "Who we are",
     Mission: "Mission",
+    Message: "Message",
+    Stratgy: "Strategy",
     MissionAndVision: "Mission & Vision",
     Vision: "Vision",
     MissionAndVission: "Mission & Visson",

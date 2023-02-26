@@ -1,0 +1,26 @@
+.about_us_home_section {
+  padding: 1.3vw 4.5vw;
+  margin-top: 20px;
+  .title {
+    font-family: "Gilory";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 64px;
+    color: #002147;
+  }
+  .content-wrapper {
+    width: 45%;
+    margin-bottom: 160px;
+  }
+  .content-single-wrapper,
+  .content-single-wrapper-last-child {
+    border-width: 2px 0px 0px 0px;
+    border-style: solid;
+    border-color: #d8d8de;
+    padding-block: 10px;
+  }
+  .content-single-wrapper-last-child {
+    border-width: 2px 0px;
+  }
+}
