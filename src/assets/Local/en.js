@@ -39,7 +39,7 @@ const en = {
     privacyPolicy: "Privacy policy",
     contactUs: "Contact us",
     homeMainTitle:
-      "The First Platform in Egypt to provide courses in Technical Education",
+      "Africa & the Middle East’s first online learning platform exclusively dedicated to technical and vocational education, training and skills",
     homeSecondTitle:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor non imperdiet aliquet tellus suspendisse volutpat elit",
     checkCourses: "Check courses",

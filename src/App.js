@@ -63,13 +63,14 @@ function App() {
           <IntlProvider locale={lang} messages={messages[lang]}>
             <Router history={history}>
               {!(
+                includePath("/") ||
                 includePath("/course-details/") ||
                 includePath("/sign-up") ||
                 includePath("/sign-in") ||
                 includePath("/forget-password") ||
                 includePath("/check-email") ||
                 includePath("/confirm-password") ||
-                includePath("/forget-password-email") 
+                includePath("/forget-password-email")
               ) && <Header />}
               <Routes>
                 <Route path="/" element={<HomePage />} />
@@ -117,7 +118,7 @@ function App() {
               includePath("/forget-password") ||
               includePath("/check-email") ||
               includePath("/confirm-password") ||
-              includePath("/forget-password-email") 
+              includePath("/forget-password-email")
             ) && <Footer />}
           </IntlProvider>
         </div>

@@ -27,8 +27,8 @@ import cafe from "../../assets/imgs/cafe.jpeg";
 import Button from "../../components/Button/Button";
 import CarouselComponent from "../../components/Carousel/Carousel";
 import { useNavigate } from "react-router-dom";
+import HomeMainSection from "./HomeMainSection/HomeMainSection";
 import "./HomePage.scss";
-
 const HomePage = () => {
   const intl = useIntl();
   const navigate = useNavigate();
@@ -54,68 +54,7 @@ const HomePage = () => {
   return (
     <div className="home-page-wrapper">
       <div className="desktop-view">
-        <main>
-          <div className="d-flex">
-            <div className="home-img-1">
-              <div className="home-bg-img-1"></div>
-            </div>
-            <div className="home-img-1">
-              <div className="home-bg-img-2"></div>
-            </div>
-            <div className="home-img-1">
-              <div className="home-bg-img-3"></div>
-            </div>
-            <div className="home-img-1">
-              <div className="home-bg-img-4"></div>
-            </div>
-            <div className="home-img-1">
-              <div className="home-bg-img-5"></div>
-            </div>
-          </div>
-          <div className="d-flex">
-            <div className="home-img-2">
-              <div className="home-bg-img-6"></div>
-              <div className="home-bg-img-7"></div>
-            </div>
-            <div className="home-img-3">
-              <div className="main-section">
-                <p className="glory-semi-bold home-main-title">
-                  <FormattedMessage id="homeMainTitle" />
-                </p>
-                <p className="body-1 inter-regular home-secondary-title">
-                  <FormattedMessage id="homeSecondTitle" />
-                </p>
-                <Button
-                  afterIcon={arrowRight}
-                  onClick={() => navigate("/search-results")}
-                  text={intl.formatMessage({ id: "checkCourses" })}
-                  className="check-courses-btn inter-semi-bold body-1"
-                ></Button>
-              </div>
-            </div>
-            <div className="home-img-2">
-              <div className="home-bg-img-8"></div>
-              <div className="home-bg-img-9"></div>
-            </div>
-          </div>
-          <div className="d-flex">
-            <div className="home-img-1">
-              <div className="home-bg-img-10"></div>
-            </div>
-            <div className="home-img-1">
-              <div className="home-bg-img-11"></div>
-            </div>
-            <div className="home-img-1">
-              <div className="home-bg-img-12"></div>
-            </div>
-            <div className="home-img-1">
-              <div className="home-bg-img-13"></div>
-            </div>
-            <div className="home-img-1">
-              <div className="home-bg-img-14"></div>
-            </div>
-          </div>
-        </main>
+        <HomeMainSection />
       </div>
       <div className="mobile-view">
         <div className="d-flex">

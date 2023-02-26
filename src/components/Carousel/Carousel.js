@@ -8,6 +8,10 @@ const CarouselComponent = ({
   responsive,
   infinite,
   slidesToSlide,
+  showDots,
+  removeArrowOnDeviceType,
+  className,
+  customTransition,
 }) => {
   return (
     <Carousel
@@ -16,6 +20,10 @@ const CarouselComponent = ({
       autoPlay={autoPlay}
       autoPlaySpeed={interval}
       slidesToSlide={slidesToSlide}
+      showDots={showDots}
+      removeArrowOnDeviceType={removeArrowOnDeviceType}
+      className={className}
+      customTransition={customTransition}
     >
       {children}
     </Carousel>

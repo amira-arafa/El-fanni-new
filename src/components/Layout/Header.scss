@@ -128,11 +128,11 @@ img[alt="search-icon-overlay"] {
   padding: 1.8vw 0.9vw !important;
 }
 .browse-btn {
-  background: #ffffff;
   border-radius: 12px;
-  color: #02428d;
-  padding: 0.7vw 2.1vw;
-  border: none;
+  background-color: transparent;
+  color: #fff;
+  padding: 13px 32px;
+  border: 2px solid #f5faff;
 }
 .m-x-4 {
   margin-left: 2vw;
@@ -147,7 +147,9 @@ img[alt="search-icon-overlay"] {
   align-items: center !important;
 }
 .browse-btn-container {
-  display: block !important;
+  display: flex !important;
+  align-items: center;
+  gap: 20px;
   .modal-children-wrapper {
     width: 20%;
   }
@@ -162,6 +164,32 @@ img[alt="search-icon-overlay"] {
 .browse-modal-container {
   overflow: auto;
   height: 70vh;
+}
+img[alt="logo-name"] {
+  width: 100px;
+}
+img[alt="arrowDownBrowse"] {
+  width: 17px !important;
+  height: 17px !important;
+}
+img[alt="language"] {
+  width: 30px !important;
+  height: 30px !important;
+}
+img[alt="search"] {
+  width: 38px !important;
+  height: 38px !important;
+}
+.sign-in-header {
+  border-radius: 12px;
+  background-color: transparent;
+  color: #fff;
+  padding: 13px 20px;
+  border: 2px solid #f5faff;
+}
+.home_page {
+  background-color: transparent;
+  padding: 0px;
 }
 
 @media only screen and (min-width: 890px) and (max-width: 1152px) {
