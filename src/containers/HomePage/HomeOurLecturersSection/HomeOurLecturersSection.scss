@@ -1,0 +1,50 @@
+.courses_home_lecturer_section {
+  padding: 1.3vw 4.5vw;
+  .title {
+    border-right: 1px solid #babac5;
+  }
+  .our {
+    font-family: "Gilory";
+    font-style: normal;
+    font-weight: 800;
+    font-size: 25px;
+    line-height: 45px;
+    color: #8bcf5f;
+  }
+  .lecturer {
+    font-family: "Gilory";
+    font-style: normal;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 45px;
+    color: #002147;
+  }
+  .title-wrapper {
+    margin-bottom: 30px;
+  }
+  .lecturers-wrapper {
+    .lecturer {
+      padding: 12px;
+    }
+    .name {
+      font-family: "Gilory";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 36px;
+      color: #000e1f;
+      margin-bottom: 0px;
+    }
+    .job {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+      color: #535364;
+    }
+    img[alt="lecturer-Img"] {
+      margin-bottom: 10px;
+    }
+  }
+}

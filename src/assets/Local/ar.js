@@ -161,6 +161,10 @@ const ar = {
     noAttachments: "There is no Attachments",
     ratingAndreviews: "Rating & Reviews",
     Our_Courses: "Our Courses",
+    lecturers_title:
+      "We are proud of our Lecturers, they are important source of our success and a big part to our journey. We introduce some of our best lectures in our platform",
+    Our: "Our",
+    Lecturers: "Lecturers",
   },
 };
 

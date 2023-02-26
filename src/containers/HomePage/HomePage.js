@@ -31,6 +31,7 @@ import HomeMainSection from "./HomeMainSection/HomeMainSection";
 import HomeAboutUsSection from "./HomeAboutUsSection/HomeAboutUsSection";
 import HomeStatisticsSection from "./HomeStatisticsSection/HomeStatisticsSection";
 import HomeOurCoursesSection from "./HomeOurCoursesSection/HomeOurCoursesSection";
+import HomeOurLecturersSection from "./HomeOurLecturersSection/HomeOurLecturersSection";
 import "./HomePage.scss";
 const HomePage = () => {
   const intl = useIntl();
@@ -61,6 +62,7 @@ const HomePage = () => {
         <HomeAboutUsSection />
         <HomeStatisticsSection />
         <HomeOurCoursesSection />
+        <HomeOurLecturersSection />
       </div>
       <div className="mobile-view">
         <div className="d-flex">
