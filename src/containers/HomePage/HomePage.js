@@ -29,6 +29,7 @@ import CarouselComponent from "../../components/Carousel/Carousel";
 import { useNavigate } from "react-router-dom";
 import HomeMainSection from "./HomeMainSection/HomeMainSection";
 import HomeAboutUsSection from "./HomeAboutUsSection/HomeAboutUsSection";
+import HomeStatisticsSection from "./HomeStatisticsSection/HomeStatisticsSection";
 import "./HomePage.scss";
 const HomePage = () => {
   const intl = useIntl();
@@ -57,6 +58,7 @@ const HomePage = () => {
       <div className="desktop-view">
         <HomeMainSection />
         <HomeAboutUsSection />
+        <HomeStatisticsSection />
       </div>
       <div className="mobile-view">
         <div className="d-flex">

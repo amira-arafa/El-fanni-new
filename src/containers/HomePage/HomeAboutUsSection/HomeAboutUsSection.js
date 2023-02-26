@@ -17,7 +17,7 @@ const HomeAboutUsSection = () => {
           collapseId="about-us-home-mission"
           collapseTitle={
             <div className="d-flex justify-content-between align-items-center content-single-wrapper">
-              <div>
+              <div className="inner-title">
                 <FormattedMessage id="Mission" />
               </div>
               <div>
@@ -48,7 +48,7 @@ const HomeAboutUsSection = () => {
           collapseId="about-us-home-vision"
           collapseTitle={
             <div className="d-flex justify-content-between align-items-center content-single-wrapper">
-              <div>
+              <div className="inner-title">
                 <FormattedMessage id="Vision" />
               </div>
               <div>
@@ -79,7 +79,7 @@ const HomeAboutUsSection = () => {
           collapseId="about-us-home-message"
           collapseTitle={
             <div className="d-flex justify-content-between align-items-center content-single-wrapper">
-              <div>
+              <div className="inner-title">
                 <FormattedMessage id="Message" />
               </div>
               <div>
@@ -110,7 +110,7 @@ const HomeAboutUsSection = () => {
           collapseId="about-us-home-strategy"
           collapseTitle={
             <div className="d-flex justify-content-between align-items-center content-single-wrapper-last-child ">
-              <div>
+              <div className="inner-title">
                 <FormattedMessage id="Stratgy" />
               </div>
               <div>
