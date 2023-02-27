@@ -1,0 +1,61 @@
+.home-testimonial-section {
+  padding: 2.7vw 4.5vw;
+  background-image: url("../../../assets/imgs/testmonials.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+  height: 700px;
+  .title {
+    font-family: "Gilory";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 55px;
+    line-height: 64px;
+    text-align: center;
+    width: fit-content;
+    color: #ffffff;
+    margin: 0 auto;
+    margin-bottom: 8px;
+  }
+  .sub-title {
+    width: 70%;
+    margin: 0 auto;
+    color: #ffffff;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    text-align: center;
+    color: #c3defe;
+    margin-bottom: 25px;
+  }
+  .lecturer-list {
+    justify-content: space-between;
+  }
+  .our-students-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 16px;
+    text-align: left;
+    width: 31%;
+  }
+  .students-text {
+    color: #0b0b0e;
+  }
+  .student-info {
+    align-items: center;
+    gap: 20px;
+  }
+  .student-name {
+    color: #000e1f;
+  }
+  .student-school {
+    color: #535364;
+  }
+  img[alt="student-img"] {
+    border-radius: 50%;
+    width: 100%;
+  }
+}

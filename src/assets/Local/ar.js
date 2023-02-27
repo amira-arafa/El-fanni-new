@@ -165,6 +165,9 @@ const ar = {
       "We are proud of our Lecturers, they are important source of our success and a big part to our journey. We introduce some of our best lectures in our platform",
     Our: "Our",
     Lecturers: "Lecturers",
+    Testimonials: "Testimonials",
+    testmonials_sub_text:
+      "We are honored that we have recommendations from some of the best people in different fields and different positions, that’s our certificate and our prove for our success",
   },
 };
 
