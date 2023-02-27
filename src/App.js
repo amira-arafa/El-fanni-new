@@ -110,16 +110,16 @@ function App() {
                 <Route path="/search-results" element={<SearchResults />} />
                 <Route path="/search-results/:q" element={<SearchResults />} />
               </Routes>
+              {!(
+                includePath("/course-details/") ||
+                includePath("/sign-up") ||
+                includePath("/sign-in") ||
+                includePath("/forget-password") ||
+                includePath("/check-email") ||
+                includePath("/confirm-password") ||
+                includePath("/forget-password-email")
+              ) && <Footer />}
             </Router>
-            {!(
-              includePath("/course-details/") ||
-              includePath("/sign-up") ||
-              includePath("/sign-in") ||
-              includePath("/forget-password") ||
-              includePath("/check-email") ||
-              includePath("/confirm-password") ||
-              includePath("/forget-password-email")
-            ) && <Footer />}
           </IntlProvider>
         </div>
         <ToastContainer />

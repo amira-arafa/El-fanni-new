@@ -93,7 +93,10 @@ const Header = ({ className }) => {
             <div onClick={() => navigate("/")} className="cursor-pointer">
               <img alt="logo" src={logo} width="60px" height="60px"></img>
             </div>
-            <div className="text-white glory-bold heading-3 mx-2">
+            <div
+              onClick={() => navigate("/")}
+              className=" cursor-pointer text-white glory-bold heading-3 mx-2"
+            >
               <img alt="logo-name" src={logoName} />
             </div>
           </div>

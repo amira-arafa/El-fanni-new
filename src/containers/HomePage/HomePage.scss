@@ -65,9 +65,7 @@
 .home-bg-img-14 {
   @include homeBgImg("../../assets/imgs/14.png");
 }
-.partners-container {
-  overflow-x: scroll;
-}
+
 .star-svg {
   width: 23px;
   height: 23px;
@@ -498,9 +496,10 @@ div[dir="rtl"] {
       text-align: right;
     }
   }
-  @media only screen and (max-width: 786px) { 
+  @media only screen and (max-width: 786px) {
     .home-page-wrapper {
-      .about-us-img, .about-us-img-2 {
+      .about-us-img,
+      .about-us-img-2 {
         margin-right: 5%;
       }
     }
