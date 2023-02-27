@@ -10,6 +10,7 @@ import HomeOurCoursesSection from "./HomeOurCoursesSection/HomeOurCoursesSection
 import HomeOurLecturersSection from "./HomeOurLecturersSection/HomeOurLecturersSection";
 import HomeTestimonialSection from "./HomeTestimonialSection/HomeTestimonialSection";
 import HomeInspireSection from "./HomeInspireSection/HomeInspireSection";
+import HomeTrustedPartnersSection from "./HomeTrustedPartnersSection/HomeTrustedPartnersSection";
 import "./HomePage.scss";
 const HomePage = () => {
   return (
@@ -47,6 +48,7 @@ const HomePage = () => {
           btnIcon={rightArrow}
           className="starting-buisiness-section"
         />
+        <HomeTrustedPartnersSection />
       </div>
     </div>
   );
