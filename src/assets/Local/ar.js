@@ -168,6 +168,7 @@ const ar = {
     Testimonials: "Testimonials",
     testmonials_sub_text:
       "We are honored that we have recommendations from some of the best people in different fields and different positions, that’s our certificate and our prove for our success",
+    learn_more: "Learn more",
   },
 };
 

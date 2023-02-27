@@ -1,0 +1,52 @@
+.home-inspire-section {
+  padding: 0px 4.5vw;
+  .title {
+    font-family: "Gilory";
+    font-style: normal;
+    font-weight: 800;
+    font-size: 46px;
+    line-height: 55px;
+    color: #002147;
+
+    .sub-word-title {
+      color: #369ac6;
+    }
+  }
+  .sub-title {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 25px;
+    color: #002147;
+  }
+  .btn {
+    padding: 8px 28px;
+
+    border: 2px solid #002147;
+    border-radius: 12px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 30px;
+    color: #002147;
+  }
+  .btn:hover {
+    border: 2px solid #002147;
+  }
+  .btn img {
+    width: 9px;
+    height: 12px;
+    margin-inline: 11px !important;
+  }
+}
+.move-to-country-section {
+  margin-bottom: 70px;
+}
+.starting-buisiness-section {
+  margin-bottom: 50px;
+  > div {
+    flex-direction: row-reverse;
+  }
+}
