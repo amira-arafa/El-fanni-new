@@ -11,8 +11,14 @@
     text-transform: capitalize;
   }
   .content-wrapper {
-    width: 45%;
-    margin-bottom: 160px;
+    margin-bottom: 30px;
+  }
+  .map-wrapper {
+    background-image: url("../../../assets/imgs/worldMap.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 380px;
   }
   .content-single-wrapper,
   .content-single-wrapper-last-child {
@@ -31,5 +37,15 @@
     font-size: 20px;
     line-height: 36px;
     color: #0b0b0e;
+  }
+}
+@media only screen and (max-width: 786px) {
+  .about_us_home_section {
+    .content-wrapper {
+      margin-bottom: 55px;
+    }
+    .map-wrapper {
+      display: none;
+    }
   }
 }

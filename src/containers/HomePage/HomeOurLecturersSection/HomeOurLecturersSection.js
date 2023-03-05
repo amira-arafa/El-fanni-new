@@ -7,7 +7,7 @@ const HomeOurLecturersSection = () => {
   return (
     <div className="courses_home_lecturer_section">
       <div className="d-flex gap-5 align-items-center title-wrapper">
-        <div className="col-sm-2 title">
+        <div className="col-lg-2 col-xs-12 title">
           <p className="our m-0">
             <FormattedMessage id="Our" />
           </p>
@@ -15,7 +15,7 @@ const HomeOurLecturersSection = () => {
             <FormattedMessage id="Lecturers" />
           </span>
         </div>
-        <div className="col-sm-10">
+        <div className="col-lg-8 col-xs-12">
           <FormattedMessage id="lecturers_title" />
         </div>
       </div>

@@ -48,3 +48,22 @@
     }
   }
 }
+
+@media only screen and (max-width: 786px) {
+  .courses_home_lecturer_section {
+    .lecturers-wrapper {
+      overflow-x: auto;
+    }
+  }
+}
+
+@media only screen and (max-width: 786px) {
+  .courses_home_lecturer_section {
+    .title-wrapper {
+      flex-wrap: wrap;
+    }
+    .title {
+      border: none;
+    }
+  }
+}

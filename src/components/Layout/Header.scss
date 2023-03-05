@@ -79,12 +79,6 @@
 .categories-container {
   border-right: 2px solid #f5faff;
 }
-.header-container img {
-  // width: 1.625em;
-  // height: 1.625em;
-  width: 1.73vw;
-  height: 1.73vw;
-}
 .header-container img[alt="logo"] {
   width: 60px !important;
   height: 60px !important;
@@ -192,32 +186,6 @@ img[alt="search"] {
   padding: 0px;
 }
 
-@media only screen and (min-width: 890px) and (max-width: 1152px) {
-  .m-x-4 {
-    margin-left: 1.3vw !important;
-    margin-right: 1.3vw !important;
-  }
-  .m-x-1 {
-    margin-left: 0.3vw !important;
-    margin-right: 0.3vw !important;
-  }
-}
-
-@media only screen and (max-width: 890px) and (min-width: 650px) {
-  .m-x-4 {
-    margin-left: 1vw !important;
-    margin-right: 1vw !important;
-  }
-  // .header-container img {
-  //   width: 17px !important;
-  //   height: 17px !important;
-  // }
-  .header-container img[alt="logo"] {
-    width: 40px !important;
-    height: 40px !important;
-  }
-}
-
 nav {
   width: 65% !important;
   color: $btnColor;
@@ -250,55 +218,27 @@ nav {
     }
   }
 }
-// @media only screen and (max-width: 650px) and (min-width: 480px) {
-//   .m-x-4 {
-//     margin-left: 0.8vw !important;
-//     margin-right: 0.8vw !important;
-//   }
-//   // .header-container img {
-//   //   width: 11px !important;
-//   //   height: 11px !important;
-//   // }
-//   .header-container img[alt="logo"] {
-//     width: 25px !important;
-//     height: 25px !important;
-//   }
-//   .heading-3 {
-//     font-size: 2.5vw !important;
-//   }
-//   .body-1 {
-//     font-size: 1.4vw !important;
-//   }
-//   .m-x-1 {
-//     margin-left: 0.2vw !important;
-//     margin-right: 0.2vw !important;
-//   }
-//   .col-sm-8 {
-//     flex: 0 0 auto;
-//     width: 66.66666667%;
-//   }
-//   .col-sm-4 {
-//     flex: 0 0 auto;
-//     width: 33.33333333%;
-//   }
-//   .col-sm-3 {
-//     flex: 0 0 auto;
-//     width: 25%;
-//   }
-// }
 
 @media only screen and (max-width: 768px) {
   .header-container {
     padding: 4vw !important;
     align-items: center !important;
+    .col-sm-9 {
+      flex: 0 0 auto;
+      width: 75% !important;
+    }
+    img[alt="category"] {
+      width: 26px;
+      height: 26px;
+    }
+    img[alt="menu"] {
+      width: 26px;
+      height: 30px;
+    }
   }
   .browse-btn-container {
     display: none !important;
   }
-  // .header-container img {
-  //   width: 22px !important;
-  //   height: 22px !important;
-  // }
   .header-container img[alt="logo"] {
     width: 50px !important;
     height: 50px !important;
@@ -343,6 +283,9 @@ nav {
     width: 30px !important;
     height: 30px !important;
     margin-inline: 5px;
+  }
+  img[alt="logo-name"] {
+    width: 130px !important;
   }
 }
 

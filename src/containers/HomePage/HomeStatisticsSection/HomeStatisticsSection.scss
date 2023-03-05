@@ -6,3 +6,18 @@
     margin-bottom: 60px;
   }
 }
+
+@media only screen and (max-width: 786px) {
+  .statistics_home_section {
+    .section-upper,
+    .section-lower {
+      display: block !important;
+      margin-bottom: 0px;
+      .col-sm-4 {
+        width: 50%;
+        margin: 0 auto;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

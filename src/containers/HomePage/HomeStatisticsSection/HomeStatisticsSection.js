@@ -28,7 +28,7 @@ const HomeStatisticsSection = () => {
           />
         </div>
       </div>
-      <div className="d-flex gap-3">
+      <div className="d-flex gap-3 section-lower">
         <div className="col-sm-4">
           <StatisticsCard
             percent="00"

@@ -11,7 +11,7 @@ const HomeMainSlide = ({ className }) => {
     <div className={`${className} home_main_section_wrapper`}>
       <Header className="home_page" />
       <div className="home-main-content">
-        <div className="elfanni-heading col-sm-6">
+        <div className="elfanni-heading col-sm-11 col-md-11 col-xl-6">
           <FormattedMessage id="homeMainTitle" />
         </div>
         <Button

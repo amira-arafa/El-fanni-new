@@ -15,7 +15,7 @@ import "./HomePage.scss";
 const HomePage = () => {
   return (
     <div className="home-page-wrapper">
-      <div className="desktop-view">
+      <div>
         <HomeMainSection />
         <HomeAboutUsSection />
         <HomeStatisticsSection />
@@ -48,7 +48,7 @@ const HomePage = () => {
           btnIcon={rightArrow}
           className="starting-buisiness-section"
         />
-        <HomeTrustedPartnersSection />
+        {/* <HomeTrustedPartnersSection /> */}
       </div>
     </div>
   );

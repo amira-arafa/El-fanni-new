@@ -15,19 +15,15 @@ import "./HomeOurCoursesSection.scss";
 const HomeOurCoursesSection = () => {
   const responsive = {
     superLargeDesktop: {
-      breakpoint: { max: 4000, min: 1250 },
-      items: 4,
-    },
-    desktop: {
-      breakpoint: { max: 1250, min: 1024 },
+      breakpoint: { max: 4000, min: 1280 },
       items: 4,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 1280, min: 786 },
       items: 3,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 786, min: 0 },
       items: 2,
     },
   };

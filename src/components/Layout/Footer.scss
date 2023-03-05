@@ -39,3 +39,14 @@
     border-radius: 8px;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .footer-container {
+    > div {
+      flex-wrap: wrap;
+    }
+    .footer-last-sec {
+      margin-top: 20px;
+    }
+  }
+}

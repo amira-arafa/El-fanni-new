@@ -87,20 +87,23 @@ const Header = ({ className }) => {
 
   return (
     <div className={`${className} header-container d-flex`}>
-      <div className="col-sm-9">
+      <div className="col-md-9 col-sm-8">
         <div className="d-flex align-items-center">
-          <div className=" col-sm-5 col-md-3 d-flex align-items-center">
-            <div onClick={() => navigate("/")} className="cursor-pointer">
+          <div className=" col-sm-5 col-md-4 col-xl-3 d-flex align-items-center">
+            <div
+              onClick={() => navigate("/")}
+              className="cursor-pointer col-sm-4"
+            >
               <img alt="logo" src={logo} width="60px" height="60px"></img>
             </div>
             <div
               onClick={() => navigate("/")}
-              className=" cursor-pointer text-white glory-bold heading-3 mx-2"
+              className=" cursor-pointer text-white glory-bold heading-3 mx-2 col-sm-8"
             >
               <img alt="logo-name" src={logoName} />
             </div>
           </div>
-          <div className="col-sm-7 col-md-9 browse-btn-container">
+          <div className="col-sm-7 col-md-8 col-xl-9 browse-btn-container">
             <div>
               <ModalComponent
                 open={openBrowseModal}
@@ -381,8 +384,8 @@ const Header = ({ className }) => {
         </div>
       </div>
       <div className="col-sm-4 mobile-icons">
-        <div className="d-flex">
-          <div className="col-sm-4">
+        <div className="d-flex align-items-center">
+          <div className="col-sm-4 d-flex justify-content-center">
             <div className="dropdown ddp-btn ">
               <div
                 className="dropdown-toggle w-100 "
@@ -423,7 +426,7 @@ const Header = ({ className }) => {
               </ul>
             </div>
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-4 d-flex justify-content-center">
             <img
               alt="category"
               src={category}
@@ -435,7 +438,7 @@ const Header = ({ className }) => {
               }}
             ></img>
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-4 d-flex justify-content-center">
             <img
               alt="menu"
               src={menu}

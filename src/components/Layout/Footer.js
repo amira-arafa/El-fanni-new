@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <div className="footer-container">
       <div className="d-flex align-items-start">
-        <div className="col-sm-4 d-flex align-items-center gap-3">
+        <div className="col-xs-4 col-lg-4 d-flex align-items-center gap-3">
           <div onClick={() => navigate("/")} className="cursor-pointer">
             <img alt="footer-logo" src={logo} width="60px" height="60px"></img>
           </div>
@@ -24,8 +24,8 @@ const Footer = () => {
             <img alt="logo-name-container" src={logoName} />
           </div>
         </div>
-        <div className="col-sm-8 d-flex">
-          <div className="col-sm-4">
+        <div className="col-lg-8 col-xs-12 d-flex justify-content-between footer-last-sec">
+          <div className="col-xs-4">
             <p className="most-visited">
               <FormattedMessage id="most_visited" />
             </p>
@@ -37,7 +37,7 @@ const Footer = () => {
               <li>Plumbing course</li>
             </ul>
           </div>
-          <div className="col-sm-4">
+          <div className="col-xs-4">
             <p className="most-visited">
               <FormattedMessage id="Terms" />
             </p>
@@ -47,7 +47,7 @@ const Footer = () => {
               <li>Copyrights</li>
             </ul>
           </div>
-          <div className="col-sm-4">
+          <div className="col-xs-4">
             <p className="most-visited">
               <FormattedMessage id="contactUs" />
             </p>

@@ -59,3 +59,11 @@
     width: 100%;
   }
 }
+
+@media only screen and (max-width: 786px) {
+  .home-testimonial-section {
+    .label-1 {
+      font-size: 2.6vw;
+    }
+  }
+}
