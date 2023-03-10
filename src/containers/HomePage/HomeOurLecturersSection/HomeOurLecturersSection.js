@@ -19,7 +19,7 @@ const HomeOurLecturersSection = () => {
           <FormattedMessage id="lecturers_title" />
         </div>
       </div>
-      <div className="lecturers-wrapper d-flex gap-2">
+      <div className="lecturers-wrapper d-flex gap-2 justify-content-between">
         <div className="lecturer">
           <img src={lecturerImg} alt="lecturer-Img" />
           <p className="name">Eng. Mostafa Khalifa</p>

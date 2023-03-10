@@ -48,7 +48,7 @@ const HomePage = () => {
           btnIcon={rightArrow}
           className="starting-buisiness-section"
         />
-        {/* <HomeTrustedPartnersSection /> */}
+        <HomeTrustedPartnersSection />
       </div>
     </div>
   );

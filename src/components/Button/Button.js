@@ -16,7 +16,7 @@ const Button = ({ text, icon, className, afterIcon, onClick, style }) => {
             alt="btn-icon"
           />
         )}
-        {text}
+        <span>{text}</span>
         {afterIcon && (
           <img
             src={afterIcon}

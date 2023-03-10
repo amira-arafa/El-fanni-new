@@ -367,7 +367,7 @@ const Header = ({ className }) => {
             </div>
           ) : (
             <div
-              className=" d-flex gap-2 sign-in-header"
+              className=" d-flex gap-2 sign-in-header align-items-center"
               onClick={() => navigate("/sign-in")}
             >
               <span className="inter-semi-bold body-1">
