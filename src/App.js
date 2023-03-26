@@ -29,6 +29,9 @@ import "./scss/_general.scss";
 import "./App.css";
 
 function App() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { locale, auth } = useSelector((state) => state);
   const { lang } = locale;
   const [loader, setLoader] = useState(false);

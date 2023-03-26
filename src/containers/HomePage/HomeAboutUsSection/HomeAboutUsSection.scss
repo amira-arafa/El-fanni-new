@@ -16,7 +16,7 @@
   .map-wrapper {
     background-image: url("../../../assets/imgs/worldMap.png");
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: right;
     background-size: contain;
     height: 380px;
   }
@@ -37,6 +37,17 @@
     font-size: 20px;
     line-height: 36px;
     color: #0b0b0e;
+  }
+  .map-transition {
+    animation: 1s animatedBackground;
+  }
+  @keyframes animatedBackground {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: 100% 0;
+    }
   }
 }
 @media only screen and (max-width: 786px) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import quoteUpIcon from "../../../assets/imgs/icons/quote-down.png";
 import quoteDownIcon from "../../../assets/imgs/icons/quote-up.png";
@@ -6,16 +6,36 @@ import teacher4 from "../../../assets/imgs/teacher4.png";
 import "./HomeTestimonialSection.scss";
 
 const HomeTestimonialSection = () => {
-  return (
-    <div className="home-testimonial-section">
-      <p className="title">
-        <FormattedMessage id="Testimonials" />
-      </p>
-      <p className="sub-title">
-        <FormattedMessage id="testmonials_sub_text" />
-      </p>
+  const [visible, setVisible] = useState(false);
+  const myRef = useRef();
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries, observer) => {
+      const entry = entries[0];
+      setVisible(entry.isIntersecting);
+      if (entry.intersectionRatio > 0) {
+        setTimeout(() => {
+          observer.unobserve(myRef.current);
+          setVisible(false);
+        }, 3000);
+      }
+    });
+    observer.observe(myRef.current);
+  }, []);
 
-      <div className="lectures-scroll-container">
+  return (
+    <div ref={myRef} className="home-testimonial-section">
+      <div className={visible && "title-transition"}>
+        <p className="title">
+          <FormattedMessage id="Testimonials" />
+        </p>
+        <p className="sub-title">
+          <FormattedMessage id="testmonials_sub_text" />
+        </p>
+      </div>
+
+      <div
+        className={`lectures-scroll-container ${visible && "body-transition"}`}
+      >
         <div className="d-flex lecturer-list mt-3">
           <div className="our-students-card">
             <div className="mb-2">

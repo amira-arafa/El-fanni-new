@@ -3,6 +3,28 @@
   .title {
     border-right: 1px solid #babac5;
   }
+  .title-transition {
+    animation: 3s animatedTitle;
+  }
+  @keyframes animatedTitle {
+    from {
+      transform: translateY(-165px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  .body-transition {
+    animation: 3s animatedBody;
+  }
+  @keyframes animatedBody {
+    from {
+      transform: translatey(410px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
   .our {
     font-family: "Gilory";
     font-style: normal;

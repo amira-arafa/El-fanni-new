@@ -1,19 +1,33 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FormattedMessage } from "react-intl";
 import addIcon from "../../../assets/imgs/icons/add3.png";
-import mapImg from "../../../assets/imgs/worldMap.png";
 import CollapaseComponent from "../../../components/Collapse/Collapse";
 import "./HomeAboutUsSection.scss";
 
 const HomeAboutUsSection = () => {
+  const [visible, setVisible] = useState(false);
+  const myRef = useRef();
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries, observer) => {
+      const entry = entries[0];
+      setVisible(entry.isIntersecting);
+      if (entry.intersectionRatio > 0) {
+        setTimeout(() => {
+          observer.unobserve(myRef.current);
+          setVisible(false);
+        }, 1000);
+      }
+    });
+    observer.observe(myRef.current);
+  }, []);
   return (
     <div className="about_us_home_section">
       <div className="content-wrapper">
-        <p className="title">
-          <FormattedMessage id="aboutUs" />
-        </p>
         <div className="d-flex">
           <div className="col-xs-12 col-md-6">
+            <p className="title">
+              <FormattedMessage id="aboutUs" />
+            </p>
             <CollapaseComponent
               className="about-us-collapse"
               collapseId="about-us-home-mission"
@@ -143,7 +157,10 @@ const HomeAboutUsSection = () => {
               }
             />
           </div>
-          <div className="col-md-6 map-wrapper"></div>
+          <div
+            ref={myRef}
+            className={`col-md-6 map-wrapper ${visible && "map-transition"}`}
+          ></div>
         </div>
       </div>
     </div>
