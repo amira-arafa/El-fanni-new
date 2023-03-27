@@ -42,7 +42,7 @@ const HomeAboutUsSection = () => {
                 </div>
               }
               collapseContent={
-                <p className="mb-2">
+                <p className="mb-4">
                   Too much focus has been laid upon so-called white-collar jobs
                   such as software development, business administration and
                   other clerical professions following numerous faddish trends.
@@ -74,7 +74,7 @@ const HomeAboutUsSection = () => {
                 </div>
               }
               collapseContent={
-                <p className="mb-2">
+                <p className="mb-4">
                   Too much focus has been laid upon so-called white-collar jobs
                   such as software development, business administration and
                   other clerical professions following numerous faddish trends.
@@ -106,7 +106,7 @@ const HomeAboutUsSection = () => {
                 </div>
               }
               collapseContent={
-                <p className="mb-2">
+                <p className="mb-4">
                   Too much focus has been laid upon so-called white-collar jobs
                   such as software development, business administration and
                   other clerical professions following numerous faddish trends.
@@ -138,7 +138,7 @@ const HomeAboutUsSection = () => {
                 </div>
               }
               collapseContent={
-                <p className="mb-2">
+                <p className="mb-4">
                   Too much focus has been laid upon so-called white-collar jobs
                   such as software development, business administration and
                   other clerical professions following numerous faddish trends.
