@@ -6,6 +6,7 @@ import "./HomeOurLecturersSection.scss";
 const HomeOurLecturersSection = () => {
   const [visible, setVisible] = useState(false);
   const myRef = useRef();
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries, observer) => {
       const entry = entries[0];
@@ -19,9 +20,10 @@ const HomeOurLecturersSection = () => {
     });
     observer.observe(myRef.current);
   }, []);
+
   return (
     <div ref={myRef} className="courses_home_lecturer_section">
-      <div    className={`d-flex gap-5 align-items-center title-wrapper ${(visible) && "title-transition"}`}>
+      <div className={`d-flex gap-5 align-items-center title-wrapper ${(visible) && "title-transition"}`}>
         <div className="col-lg-2 col-xs-12 title">
           <p className="our m-0">
             <FormattedMessage id="Our" />

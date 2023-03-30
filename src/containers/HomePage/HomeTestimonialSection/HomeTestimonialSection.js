@@ -24,7 +24,7 @@ const HomeTestimonialSection = () => {
 
   return (
     <div ref={myRef} className="home-testimonial-section">
-      <div className={visible && "title-transition"}>
+      <div className={visible ? "title-transition" : ""}>
         <p className="title">
           <FormattedMessage id="Testimonials" />
         </p>
@@ -34,7 +34,7 @@ const HomeTestimonialSection = () => {
       </div>
 
       <div
-        className={`lectures-scroll-container ${visible && "body-transition"}`}
+        className={`lectures-scroll-container ${visible ?  "body-transition" : ""}`}
       >
         <div className="d-flex lecturer-list mt-3">
           <div className="our-students-card">
