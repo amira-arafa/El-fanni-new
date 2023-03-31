@@ -67,3 +67,110 @@
     }
   }
 }
+
+.move-to-country-section.home-inspire-animation {
+  overflow-x: hidden;
+  .first-section {
+    animation: 3s animateFirstSection;
+  }
+  @keyframes animateFirstSection {
+    from {
+      transform: translateX(-700px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  .second-section {
+    animation: 3s animateSecondSection;
+  }
+  @keyframes animateSecondSection {
+    from {
+      transform: translateX(700px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+}
+
+.starting-buisiness-section.home-inspire-animation {
+  overflow-x: hidden;
+  .first-section {
+    animation: 3s animationFirstSection;
+  }
+  @keyframes animationFirstSection {
+    from {
+      transform: translateX(700px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  .second-section {
+    animation: 3s animationSecondSection;
+  }
+  @keyframes animationSecondSection {
+    from {
+      transform: translateX(-700px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+}
+
+div[dir="rtl"] {
+  .move-to-country-section.home-inspire-animation {
+    overflow-x: hidden;
+    .first-section {
+      animation: 3s animateFirstSectionAR;
+    }
+    @keyframes animateFirstSectionAR {
+      from {
+        transform: translateX(700px);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+    .second-section {
+      animation: 3s animateSecondSectionAR;
+    }
+    @keyframes animateSecondSectionAR {
+      from {
+        transform: translateX(-700px);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+  }
+  
+  .starting-buisiness-section.home-inspire-animation {
+    overflow-x: hidden;
+    .first-section {
+      animation: 3s animationFirstSectionAR;
+    }
+    @keyframes animationFirstSectionAR {
+      from {
+        transform: translateX(-700px);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+    .second-section {
+      animation: 3s animationSecondSectionAR;
+    }
+    @keyframes animationSecondSectionAR {
+      from {
+        transform: translateX(700px);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+  }
+}
+

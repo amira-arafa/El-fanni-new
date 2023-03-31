@@ -45,7 +45,8 @@ const Header = ({ className }) => {
   const [searchValue, setSearchValue] = useState("");
   const [currentCategory, setCurrentCategory] = useState(0);
   const [language, setLanguage] = useState(
-    localStorage.getItem("lang") === "ar" ? "ar" : "en"
+    // localStorage.getItem("lang") === "ar" ? "ar" : "en"
+     "en"
   );
 
   useEffect(() => {
@@ -312,7 +313,8 @@ const Header = ({ className }) => {
             <li onClick={() => setLanguage("en")} className="cursor-pointer">
               <span className="dropdown-item">EN</span>
             </li>
-            <li onClick={() => setLanguage("ar")} className="cursor-pointer">
+            {/* <li onClick={() => setLanguage("ar")} className="cursor-pointer"> */}
+            <li className="cursor-pointer">
               <span className="dropdown-item">AR</span>
             </li>
           </ul>

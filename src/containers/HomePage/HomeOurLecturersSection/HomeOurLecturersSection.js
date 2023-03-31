@@ -21,7 +21,7 @@ const HomeOurLecturersSection = () => {
   }, []);
   return (
     <div ref={myRef} className="courses_home_lecturer_section">
-      <div    className={`d-flex gap-5 align-items-center title-wrapper ${(visible) && "title-transition"}`}>
+      <div className={`d-flex gap-5 align-items-center title-wrapper ${(visible) && "title-transition"}`}>
         <div className="col-lg-2 col-xs-12 title">
           <p className="our m-0">
             <FormattedMessage id="Our" />
