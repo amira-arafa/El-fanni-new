@@ -1,7 +1,6 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import logo from "../../assets/imgs/icons/footer_logo.png";
-import logoName from "../../assets/imgs/icons/El-FANNI_footer.png";
+import logo from "../../assets/imgs/logo.png";
 import twitter from "../../assets/imgs/icons/twitter.jpg";
 import youtube from "../../assets/imgs/icons/youtube.jpg";
 import facebookFooter from "../../assets/imgs/icons/facebookFooter.jpg";
@@ -15,13 +14,7 @@ const Footer = () => {
       <div className="d-flex align-items-start">
         <div className="col-xs-4 col-lg-4 d-flex align-items-center gap-3">
           <div onClick={() => navigate("/")} className="cursor-pointer">
-            <img alt="footer-logo" src={logo} width="60px" height="60px"></img>
-          </div>
-          <div
-            onClick={() => navigate("/")}
-            className=" cursor-pointer text-white glory-bold heading-3 mx-2"
-          >
-            <img alt="logo-name-container" src={logoName} />
+            <img alt="footer-logo" src={logo} width="100%" height="100%"></img>
           </div>
         </div>
         <div className="col-lg-8 col-xs-12 d-flex justify-content-between footer-last-sec">

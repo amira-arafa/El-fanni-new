@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 import logoMobile from "../../assets/imgs/logoMobile.png";
-import logo from "../../assets/imgs/icons/Logo.png";
-import logoName from "../../assets/imgs/icons/Group 504.png";
-import arrowDownBrowse from "../../assets/imgs/icons/arrow-down-browse.png";
-import languageIcon from "../../assets/imgs/icons/language-square.png";
+import logo from "../../assets/imgs/logo.png";
+import arrowDown from "../../assets/imgs/icons/angle-down.png";
 import loginIcon from "../../assets/imgs/icons/loginIcon.png";
 import search from "../../assets/imgs/icons/Group 510.png";
 import category from "../../assets/imgs/icons/category.png";
@@ -19,22 +17,22 @@ import { getCartList, getCategories } from "../../store/actions/home";
 import { SUCESS_LOG_OUT } from "../../store/types/auth";
 import { STORE_SEARCH_QUERY } from "../../store/types/home";
 import Input from "../../components/Input/Input";
-import Button from "../Button/Button";
-import ModalComponent from "../Modal/Modal";
-import { setCurrentLang } from "../../store/actions/Lang";
+import ModalComponentV2 from "../Modal/Modal";
 import "./Header.scss";
+import BrowseModalContent from "../Modal/BrowseModalContent";
+import SearchModalContent from "../Modal/SearchModalContent";
 
 const Header = ({ className }) => {
-  const [open, setOpen] = useState(false);
-  const onOpenModal = () => setOpen(true);
-  const onCloseModal = () => setOpen(false);
-
   const [showNav, setShowNav] = useState(false);
   const [showNavBrowse, setShowNavBrowse] = useState(false);
 
   const [openBrowseModal, setOpenBrowseModal] = useState(false);
   const onOpenModalBrowseModal = () => setOpenBrowseModal(true);
   const onCloseModalBrowseModal = () => setOpenBrowseModal(false);
+
+  const [openSearchModal, setOpenSearchModal] = useState(false);
+  const onOpenSearchModal = () => setOpenSearchModal(true);
+  const onCloseSearchModal = () => setOpenSearchModal(false);
 
   const navigate = useNavigate();
   const intl = useIntl();
@@ -44,10 +42,12 @@ const Header = ({ className }) => {
   const { user_data } = auth;
   const [searchValue, setSearchValue] = useState("");
   const [currentCategory, setCurrentCategory] = useState(0);
+
   const [language, setLanguage] = useState(
     // localStorage.getItem("lang") === "ar" ? "ar" : "en"
      "en"
   );
+
 
   useEffect(() => {
     if (auth.sucess_logout) {
@@ -62,10 +62,6 @@ const Header = ({ className }) => {
   }, [auth.sucess_logout, navigate, dispatch]);
 
   useEffect(() => {
-    dispatch(setCurrentLang(language));
-  }, [language, dispatch]);
-
-  useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
 
@@ -77,9 +73,13 @@ const Header = ({ className }) => {
     dispatch(Logout());
   };
 
+  const handleSearchChange = (e) => setSearchValue(e.target.value)
+
+  const handleCategoryChange = (category) => setCurrentCategory(category);
+
   const redirectTosearchPage = () => {
     navigate(`/search-results/${searchValue}`);
-    onCloseModal();
+    onCloseSearchModal();
     dispatch({
       type: STORE_SEARCH_QUERY,
       payload: searchValue,
@@ -89,243 +89,49 @@ const Header = ({ className }) => {
   return (
     <div className={`${className} header-container d-flex`}>
       <div className="col-md-9 col-sm-8">
-        <div className="d-flex align-items-center">
-          <div className=" col-sm-5 col-md-4 col-xl-3 d-flex align-items-center">
-            <div
-              onClick={() => navigate("/")}
-              className="cursor-pointer col-sm-4"
-            >
-              <img alt="logo" src={logo} width="60px" height="60px"></img>
-            </div>
-            <div
-              onClick={() => navigate("/")}
-              className=" cursor-pointer text-white glory-bold heading-3 mx-2 col-sm-8"
-            >
-              <img alt="logo-name" src={logoName} />
+        <div className="d-flex align-items-center row">
+          <div className="col-sm-5 col-md-4 d-flex align-items-center">
+            <div onClick={() => navigate("/")} className="cursor-pointer">
+              <img alt="logo" src={logo} width="100%" height="100%"/>
             </div>
           </div>
-          <div className="col-sm-7 col-md-8 col-xl-9 browse-btn-container">
-            <div>
-              <ModalComponent
-                open={openBrowseModal}
-                onOpenModal={onOpenModalBrowseModal}
-                onCloseModal={onCloseModalBrowseModal}
-                className="browse-modal"
-                children={
-                  <div>
-                    <button className="browse-btn body-1 d-flex gap-2 align-items-center justify-content-center">
-                      <span>
-                        <FormattedMessage id="browse" />
-                      </span>
-                      <img src={arrowDownBrowse} alt="arrowDownBrowse" />
-                    </button>
-                  </div>
-                }
-                modalBody={
-                  <div
-                    className="browse-modal-container"
-                    dir={`${
-                      localStorage.getItem("lang") === "ar" ? "rtl" : "ltr"
-                    }`}
-                  >
-                    <div className="d-flex">
-                      <div className="col-sm-4 categories-container">
-                        <h3 className="gilory-bold heading-3 mb-4">
-                          <FormattedMessage id="browse" />
-                        </h3>
-                        <ul className="categories-ul">
-                          {categories_list.map((category, i) => {
-                            return (
-                              <li
-                                className="inter-regular body-1 mb-4"
-                                onClick={() => {
-                                  setCurrentCategory(category);
-                                }}
-                                key={i}
-                              >
-                                {category?.name}
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </div>
-                      {categories_list && (
-                        <div className="col-sm-8 px-3">
-                          <div className="d-flex justify-content-between align-items-baseline">
-                            <div className="col-sm-5">
-                              <p className="mb-4 glory-semi-bold btnColor heading-1">
-                                {currentCategory
-                                  ? currentCategory.name
-                                  : categories_list[0]?.name}
-                              </p>
-                            </div>
-                            <div className="col-sm-7 d-flex justify-content-between">
-                              <Button
-                                className="mx-2 close-btn-browse inter-semi-bold body-1"
-                                text={<FormattedMessage id="close" />}
-                                onClick={() => {
-                                  onCloseModalBrowseModal();
-                                }}
-                              ></Button>
-                              <Button
-                                className="show-all-btn-browse inter-semi-bold body-1"
-                                text={<FormattedMessage id="showall" />}
-                                onClick={() => {
-                                  navigate(`/search-results`);
-                                  onCloseModalBrowseModal();
-                                }}
-                              ></Button>
-                            </div>
-                          </div>
-                          <div className="subcategories-wrapper">
-                            {currentCategory
-                              ? currentCategory.subcategories?.map(
-                                  (subCat, i) => {
-                                    return (
-                                      <p
-                                        className="inter-regular label-1 mb-3 cursor-pointer"
-                                        onClick={() => {
-                                          onCloseModalBrowseModal();
-                                          navigate("/search-results");
-                                        }}
-                                        key={i}
-                                      >
-                                        {subCat.name}
-                                      </p>
-                                    );
-                                  }
-                                )
-                              : categories_list[0]?.subcategories.map(
-                                  (subCat, i) => {
-                                    return (
-                                      <p
-                                        className="inter-regular label-1 mb-3 cursor-pointer"
-                                        onClick={() => {
-                                          onCloseModalBrowseModal();
-                                          navigate("/search-results");
-                                        }}
-                                        key={i}
-                                      >
-                                        {subCat.name}
-                                      </p>
-                                    );
-                                  }
-                                )}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                }
-              />
+          
+          <div className="col-sm-7 col-md-8 nav-items-container inter-semi-bold">
+            <div onClick={onOpenModalBrowseModal} className="body-1 d-flex gap-2 align-items-center cursor-pointer">
+              <span>
+                <FormattedMessage id="courses"/>
+              </span>
+              <img src={arrowDown} alt="arrowDownBrowse" />
             </div>
-
-            <div className=" d-flex">
-              <div>
-                <span
-                  className="inter-semi-bold body-1 cursor-pointer"
-                  onClick={() => navigate("/about-us")}
-                >
-                  <FormattedMessage id="aboutUs" />
-                </span>
-              </div>
-            </div>
+            <span className="body-1 cursor-pointer" onClick={() => navigate("/about-us")}>
+              <FormattedMessage id="aboutUs" />
+            </span>
+            <span className="body-1 cursor-pointer">
+              <FormattedMessage id="EUJobs" />
+            </span>
+            <span className="body-1 cursor-pointer">
+              <FormattedMessage id="advisoryBoard" />
+            </span>
           </div>
         </div>
       </div>
-      <div className="col-sm-3 is-mobile justify-content-end gap-3">
-        <ModalComponent
-          open={open}
-          onOpenModal={onOpenModal}
-          onCloseModal={onCloseModal}
-          className="header-modal"
-          children={
-            <div>
-              <div className="d-flex cursor-pointer">
-                <div></div>
-                <div>
-                  <img
-                    alt="search"
-                    src={search}
-                    width="20px"
-                    height="20px"
-                  ></img>
-                </div>
-              </div>
-            </div>
-          }
-          modalBody={
-            <div
-              className="d-flex"
-              dir={`${localStorage.getItem("lang") === "ar" ? "rtl" : "ltr"}`}
-            >
-              <div className="col-sm-10">
-                <Input
-                  type="text"
-                  className="search-input-overlay"
-                  value={searchValue}
-                  onChange={(e) => setSearchValue(e.target.value)}
-                  placeholder={intl.formatMessage({ id: "searchHere" })}
-                  onKeyPress={(event) => {
-                    if (event.key === "Enter") redirectTosearchPage();
-                  }}
-                  icon={
-                    <img
-                      alt="search-icon-overlay"
-                      src={search}
-                      width="20"
-                      height="20"
-                      className="cursor-pointer"
-                      onClick={() => redirectTosearchPage()}
-                    />
-                  }
-                />
-              </div>
-              <div className="col-sm-2">
-                <Button
-                  text={intl.formatMessage({ id: "search" })}
-                  className="search-modal-btn inter-semi-bold label-1 mx-3"
-                  onClick={() => redirectTosearchPage()}
-                ></Button>
-              </div>
-            </div>
-          }
-        />
-        <div className="dropdown ddp-btn ">
-          <div
-            className="dropdown-toggle w-100 course-content-btn"
-            type="button"
-            id="dropdownMenuButton1"
-            data-bs-toggle="dropdown"
-            role="menuitem"
-          >
-            <img
-              alt="language"
-              src={languageIcon}
-              width="22px"
-              height="22px"
-            ></img>
-          </div>
-          <ul
-            className="dropdown-menu w-100"
-            aria-labelledby="dropdownMenuButton1"
-          >
-            <li onClick={() => setLanguage("en")} className="cursor-pointer">
-              <span className="dropdown-item">EN</span>
-            </li>
-            {/* <li onClick={() => setLanguage("ar")} className="cursor-pointer"> */}
-            <li className="cursor-pointer">
-              <span className="dropdown-item">AR</span>
-            </li>
-          </ul>
+
+      <div className="col-sm-3 is-mobile justify-content-end gap-3 search-cart-container">
+        <div className="d-flex cursor-pointer" onClick={onOpenSearchModal}>
+          <img
+            alt="search"
+            src={search}
+            width="50px"
+            height="50px"
+          ></img>
         </div>
 
-        <div className="d-flex align-items-center cursor-pointer">
+        <div className="d-flex align-items-center cursor-pointer cart-icon-wrapper">
           <img
             alt="cart"
             src={cart}
-            width="22px"
-            height="22px"
+            width="35px"
+            height="35px"
             onClick={() => navigate("/cart")}
           ></img>
           <span className="cart-number">{cart_list.length}</span>
@@ -385,6 +191,7 @@ const Header = ({ className }) => {
           )}
         </div>
       </div>
+
       <div className="col-sm-4 mobile-icons">
         <div className="d-flex align-items-center">
           <div className="col-sm-4 d-flex justify-content-center">
@@ -502,26 +309,8 @@ const Header = ({ className }) => {
             >
               <FormattedMessage id="Cart" />
             </span>
-          </div>,
-          <div>
-            <span
-              className="inter-regular body-1"
-              data-bs-toggle="collapse"
-              data-bs-target={`#collapseLanuage`}
-              role="menuitem"
-              aria-controls="collapseLanuage"
-            >
-              <FormattedMessage id="Language" />
-            </span>
-            <div className="collapse mb-2" id={`collapseLanuage`}>
-              <p className="mb-0 mx-2 inter-regular body-1">
-                <span onClick={() => setLanguage("ar")}> AR</span>
-              </p>
-              <p className="mb-0 mx-2 inter-regular body-1">
-                <span onClick={() => setLanguage("en")}> EN</span>
-              </p>
-            </div>
-          </div>,
+          </div>
+          ,
           !localStorage.getItem("user-data") ? (
             <div onClick={() => navigate("/sign-in")}>
               <span className="inter-regular body-1">
@@ -614,6 +403,35 @@ const Header = ({ className }) => {
             })}
           </ul>,
         ]}
+      />
+
+      {/* Search modal */}
+      <ModalComponentV2
+        open={openSearchModal}
+        onOpenModal={onOpenSearchModal}
+        onCloseModal={onCloseSearchModal}
+        className="search-modal"
+        modalBody={
+          <SearchModalContent 
+            searchValue={searchValue}
+            handleSearchChange={handleSearchChange} 
+            onCloseModal={onCloseSearchModal}
+            />
+        }
+      />
+      {/* Browsing courses Modal */}
+      <ModalComponentV2
+        open={openBrowseModal}
+        onOpenModal={onOpenModalBrowseModal}
+        onCloseModal={onCloseModalBrowseModal}
+        className="browse-modal"
+        modalBody={
+          <BrowseModalContent 
+            currentCategory={currentCategory}
+            handleCategoryChange={handleCategoryChange}
+            handleCloseModal={onCloseModalBrowseModal}
+            />
+        }
       />
     </div>
   );

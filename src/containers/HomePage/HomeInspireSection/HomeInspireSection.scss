@@ -36,9 +36,7 @@
     border: 2px solid #002147;
   }
   .btn img {
-    width: 13px;
-    height: 13px;
-    margin-inline: 11px !important;
+    vertical-align: sub;
   }
 }
 .move-to-country-section {
@@ -51,7 +49,7 @@
   }
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 786px) {
   .home-inspire-section {
     > div {
       flex-wrap: wrap;

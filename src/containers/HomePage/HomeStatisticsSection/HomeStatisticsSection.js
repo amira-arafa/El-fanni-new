@@ -14,7 +14,6 @@ const HomeStatisticsSection = () => {
     const observer = new IntersectionObserver((entries, observer) => {
       const entry = entries[0];
       if (entry.intersectionRatio > 0) {
-        console.log("n3m y5ty", number);
         setNumber(number + 8);
         setNumber1(number1 + 4);
         setNumber2(number2 + 6);

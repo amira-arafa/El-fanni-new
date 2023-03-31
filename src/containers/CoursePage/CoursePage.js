@@ -33,6 +33,21 @@ const CoursePage = () => {
     localStorage.getItem("user-data") && dispatch(addToCart(id));
   };
 
+  useEffect(() => {
+    window.addEventListener("scroll", isSticky);
+    return () => {
+      window.removeEventListener("scroll", isSticky);
+    };
+  });
+
+  const isSticky = (e) => {
+    const header = document.querySelector(".secondary-course-section");
+    const scrollTop = window.scrollY;
+    scrollTop >= window.innerHeight
+      ? header.classList.add("is-sticky")
+      : header.classList.remove("is-sticky");
+  };
+
   return (
     <>
       <div className="course-section-wrapper">

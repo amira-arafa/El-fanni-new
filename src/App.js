@@ -27,6 +27,7 @@ import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
 import "./scss/_general.scss";
 import "./App.css";
+import LangHeader from "./components/Layout/LanguageHeader";
 
 function App() {
   useEffect(() => {
@@ -74,7 +75,7 @@ function App() {
                 includePath("/check-email") ||
                 includePath("/confirm-password") ||
                 includePath("/forget-password-email")
-              ) && <Header />}
+              ) && <><LangHeader/> <Header /></>}
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/sign-up" element={<SignUp />} />

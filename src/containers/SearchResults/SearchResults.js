@@ -474,7 +474,7 @@ const SearchResults = () => {
                       open={open}
                       onOpenModal={onOpenModal}
                       onCloseModal={onCloseModal}
-                      className="header-modal"
+                      className="search-modal"
                       wrapperClass="d-inline-block"
                       children={
                         <Button

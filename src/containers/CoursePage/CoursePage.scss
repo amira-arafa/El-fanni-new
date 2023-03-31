@@ -205,6 +205,14 @@
     width: 23px;
     height: 23px;
   }
+  .is-sticky {
+    position: fixed;
+    top: 0%;
+    right: 5%;
+    width: 30%;
+    z-index: 999;
+    padding-top: 0px;
+  }
 }
 
 @media only screen and (max-width: 768px) {

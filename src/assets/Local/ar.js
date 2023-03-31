@@ -1,7 +1,10 @@
 const ar = {
   ar: {
     home: "الصفحة الرئيسية",
-    signUpTitle: "We’re delighted to be one of our family",
+    arabic: "عربي",
+    english: "English",
+    franch: "Franch",
+    signUpTitle: "We're delighted to be one of our family",
     ElFanni: "El-Fanni",
     createAcc: "Create an account",
     signUpSubHeadingForm:
@@ -20,14 +23,14 @@ const ar = {
     haveAcc: "If you have an account,",
     signInNow: "Sign in now",
     fillPassword: "Fill password here",
-    signInTitle: "Your’re about one step from reaching to your dream",
+    signInTitle: "Your're about one step from reaching to your dream",
     signIn: "Sign In",
     signInSubtitle:
       "Welcome back our friend, fill the data and continue your journey",
     useEmail: "Use E-mail instead",
     usePhone: "Use Phone instead",
     forgetPass: "Forget the password",
-    dontHaveAcc: "You don’t have account yet,",
+    dontHaveAcc: "You don't have account yet,",
     forgetPassword: "Forget password",
     send: "Send",
     checkEmail: "Check your E-mail inbox to configure a new password",
@@ -39,7 +42,7 @@ const ar = {
     privacyPolicy: "Privacy policy",
     contactUs: "Contact us",
     homeMainTitle:
-      "Africa & the Middle East’s first online learning platform exclusively dedicated to technical and vocational education, training and skills",
+      "Africa & the Middle East's first online learning platform exclusively dedicated to technical and vocational education, training and skills",
     homeSecondTitle:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor non imperdiet aliquet tellus suspendisse volutpat elit",
     checkCourses: "Check courses",
@@ -154,7 +157,7 @@ const ar = {
     noCourses: "There is no started courses",
     cartEmpty: "The cart is empty",
     noCoursesCollection: "There is no courses in this collection",
-    noCollection: "There’s no collection, it’s empty!!",
+    noCollection: "There's no collection, it's empty!!",
     emptyCollectionMsg:
       "you can know make your first collection and save your favourite courses in it",
     noReviews: "There is no reviews",
@@ -167,7 +170,7 @@ const ar = {
     Lecturers: "Lecturers",
     Testimonials: "Testimonials",
     testmonials_sub_text:
-      "We are honored that we have recommendations from some of the best people in different fields and different positions, that’s our certificate and our prove for our success",
+      "We are honored that we have recommendations from some of the best people in different fields and different positions, that's our certificate and our prove for our success",
     learn_more: "Learn more",
     most_visited: "Most Visited",
     Terms: "Terms",

@@ -2,7 +2,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import timeImg from "../../assets/imgs/taxi-being-late 2.png";
 import helmetImg from "../../assets/imgs/Group 551.png";
-import rightArrow from "../../assets/imgs/icons/right-arrow.png";
+import angleRight from "../../assets/imgs/icons/angle-right.png";
 import HomeMainSection from "./HomeMainSection/HomeMainSection";
 import HomeAboutUsSection from "./HomeAboutUsSection/HomeAboutUsSection";
 import HomeStatisticsSection from "./HomeStatisticsSection/HomeStatisticsSection";
@@ -32,7 +32,7 @@ const HomePage = () => {
           subTitle="Do you aspire to land your dream job in an EU country legally? We’ve got you covered. ELFANNI offers you the chance to be a candidate for an EU job through its partnerships and collaborations with multilateral organizations and private businesses in the EU."
           btnText={<FormattedMessage id="learn_more" />}
           imgSrc={timeImg}
-          btnIcon={rightArrow}
+          btnIcon={angleRight}
           className="move-to-country-section"
         />
         <HomeInspireSection
@@ -45,7 +45,7 @@ const HomePage = () => {
           subTitle="ELFANNI got you covered! ELFANNI will help you throughout your entrepreneurial journey of starting your workshop or your small business until you are all set!"
           btnText={<FormattedMessage id="learn_more" />}
           imgSrc={helmetImg}
-          btnIcon={rightArrow}
+          btnIcon={angleRight}
           className="starting-buisiness-section"
         />
         <HomeTrustedPartnersSection />
