@@ -2,6 +2,13 @@
 @import "../../scss/mixins";
 
 .course-section-wrapper {
+  .star-icon-wrapper {
+    position: relative;
+    bottom: 25px;
+  }
+  .star-item {
+    word-spacing: -12px;
+  }
   .course-criculum-title {
     color: $btnColor;
     display: flex;

@@ -1,5 +1,6 @@
 .home-page-courses-card {
-  width: 300px;
+  // width: 330px;
+  width: 88%;
   height: 232px;
   margin-inline: 25px;
   position: relative;
@@ -22,5 +23,11 @@
   img[alt="course-img"] {
     z-index: -5;
     position: absolute;
+  }
+}
+
+@media only screen and (max-width: 786px) {
+  .home-page-courses-card {
+    height: 240px;
   }
 }

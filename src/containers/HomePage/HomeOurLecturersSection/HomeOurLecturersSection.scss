@@ -67,6 +67,7 @@
     }
     img[alt="lecturer-Img"] {
       margin-bottom: 10px;
+      width: 100%;
     }
   }
 }
@@ -75,6 +76,13 @@
   .courses_home_lecturer_section {
     .lecturers-wrapper {
       overflow-x: auto;
+    }
+  }
+  .lecturers-wrapper {
+   
+    .name {
+      font-size: 14px !important;
+      line-height: 20px !important;
     }
   }
 }

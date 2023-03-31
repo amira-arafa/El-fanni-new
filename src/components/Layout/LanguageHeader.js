@@ -4,20 +4,22 @@ import { useDispatch } from "react-redux";
 import { setCurrentLang } from "../../store/actions/Lang";
 import "./Header.scss";
 
-const LangHeader = () => {
+const LangHeader = ({className}) => {
 	const dispatch = useDispatch();
-	const [language, setLanguage] = useState(
-    localStorage.getItem("lang") === "ar" ? "ar" : "en"
-  );
+	// const [language, setLanguage] = useState(
+		// localStorage.getItem("lang") === "ar" ? "ar" : "en"
+		// );
+		const [language, setLanguage] = useState("en"
+			);
 	useEffect(() => {
 		// dispatch(setCurrentLang(language));
 	}, [language, dispatch]);
 
 	return (
-		<div className="lang-header-container d-flex">
-			<span onClick={() => setLanguage("ar")} className="cursor-pointer"><FormattedMessage id="arabic" /></span>
+		<div className={`${className} lang-header-container d-flex` }>
+			<span onClick={() => setLanguage("en")} className="cursor-pointer"><FormattedMessage id="arabic" /></span>
 			<span onClick={() => setLanguage("en")} className="cursor-pointer"><FormattedMessage id="english" /></span>
-			<span onClick={() => setLanguage("fr")} className="cursor-pointer"><FormattedMessage id="franch" /></span>
+			<span onClick={() => setLanguage("en")} className="cursor-pointer"><FormattedMessage id="franch" /></span>
 		</div>
 	);
 };

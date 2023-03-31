@@ -411,12 +411,15 @@ const CoursePage = () => {
                         <span className="star-item">
                           {course_info.avgRating ?? 0}{" "}
                         </span>
-                        <span>
-                          <img
-                            src={starIcon}
-                            style={{ verticalAlign: "top" }}
-                            alt="star-icon"
+                        <span className="star-icon-wrapper">
+                          <Rating
+                            readonly={true}
+                            initialValue={1}
+                            allowFraction={true}
+                            iconsCount={1}
+                            className="star-icon"
                           />
+                      
                         </span>
                         <sub className="inter-normal label-1">of 5</sub>
                       </span>
