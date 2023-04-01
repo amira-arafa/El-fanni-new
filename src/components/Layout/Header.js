@@ -42,12 +42,7 @@ const Header = ({ className }) => {
   const { user_data } = auth;
   const [searchValue, setSearchValue] = useState("");
   const [currentCategory, setCurrentCategory] = useState(0);
-
-  const [language, setLanguage] = useState(
-    // localStorage.getItem("lang") === "ar" ? "ar" : "en"
-     "en"
-  );
-
+  const language = localStorage.getItem("lang") === "ar" ? "ar" : "en"
 
   useEffect(() => {
     if (auth.sucess_logout) {
@@ -117,7 +112,7 @@ const Header = ({ className }) => {
       </div>
 
       <div className="col-sm-3 is-mobile justify-content-end gap-3 search-cart-container">
-        <div className="d-flex cursor-pointer" onClick={onOpenSearchModal}>
+        <div className="d-flex cursor-pointer search-container" onClick={onOpenSearchModal}>
           <img
             alt="search"
             src={search}
