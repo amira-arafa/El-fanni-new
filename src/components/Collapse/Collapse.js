@@ -17,7 +17,7 @@ const CollapaseComponent = ({
       >
         <div>{collapseTitle}</div>
       </div>
-      <div className="collapse" id={collapseId}>
+      <div className="collapse" id={collapseId} data-bs-parent="#accordion">
         {collapseContent}
       </div>
     </div>

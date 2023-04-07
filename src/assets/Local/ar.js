@@ -3,7 +3,7 @@ const ar = {
     home: "الصفحة الرئيسية",
     arabic: "عربي",
     english: "English",
-    franch: "Franch",
+    french: "Française",
     courses: "Courses",
     signUpTitle: "We're delighted to be one of our family",
     ElFanni: "El-Fanni",

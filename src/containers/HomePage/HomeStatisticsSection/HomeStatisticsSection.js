@@ -3,13 +3,15 @@ import "./HomeStatisticsSection.scss";
 import StatisticsCard from "../../../components/StatisticsCard/StatisticsCard";
 
 const HomeStatisticsSection = () => {
-  const [number, setNumber] = useState(80);
+  const [number,  setNumber]  = useState(80);
   const [number1, setNumber1] = useState(90);
   const [number2, setNumber2] = useState(70);
   const [number3, setNumber3] = useState(66);
   const [number4, setNumber4] = useState(20);
   const [number5, setNumber5] = useState(11);
+  
   const myRef = useRef();
+  
   useEffect(() => {
     const observer = new IntersectionObserver((entries, observer) => {
       const entry = entries[0];
@@ -27,6 +29,7 @@ const HomeStatisticsSection = () => {
     });
     observer.observe(myRef.current);
   }, []);
+
   return (
     <div className="statistics_home_section">
       <div className="d-flex gap-3 section-upper">
@@ -36,7 +39,7 @@ const HomeStatisticsSection = () => {
             number={number}
             percent="+0.0"
             type="Billion"
-            details="Africa’s Population"
+            details="Africa's Population"
           />
         </div>
         <div className="col-sm-4">
@@ -44,7 +47,7 @@ const HomeStatisticsSection = () => {
             number={number1}
             percent="00"
             type="by 2030"
-            details="Africa’s Population under 25"
+            details="Africa's Population under 25"
           />
         </div>
         <div className="col-sm-4">
@@ -62,7 +65,7 @@ const HomeStatisticsSection = () => {
           <StatisticsCard
             number={number3}
             percent="00"
-            details="Africa’s youth aren’t in education, Employment, or training"
+            details="Africa's youth aren't in education, Employment, or training"
           />
         </div>
         <div className="col-sm-4">
@@ -70,7 +73,7 @@ const HomeStatisticsSection = () => {
             percent="00"
             number={number4}
             type="by 2024"
-            details="Middle east’s Population are expected to hit poverty"
+            details="Middle east's Population are expected to hit poverty"
           />
         </div>
         <div className="col-sm-4">
