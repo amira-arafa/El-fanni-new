@@ -46,20 +46,7 @@ const HomeAboutUsSection = () => {
               }
               collapseContent={
                 <p className="mb-4">
-                  Too much focus has been laid upon so-called white-collar jobs
-                  such as software development, business administration and
-                  other clerical professions following numerous faddish trends.
-                  However, very few initiatives have paid proper attention to
-                  what really matters: those professions, occupations and skills
-                  that keep our lives going smoothly and unimpeded. Those
-                  professionals and technicians vouchsafe our welfare through
-                  their incredible efforts, unfailing commitment and the
-                  real-life risks they take day to day. ELFANNI was designed
-                  with this specific goal in mind, a rebalancing act that aims
-                  to reinstitute technical training and professions as excellent
-                  career alternatives in a world that is manifestly lacking
-                  qualified technical professionals and highly skilled
-                  technicians.
+                  We are a group of educators, former diplomats, academics and investors who share thepassion for providing world-class technical education and training to people in the Middle East& Africa. Our collective understanding of the value of TVET-based skills and careersencouraged us to form a unified approach to TVET that is broad, comprehensive, inclusiveand practicable.
                 </p>
               }
             />
@@ -78,20 +65,7 @@ const HomeAboutUsSection = () => {
               }
               collapseContent={
                 <p className="mb-4">
-                  Too much focus has been laid upon so-called white-collar jobs
-                  such as software development, business administration and
-                  other clerical professions following numerous faddish trends.
-                  However, very few initiatives have paid proper attention to
-                  what really matters: those professions, occupations and skills
-                  that keep our lives going smoothly and unimpeded. Those
-                  professionals and technicians vouchsafe our welfare through
-                  their incredible efforts, unfailing commitment and the
-                  real-life risks they take day to day. ELFANNI was designed
-                  with this specific goal in mind, a rebalancing act that aims
-                  to reinstitute technical training and professions as excellent
-                  career alternatives in a world that is manifestly lacking
-                  qualified technical professionals and highly skilled
-                  technicians.
+                  Too much focus has been laid upon so-called white-collar jobs such as software development, business administration and other clerical professions following numerous faddish trends. However, very few initiatives have paid proper attention to what really matters: those professions, occupations and skills that keep our lives going smoothly and unimpeded.
                 </p>
               }
             />
@@ -110,20 +84,7 @@ const HomeAboutUsSection = () => {
               }
               collapseContent={
                 <p className="mb-4">
-                  Too much focus has been laid upon so-called white-collar jobs
-                  such as software development, business administration and
-                  other clerical professions following numerous faddish trends.
-                  However, very few initiatives have paid proper attention to
-                  what really matters: those professions, occupations and skills
-                  that keep our lives going smoothly and unimpeded. Those
-                  professionals and technicians vouchsafe our welfare through
-                  their incredible efforts, unfailing commitment and the
-                  real-life risks they take day to day. ELFANNI was designed
-                  with this specific goal in mind, a rebalancing act that aims
-                  to reinstitute technical training and professions as excellent
-                  career alternatives in a world that is manifestly lacking
-                  qualified technical professionals and highly skilled
-                  technicians.
+                  ELFANNI is not yet another paid online learning platform, we see ELFANNI as an opportunity platform that offers better future prospects for its members and better qualified candidates for the EU and MEA labor markets.
                 </p>
               }
             />
@@ -142,20 +103,7 @@ const HomeAboutUsSection = () => {
               }
               collapseContent={
                 <p className="mb-4">
-                  Too much focus has been laid upon so-called white-collar jobs
-                  such as software development, business administration and
-                  other clerical professions following numerous faddish trends.
-                  However, very few initiatives have paid proper attention to
-                  what really matters: those professions, occupations and skills
-                  that keep our lives going smoothly and unimpeded. Those
-                  professionals and technicians vouchsafe our welfare through
-                  their incredible efforts, unfailing commitment and the
-                  real-life risks they take day to day. ELFANNI was designed
-                  with this specific goal in mind, a rebalancing act that aims
-                  to reinstitute technical training and professions as excellent
-                  career alternatives in a world that is manifestly lacking
-                  qualified technical professionals and highly skilled
-                  technicians.
+                  We offers a novel model of learning that is tied to the labor market needs in the Middle East, Africa and, most importantly, the EU. El-Fanni managed, through collaboration with TVET-focused educational and training institutions in Italy, to obtain accreditations for its online courses.
                 </p>
               }
             />
