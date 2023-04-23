@@ -1,0 +1,13 @@
+.browse-categories-wrapper{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+}
+.head-2{
+  color: linear-gradient(122.31deg, #1F0A96 0%, #0573F1 94.7%) !important;
+}
+.browse-lang-content-body{
+  width: 30%;
+}
+.browse-lang-content-body .levels p {
+  text-decoration: underline;
+}

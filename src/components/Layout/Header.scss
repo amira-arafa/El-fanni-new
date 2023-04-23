@@ -135,8 +135,8 @@
 }
 
 .browse-modal {
-  width: 50vw;
-  padding: 30px 14px 30px 30px !important;
+  // width: 50vw;
+  padding: 50px 14px 30px 60px !important;
 
   .react-responsive-modal-closeButton {
     display: none;
@@ -147,13 +147,13 @@
   list-style-type: none;
   padding: 0px;
 
-  li {
-    background: url(../../../src/assets/imgs/icons/category2.png) no-repeat;
-    margin: 0;
-    padding: 0px 30px;
-    cursor: pointer;
-    height: 25px;
-  }
+  // li {
+  //   background: url(../../../src/assets/imgs/icons/category2.png) no-repeat;
+  //   margin: 0;
+  //   padding: 0px 30px;
+  //   cursor: pointer;
+  //   height: 25px;
+  // }
 }
 
 .subcategories-wrapper .label-1 {

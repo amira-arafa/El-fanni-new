@@ -4,6 +4,7 @@ import { requestHandler, successHandler, errorHandler } from "../interceptors";
 export const axiosInstance = axios.create({
   baseURL: "https://api-staging.alphanni.com/api/v1/users",
   // baseURL: "http://192.168.1.14:3000/api/v1/users",
+  // baseURL: "http://localhost:3000/api/v1/users",
   headers: {
     Accept: "*/*",
     "Content-Type": "application/json",

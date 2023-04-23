@@ -19,7 +19,7 @@ import { STORE_SEARCH_QUERY } from "../../store/types/home";
 import Input from "../../components/Input/Input";
 import ModalComponentV2 from "../Modal/Modal";
 import "./Header.scss";
-import BrowseModalContent from "../Modal/BrowseModalContent";
+import BrowseModalContent from "../Modal/BrowseModalContent/index";
 import SearchModalContent from "../Modal/SearchModalContent";
 
 const Header = ({ className }) => {
@@ -58,7 +58,7 @@ const Header = ({ className }) => {
 
   useEffect(() => {
     dispatch(getCategories());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     localStorage.getItem("token") && dispatch(getCartList());
@@ -374,9 +374,10 @@ const Header = ({ className }) => {
                     role="menuitem"
                     aria-controls="collapseExample"
                   >
-                    {category?.name}
+                    <img src={category.photo}/> {category?.name}
                   </li>
-                  {category.subcategories.length > 0 && (
+
+                  {/* {category.subcategories.length > 0 && (
                     <div className="collapse mb-2" id={`collapseExample-${i}`}>
                       {category.subcategories?.map((subCat, i) => {
                         return (
@@ -392,7 +393,7 @@ const Header = ({ className }) => {
                         );
                       })}
                     </div>
-                  )}
+                  )} */}
                 </div>
               );
             })}
@@ -422,7 +423,6 @@ const Header = ({ className }) => {
         className="browse-modal"
         modalBody={
           <BrowseModalContent 
-            currentCategory={currentCategory}
             handleCategoryChange={handleCategoryChange}
             handleCloseModal={onCloseModalBrowseModal}
             />

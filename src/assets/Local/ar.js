@@ -4,6 +4,8 @@ const ar = {
     arabic: "عربي",
     english: "English",
     french: "Française",
+    italian: "Italian",
+    german: "German",
     courses: "Courses",
     signUpTitle: "We're delighted to be one of our family",
     ElFanni: "El-Fanni",
@@ -134,7 +136,6 @@ const ar = {
     searchHere: "Search here",
     showMore: "Show more",
     removeFromCart: "Remove from cart",
-    deleteMsg: "Are you sure you want to delete this item ?",
     deleteMsgCourse:
       "Are you sure you want to remove this course from your cart?",
     deleteCourseTitle: "Removing course from your cart !!",
@@ -177,6 +178,21 @@ const ar = {
     learn_more: "Learn more",
     most_visited: "Most Visited",
     Terms: "Terms",
+
+    technical: "Technical",
+    language: "Language",
+    entrepreneurship: "Entrepreneurship",
+    techCourese: "Technical Courses",
+    langCourese: "Language Courses",
+    entrepreneurCourese: "Entrepreneurship Courses",
+    levelA1: "A1",
+    levelA2: "A2",
+    levelB1: "B1",
+    EntrepreneurshipP1: "Starting your small business:fundamentals",
+    EntrepreneurshipP2: "Financial Planning & Bookkeeping",
+    EntrepreneurshipP3: "Starting your auto repair workshop",
+    EntrepreneurshipP4: "Starting your small agribusiness",
+    EntrepreneurshipP5: "Loan Management Success",
   },
 };
 
