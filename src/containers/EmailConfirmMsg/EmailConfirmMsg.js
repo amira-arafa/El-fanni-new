@@ -29,7 +29,7 @@ const EmailConfirmMsg = () => {
           </div>
         </div>
         <div className="mb-5 pb-5 d-flex align-items-center justify-content-between">
-          <p className="glory-semi-bold heading-2 mb-0 check-email-msg">
+          <p className="glory-semi-bold mb-0 check-email-msg">
             <FormattedMessage id="checkEmail" />
           </p>
           <div>

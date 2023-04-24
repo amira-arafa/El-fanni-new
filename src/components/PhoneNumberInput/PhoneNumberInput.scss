@@ -3,11 +3,15 @@
 
 .intl-tel-input {
   border: 0.117vw solid $borderColor !important;
-  border-radius: 0.625 !important;
+  border-radius: 8px !important;
   height: 3.049vw !important;
   width: 100% !important;
   font-size: 1.251vw !important;
   padding: 0vw 4vw !important;
+
+}
+.react-tel-input .flag-dropdown{
+  border-radius: 8px 0 0 8px;
 }
 div[dir="rtl"] {
   .react-tel-input {

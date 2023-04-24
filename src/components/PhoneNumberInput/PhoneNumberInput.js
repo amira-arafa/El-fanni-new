@@ -12,6 +12,7 @@ const PhoneNumberInput = ({ value, onChange }) => {
       <PhoneInput
         country={"eg"}
         inputClass={"intl-tel-input"}
+        placeholder={<FormattedMessage id="phonePlaceholder" />}
         value={value}
         onChange={onChange}
       />

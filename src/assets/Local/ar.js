@@ -16,6 +16,7 @@ const ar = {
     Phone: "Phone",
     Email: "Email",
     EmailPlaceHolder: "Ex: John.Doe32@example.com",
+    phonePlaceholder: "ex: 01012345678",
     newPassword: "New Password",
     Password: "Password",
     repeatNewPass: "Repeat new password",

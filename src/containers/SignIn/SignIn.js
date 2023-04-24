@@ -145,9 +145,9 @@ const SignIn = () => {
           </div>
         </div>
         <div className="mb-3">
-          <p className="text-grey-sub-heading body-1 inter-regular low-line-height mb-0">
+          {/* <p className="text-grey-sub-heading body-1 inter-regular low-line-height mb-0">
             <FormattedMessage id="signInSubtitle" />
-          </p>
+          </p> */}
         </div>
         <div className="mb-2">
           {useEmail ? (
@@ -224,7 +224,7 @@ const SignIn = () => {
         </div>
         <div className="d-flex justify-content-end w-100 mb-3">
           <p
-            className="label-1 btnColor inter-semi-bold foretPassword cursor-pointer"
+            className="label-1 inter-semi-bold foretPassword cursor-pointer"
             onClick={() => navigate("/forget-password-email")}
           >
             <FormattedMessage id="forgetPass" />

@@ -8,27 +8,30 @@
   }
   .main-bg-img {
     height: 100%;
-    background-color: rgba(0, 33, 71, 0.75);
-    background-image: url("../../assets/imgs/signUp2.jpeg");
+    // background-color: rgba(0, 33, 71, 0.75);
+    background-image: url("../../assets/imgs/worldMap.png");
     background-repeat: no-repeat;
-    background-size: cover;
-    background-position: right;
-    background-blend-mode: multiply;
-    padding-left: 6.255vw;
-    padding-right: 6.255vw;
+    background-position: center 85px;
+    // background-size: cover;
+    // background-position: right;
+    // background-blend-mode: multiply;
+    // padding-left: 6.255vw;
+    // padding-right: 6.255vw;
     align-self: stretch;
     height: auto;
-    display: block;
+    // position: absolute;
+    // display: block;
   }
   .main-bg-img-v2 {
     height: 100%;
-    background-color: rgba(0, 33, 71, 0.75);
-    background-image: url("../../assets/imgs/laptop.jpg");
+    // background-color: rgba(0, 33, 71, 0.75);
+    background-image: url("../../assets/imgs/worldMap.png");
     background-repeat: no-repeat;
-    background-size: cover;
-    background-blend-mode: multiply;
-    padding-left: 6.255vw;
-    padding-right: 6.255vw;
+    background-position: center center;
+    // background-size: cover;
+    // background-blend-mode: multiply;
+    // padding-left: 6.255vw;
+    // padding-right: 6.255vw;
     align-self: stretch;
     height: auto;
     display: block;

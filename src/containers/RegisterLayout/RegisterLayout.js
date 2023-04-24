@@ -16,20 +16,8 @@ const RegisterLayout = ({
           className ? className : "align-items-center"
         } d-flex register-layout `}
       >
-        <div className={`${imageClassName}  col-sm-6 p-t-5 `}>
-          <div className="d-flex align-items-center pb-4">
-            <div>
-              <img alt="logo" src={logo}></img>
-            </div>
-            <div className="text-white glory-bold heading-4 mx-2">
-              {logoTitle}
-            </div>
-          </div>
-          <div className="d-flex  ">
-            <p className="text-white heading-2 glory-semi-bold medium-line-height">
-              {mainTitle}
-            </p>
-          </div>
+        <div className={`${imageClassName} col-sm-6 p-t-5 `}>
+         
         </div>
 
         <div className="col-sm-6 p-0 form-register-container">

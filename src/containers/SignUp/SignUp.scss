@@ -14,7 +14,7 @@
       12px,
       $whiteText,
       0.782vw 2.346vw,
-      "Inter-SemiBold",
+      "Gilory-Semi-Bold",
       1.173vw,
       0vw 0.156vw 0.313vw rgba(11, 11, 14, 0.2)
     );
@@ -26,7 +26,7 @@
       12px,
       $btnColor,
       1.095vw 1.72vw,
-      "Inter-SemiBold",
+      "Gilory-Semi-Bold",
       1.173vw,
       none
     );
@@ -46,9 +46,7 @@
   .sign-up-btn {
     color: $btnColor;
     cursor: pointer;
-    &:hover {
-      text-decoration: underline;
-    }
+    border-bottom: 1px solid $btnColor;
   }
 }
 

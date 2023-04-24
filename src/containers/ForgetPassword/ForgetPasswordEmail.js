@@ -70,7 +70,7 @@ const ForgetPasswordEmail = () => {
             {<FormattedMessage id="ElFanni" />}
           </div>
         </div>
-        <div className="mb-5 pb-5 d-flex align-items-center justify-content-between">
+        <div className="pb-5 d-flex align-items-center justify-content-between">
           <p className="glory-semi-bold heading-2 mb-0">
             <FormattedMessage id="forgetPassword" />
           </p>
