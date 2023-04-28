@@ -2,15 +2,20 @@ import React, { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 import logoMobile from "../../assets/imgs/logoMobile.png";
-import logo from "../../assets/imgs/logo.png";
-import arrowDown from "../../assets/imgs/icons/angle-down.png";
-import loginIcon from "../../assets/imgs/icons/loginIcon.png";
-import search from "../../assets/imgs/icons/Group 510.png";
+// import logo from "../../assets/imgs/logo.png";
+import logo from "../../assets/imgs/icons/logo-latest.png";
+// import arrowDown from "../../assets/imgs/icons/angle-down.png";
+import angleDown from "../../assets/imgs/icons/angle-down-dark.png";
+// import loginIcon from "../../assets/imgs/icons/loginIcon.png";
+import loginIcon from "../../assets/imgs/icons/login-icon-dark.png";
+import search from "../../assets/imgs/icons/search-black.png";
+// import search from "../../assets/imgs/icons/Group 510.png";
 import category from "../../assets/imgs/icons/category.png";
 import SideNav from "react-simple-sidenav";
 import menu from "../../assets/imgs/icons/menu.png";
 import closeIcon from "../../assets/imgs/icons/close-circle-grey.png";
-import cart from "../../assets/imgs/icons/shopping-cart.png";
+// import cartWhite from "../../assets/imgs/icons/shopping-cart-white.png";
+import cartBlack from "../../assets/imgs/icons/shopping-cart-black.png";
 import { useDispatch, useSelector } from "react-redux";
 import { Logout } from "../../store/actions/auth";
 import { getCartList, getCategories } from "../../store/actions/home";
@@ -82,7 +87,7 @@ const Header = ({ className }) => {
   };
 
   return (
-    <div className={`${className} header-container d-flex`}>
+    <div className={`header-container d-flex`}>
       <div className="col-md-9 col-sm-8">
         <div className="d-flex align-items-center row">
           <div className="col-sm-5 col-md-4 d-flex align-items-center">
@@ -96,7 +101,7 @@ const Header = ({ className }) => {
               <span>
                 <FormattedMessage id="courses"/>
               </span>
-              <img src={arrowDown} alt="arrowDownBrowse" />
+              <img src={angleDown} alt="arrowDownBrowse" />
             </div>
             <span className="body-1 cursor-pointer" onClick={() => navigate("/about-us")}>
               <FormattedMessage id="aboutUs" />
@@ -107,6 +112,9 @@ const Header = ({ className }) => {
             <span className="body-1 cursor-pointer">
               <FormattedMessage id="advisoryBoard" />
             </span>
+            <span className="body-1 cursor-pointer">
+              <FormattedMessage id="contacts" />
+            </span>
           </div>
         </div>
       </div>
@@ -116,15 +124,13 @@ const Header = ({ className }) => {
           <img
             alt="search"
             src={search}
-            width="50px"
-            height="50px"
           ></img>
         </div>
 
         <div className="d-flex align-items-center cursor-pointer cart-icon-wrapper">
           <img
             alt="cart"
-            src={cart}
+            src={cartBlack}
             width="35px"
             height="35px"
             onClick={() => navigate("/cart")}
@@ -144,12 +150,13 @@ const Header = ({ className }) => {
                   role="menuitem"
                 >
                   <img
-                    className="logout-user"
+                    className="logout-user me-2"
                     alt="user-img"
                     src={user_data.photo}
                     width="40"
                     height="40"
-                  ></img>
+                  />
+                   <img src={angleDown} alt="angle-down" />
                 </div>
                 <ul
                   className="dropdown-menu w-100"
@@ -170,7 +177,7 @@ const Header = ({ className }) => {
             </div>
           ) : (
             <div
-              className=" d-flex gap-2 sign-in-header align-items-center"
+              className="d-flex gap-2 sign-in-header align-items-center"
               onClick={() => navigate("/sign-in")}
             >
               <span className="inter-semi-bold body-1">

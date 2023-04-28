@@ -44,6 +44,7 @@ const en = {
     search: "Search",
     advisoryBoard: "Advisory Board",
     EUJobs: "EU Jobs",
+    contacts: "Contacts",
     termsOfUse: "Terms of use",
     privacyPolicy: "Privacy policy",
     contactUs: "Contact us",

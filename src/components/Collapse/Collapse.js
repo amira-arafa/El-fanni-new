@@ -5,9 +5,10 @@ const CollapaseComponent = ({
   collapseTitle,
   collapseContent,
   collapseId,
+  handleChange
 }) => {
   return (
-    <div className={className}>
+    <div className={className} onClick={() => handleChange()}>
       <div
         className="glory-semi-bold heading-1 course-criculum-title cursor-pointer"
         data-bs-toggle="collapse"

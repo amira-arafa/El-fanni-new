@@ -7,7 +7,7 @@ import HomeMainSection from "./HomeMainSection/HomeMainSection";
 import HomeAboutUsSection from "./HomeAboutUsSection/HomeAboutUsSection";
 import HomeStatisticsSection from "./HomeStatisticsSection/HomeStatisticsSection";
 import HomeOurCoursesSection from "./HomeOurCoursesSection/HomeOurCoursesSection";
-import HomeOurLecturersSection from "./HomeOurLecturersSection/HomeOurLecturersSection";
+// import HomeOurLecturersSection from "./HomeOurLecturersSection/HomeOurLecturersSection";
 import HomeTestimonialSection from "./HomeTestimonialSection/HomeTestimonialSection";
 import HomeInspireSection from "./HomeInspireSection/HomeInspireSection";
 import HomeTrustedPartnersSection from "./HomeTrustedPartnersSection/HomeTrustedPartnersSection";
@@ -18,8 +18,8 @@ const HomePage = () => {
       <div>
         <HomeMainSection />
         <HomeAboutUsSection />
-        <HomeStatisticsSection />
         <HomeOurCoursesSection />
+        <HomeStatisticsSection />
         {/* <HomeOurLecturersSection /> */}
         <HomeTestimonialSection />
         <HomeInspireSection
@@ -29,7 +29,7 @@ const HomePage = () => {
               country in the EU?
             </p>
           }
-          subTitle="Do you aspire to land your dream job in an EU country legally? We’ve got you covered. ELFANNI offers you the chance to be a candidate for an EU job through its partnerships and collaborations with multilateral organizations and private businesses in the EU."
+          subTitle="Do you aspire to land your dream job in an EU country legally? We've got you covered. ELFANNI offers you the chance to be a candidate for an EU job through its partnerships and collaborations with multilateral organizations and private businesses in the EU."
           btnText={<FormattedMessage id="learn_more" />}
           imgSrc={timeImg}
           btnIcon={angleRight}

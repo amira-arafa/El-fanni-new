@@ -26,11 +26,12 @@
 }
 
 .header-container {
-  background: $btnColor;
-  color: $whiteText;
+  // background: $btnColor;
+  background-color: #fff;
+  color: $navItemsColor;
   padding: 1.3vw 4.5vw;
-  background: linear-gradient(90.45deg, #002147 0%, #086193 100%);
-  border-radius: 0px 0px 24px 24px;
+  // background: linear-gradient(90.45deg, #002147 0%, #086193 100%);
+  // border-radius: 0px 0px 24px 24px;
 
   .dropdown-toggle::after {
     display: none;
@@ -64,12 +65,16 @@
 
   .cart-number {
     position: relative;
-    right: 7px;
-    bottom: 7px;
+    right: 15px;
+    bottom: 15px;
     background: #ea0c0c;
     border-radius: 50%;
-    padding: 0px 5px;
+    // padding: 0px 5px;
     font-size: 12px;
+    color: #fff;
+    width: 18px;
+    height: 18px;
+    text-align: center;
   }
 
   .course-progress {
@@ -190,7 +195,7 @@ img[alt="search-icon-overlay"] {
 .nav-items-container {
   display: flex !important;
   align-items: center;
-  gap: 7%;
+  gap: 6%;
 
   .cursor-pointer:hover{
     opacity: .8;
@@ -236,9 +241,9 @@ img[alt="language"] {
 .sign-in-header {
   border-radius: 12px;
   background-color: transparent;
-  color: #fff;
+  color: $navItemsColor;
   padding: 13px 20px;
-  border: 2px solid #f5faff;
+  border: 2px solid $navItemsColor;
 }
 
 .home_page {
@@ -307,8 +312,8 @@ nav {
       height: 30px;
     }
     img[alt="search"] {
-      width: 35px;
-      height: 35px;
+      width: 30px;
+      height: 30px;
     }
   }
 

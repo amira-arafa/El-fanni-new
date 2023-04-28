@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import quoteUpIcon from "../../../assets/imgs/icons/quote-down.png";
 import quoteDownIcon from "../../../assets/imgs/icons/quote-up.png";
-import teacher4 from "../../../assets/imgs/teacher4.png";
+import anonymous from "../../../assets/imgs/icons/anonymous.png";
 import "./HomeTestimonialSection.scss";
 
 const HomeTestimonialSection = () => {
@@ -52,14 +52,14 @@ const HomeTestimonialSection = () => {
             </div>
             <div className="d-flex student-info">
               <div className="col-sm-2">
-                <img src={teacher4} alt="student-img" />
+                <img src={anonymous} alt="student-img" />
               </div>
               <div className="col-sm-10">
                 <div className="student-name inter-semi-bold body-1">
-                  John Doe
+                  Mohammed Shaker
                 </div>
                 <div className="student-school label-1 inter-regular">
-                  Student at Alexandria Technical School{" "}
+                  Mechanical Student in Faculty of Engineering, AUC
                 </div>
               </div>
             </div>
@@ -69,24 +69,21 @@ const HomeTestimonialSection = () => {
               <img src={quoteUpIcon} alt="quoteUpIcon"></img>
             </div>
             <div className="students-text mb-2 inter-regular body-1">
-              The Mechanical course from ElFANNI was fantastic! The instructors
-              were knowledgeable, and the hands-on approach made learning easy.
-              Thanks to this course, I feel confident in pursuing a career in
-              agriculture. Highly recommended!
+              The Agriculture course from ELFANNI was excellent! The instructors were experienced and passionate, and the practical approach to learning was invaluable. Thanks to course, I feel ready to pursue my career. Highly recommend!
             </div>
             <div className="text-end">
               <img src={quoteDownIcon} alt="quoteDonwIcon"></img>
             </div>
             <div className="d-flex student-info">
               <div className="col-sm-2">
-                <img src={teacher4} alt="student-img" />
+                <img src={anonymous} alt="student-img" />
               </div>
               <div className="col-sm-10">
                 <div className="student-name inter-semi-bold body-1">
-                  John Doe
+                  Evonika Rolo
                 </div>
                 <div className="student-school label-1 inter-regular">
-                  Student at Alexandria Technical School{" "}
+                  Agricultural Engineer in CSO for Fertilizers
                 </div>
               </div>
             </div>
@@ -96,24 +93,21 @@ const HomeTestimonialSection = () => {
               <img src={quoteUpIcon} alt="quoteUpIcon"></img>
             </div>
             <div className="students-text mb-2 inter-regular body-1">
-              The Mechanical course from ElFANNI was fantastic! The instructors
-              were knowledgeable, and the hands-on approach made learning easy.
-              Thanks to this course, I feel confident in pursuing a career in
-              agriculture. Highly recommended!
+              I would definitely encourage anyone interested in the electrical field to take the course from ElFANNI. It was an outstanding learning experience, and I am grateful for the skills and knowledge I gained. This course is a great investment in your future!
             </div>
             <div className="text-end">
               <img src={quoteDownIcon} alt="quoteDonwIcon"></img>
             </div>
             <div className="d-flex student-info">
               <div className="col-sm-2">
-                <img src={teacher4} alt="student-img" />
+                <img src={anonymous} alt="student-img" />
               </div>
               <div className="col-sm-10">
                 <div className="student-name inter-semi-bold body-1">
-                  John Doe
+                  Martin Kaloya
                 </div>
                 <div className="student-school label-1 inter-regular">
-                  Student at Alexandria Technical School{" "}
+                  Electrical Engineer in E-Just University
                 </div>
               </div>
             </div>
