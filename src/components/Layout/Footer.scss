@@ -1,47 +1,78 @@
 @import "../../scss/variables";
 
-.footer-container {
-  background: $btnColor;
+.footer-container-wrapper {
+  background: #0C4083;
   color: $whiteText;
-  padding: 2vw 4.5vw;
+  padding: 3vw 4.5vw;
   position: inherit;
   bottom: 0;
   width: 100%;
+
   img[alt="logo-name-container"] {
     width: 150px;
   }
-  .most-visited {
+  .footer-ul-title {
     font-family: "Gilory";
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
-    line-height: 36px;
-    color: #8bcf5f;
+    line-height: 30px;
+    color: #FFFFFF;
   }
-  ul {
+  
+  ul:not(.dropdown-menu) {
     list-style-type: none;
     display: flex;
     flex-direction: column;
     padding: 0px;
+
     li {
-      font-family: "Inter";
+      font-family: "Gilory";
       font-style: normal;
       font-weight: 400;
-      font-size: 13px;
-      line-height: 20px;
+      font-size: 14px;
+      line-height: 21px;
       color: #f5faff;
       margin-bottom: 5px;
     }
   }
   img[alt="socialMediaIcon"] {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 8px;
+  }
+
+  .inline-list {
+    flex: 2;
+    align-items: center;
+    margin-bottom: 0;
+
+    li{
+      font-family: 'Gilroy';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 21px;
+    }
+  }
+
+  .lang-dropdown {
+    border-radius: 12px;
+    background-color: transparent;
+    color: #fff;
+    padding: 10px 16px;
+    border: 2px solid #fff;
+  }
+
+  .social-media-wrapper{
+    align-self: center;
+    margin-left: 160px;
+    margin-right: 50px;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .footer-container {
+  .footer-container-wrapper {
     > div {
       flex-wrap: wrap;
     }

@@ -108,6 +108,10 @@ const SearchResults = () => {
     }
   }, [categories_list]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const intl = useIntl();
 
   const handleAddToCart = (result) => {

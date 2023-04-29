@@ -14,7 +14,7 @@ const HomeTestimonialSection = () => {
       setVisible(entry.isIntersecting);
       if (entry.intersectionRatio > 0) {
         setTimeout(() => {
-          observer.unobserve(myRef.current);
+          myRef.current && observer.unobserve(myRef.current);
           setVisible(false);
         }, 3000);
       }

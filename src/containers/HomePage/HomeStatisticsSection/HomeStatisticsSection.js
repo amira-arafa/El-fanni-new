@@ -23,7 +23,7 @@ const HomeStatisticsSection = () => {
         setNumber4(number4 + 36);
         setNumber5(number5 + 28);
         setTimeout(() => {
-          observer.unobserve(myRef.current);
+          myRef.current && observer.unobserve(myRef.current);
         }, 5000);
       }
     });

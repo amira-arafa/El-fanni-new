@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import aboutUsImg from "../../assets/imgs/signUp2.jpeg";
 import board from "../../assets/imgs/board.png";
 import "./AboutUs.scss";
 
 const AboutUs = () => {
+  
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <>
       <div className="about-us-page">
@@ -52,9 +57,9 @@ const AboutUs = () => {
 
               <div
                 className="about-us-titles glory-semi-bold"
-                id="mission-and-vision-section"
+                id="mission-and-Vission-section"
               >
-                <FormattedMessage id="MissionAndVision" />
+                <FormattedMessage id="MissionAndVission" />
               </div>
               <div className="inter-normal body-1 mb-4">
                 Too much focus has been laid upon so-called white-collar jobs
@@ -73,7 +78,7 @@ const AboutUs = () => {
               </div>
 
               {/* <div className="about-us-titles glory-semi-bold">
-                <FormattedMessage id="Vision" />
+                <FormattedMessage id="Vission" />
               </div> */}
               {/* <div className="inter-normal body-1 mb-4">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi
@@ -176,7 +181,7 @@ const AboutUs = () => {
                     </a>
                   </li>
                   <li className="inter-regular">
-                    <a href="#mission-and-vision-section ">
+                    <a href="#mission-and-Vission-section ">
                       <FormattedMessage id="MissionAndVission" />
                     </a>
                   </li>

@@ -12,19 +12,21 @@ const HomeInspireSection = ({
 }) => {
   const [visible, setVisible] = useState(false);
   const myRef = useRef();
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries, observer) => {
       const entry = entries[0];
       setVisible(entry.isIntersecting)
       if(entry.intersectionRatio > 0) {
         setTimeout(() => {
-          observer.unobserve(myRef.current);
+          myRef.current && observer.unobserve(myRef.current);
           setVisible(false)
         }, 3000);
       }
     });
     observer.observe(myRef.current);
   }, []);
+
   return (
     <div ref={myRef} className={`${className} home-inspire-section ${visible && "home-inspire-animation"}`}>
       <div className="d-flex justify-content-between gap-3 align-items-center">

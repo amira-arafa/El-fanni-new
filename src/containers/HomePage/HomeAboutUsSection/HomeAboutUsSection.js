@@ -77,11 +77,11 @@ const HomeAboutUsSection = () => {
             />
             <CollapaseComponent
               className="about-us-collapse"
-              collapseId="about-us-home-vision"
+              collapseId="about-us-home-Vission"
               collapseTitle={
                 <div className="d-flex justify-content-between align-items-center content-single-wrapper">
                   <div className="inner-title">
-                    <FormattedMessage id="Vision" />
+                    <FormattedMessage id="Vission" />
                   </div>
                   <div>
                     <img src={vissionOpen ? angleUp : angleDown} alt="Add-icon" />
@@ -121,7 +121,7 @@ const HomeAboutUsSection = () => {
               collapseTitle={
                 <div className="d-flex justify-content-between align-items-center content-single-wrapper-last-child ">
                   <div className="inner-title">
-                    <FormattedMessage id="Stratgy" />
+                    <FormattedMessage id="Strategy" />
                   </div>
                   <div>
                     <img src={strategyOpen ? angleUp : angleDown} alt="Add-icon" />

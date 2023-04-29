@@ -45,8 +45,8 @@ const SearchModalContent = ({
             <img
               alt="search-icon-overlay"
               src={search}
-              width="20"
-              height="20"
+              width="30"
+              height="30"
               className="cursor-pointer"
               onClick={() => redirectTosearchPage()}
             />
